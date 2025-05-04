@@ -9,26 +9,26 @@ class UserCreateVModel {
   constructor({
     username,
     email,
-    password,
-    phoneNumber,
+    passwordhash,
+    phonenumber,
     birthday,
     gender,
-    fullName,
+    fullname,
     address,
-    isActive = true,
-    isAdmin = false,
+    isactive = true,
+    isadmin = false,
     balance = 0,
   }) {
     this.username = username;
     this.email = email;
-    this.password = password;
-    this.phoneNumber = phoneNumber;
+    this.passwordhash = passwordhash;
+    this.phonenumber = phonenumber;
     this.birthday = birthday;
     this.gender = gender;
-    this.fullName = fullName;
+    this.fullname = fullname;
     this.address = address;
-    this.isActive = isActive;
-    this.isAdmin = isAdmin;
+    this.isactive = isactive;
+    this.isadmin = isadmin;
     this.balance = balance;
   }
 }
@@ -38,25 +38,25 @@ class UserUpdateVModel {
     id,
     username,
     email,
-    phoneNumber,
+    phonenumber,
     birthday,
     gender,
-    fullName,
+    fullname,
     address,
-    isActive,
-    isAdmin,
+    isactive,
+    isadmin,
     balance,
   }) {
     this.id = id;
     this.username = username;
     this.email = email;
-    this.phoneNumber = phoneNumber;
+    this.phonenumber = phonenumber;
     this.birthday = birthday;
     this.gender = gender;
-    this.fullName = fullName;
+    this.fullname = fullname;
     this.address = address;
-    this.isActive = isActive;
-    this.isAdmin = isAdmin;
+    this.isactive = isactive;
+    this.isadmin = isadmin;
     this.balance = balance;
   }
 }
@@ -66,27 +66,27 @@ class UserGetAllVModel {
     id,
     username,
     email,
-    fullName,
+    fullname,
     birthday,
     gender,
     address,
-    phoneNumber,
-    createdDate,
-    isActive,
-    isAdmin,
+    phonenumber,
+    createddate,
+    isactive,
+    isadmin,
     balance,
   }) {
     this.id = id;
     this.username = username;
     this.email = email;
-    this.fullName = fullName;
+    this.fullname = fullname;
     this.birthday = birthday;
     this.gender = gender;
     this.address = address;
-    this.phoneNumber = phoneNumber;
-    this.createdDate = createdDate;
-    this.isActive = isActive;
-    this.isAdmin = isAdmin;
+    this.phonenumber = phonenumber;
+    this.createddate = createddate;
+    this.isactive = isactive;
+    this.isadmin = isadmin;
     this.balance = balance;
   }
 }

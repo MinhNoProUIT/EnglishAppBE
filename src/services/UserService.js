@@ -11,7 +11,7 @@ const UserService = {
     const {
       username,
       email,
-      password,
+      passwordhash,
       phoneNumber,
       birthday,
       gender,
@@ -30,7 +30,7 @@ const UserService = {
       [
         username,
         email,
-        password,
+        passwordhash,
         phoneNumber,
         birthday,
         gender,
