@@ -8,6 +8,7 @@ class User {
     fullname,
     address,
     email,
+    image_url,
     phonenumber,
     createddate,
     isactive,
@@ -23,6 +24,7 @@ class User {
     this.address = address;
     this.email = email;
     this.phonenumber = phonenumber;
+    this.image_url = image_url;
     this.createddate = createddate;
     this.isactive = isactive;
     this.isadmin = isadmin;
