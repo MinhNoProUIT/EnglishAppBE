@@ -15,6 +15,7 @@ class UserCreateVModel {
     gender,
     fullname,
     address,
+    image_url,
     isactive = true,
     isadmin = false,
     balance = 0,
@@ -27,6 +28,7 @@ class UserCreateVModel {
     this.gender = gender;
     this.fullname = fullname;
     this.address = address;
+    this.image_url = image_url;
     this.isactive = isactive;
     this.isadmin = isadmin;
     this.balance = balance;
@@ -43,6 +45,7 @@ class UserUpdateVModel {
     gender,
     fullname,
     address,
+    image_url,
     isactive,
     isadmin,
     balance,
@@ -55,6 +58,7 @@ class UserUpdateVModel {
     this.gender = gender;
     this.fullname = fullname;
     this.address = address;
+    this.image_url = image_url;
     this.isactive = isactive;
     this.isadmin = isadmin;
     this.balance = balance;
@@ -70,6 +74,7 @@ class UserGetAllVModel {
     birthday,
     gender,
     address,
+    image_url,
     phonenumber,
     createddate,
     isactive,
@@ -83,6 +88,7 @@ class UserGetAllVModel {
     this.birthday = birthday;
     this.gender = gender;
     this.address = address;
+    this.image_url = image_url;
     this.phonenumber = phonenumber;
     this.createddate = createddate;
     this.isactive = isactive;
@@ -91,9 +97,43 @@ class UserGetAllVModel {
   }
 }
 
+class UserGetAllInPostVModel {
+  constructor({
+    id,
+    username,
+    image_url,
+    total_posts,
+    total_react_count,
+    total_shared_count,
+  }) {
+    this.id = id;
+    this.username = username;
+    this.image_url = image_url;
+    this.total_posts = total_posts;
+    this.total_react_count = total_react_count;
+    this.total_shared_count = total_shared_count;
+  }
+}
+
+class TopFiveUserInPostVModel {
+  constructor({
+    id,
+    username,
+    image_url,
+    total_posts,
+  }) {
+    this.id = id;
+    this.username = username;
+    this.image_url = image_url;
+    this.total_posts = total_posts;
+  }
+}
+
 module.exports = {
   CredentialsVModel,
   UserCreateVModel,
   UserUpdateVModel,
   UserGetAllVModel,
+  UserGetAllInPostVModel,
+  TopFiveUserInPostVModel,
 };

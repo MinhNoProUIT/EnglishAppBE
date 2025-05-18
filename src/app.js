@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const userRoutes = require("./routes/user.routes");
+const postRoutes = require("./routes/post.routes");
+const userErrorReportRoutes = require("./routes/userErrorReport.routes");
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
@@ -28,5 +30,7 @@ app.use(
 );
 
 app.use("/api/users", userRoutes);
+app.use("/api/posts", postRoutes);
+app.use("/api/user-error-reports", userErrorReportRoutes);
 
 module.exports = app;
