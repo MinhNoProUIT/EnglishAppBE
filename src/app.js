@@ -3,6 +3,9 @@ const cors = require("cors");
 const userRoutes = require("./routes/user.routes");
 const postRoutes = require("./routes/post.routes");
 const userErrorReportRoutes = require("./routes/userErrorReport.routes");
+const courseRoutes = require("./routes/course.routes");
+const commentRoutes = require("./routes/comment.routes");
+const reactCommentRoutes = require("./routes/reactComment.routes");
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
@@ -32,5 +35,8 @@ app.use(
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/user-error-reports", userErrorReportRoutes);
+app.use("/api/courses", courseRoutes);
+app.use("/api/comments", commentRoutes);
+app.use("/api/react-comments", reactCommentRoutes);
 
 module.exports = app;

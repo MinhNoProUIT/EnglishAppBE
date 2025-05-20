@@ -5,7 +5,14 @@ const UserErrorReportService = {
   async getAllUserErrorReports() {
     try {
       const result = await pool.query(
-        `SELECT * FROM user_error_reports WHERE status = 'Pending'`
+        `SELECT 
+           r.*, 
+           p.image_url AS post_image_url, 
+           u.fullname AS user_fullname
+         FROM user_error_reports r
+         JOIN posts p ON r.post_id = p.id
+         JOIN users u ON r.user_id = u.id
+         WHERE r.status = 'Pending'`
       );
       return result.rows;
     } catch (error) {
@@ -13,7 +20,7 @@ const UserErrorReportService = {
       throw error;
     }
   },
-  
+
   async createUserErrorReport(data) {
     try {
       const { user_id, post_id, title, content, status = "Pending" } = data;
@@ -41,7 +48,7 @@ const UserErrorReportService = {
          RETURNING *`,
         [id]
       );
-  
+
       if (result.rowCount === 0) {
         throw new Error(`No report found with id: ${id}`);
       }
@@ -61,7 +68,7 @@ const UserErrorReportService = {
          RETURNING *`,
         [id]
       );
-  
+
       if (result.rowCount === 0) {
         throw new Error(`No report found with id: ${id}`);
       }
