@@ -11,6 +11,14 @@ module.exports = router;
 
 /**
  * @swagger
+ * tags:
+ *   name: UserErrorReports
+ *   description: Các API quản lý báo cáo bài đăng của người dùng
+ */
+
+
+/**
+ * @swagger
  * /api/user-error-reports/getAll:
  *   get:
  *     summary: Lấy toàn bộ danh sách báo cáo bài đăng của người dùng

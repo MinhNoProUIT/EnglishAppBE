@@ -11,6 +11,7 @@ class getAllCommentsByPostVModel {
     author_image,
     username_parent,
     username_root,
+    shared_post_id,
     created_date,
   }) {
     this.id = id;
@@ -24,6 +25,7 @@ class getAllCommentsByPostVModel {
     this.author_image = author_image;
     this.username_parent = username_parent;
     this.username_root = username_root;
+    this.shared_post_id = shared_post_id;
     this.created_date = created_date;
   }
 }
@@ -36,6 +38,7 @@ class createCommentVModel {
     content,
     parent_comment = null,
     root_comment = null,
+    shared_post_id,
     created_date,
   }) {
     this.post_id = post_id;
@@ -44,6 +47,7 @@ class createCommentVModel {
     this.content = content;
     this.parent_comment = parent_comment;
     this.root_comment = root_comment;
+    this.shared_post_id = shared_post_id;
     this.created_date = created_date;
   }
 }
