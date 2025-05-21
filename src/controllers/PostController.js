@@ -5,6 +5,7 @@ const {
   mapGetTotalPostsToVModel,
   mapToPostDataChartVModel,
 } = require("../mappings/PostMapping");
+const { uploadToCloudinary } = require("../services/UploadService");
 
 const PostController = {
   async getAllPosts(req, res) {
@@ -41,6 +42,10 @@ const PostController = {
   
   async createPost(req, res) {
     try {
+      if (req.file) {
+        const result = await uploadToCloudinary(req.file.buffer, 'english-app');
+        req.body.image_url = result.secure_url;
+      }
       const newPost = await PostService.createPost(req.body);
       res.status(201).json(mapCreatePostToVModel(newPost));
     } catch (err) {

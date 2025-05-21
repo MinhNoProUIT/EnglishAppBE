@@ -3,10 +3,15 @@ const {
   mapEditGroupToVModel,
 } = require("../mappings/GroupMapping");
 const GroupService = require("../services/GroupService");
+const { uploadToCloudinary } = require("../services/UploadService");
 
 const GroupController = {
   async createGroup(req, res) {
     try {
+      if (req.file) {
+        const result = await uploadToCloudinary(req.file.buffer, 'english-app');
+        req.body.image_url = result.secure_url;
+      }
       const newGroup = await GroupService.createGroup(req.body);
       res.status(201).json(mapCreateGroupToVModel(newGroup));
     } catch (err) {

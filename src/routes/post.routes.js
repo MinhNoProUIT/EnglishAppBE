@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const upload = require('../middlewares/upload.middleware');
 const PostController = require("../controllers/PostController");
 
 router.get("/getAll", PostController.getAllPosts);
 router.get("/getTotal", PostController.getTotalPosts);
-router.post("/create", PostController.createPost);
+router.post("/create", upload.single('image'), PostController.createPost);
 router.get("/getData", PostController.getPostChartData);
 
 module.exports = router;
@@ -93,11 +94,11 @@ module.exports = router;
  * /api/posts/create:
  *   post:
  *     summary: Tạo bài đăng mới
- *     tags: [Posts]    # Nhóm lại với "Posts"
+ *     tags: [Posts]
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
  *             type: object
  *             properties:
@@ -108,8 +109,9 @@ module.exports = router;
  *                 type: integer
  *               content:
  *                 type: string
- *               image_url:
+ *               image:
  *                 type: string
+ *                 format: binary   # Định nghĩa file ảnh
  *               shared_user_id_count:
  *                 type: integer
  *               comment_count:

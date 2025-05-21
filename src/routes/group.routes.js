@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const upload = require('../middlewares/upload.middleware');
 const GroupController = require("../controllers/GroupController");
 
-router.post("/create", GroupController.createGroup);
+router.post("/create", upload.single('image'), GroupController.createGroup);
 router.put("/edit/:id", GroupController.editGroup);
 
 module.exports = router;
@@ -22,31 +23,23 @@ module.exports = router;
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *          multipart/form-data:
  *           schema:
  *             type: object
- *             required:
- *               - name
- *               - image_url
- *               - created_by
  *             properties:
  *               name:
  *                 type: string
- *                 description: Tên nhóm
- *               image_url:
+ *               image:
  *                 type: string
- *                 description: Ảnh đại diện nhóm
+ *                 format: binary
  *               created_by:
  *                 type: string
  *                 format: uuid
- *                 description: ID người tạo nhóm
  *               count_member:
  *                 type: integer
  *                 default: 1
- *                 description: Tổng số thành viên ban đầu
  *               user_ids:
  *                 type: array
- *                 description: Danh sách ID người dùng tham gia nhóm (bao gồm cả người tạo nếu muốn)
  *                 items:
  *                   type: string
  *                   format: uuid
