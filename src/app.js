@@ -8,6 +8,9 @@ const commentRoutes = require("./routes/comment.routes");
 const reactCommentRoutes = require("./routes/reactComment.routes");
 const reactPostRoutes = require("./routes/reactPost.routes");
 const sharedPostRoutes = require("./routes/sharedPost.routes");
+const groupRoutes = require("./routes/group.routes");
+const groupMemberRoutes = require("./routes/groupMember.routes");
+const messageRoutes = require("./routes/message.routes");
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
@@ -42,5 +45,8 @@ app.use("/api/comments", commentRoutes);
 app.use("/api/react-comments", reactCommentRoutes);
 app.use("/api/react-posts", reactPostRoutes);
 app.use("/api/shared-post", sharedPostRoutes);
+app.use("/api/groups", groupRoutes);
+app.use("/api/group-members", groupMemberRoutes);
+app.use("/api/messages", messageRoutes);
 
 module.exports = app;
