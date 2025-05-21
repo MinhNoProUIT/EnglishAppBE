@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const CommentController = require("../controllers/CommentController");
 
-router.get("/getAllByPost/:id", CommentController.getAllCommentsByPost);
+router.get("/getAllByPost/:type/:id", CommentController.getAllCommentsByPost);
 router.post("/create", CommentController.createComment);
 router.put("/edit/:id", CommentController.editComment);
 router.delete("/delete/:id", CommentController.deleteComment);
@@ -13,20 +13,27 @@ module.exports = router;
  * @swagger
  * tags:
  *   name: Comments
- *   description: Các API quản lý bình luận\
+ *   description: Các API quản lý bình luận
  */
 
 /**
  * @swagger
- * /api/comments/getAllByPost/{id}:
+ * /api/comments/getAllByPost/{type}/{id}:
  *   get:
  *     summary: Lấy danh sách tất cả bình luận
  *     tags: [Comments]
  *     parameters:
  *       - in: path
+ *         name: type
+ *         required: true
+ *         description: Loại nguồn gốc bình luận ("post" hoặc "shared")
+ *         schema:
+ *           type: string
+ *           enum: [post, shared]
+ *       - in: path
  *         name: id
  *         required: true
- *         description: ID của bài đăng
+ *         description: ID của bài đăng hoặc bài chia sẻ
  *         schema:
  *           type: string
  *           format: uuid
