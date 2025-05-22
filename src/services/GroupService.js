@@ -62,6 +62,21 @@ const GroupService = {
   
     return new Group(result.rows[0]);
   },
+
+  async getDetailsGroup(id){
+    const result = await pool.query(
+      `SELECT g.id, g.name, g.image_url, g.created_by
+       FROM groups g
+       WHERE g.id = $1`,
+      [id]
+    );
+
+    if (result.rows.length === 0) {
+      throw new Error("Group not found");
+    }
+
+    return new Group(result.rows[0]);
+  }
 };
 
 module.exports = GroupService;

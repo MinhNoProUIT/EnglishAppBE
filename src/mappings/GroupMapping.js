@@ -1,11 +1,11 @@
 const {
-  getAllGroupByUserVModel,
   createGroupVModel,
   editGroupVModel,
+  getDetailsGroupVModel,
 } = require("../viewmodels/GroupVModel");
 
-function mapGetAllGroupsByUserToVModel(group) {
-  return new getAllGroupByUserVModel(group);
+function mapGetDetailsGroupToVModel(group) {
+  return new getDetailsGroupVModel(group);
 }
 
 function mapCreateGroupToVModel(group) {
@@ -17,7 +17,7 @@ function mapEditGroupToVModel(data) {
 }
 
 module.exports = {
-  mapGetAllGroupsByUserToVModel,
+  mapGetDetailsGroupToVModel,
   mapCreateGroupToVModel,
   mapEditGroupToVModel,
 };

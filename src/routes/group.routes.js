@@ -4,7 +4,8 @@ const upload = require('../middlewares/upload.middleware');
 const GroupController = require("../controllers/GroupController");
 
 router.post("/create", upload.single('image'), GroupController.createGroup);
-router.put("/edit/:id", GroupController.editGroup);
+router.put("/edit/:id", upload.single('image'), GroupController.editGroup);
+router.get("/details/:id", GroupController.getDetailsGroup);
 
 module.exports = router;
 
@@ -65,19 +66,42 @@ module.exports = router;
  *           type: string
  *           format: uuid
  *     requestBody:
- *       required: true
  *       content:
- *         application/json:
+ *          multipart/form-data:
  *           schema:
  *             type: object
  *             properties:
  *               name:
  *                 type: string
- *               image_url:
+ *               image:
  *                 type: string
+ *                 format: binary
  *     responses:
  *       200:
  *         description: Cập nhật nhóm thành công
  *       404:
  *         description: Không tìm thấy nhóm
+ */
+
+/**
+ * @swagger
+ * /api/groups/details/{id}:
+ *  get:
+ *    summary: Lấy thông tin chi tiết của một nhóm
+ *    tags: [Group]
+ *    parameters:
+ *    - in: path
+ *      name: id
+ *    required: true
+ *    description: ID của nhóm
+ *    schema:
+ *      type: string
+ *      format: uuid
+ *    responses:
+ *      200:
+ *        description: Thông tin chi tiết của nhóm
+ *      404:
+ *        description: Không tìm thấy nhóm
+ *      400:
+ *        description: Lỗi không xác định
  */
