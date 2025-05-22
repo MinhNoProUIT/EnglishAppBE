@@ -16,6 +16,20 @@ class getAllGroupByUserVModel {
   }
 }
 
+class getDetailsGroupVModel {
+  constructor({
+    id,
+    name,
+    image_url,
+    created_by
+  }) {
+    this.id = id;
+    this.name = name;
+    this.image_url = image_url;
+    this.created_by = created_by;
+  }
+}
+
 class createGroupVModel {
   constructor({ name, image_url, created_by, count_member, created_date }) {
     this.name = name;
@@ -36,6 +50,7 @@ class editGroupVModel {
 
 module.exports = {
   getAllGroupByUserVModel,
+  getDetailsGroupVModel,
   createGroupVModel,
   editGroupVModel,
 };

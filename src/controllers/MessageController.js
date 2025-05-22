@@ -8,6 +8,8 @@ const MessageController = {
   async sendMesage(req, res) {
     try {
       const newMessage = await MessageService.sendMessage(req.body);
+      const io = req.app.get("io");
+      io.to(newMessage.group_id).emit("receiveMessage", newMessage);
       res.status(201).json(mapCreateMessageToVModel(newMessage));
     } catch (err) {
       res.status(400).json({ error: err.message });
