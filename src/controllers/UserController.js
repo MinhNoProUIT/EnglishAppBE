@@ -1,5 +1,9 @@
 const UserService = require("../services/UserService");
-const { mapUserToVModel, mapUserInPostToVModel, mapTopFiveUserInPostToVModel } = require("../mappings/UserMapping");
+const {
+  mapUserToVModel,
+  mapUserInPostToVModel,
+  mapTopFiveUserInPostToVModel,
+} = require("../mappings/UserMapping");
 
 const UserController = {
   async getUsers(req, res) {
@@ -8,6 +12,16 @@ const UserController = {
       res.json(users.map(mapUserToVModel));
     } catch (err) {
       console.error("Error in getAllUsers:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
+
+  async getQuarterlyUserStats(req, res) {
+    try {
+      const stats = await UserService.getQuarterlyUserStats();
+      res.json(stats);
+    } catch (err) {
+      console.error("Error in getQuarterlyUserStats:", err);
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
@@ -39,11 +53,16 @@ const UserController = {
       const page = parseInt(req.query.page) || 1;
       const limit = parseInt(req.query.limit) || 5;
       const keyword = req.query.keyword || "";
-      const postRange = req.query.postRange || "all"; 
+      const postRange = req.query.postRange || "all";
 
-      const allUsers = await UserService.filterUsersInPost(keyword, limit, page, postRange);
+      const allUsers = await UserService.filterUsersInPost(
+        keyword,
+        limit,
+        page,
+        postRange
+      );
       const total = await UserService.countSearchUsers(keyword, postRange);
-  
+
       res.json({
         data: allUsers.map(mapUserInPostToVModel),
         pagination: {
@@ -57,7 +76,7 @@ const UserController = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
-  
+
   async createUser(req, res) {
     try {
       const user = await UserService.createUser(req.body);

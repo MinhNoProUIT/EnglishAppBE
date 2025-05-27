@@ -7,6 +7,7 @@ router.get("/getAll-post", UserController.getAllUsersInPost);
 router.get("/search", UserController.filterUsersInPost);
 router.post("/Create", UserController.createUser);
 router.get("/getTopFive", UserController.getTopFiveUserInPost);
+router.get("/quarter-stats", UserController.getQuarterlyUserStats);
 
 module.exports = router;
 
@@ -15,6 +16,41 @@ module.exports = router;
  * tags:
  *   name: Users
  *   description: Các API quản lý người dùng
+ */
+
+/**
+ * @swagger
+ * /api/users/quarter-stats:
+ *   get:
+ *     summary: Lấy tổng số người dùng trong quý hiện tại và phần trăm tăng/giảm so với quý trước
+ *     tags: [Users]
+ *     responses:
+ *       200:
+ *         description: Thống kê người dùng theo quý
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 currentQuarterCount:
+ *                   type: integer
+ *                   description: Tổng số người dùng trong quý hiện tại
+ *                   example: 120
+ *                 changePercent:
+ *                   type: number
+ *                   format: float
+ *                   description: Phần trăm tăng/giảm so với quý trước (%)
+ *                   example: 15.5
+ *       500:
+ *         description: Lỗi server
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: Internal Server Error
  */
 
 /**

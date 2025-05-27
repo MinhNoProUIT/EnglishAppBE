@@ -11,6 +11,7 @@ const sharedPostRoutes = require("./routes/sharedPost.routes");
 const groupRoutes = require("./routes/group.routes");
 const groupMemberRoutes = require("./routes/groupMember.routes");
 const messageRoutes = require("./routes/message.routes");
+const coinTransactionRoutes = require("./routes/cointransaction.routes");
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
@@ -48,5 +49,6 @@ app.use("/api/shared-post", sharedPostRoutes);
 app.use("/api/groups", groupRoutes);
 app.use("/api/group-members", groupMemberRoutes);
 app.use("/api/messages", messageRoutes);
+app.use("/api/coin-transactions", coinTransactionRoutes);
 
 module.exports = app;

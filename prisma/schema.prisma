@@ -1,0 +1,354 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model abuse_report_feedbacks {
+  id                 String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  report_id          String             @db.Uuid
+  admin_id           String?            @db.Uuid
+  feedback           String?
+  responded_at       DateTime?          @default(now()) @db.Timestamp(6)
+  user_abuse_reports user_abuse_reports @relation(fields: [report_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_feedback_abuse_report")
+  users              users?             @relation(fields: [admin_id], references: [id], onUpdate: NoAction, map: "fk_feedback_admin")
+}
+
+model attendance {
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id      String   @db.Uuid
+  checkin_date DateTime @default(dbgenerated("CURRENT_DATE")) @db.Date
+  users        users    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user")
+
+  @@unique([user_id, checkin_date], map: "unique_user_date")
+}
+
+model coin_transaction {
+  id              String    @id(map: "cointransaction_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id         String    @db.Uuid
+  amount          Int
+  reason          String
+  reference_id    String?   @db.Uuid
+  reference_table String?
+  created_at      DateTime? @default(now()) @db.Timestamp(6)
+  users           users     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "cointransaction_user_id_fkey")
+}
+
+model comments {
+  id             String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  post_id        String?          @db.Uuid
+  user_id        String           @db.Uuid
+  react_count    Int?             @default(0)
+  content        String?
+  created_date   DateTime?        @default(now()) @db.Timestamp(6)
+  parent_comment String?          @db.Uuid
+  root_comment   String?          @db.Uuid
+  shared_post_id String?          @db.Uuid
+  posts          posts?           @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users          users            @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  shared_post    shared_post?     @relation(fields: [shared_post_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_shared_post")
+  react_comments react_comments[]
+}
+
+model comments_group {
+  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  group_id        String    @db.Uuid
+  post_id         String    @db.Uuid
+  user_id         String    @db.Uuid
+  react_count     Int?      @default(0)
+  content         String?
+  created_date    DateTime? @default(now()) @db.Timestamp(6)
+  parent_comments String?   @db.Uuid
+  groups          groups    @relation(fields: [group_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_group_id_comments_group")
+  posts           posts     @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_post_id_comments_group")
+  users           users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_user_id_comments_group")
+}
+
+model courses {
+  id           String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title        String
+  topic_id     String?        @db.Uuid
+  level        String?
+  description  String?
+  image_url    String?
+  price        Int            @default(0)
+  created_date DateTime       @default(now()) @db.Timestamp(6)
+  topics       topics?        @relation(fields: [topic_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_topic_id_courses")
+  user_courses user_courses[]
+  words        words[]
+}
+
+model error_report_feedbacks {
+  id                 String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  report_id          String             @db.Uuid
+  admin_id           String?            @db.Uuid
+  feedback           String?
+  responded_at       DateTime?          @default(now()) @db.Timestamp(6)
+  users              users?             @relation(fields: [admin_id], references: [id], onUpdate: NoAction, map: "fk_feedback_admin")
+  user_error_reports user_error_reports @relation(fields: [report_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_feedback_report")
+}
+
+model group_members {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id     String    @db.Uuid
+  group_id    String    @db.Uuid
+  is_admin    Boolean   @default(false)
+  joined_date DateTime? @default(now()) @db.Timestamp(6)
+  groups      groups    @relation(fields: [group_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_group_id_group_members")
+  users       users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_user_id_group_members")
+
+  @@unique([group_id, user_id])
+}
+
+model group_posts {
+  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id      String    @db.Uuid
+  group_id     String    @db.Uuid
+  content      String?
+  image_url    String?
+  react_count  Int?      @default(0)
+  created_date DateTime? @default(now()) @db.Timestamp(6)
+  updated_date DateTime? @default(now()) @db.Timestamp(6)
+  groups       groups    @relation(fields: [group_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_group_id_group_posts")
+  users        users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_user_id_group_posts")
+}
+
+model groups {
+  id             String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name           String
+  image_url      String?
+  created_by     String           @db.Uuid
+  created_date   DateTime?        @default(now()) @db.Timestamp(6)
+  count_member   Int?
+  comments_group comments_group[]
+  group_members  group_members[]
+  group_posts    group_posts[]
+  users          users            @relation(fields: [created_by], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_created_by_groups")
+  messages       messages[]
+}
+
+model messages {
+  id           String    @id(map: "messengers_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  sender_id    String    @db.Uuid
+  group_id     String    @db.Uuid
+  created_date DateTime? @default(now()) @db.Timestamp(6)
+  content      String?
+  groups       groups    @relation(fields: [group_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_group_id_messengers")
+  users        users     @relation(fields: [sender_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_sender_id_messengers")
+}
+
+model packages {
+  id            String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name          String
+  duration_days Int
+  price         Int
+  is_premium    Boolean?        @default(false)
+  user_packages user_packages[]
+}
+
+model posts {
+  id                   String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id              String           @db.Uuid
+  react_count          Int?             @default(0)
+  content              String?
+  created_date         DateTime?        @default(now()) @db.Timestamp(6)
+  image_url            String?
+  shared_user_id_count Int?
+  comment_count        Int?
+  comments             comments[]
+  comments_group       comments_group[]
+  users                users            @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  react_posts          react_posts[]
+  shared_post          shared_post[]
+}
+
+model react_comments {
+  id           String   @id(map: "reactcomments_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  comment_id   String   @db.Uuid
+  user_id      String   @db.Uuid
+  created_date DateTime @default(now()) @db.Timestamp(6)
+  comments     comments @relation(fields: [comment_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "reactcomments_comment_id_fkey")
+  users        users    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "reactcomments_user_id_fkey")
+}
+
+model react_posts {
+  id           String    @id(map: "reactposts_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  post_id      String    @db.Uuid
+  user_id      String    @db.Uuid
+  created_date DateTime? @default(now()) @db.Timestamp(6)
+  posts        posts     @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "reactposts_post_id_fkey")
+  users        users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "reactposts_user_id_fkey")
+}
+
+model shared_post {
+  id                String        @id(map: "sharedpost_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  post_id           String?       @db.Uuid
+  user_id           String        @db.Uuid
+  react_count       Int?          @default(0)
+  content           String?
+  created_date      DateTime?     @default(now()) @db.Timestamp(6)
+  comment_count     Int?          @default(0)
+  shared_post_id    String?       @db.Uuid
+  shared_count      Int?
+  comments          comments[]
+  shared_post       shared_post?  @relation("shared_postToshared_post", fields: [shared_post_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  other_shared_post shared_post[] @relation("shared_postToshared_post")
+  posts             posts?        @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "sharedpost_post_id_fkey")
+  users             users         @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "sharedpost_user_id_fkey")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model study_access_topic {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id     String    @db.Uuid
+  topic_id    String    @db.Uuid
+  access_type String?   @default("coin")
+  access_date DateTime? @default(dbgenerated("CURRENT_DATE")) @db.Date
+  expire_date DateTime  @db.Date
+  topics      topics    @relation(fields: [topic_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_access_topic")
+  users       users     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_access_user")
+
+  @@unique([user_id, topic_id, access_date], map: "unique_access")
+}
+
+model topics {
+  id                 String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name               String
+  decription         String?
+  courses            courses[]
+  study_access_topic study_access_topic[]
+}
+
+model transaction_history {
+  id          String    @id(map: "transactionhistory_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id     String    @db.Uuid
+  price       Decimal?  @default(0) @db.Money
+  createddate DateTime? @default(now()) @db.Timestamp(6)
+  users       users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "transactionhistory_user_id_fkey")
+}
+
+model user_abuse_reports {
+  id                     String                   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id                String                   @db.Uuid
+  content                String
+  created_date           DateTime                 @default(dbgenerated("CURRENT_DATE")) @db.Date
+  abuse_report_feedbacks abuse_report_feedbacks[]
+  users                  users                    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_user_abuse_reports_user")
+}
+
+model user_courses {
+  id            String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id       String    @db.Uuid
+  course_id     String    @db.Uuid
+  purchase_date DateTime? @default(now()) @db.Timestamp(6)
+  courses       courses   @relation(fields: [course_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_courses_id_user_courses")
+  users         users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_users_id_user_courses")
+
+  @@unique([user_id, course_id], map: "user_id_course_id_key")
+}
+
+model user_error_reports {
+  id                     String                   @id(map: "user_error_report_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id                String                   @db.Uuid
+  content                String
+  created_date           DateTime                 @default(dbgenerated("CURRENT_DATE")) @db.Date
+  title                  String
+  post_id                String                   @db.Uuid
+  status                 String?
+  error_report_feedbacks error_report_feedbacks[]
+  users                  users                    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_userreports_user")
+}
+
+model user_packages {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id    String    @db.Uuid
+  package_id String    @db.Uuid
+  start_date DateTime? @default(dbgenerated("CURRENT_DATE")) @db.Date
+  end_date   DateTime  @db.Date
+  is_active  Boolean?  @default(true)
+  packages   packages  @relation(fields: [package_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_package_package")
+  users      users     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_package_user")
+}
+
+model user_profile_history {
+  id                                           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id                                      String    @db.Uuid
+  old_data                                     Json?
+  new_data                                     Json?
+  changed_by                                   String?   @db.Uuid
+  changed_at                                   DateTime? @default(now()) @db.Timestamp(6)
+  users_user_profile_history_changed_byTousers users?    @relation("user_profile_history_changed_byTousers", fields: [changed_by], references: [id], onUpdate: NoAction, map: "fk_history_changed_by")
+  users_user_profile_history_user_idTousers    users     @relation("user_profile_history_user_idTousers", fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_history_user")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model user_progress {
+  id               String    @id(map: "userprogress_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  word_id          String    @db.Uuid
+  user_id          String    @db.Uuid
+  level            Int       @default(1) @db.SmallInt
+  createdstudydate DateTime? @default(now()) @db.Timestamp(6)
+  updatedstudydate DateTime? @default(now()) @db.Timestamp(6)
+  users            users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "userprogress_user_id_fkey")
+  words            words     @relation(fields: [word_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "userprogress_word_id_fkey")
+}
+
+model users {
+  id                                                          String                   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  username                                                    String
+  passwordhash                                                String
+  birthday                                                    DateTime?                @db.Date
+  gender                                                      Boolean?
+  fullname                                                    String?
+  address                                                     String?
+  email                                                       String?                  @unique
+  phonenumber                                                 String?                  @db.VarChar(15)
+  created_date                                                DateTime?                @default(now()) @db.Timestamp(6)
+  isactive                                                    Boolean?                 @default(true)
+  isadmin                                                     Boolean?                 @default(false)
+  balance                                                     Int?                     @default(0)
+  image_url                                                   String?
+  is_block                                                    Boolean?                 @default(false)
+  is_verified                                                 Boolean?                 @default(false)
+  firebase_uid                                                String?
+  abuse_report_feedbacks                                      abuse_report_feedbacks[]
+  attendance                                                  attendance[]
+  coin_transaction                                            coin_transaction[]
+  comments                                                    comments[]
+  comments_group                                              comments_group[]
+  error_report_feedbacks                                      error_report_feedbacks[]
+  group_members                                               group_members[]
+  group_posts                                                 group_posts[]
+  groups                                                      groups[]
+  messages                                                    messages[]
+  posts                                                       posts[]
+  react_comments                                              react_comments[]
+  react_posts                                                 react_posts[]
+  shared_post                                                 shared_post[]
+  study_access_topic                                          study_access_topic[]
+  transaction_history                                         transaction_history[]
+  user_abuse_reports                                          user_abuse_reports[]
+  user_courses                                                user_courses[]
+  user_error_reports                                          user_error_reports[]
+  user_packages                                               user_packages[]
+  user_profile_history_user_profile_history_changed_byTousers user_profile_history[]   @relation("user_profile_history_changed_byTousers")
+  user_profile_history_user_profile_history_user_idTousers    user_profile_history[]   @relation("user_profile_history_user_idTousers")
+  user_progress                                               user_progress[]
+}
+
+model words {
+  id              String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  englishname     String
+  vietnamesename  String
+  type            String?
+  examplesentence String?
+  imageurl        String?
+  transcription   String?
+  course_id       String?         @db.Uuid
+  user_progress   user_progress[]
+  courses         courses?        @relation(fields: [course_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_courses_id_words")
+}

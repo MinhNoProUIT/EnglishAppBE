@@ -1,6 +1,7 @@
 const pool = require("../config/db");
 const Post = require("../models/Post");
-
+const { PrismaClient } = require("../generated/prisma"); // hoặc '@prisma/client' nếu dùng mặc định
+const prisma = new PrismaClient();
 const PostService = {
   async getAllPosts(limit = 5, page = 1) {
     const offset = (page - 1) * limit;
@@ -48,7 +49,7 @@ const PostService = {
       rate: rate !== null ? Math.round(rate * 100) / 10 : null,
     };
   },
-  
+
   async createPost(data) {
     const {
       user_id,
@@ -96,12 +97,73 @@ const PostService = {
       ORDER BY ds.date
       `
     );
-  
-    return result.rows.map(row => ({
+
+    return result.rows.map((row) => ({
       date: row.date,
-      count: parseInt(row.count)
+      count: parseInt(row.count),
     }));
-  }  
+  },
+
+  async getMonthlyPostStats() {
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const currentMonth = now.getMonth();
+
+    let startMonthPrev = currentMonth - 1;
+    let startYearPrev = currentYear;
+    if (startMonthPrev < 0) {
+      startMonthPrev += 12;
+      startYearPrev -= 1;
+    }
+
+    const startDate = new Date(startYearPrev, startMonthPrev, 1);
+    const endDate = new Date(currentYear, currentMonth + 1, 0, 23, 59, 59);
+
+    const posts = await prisma.posts.findMany({
+      where: {
+        created_date: {
+          gte: startDate,
+          lte: endDate,
+        },
+      },
+      select: {
+        created_date: true,
+      },
+    });
+
+    const counts = {};
+
+    posts.forEach(({ created_date }) => {
+      const year = created_date.getFullYear();
+      const month = created_date.getMonth();
+      const key = `${year}-${month}`;
+      counts[key] = (counts[key] || 0) + 1;
+    });
+
+    const currentKey = `${currentYear}-${currentMonth}`;
+    let previousMonth = currentMonth - 1;
+    let previousYear = currentYear;
+    if (previousMonth === 0) {
+      previousMonth = 11;
+      previousYear -= 1;
+    }
+    const previousKey = `${previousYear}-${previousMonth}`;
+
+    const currentCount = counts[currentKey] || 0;
+    const previousCount = counts[previousKey] || 0;
+
+    let changePercent;
+    if (previousCount === 0) {
+      changePercent = currentCount > 0 ? 100 : 0;
+    } else {
+      changePercent = ((currentCount - previousCount) / previousCount) * 100;
+    }
+
+    return {
+      currentMonthCount: currentCount,
+      changePercent: Number(changePercent.toFixed(2)),
+    };
+  },
 };
 
 module.exports = PostService;
