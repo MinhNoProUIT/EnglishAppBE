@@ -1,12 +1,22 @@
 const express = require("express");
 const router = express.Router();
 const UserController = require("../controllers/UserController");
+const authMiddleware = require("../middlewares/auth.middleware");
+const checkPermission = require("../middlewares/checkPermission");
 
-router.get("/GetAll", UserController.getUsers);
+router.get(
+  "/GetAll",
+  authMiddleware,
+  checkPermission("user"),
+  UserController.getUsers
+);
 router.get("/getAll-post", UserController.getAllUsersInPost);
 router.get("/search", UserController.filterUsersInPost);
 router.post("/Create", UserController.createUser);
 router.get("/getTopFive", UserController.getTopFiveUserInPost);
+router.put("/update/:id", UserController.updateUser);
+router.put("/lock/:id", UserController.blockUser);
+router.delete("/remove/:id", UserController.removeUser);
 router.get("/quarter-stats", UserController.getQuarterlyUserStats);
 
 module.exports = router;
@@ -199,10 +209,75 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/users/Create:
+ * /api/users/create:
  *   post:
  *     summary: Tạo người dùng mới
- *     tags: [Users]    # Nhóm lại với "Users"
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               passwordhash:
+ *                 type: string
+ *               birthday:
+ *                 type: string
+ *                 format: date
+ *               gender:
+ *                 type: boolean
+ *               fullname:
+ *                 type: string
+ *               address:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *                 format: email
+ *               phonenumber:
+ *                 type: string
+ *                 maxLength: 15
+ *               image_url:
+ *                 type: string
+ *                 format: uri
+ *               isadmin:
+ *                 type: boolean
+ *                 default: false
+ *               balance:
+ *                 type: integer
+ *                 default: 0
+ *             required:
+ *               - username
+ *               - passwordhash
+ *               - email
+ *     responses:
+ *       201:
+ *         description: Đã tạo user thành công
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       400:
+ *         description: Dữ liệu không hợp lệ
+ *       500:
+ *         description: Lỗi máy chủ
+ */
+
+/**
+ * @swagger
+ * /api/users/update/{id}:
+ *   put:
+ *     summary: Cập nhật thông tin người dùng theo ID
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID của người dùng cần cập nhật
+ *         schema:
+ *           type: string
  *     requestBody:
  *       required: true
  *       content:
@@ -214,11 +289,109 @@ module.exports = router;
  *                 type: string
  *               email:
  *                 type: string
- *               passwordhash:
+ *               phonenumber:
  *                 type: string
+ *               birthday:
+ *                 type: string
+ *                 format: date
+ *               gender:
+ *                 type: string
+ *               fullname:
+ *                 type: string
+ *               address:
+ *                 type: string
+ *               image_url:
+ *                 type: string
+ *                 format: uri
  *     responses:
- *       201:
- *         description: Đã tạo user thành công
+ *       200:
+ *         description: Cập nhật thành công
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: User updated successfully
+ *                 data:
+ *                   $ref: '#/components/schemas/UserUpdateVModel'
+ *       400:
+ *         description: Không tìm thấy người dùng hoặc lỗi dữ liệu
+ */
+
+/**
+ * @swagger
+ * /api/users/lock/{id}:
+ *   put:
+ *     summary: Khóa tài khoản người dùng (block user)
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID của người dùng cần khóa
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Người dùng đã được khóa thành công
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: user blocked successfully
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                       example: "123e4567-e89b-12d3-a456-426614174000"
+ *                     is_block:
+ *                       type: boolean
+ *                       example: true
+ *       400:
+ *         description: Lỗi hoặc không tìm thấy người dùng
+ */
+
+/**
+ * @swagger
+ * /api/users/remove/{id}:
+ *   put:
+ *     summary: xóa tài khoản người dùng (remove user)
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID của người dùng cần xóa
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Người dùng đã được xóa thành công
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: user removed successfully
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                       example: "123e4567-e89b-12d3-a456-426614174000"
+ *                     isactive:
+ *                       type: boolean
+ *                       example: true
+ *       400:
+ *         description: Lỗi hoặc không tìm thấy người dùng
  */
 
 router.post("/", UserController.createUser);

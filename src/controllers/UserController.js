@@ -95,6 +95,49 @@ const UserController = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
+  async updateUser(req, res) {
+    try {
+      const { id } = req.params;
+
+      const userUpdateVModel = req.body;
+
+      const updateUser = await UserService.updateUser(id, userUpdateVModel);
+      res
+        .status(200)
+        .json({ message: "User updated successfully", data: updateUser });
+    } catch (error) {
+      console.error("Error in updateUser:", error);
+      res.status(400).json({ message: error.message });
+    }
+  },
+
+  async blockUser(req, res) {
+    try {
+      const { id } = req.params;
+
+      const user = await UserService.blockUser(id);
+      res
+        .status(200)
+        .json({ message: "user blocked successfully", data: user });
+    } catch (err) {
+      console.error("Error in block", err);
+      res.status(400).json({ message: err.message });
+    }
+  },
+
+  async removeUser(req, res) {
+    try {
+      const { id } = req.params;
+
+      const user = await UserService.removeUser(id);
+      res
+        .status(200)
+        .json({ message: "user removed successfully", data: user });
+    } catch (err) {
+      console.error("Error in remove user", err);
+      res.status(400).json({ message: err.message });
+    }
+  },
 };
 
 module.exports = UserController;

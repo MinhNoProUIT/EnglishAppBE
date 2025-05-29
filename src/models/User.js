@@ -14,6 +14,9 @@ class User {
     isactive,
     isadmin,
     balance,
+    is_block,
+    is_verified,
+    firebase_uid,
   }) {
     this.id = id;
     this.username = username;
@@ -29,6 +32,9 @@ class User {
     this.isactive = isactive;
     this.isadmin = isadmin;
     this.balance = balance;
+    this.is_block = is_block;
+    this.is_verified = is_verified;
+    this.firebase_uid = firebase_uid;
   }
 }
 

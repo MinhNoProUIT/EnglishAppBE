@@ -11,6 +11,7 @@ const sharedPostRoutes = require("./routes/sharedPost.routes");
 const groupRoutes = require("./routes/group.routes");
 const groupMemberRoutes = require("./routes/groupMember.routes");
 const messageRoutes = require("./routes/message.routes");
+const authRoutes = require("./routes/auth.routes");
 const coinTransactionRoutes = require("./routes/cointransaction.routes");
 const userAbuseReport = require("./routes/userabuserreport.routes");
 
@@ -29,10 +30,26 @@ const swaggerOptions = {
       version: "1.0.0",
       description: "API Documentation with Swagger",
     },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
   },
-  apis: ["./src/routes/*.js", "./src/controllers/*.js"],
+  apis: ["./src/routes/*.js", "./src/controllers/*.js"], // Swagger annotations
 };
+
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
+
 app.use(
   "/api-docs",
   swaggerUi.serve,
@@ -50,6 +67,8 @@ app.use("/api/shared-post", sharedPostRoutes);
 app.use("/api/groups", groupRoutes);
 app.use("/api/group-members", groupMemberRoutes);
 app.use("/api/messages", messageRoutes);
+app.use("/auth", authRoutes);
+
 app.use("/api/coin-transactions", coinTransactionRoutes);
 app.use("/api/user-abuse-reports", userAbuseReport);
 

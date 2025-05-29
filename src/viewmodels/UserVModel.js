@@ -19,6 +19,7 @@ class UserCreateVModel {
     isactive = true,
     isadmin = false,
     balance = 0,
+    is_block = false,
   }) {
     this.username = username;
     this.email = email;
@@ -32,6 +33,7 @@ class UserCreateVModel {
     this.isactive = isactive;
     this.isadmin = isadmin;
     this.balance = balance;
+    this.is_block = is_block;
   }
 }
 
@@ -46,9 +48,6 @@ class UserUpdateVModel {
     fullname,
     address,
     image_url,
-    isactive,
-    isadmin,
-    balance,
   }) {
     this.id = id;
     this.username = username;
@@ -59,9 +58,6 @@ class UserUpdateVModel {
     this.fullname = fullname;
     this.address = address;
     this.image_url = image_url;
-    this.isactive = isactive;
-    this.isadmin = isadmin;
-    this.balance = balance;
   }
 }
 
@@ -80,6 +76,7 @@ class UserGetAllVModel {
     isactive,
     isadmin,
     balance,
+    is_block,
   }) {
     this.id = id;
     this.username = username;
@@ -94,6 +91,7 @@ class UserGetAllVModel {
     this.isactive = isactive;
     this.isadmin = isadmin;
     this.balance = balance;
+    this.is_block = is_block;
   }
 }
 
@@ -116,16 +114,24 @@ class UserGetAllInPostVModel {
 }
 
 class TopFiveUserInPostVModel {
-  constructor({
-    id,
-    username,
-    image_url,
-    total_posts,
-  }) {
+  constructor({ id, username, image_url, total_posts }) {
     this.id = id;
     this.username = username;
     this.image_url = image_url;
     this.total_posts = total_posts;
+  }
+}
+class BlockUserVModel {
+  constructor({ id, is_block }) {
+    this.id = id;
+    this.is_block = is_block;
+  }
+}
+
+class RemoveUserVModel {
+  constructor({ id, isactive }) {
+    this.id = id;
+    this.isactive = isactive;
   }
 }
 
@@ -136,4 +142,6 @@ module.exports = {
   UserGetAllVModel,
   UserGetAllInPostVModel,
   TopFiveUserInPostVModel,
+  BlockUserVModel,
+  RemoveUserVModel,
 };
