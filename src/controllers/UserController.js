@@ -1,5 +1,9 @@
 const UserService = require("../services/UserService");
-const { mapUserToVModel, mapUserInPostToVModel, mapTopFiveUserInPostToVModel } = require("../mappings/UserMapping");
+const {
+  mapUserToVModel,
+  mapUserInPostToVModel,
+  mapTopFiveUserInPostToVModel,
+} = require("../mappings/UserMapping");
 
 const UserController = {
   async getUsers(req, res) {
@@ -39,11 +43,16 @@ const UserController = {
       const page = parseInt(req.query.page) || 1;
       const limit = parseInt(req.query.limit) || 5;
       const keyword = req.query.keyword || "";
-      const postRange = req.query.postRange || "all"; 
+      const postRange = req.query.postRange || "all";
 
-      const allUsers = await UserService.filterUsersInPost(keyword, limit, page, postRange);
+      const allUsers = await UserService.filterUsersInPost(
+        keyword,
+        limit,
+        page,
+        postRange
+      );
       const total = await UserService.countSearchUsers(keyword, postRange);
-  
+
       res.json({
         data: allUsers.map(mapUserInPostToVModel),
         pagination: {
@@ -57,7 +66,7 @@ const UserController = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
-  
+
   async createUser(req, res) {
     try {
       const user = await UserService.createUser(req.body);
@@ -74,6 +83,49 @@ const UserController = {
     } catch (err) {
       console.error("Error in getAllUsers:", err);
       res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
+  async updateUser(req, res) {
+    try {
+      const { id } = req.params;
+
+      const userUpdateVModel = req.body;
+
+      const updateUser = await UserService.updateUser(id, userUpdateVModel);
+      res
+        .status(200)
+        .json({ message: "User updated successfully", data: updateUser });
+    } catch (error) {
+      console.error("Error in updateUser:", error);
+      res.status(400).json({ message: error.message });
+    }
+  },
+
+  async blockUser(req, res) {
+    try {
+      const { id } = req.params;
+
+      const user = await UserService.blockUser(id);
+      res
+        .status(200)
+        .json({ message: "user blocked successfully", data: user });
+    } catch (err) {
+      console.error("Error in block", err);
+      res.status(400).json({ message: err.message });
+    }
+  },
+
+  async removeUser(req, res) {
+    try {
+      const { id } = req.params;
+
+      const user = await UserService.removeUser(id);
+      res
+        .status(200)
+        .json({ message: "user removed successfully", data: user });
+    } catch (err) {
+      console.error("Error in remove user", err);
+      res.status(400).json({ message: err.message });
     }
   },
 };

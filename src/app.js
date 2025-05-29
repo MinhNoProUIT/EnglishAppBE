@@ -11,6 +11,7 @@ const sharedPostRoutes = require("./routes/sharedPost.routes");
 const groupRoutes = require("./routes/group.routes");
 const groupMemberRoutes = require("./routes/groupMember.routes");
 const messageRoutes = require("./routes/message.routes");
+const authRoutes = require("./routes/auth.routes");
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
@@ -27,10 +28,26 @@ const swaggerOptions = {
       version: "1.0.0",
       description: "API Documentation with Swagger",
     },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
   },
-  apis: ["./src/routes/*.js", "./src/controllers/*.js"],
+  apis: ["./src/routes/*.js", "./src/controllers/*.js"], // Swagger annotations
 };
+
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
+
 app.use(
   "/api-docs",
   swaggerUi.serve,
@@ -48,5 +65,6 @@ app.use("/api/shared-post", sharedPostRoutes);
 app.use("/api/groups", groupRoutes);
 app.use("/api/group-members", groupMemberRoutes);
 app.use("/api/messages", messageRoutes);
+app.use("/auth", authRoutes);
 
 module.exports = app;
