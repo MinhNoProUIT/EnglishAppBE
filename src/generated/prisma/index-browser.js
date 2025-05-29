@@ -279,7 +279,7 @@ exports.Prisma.Study_access_topicScalarFieldEnum = {
 exports.Prisma.TopicsScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  decription: 'decription'
+  description: 'description'
 };
 
 exports.Prisma.Transaction_historyScalarFieldEnum = {

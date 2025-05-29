@@ -218,7 +218,7 @@ model study_access_topic {
 model topics {
   id                 String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name               String
-  decription         String?
+  description        String?
   courses            courses[]
   study_access_topic study_access_topic[]
 }

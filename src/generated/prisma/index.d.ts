@@ -23070,19 +23070,19 @@ export namespace Prisma {
   export type TopicsMinAggregateOutputType = {
     id: string | null
     name: string | null
-    decription: string | null
+    description: string | null
   }
 
   export type TopicsMaxAggregateOutputType = {
     id: string | null
     name: string | null
-    decription: string | null
+    description: string | null
   }
 
   export type TopicsCountAggregateOutputType = {
     id: number
     name: number
-    decription: number
+    description: number
     _all: number
   }
 
@@ -23090,19 +23090,19 @@ export namespace Prisma {
   export type TopicsMinAggregateInputType = {
     id?: true
     name?: true
-    decription?: true
+    description?: true
   }
 
   export type TopicsMaxAggregateInputType = {
     id?: true
     name?: true
-    decription?: true
+    description?: true
   }
 
   export type TopicsCountAggregateInputType = {
     id?: true
     name?: true
-    decription?: true
+    description?: true
     _all?: true
   }
 
@@ -23181,7 +23181,7 @@ export namespace Prisma {
   export type TopicsGroupByOutputType = {
     id: string
     name: string
-    decription: string | null
+    description: string | null
     _count: TopicsCountAggregateOutputType | null
     _min: TopicsMinAggregateOutputType | null
     _max: TopicsMaxAggregateOutputType | null
@@ -23204,7 +23204,7 @@ export namespace Prisma {
   export type topicsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    decription?: boolean
+    description?: boolean
     courses?: boolean | topics$coursesArgs<ExtArgs>
     study_access_topic?: boolean | topics$study_access_topicArgs<ExtArgs>
     _count?: boolean | TopicsCountOutputTypeDefaultArgs<ExtArgs>
@@ -23213,22 +23213,22 @@ export namespace Prisma {
   export type topicsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    decription?: boolean
+    description?: boolean
   }, ExtArgs["result"]["topics"]>
 
   export type topicsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    decription?: boolean
+    description?: boolean
   }, ExtArgs["result"]["topics"]>
 
   export type topicsSelectScalar = {
     id?: boolean
     name?: boolean
-    decription?: boolean
+    description?: boolean
   }
 
-  export type topicsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "decription", ExtArgs["result"]["topics"]>
+  export type topicsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description", ExtArgs["result"]["topics"]>
   export type topicsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     courses?: boolean | topics$coursesArgs<ExtArgs>
     study_access_topic?: boolean | topics$study_access_topicArgs<ExtArgs>
@@ -23246,7 +23246,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
-      decription: string | null
+      description: string | null
     }, ExtArgs["result"]["topics"]>
     composites: {}
   }
@@ -23674,7 +23674,7 @@ export namespace Prisma {
   interface topicsFieldRefs {
     readonly id: FieldRef<"topics", 'String'>
     readonly name: FieldRef<"topics", 'String'>
-    readonly decription: FieldRef<"topics", 'String'>
+    readonly description: FieldRef<"topics", 'String'>
   }
     
 
@@ -34978,7 +34978,7 @@ export namespace Prisma {
   export const TopicsScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    decription: 'decription'
+    description: 'description'
   };
 
   export type TopicsScalarFieldEnum = (typeof TopicsScalarFieldEnum)[keyof typeof TopicsScalarFieldEnum]
@@ -36383,7 +36383,7 @@ export namespace Prisma {
     NOT?: topicsWhereInput | topicsWhereInput[]
     id?: UuidFilter<"topics"> | string
     name?: StringFilter<"topics"> | string
-    decription?: StringNullableFilter<"topics"> | string | null
+    description?: StringNullableFilter<"topics"> | string | null
     courses?: CoursesListRelationFilter
     study_access_topic?: Study_access_topicListRelationFilter
   }
@@ -36391,7 +36391,7 @@ export namespace Prisma {
   export type topicsOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    decription?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     courses?: coursesOrderByRelationAggregateInput
     study_access_topic?: study_access_topicOrderByRelationAggregateInput
   }
@@ -36402,7 +36402,7 @@ export namespace Prisma {
     OR?: topicsWhereInput[]
     NOT?: topicsWhereInput | topicsWhereInput[]
     name?: StringFilter<"topics"> | string
-    decription?: StringNullableFilter<"topics"> | string | null
+    description?: StringNullableFilter<"topics"> | string | null
     courses?: CoursesListRelationFilter
     study_access_topic?: Study_access_topicListRelationFilter
   }, "id">
@@ -36410,7 +36410,7 @@ export namespace Prisma {
   export type topicsOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    decription?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     _count?: topicsCountOrderByAggregateInput
     _max?: topicsMaxOrderByAggregateInput
     _min?: topicsMinOrderByAggregateInput
@@ -36422,7 +36422,7 @@ export namespace Prisma {
     NOT?: topicsScalarWhereWithAggregatesInput | topicsScalarWhereWithAggregatesInput[]
     id?: UuidWithAggregatesFilter<"topics"> | string
     name?: StringWithAggregatesFilter<"topics"> | string
-    decription?: StringNullableWithAggregatesFilter<"topics"> | string | null
+    description?: StringNullableWithAggregatesFilter<"topics"> | string | null
   }
 
   export type transaction_historyWhereInput = {
@@ -38220,7 +38220,7 @@ export namespace Prisma {
   export type topicsCreateInput = {
     id?: string
     name: string
-    decription?: string | null
+    description?: string | null
     courses?: coursesCreateNestedManyWithoutTopicsInput
     study_access_topic?: study_access_topicCreateNestedManyWithoutTopicsInput
   }
@@ -38228,7 +38228,7 @@ export namespace Prisma {
   export type topicsUncheckedCreateInput = {
     id?: string
     name: string
-    decription?: string | null
+    description?: string | null
     courses?: coursesUncheckedCreateNestedManyWithoutTopicsInput
     study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutTopicsInput
   }
@@ -38236,7 +38236,7 @@ export namespace Prisma {
   export type topicsUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    decription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     courses?: coursesUpdateManyWithoutTopicsNestedInput
     study_access_topic?: study_access_topicUpdateManyWithoutTopicsNestedInput
   }
@@ -38244,7 +38244,7 @@ export namespace Prisma {
   export type topicsUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    decription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     courses?: coursesUncheckedUpdateManyWithoutTopicsNestedInput
     study_access_topic?: study_access_topicUncheckedUpdateManyWithoutTopicsNestedInput
   }
@@ -38252,19 +38252,19 @@ export namespace Prisma {
   export type topicsCreateManyInput = {
     id?: string
     name: string
-    decription?: string | null
+    description?: string | null
   }
 
   export type topicsUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    decription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type topicsUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    decription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transaction_historyCreateInput = {
@@ -39991,19 +39991,19 @@ export namespace Prisma {
   export type topicsCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    decription?: SortOrder
+    description?: SortOrder
   }
 
   export type topicsMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    decription?: SortOrder
+    description?: SortOrder
   }
 
   export type topicsMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    decription?: SortOrder
+    description?: SortOrder
   }
 
   export type DecimalNullableFilter<$PrismaModel = never> = {
@@ -44527,14 +44527,14 @@ export namespace Prisma {
   export type topicsCreateWithoutCoursesInput = {
     id?: string
     name: string
-    decription?: string | null
+    description?: string | null
     study_access_topic?: study_access_topicCreateNestedManyWithoutTopicsInput
   }
 
   export type topicsUncheckedCreateWithoutCoursesInput = {
     id?: string
     name: string
-    decription?: string | null
+    description?: string | null
     study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutTopicsInput
   }
 
@@ -44611,14 +44611,14 @@ export namespace Prisma {
   export type topicsUpdateWithoutCoursesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    decription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     study_access_topic?: study_access_topicUpdateManyWithoutTopicsNestedInput
   }
 
   export type topicsUncheckedUpdateWithoutCoursesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    decription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     study_access_topic?: study_access_topicUncheckedUpdateManyWithoutTopicsNestedInput
   }
 
@@ -47465,14 +47465,14 @@ export namespace Prisma {
   export type topicsCreateWithoutStudy_access_topicInput = {
     id?: string
     name: string
-    decription?: string | null
+    description?: string | null
     courses?: coursesCreateNestedManyWithoutTopicsInput
   }
 
   export type topicsUncheckedCreateWithoutStudy_access_topicInput = {
     id?: string
     name: string
-    decription?: string | null
+    description?: string | null
     courses?: coursesUncheckedCreateNestedManyWithoutTopicsInput
   }
 
@@ -47584,14 +47584,14 @@ export namespace Prisma {
   export type topicsUpdateWithoutStudy_access_topicInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    decription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     courses?: coursesUpdateManyWithoutTopicsNestedInput
   }
 
   export type topicsUncheckedUpdateWithoutStudy_access_topicInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    decription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     courses?: coursesUncheckedUpdateManyWithoutTopicsNestedInput
   }
 
