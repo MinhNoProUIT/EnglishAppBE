@@ -16,6 +16,16 @@ const UserController = {
     }
   },
 
+  async getQuarterlyUserStats(req, res) {
+    try {
+      const stats = await UserService.getQuarterlyUserStats();
+      res.json(stats);
+    } catch (err) {
+      console.error("Error in getQuarterlyUserStats:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
+
   async getAllUsersInPost(req, res) {
     try {
       const page = parseInt(req.query.page) || 1;

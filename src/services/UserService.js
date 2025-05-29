@@ -15,11 +15,78 @@ const safeBool = (val, def = false) => {
   }
   return def;
 };
+const { PrismaClient } = require("../generated/prisma"); // hoặc '@prisma/client' nếu dùng mặc định
+const prisma = new PrismaClient();
+
+function getQuarter(date) {
+  return Math.floor(date.getMonth() / 3) + 1;
+}
 
 const UserService = {
   async getAllUsers() {
     const result = await pool.query("SELECT * FROM users");
     return result.rows.map((row) => new User(row));
+  },
+
+  async getQuarterlyUserStats() {
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const currentQuarter = getQuarter(now);
+
+    let startMonthPrevQuarter = (currentQuarter - 2) * 3;
+    let startYearPrevQuarter = currentYear;
+    if (startMonthPrevQuarter < 0) {
+      startMonthPrevQuarter += 12;
+      startYearPrevQuarter -= 1;
+    }
+
+    const startDate = new Date(startYearPrevQuarter, startMonthPrevQuarter, 1);
+    const endDate = new Date(currentYear, currentQuarter * 3, 0, 23, 59, 59);
+
+    const users = await prisma.users.findMany({
+      where: {
+        createddate: {
+          gte: startDate,
+          lte: endDate,
+        },
+      },
+      select: {
+        createddate: true,
+      },
+    });
+
+    const counts = {};
+
+    users.forEach(({ createddate }) => {
+      const year = createddate.getFullYear();
+      const quarter = getQuarter(createddate);
+      const key = `${year}-Q${quarter}`;
+      counts[key] = (counts[key] || 0) + 1;
+    });
+
+    const currentKey = `${currentYear}-Q${currentQuarter}`;
+    let previousQuarter = currentQuarter - 1;
+    let previousYear = currentYear;
+    if (previousQuarter === 0) {
+      previousQuarter = 4;
+      previousYear -= 1;
+    }
+    const previousKey = `${previousYear}-Q${previousQuarter}`;
+
+    const currentCount = counts[currentKey] || 0;
+    const previousCount = counts[previousKey] || 0;
+
+    let changePercent;
+    if (previousCount === 0) {
+      changePercent = currentCount > 0 ? 100 : 0;
+    } else {
+      changePercent = ((currentCount - previousCount) / previousCount) * 100;
+    }
+
+    return {
+      currentQuarterCount: currentCount,
+      changePercent: Number(changePercent.toFixed(2)),
+    };
   },
 
   async getAllUsersInPost(limit = 5, page = 1) {

@@ -7,6 +7,7 @@ router.get("/getAll", PostController.getAllPosts);
 router.get("/getTotal", PostController.getTotalPosts);
 router.post("/create", upload.single('image'), PostController.createPost);
 router.get("/getData", PostController.getPostChartData);
+router.get("/month-stats", PostController.getMonthlyPostStats);
 
 module.exports = router;
 
@@ -167,3 +168,37 @@ module.exports = router;
  *                   example: Internal server error
  */
 
+/**
+ * @swagger
+ * /api/posts/month-stats:
+ *   get:
+ *     summary: Lấy tổng số bài đăng trong quý hiện tại và phần trăm tăng/giảm so với quý trước
+ *     tags: [Posts]
+ *     responses:
+ *       200:
+ *         description: Thống kê bài đăng theo tháng
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 currentMonthCount:
+ *                   type: integer
+ *                   description: Tổng số bài đăng trong tháng hiện tại
+ *                   example: 120
+ *                 changePercent:
+ *                   type: number
+ *                   format: float
+ *                   description: Phần trăm tăng/giảm so với tháng trước (%)
+ *                   example: 15.5
+ *       500:
+ *         description: Lỗi server
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: Internal Server Error
+ */

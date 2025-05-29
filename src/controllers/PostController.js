@@ -39,7 +39,7 @@ const PostController = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
-  
+
   async createPost(req, res) {
     try {
       if (req.file) {
@@ -65,6 +65,15 @@ const PostController = {
     }
   },
 
+  async getMonthlyPostStats(req, res) {
+    try {
+      const stats = await PostService.getMonthlyPostStats();
+      res.json(stats);
+    } catch (err) {
+      console.error("Error in getMonthlyPostStats:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
 };
 
 module.exports = PostController;
