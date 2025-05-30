@@ -12,11 +12,9 @@ class getAllTopicsVModel {
 
 class createTopicVModel {
   constructor({
-    id,
     name,
     description,
   }) {
-    this.id = id;
     this.name = name
     this.description = description;
   }
@@ -24,11 +22,9 @@ class createTopicVModel {
 
 class updateTopicVModel {
   constructor({
-    id,
     name,
     description,
   }) {
-    this.id = id;
     this.name = name
     this.description = description;
   }

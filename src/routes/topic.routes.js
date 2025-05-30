@@ -25,19 +25,6 @@ module.exports = router;
  *     responses:
  *       200:
  *         description: Danh sách chủ đề
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
- *                   id:
- *                     type: string
- *                   name:
- *                     type: string
- *                   description:
- *                     type: string
  */
 
 /**
@@ -55,8 +42,11 @@ module.exports = router;
  *             properties:
  *               name:
  *                 type: string
- *               decription:
+ *               description:
  *                 type: string
+ *             example:
+ *               name: Art
+ *               description: Learn to talk about art.
  *     responses:
  *       201:
  *         description: Đã tạo chủ đề thành công
@@ -85,8 +75,11 @@ module.exports = router;
  *             properties:
  *               name:
  *                 type: string
- *               decription:
+ *               description:
  *                 type: string
+ *             example:
+ *               name: Art
+ *               description: Learn to talk about art.
  *     responses:
  *       200:
  *         description: Đã chỉnh sửa chủ đề thành công
