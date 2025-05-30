@@ -1,15 +1,20 @@
 const {
   getAllCoursesVModel,
   createCourseVModel,
+  updateCourseVModel,
   getTotalCourseVModel,
 } = require("../viewmodels/CourseVModel");
 
-function mapGetAllCoursesToVModel(post) {
-  return new getAllCoursesVModel(post);
+function mapGetAllCoursesToVModel(course) {
+  return new getAllCoursesVModel(course);
 }
 
-function mapCreateCoursesToVModel(post) {
-  return new createCourseVModel(post);
+function mapCreateCourseToVModel(course) {
+  return new createCourseVModel(course);
+}
+
+function mapUpdateCourseToVModel(course) {
+  return new updateCourseVModel(course);
 }
 
 function mapGetTotalCourseToVModel(result) {
@@ -18,6 +23,7 @@ function mapGetTotalCourseToVModel(result) {
 
 module.exports = {
   mapGetAllCoursesToVModel,
-  mapCreateCoursesToVModel,
+  mapCreateCourseToVModel,
+  mapUpdateCourseToVModel,
   mapGetTotalCourseToVModel,
 };

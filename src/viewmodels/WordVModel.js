@@ -22,7 +22,6 @@ class getAllWordsVModel {
 
 class createWordVModel {
   constructor({
-    id,
     englishname,
     vietnamesename,
     type,
@@ -31,7 +30,6 @@ class createWordVModel {
     transcription,
     course_id,
   }) {
-    this.id = id;
     this.englishname = englishname;
     this.vietnamesename = vietnamesename;
     this.type = type;
@@ -44,7 +42,6 @@ class createWordVModel {
 
 class updateWordVModel {
   constructor({
-    id,
     englishname,
     vietnamesename,
     type,
@@ -53,7 +50,6 @@ class updateWordVModel {
     transcription,
     course_id,
   }) {
-    this.id = id;
     this.englishname = englishname;
     this.vietnamesename = vietnamesename;
     this.type = type;

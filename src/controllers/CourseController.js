@@ -1,4 +1,9 @@
-const { mapGetAllCoursesToVModel, mapGetTotalCourseToVModel, mapCreateCoursesToVModel } = require("../mappings/CourseMapping");
+const { 
+  mapGetAllCoursesToVModel, 
+  mapGetTotalCourseToVModel, 
+  mapCreateCourseToVModel,
+  mapUpdateCourseToVModel,
+} = require("../mappings/CourseMapping");
 const CourseService = require("../services/CourseService");
 
 const CourseController = {
@@ -25,8 +30,29 @@ const CourseController = {
   async createCourse(req, res) {
     try {
       const newCourse = await CourseService.createCourse(req.body);
-      res.status(201).json(mapCreateCoursesToVModel(newCourse));
+      res.status(201).json(mapCreateCourseToVModel(newCourse));
     } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
+  },
+
+  async updateCourse(req, res) {
+    try {
+      const { id } = req.params;
+      const updateCourse = await CourseService.updateCourse(id, req.body);
+      res.status(200).json(mapUpdateCourseToVModel(updateCourse));
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
+  },
+
+  async deleteCourse(req, res) {
+    try {
+      const { id } = req.params;
+      await CourseService.deleteCourse(id);
+      res.json({ message: `Deleted course with id ${id}` });
+    } catch (err) {
+      console.error("Error in deleteCourse:", err);
       res.status(400).json({ error: err.message });
     }
   },

@@ -52,6 +52,17 @@ module.exports = router;
  *                 type: string
  *               transcription:
  *                 type: string
+ *               course_id:
+ *                 type: string
+ *                 format: uuid
+ *             example:
+ *               englishname: student
+ *               vietnamesename: học sinh, sinh viên
+ *               type: n
+ *               examplesentence: She is a student.
+ *               imageurl: https://example.com/image.png
+ *               transcription: ˈsto͞od(ə)nt 
+ *               course_id: 5e88a3e4-b2f3-4d59-9c6a-788e0f4dcc6f
  *     responses:
  *       201:
  *         description: Đã tạo từ vựng thành công
@@ -90,6 +101,17 @@ module.exports = router;
  *                 type: string
  *               transcription:
  *                 type: string
+ *               course_id:
+ *                 type: string
+ *                 format: uuid
+ *             example:
+ *               englishname: student
+ *               vietnamesename: học sinh, sinh viên
+ *               type: n
+ *               examplesentence: She is a student.
+ *               imageurl: https://example.com/image.png
+ *               transcription: ˈsto͞od(ə)nt 
+ *               course_id: 5e88a3e4-b2f3-4d59-9c6a-788e0f4dcc6f
  *     responses:
  *       200:
  *         description: Đã chỉnh sửa từ vựng thành công
