@@ -1,5 +1,6 @@
 const AttendanceService = require("../services/AttendanceService");
 const { Parser } = require("json2csv");
+const { formatResponse } = require("../utils/responseHelper");
 
 const AttendanceController = {
   async getAllUserAttendance(req, res) {
@@ -7,7 +8,7 @@ const AttendanceController = {
       const id = req.id;
       if (id === null) return;
 
-      const attendance = AttendanceService.getAllUserAttendance(id);
+      const attendance = await AttendanceService.getAllUserAttendance(id);
       res.json(attendance);
     } catch (err) {
       console.error("Error in getAllUserAttendance:", err);
@@ -17,11 +18,54 @@ const AttendanceController = {
 
   async getAllAttendance(req, res) {
     try {
-      const attendance = AttendanceService.getAllAttendance();
+      const attendance = await AttendanceService.getAllAttendance();
       res.json(attendance);
     } catch (err) {
       console.error("Error in getAllAttendance:", err);
       res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
+
+  async createAttendance(req, res) {
+    try {
+      const data = req.body;
+      const created = await AttendanceService.createAttendance(data);
+      res.status(201).json(formatResponse(true, created));
+    } catch (err) {
+      console.error("Error in createAttendance:", err);
+      res.status(500).json({
+        Success: false,
+        Data: null,
+        Message: "Internal Server Error",
+      });
+    }
+  },
+
+  async deleteAttendance(req, res) {
+    try {
+      const { id } = req.params;
+      await AttendanceService.deleteAttendance(id);
+      res.json(formatResponse(true, id, `Deleted Attendance with id ${id}`));
+    } catch (err) {
+      console.error("Error in deleteAttendance:", err);
+      res.status(400).json({
+        Success: false,
+        Data: null,
+        Message: err.message,
+      });
+    }
+  },
+
+  async getMonthlyAttendanceSummary(req, res) {
+    try {
+      const attendance = await AttendanceService.getMonthlyAttendanceSummary();
+      res.json(formatResponse(true, attendance));
+    } catch (err) {
+      res.status(500).json({
+        Success: false,
+        Data: null,
+        Message: "Internal Server Error",
+      });
     }
   },
 };

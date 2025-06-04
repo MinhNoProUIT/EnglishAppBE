@@ -33,7 +33,7 @@ const GroupService = {
           });
         }
       }
-  
+
       await client.query("COMMIT");
       return new Group(group);
     } catch (err) {
@@ -46,7 +46,7 @@ const GroupService = {
 
   async editGroup(id, data) {
     const { name, image_url } = data;
-  
+
     const result = await pool.query(
       `UPDATE groups
        SET name = $1,
@@ -55,15 +55,15 @@ const GroupService = {
        RETURNING *`,
       [name, image_url, id]
     );
-  
+
     if (result.rows.length === 0) {
       throw new Error("Group not found or update failed");
     }
-  
+
     return new Group(result.rows[0]);
   },
 
-  async getDetailsGroup(id){
+  async getDetailsGroup(id) {
     const result = await pool.query(
       `SELECT g.id, g.name, g.image_url, g.created_by
        FROM groups g
@@ -76,7 +76,68 @@ const GroupService = {
     }
 
     return new Group(result.rows[0]);
-  }
+  },
+
+  async getMonthlyGroupSummary() {
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const currentMonth = now.getMonth();
+
+    let startMonthPrev = currentMonth - 1;
+    let startYearPrev = currentYear;
+    if (startMonthPrev < 0) {
+      startMonthPrev += 12;
+      startYearPrev -= 1;
+    }
+
+    const startDate = new Date(startYearPrev, startMonthPrev, 1);
+    const endDate = new Date(currentYear, currentMonth + 1, 0, 23, 59, 59);
+
+    const groups = await prisma.groups.findMany({
+      where: {
+        created_date: {
+          gte: startDate,
+          lte: endDate,
+        },
+      },
+      select: {
+        created_date: true,
+      },
+    });
+
+    const counts = {};
+
+    groups.forEach(({ created_date }) => {
+      const year = created_date.getFullYear();
+      const month = created_date.getMonth();
+      const key = `${year}-${month}`;
+      counts[key] = (counts[key] || 0) + 1;
+    });
+
+    const currentKey = `${currentYear}-${currentMonth}`;
+    let previousMonth = currentMonth - 1;
+    let previousYear = currentYear;
+    if (previousMonth === 0) {
+      previousMonth = 11;
+      previousYear -= 1;
+    }
+    const previousKey = `${previousYear}-${previousMonth}`;
+
+    const currentCount = counts[currentKey] || 0;
+    const previousCount = counts[previousKey] || 0;
+
+    let changePercent;
+    if (previousCount === 0) {
+      changePercent = currentCount > 0 ? 100 : 0;
+    } else {
+      changePercent = ((currentCount - previousCount) / previousCount) * 100;
+    }
+
+    return {
+      currentMonthCount: currentCount,
+      changePercent: Number(changePercent.toFixed(2)),
+    };
+  },
 };
 
 module.exports = GroupService;

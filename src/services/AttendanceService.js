@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 
 const AttendanceService = {
   async getAllAttendance() {
-    return await prisma.attendance.findMany({});
+    return await prisma.attendance.findMany();
   },
 
   async getAllUserAttendance(id) {
@@ -22,63 +22,50 @@ const AttendanceService = {
     });
   },
 
-  async getMonthlyAttendance() {
+  async getMonthlyAttendanceSummary() {
     const now = new Date();
-    const currentYear = now.getFullYear();
-    const currentMonth = now.getMonth();
 
-    let startMonthPrev = currentMonth - 1;
-    let startYearPrev = currentYear;
-    if (startMonthPrev < 0) {
-      startMonthPrev += 12;
-      startYearPrev -= 1;
-    }
+    const startOfCurrentMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    const startOfNextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
 
-    const startDate = new Date(startYearPrev, startMonthPrev, 1);
-    const endDate = new Date(currentYear, currentMonth + 1, 0, 23, 59, 59);
+    const startOfPrevMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
 
-    const attendance = await prisma.attendance.findMany({
+    const currentMonthUsers = await prisma.attendance.groupBy({
+      by: ["user_id"],
       where: {
-        checkin_date: {
-          gte: startDate,
-          lte: endDate,
+        created_date: {
+          gte: startOfCurrentMonth,
+          lt: startOfNextMonth,
         },
       },
-      select: {
-        checkin_date: true,
+    });
+    const currentMonthCount = currentMonthUsers.length;
+
+    // Lấy tổng số user đã điểm danh tháng trước
+    const prevMonthUsers = await prisma.attendance.groupBy({
+      by: ["user_id"],
+      where: {
+        created_date: {
+          gte: startOfPrevMonth,
+          lt: startOfCurrentMonth,
+        },
       },
     });
+    const prevMonthCount = prevMonthUsers.length;
 
-    const counts = {};
-
-    attendance.forEach(({ checkin_date }) => {
-      const year = checkin_date.getFullYear();
-      const month = checkin_date.getMonth();
-      const key = `${year}-${month}`;
-      counts[key] = (counts[key] || 0) + 1;
-    });
-
-    const currentKey = `${currentYear}-${currentMonth}`;
-    let previousMonth = currentMonth - 1;
-    let previousYear = currentYear;
-    if (previousMonth === 0) {
-      previousMonth = 11;
-      previousYear -= 1;
-    }
-    const previousKey = `${previousYear}-${previousMonth}`;
-
-    const currentCount = counts[currentKey] || 0;
-    const previousCount = counts[previousKey] || 0;
-
-    let changePercent;
-    if (previousCount === 0) {
-      changePercent = currentCount > 0 ? 100 : 0;
+    // Tính phần trăm tăng giảm
+    let changePercent = null;
+    if (prevMonthCount === 0 && currentMonthCount > 0) {
+      changePercent = 100; // tăng 100% từ 0
+    } else if (prevMonthCount === 0 && currentMonthCount === 0) {
+      changePercent = 0; // không thay đổi
     } else {
-      changePercent = ((currentCount - previousCount) / previousCount) * 100;
+      changePercent =
+        ((currentMonthCount - prevMonthCount) / prevMonthCount) * 100;
     }
 
     return {
-      currentMonthCount: currentCount,
+      currentMonthCount: currentMonthCount,
       changePercent: Number(changePercent.toFixed(2)),
     };
   },

@@ -22,10 +22,10 @@ model abuse_report_feedbacks {
 model attendance {
   id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   user_id      String   @db.Uuid
-  checkin_date DateTime @default(dbgenerated("CURRENT_DATE")) @db.Date
+  created_date DateTime @default(dbgenerated("CURRENT_DATE")) @db.Date
   users        users    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user")
 
-  @@unique([user_id, checkin_date], map: "unique_user_date")
+  @@unique([user_id, created_date], map: "unique_user_date")
 }
 
 model coin_transaction {
@@ -225,11 +225,15 @@ model topics {
 }
 
 model transaction_history {
-  id          String    @id(map: "transactionhistory_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user_id     String    @db.Uuid
-  price       Decimal?  @default(0) @db.Money
-  createddate DateTime? @default(now()) @db.Timestamp(6)
-  users       users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "transactionhistory_user_id_fkey")
+  id           String    @id(map: "transactionhistory_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id      String    @db.Uuid
+  amount       Decimal?  @default(0) @db.Money
+  created_date DateTime? @default(now()) @db.Timestamp(6)
+  order_code   String    @db.VarChar(255)
+  status       String?   @default("PENDING") @db.VarChar(20)
+  paid_at      DateTime? @db.Timestamp(6)
+  description  String?
+  users        users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "transactionhistory_user_id_fkey")
 }
 
 model user_abuse_reports {
@@ -327,6 +331,7 @@ model users {
   groups                                                      groups[]
   messages                                                    messages[]
   posts                                                       posts[]
+  quizzes                                                     quizzes[]
   react_comments                                              react_comments[]
   react_posts                                                 react_posts[]
   shared_post                                                 shared_post[]
@@ -352,4 +357,22 @@ model words {
   course_id       String?         @db.Uuid
   user_progress   user_progress[]
   courses         courses?        @relation(fields: [course_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_courses_id_words")
+}
+
+model quiz_questions {
+  id             String   @id @db.Uuid
+  quiz_id        String   @db.Uuid
+  question_text  String
+  options        String[]
+  correct_answer String
+  quizzes        quizzes  @relation(fields: [quiz_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_quiz_id_quiz_questions")
+}
+
+model quizzes {
+  id             String           @id @db.Uuid
+  user_id        String           @db.Uuid
+  title          String
+  created_date   DateTime         @db.Timestamp(6)
+  quiz_questions quiz_questions[]
+  users          users            @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_user_id_quizzes")
 }

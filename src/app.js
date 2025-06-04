@@ -15,10 +15,20 @@ const groupMemberRoutes = require("./routes/groupMember.routes");
 const messageRoutes = require("./routes/message.routes");
 const authRoutes = require("./routes/auth.routes");
 const coinTransactionRoutes = require("./routes/cointransaction.routes");
-const userAbuseReport = require("./routes/userabuserreport.routes");
+const userAbuseReportRoutes = require("./routes/userabuserreport.routes");
+const attendanceRoutes = require("./routes/attendance.routes");
+const paymentRoutes = require("./routes/payment.routes");
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
+
+// const PayOS = require("@payos/node");
+
+// const payOS = new PayOS(
+//   process.env.PAYOS_CLIENT_ID,
+//   process.env.PAYOS_API_KEY,
+//   process.env.PAYOS_CHECKSUM_KEY
+// );
 
 const app = express();
 app.use(cors());
@@ -74,6 +84,8 @@ app.use("/api/messages", messageRoutes);
 app.use("/auth", authRoutes);
 
 app.use("/api/coin-transactions", coinTransactionRoutes);
-app.use("/api/user-abuse-reports", userAbuseReport);
+app.use("/api/user-abuse-reports", userAbuseReportRoutes);
+app.use("/api/attendance", attendanceRoutes);
+app.use("/api/payments", paymentRoutes);
 
 module.exports = app;

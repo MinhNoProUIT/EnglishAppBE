@@ -6,6 +6,7 @@ const {
   mapToPostDataChartVModel,
 } = require("../mappings/PostMapping");
 const { uploadToCloudinary } = require("../services/UploadService");
+const { formatResponse } = require("../utils/responseHelper");
 
 const PostController = {
   async getAllPosts(req, res) {
@@ -43,7 +44,7 @@ const PostController = {
   async createPost(req, res) {
     try {
       if (req.file) {
-        const result = await uploadToCloudinary(req.file.buffer, 'english-app');
+        const result = await uploadToCloudinary(req.file.buffer, "english-app");
         req.body.image_url = result.secure_url;
       }
       const newPost = await PostService.createPost(req.body);
@@ -68,10 +69,14 @@ const PostController = {
   async getMonthlyPostStats(req, res) {
     try {
       const stats = await PostService.getMonthlyPostStats();
-      res.json(stats);
+      res.json(formatResponse(true, stats));
     } catch (err) {
       console.error("Error in getMonthlyPostStats:", err);
-      res.status(500).json({ error: "Internal Server Error" });
+      res.status(500).json({
+        Success: false,
+        Data: null,
+        Message: "Internal Server Error",
+      });
     }
   },
 };
