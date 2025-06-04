@@ -1,11 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const CommentController = require("../controllers/CommentController");
+const authMiddleware = require("../middlewares/auth.middleware");
 
-router.get("/getAllByPost/:type/:id", CommentController.getAllCommentsByPost);
-router.post("/create", CommentController.createComment);
-router.put("/edit/:id", CommentController.editComment);
-router.delete("/delete/:id", CommentController.deleteComment);
+router.get(
+  "/getAllByPost/:type/:id",
+  authMiddleware,
+  CommentController.getAllCommentsByPost
+);
+router.post("/create", authMiddleware, CommentController.createComment);
+router.put("/edit/:id", authMiddleware, CommentController.editComment);
+router.delete("/delete/:id", authMiddleware, CommentController.deleteComment);
 
 module.exports = router;
 
@@ -63,16 +68,16 @@ module.exports = router;
  *                     type: string
  *                     format: uuid
  *                   username_parent:
- *                     type: string  
+ *                     type: string
  *                   root_comment:
  *                     type: string
  *                     format: uuid
  *                   username_root:
- *                     type: string  
+ *                     type: string
  *                   author_name:
- *                     type: string    
+ *                     type: string
  *                   author_image:
- *                     type: string 
+ *                     type: string
  *                   created_date:
  *                     type: string
  *                     format: date-time
@@ -166,4 +171,3 @@ module.exports = router;
  *       200:
  *         description: Đã xóa bình luận thành công
  */
-

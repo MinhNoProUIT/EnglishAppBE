@@ -1,11 +1,22 @@
 const express = require("express");
 const router = express.Router();
-const upload = require('../middlewares/upload.middleware');
+const upload = require("../middlewares/upload.middleware");
 const GroupController = require("../controllers/GroupController");
+const authMiddleware = require("../middlewares/auth.middleware");
 
-router.post("/create", upload.single('image'), GroupController.createGroup);
-router.put("/edit/:id", upload.single('image'), GroupController.editGroup);
-router.get("/details/:id", GroupController.getDetailsGroup);
+router.post(
+  "/create",
+  authMiddleware,
+  upload.single("image"),
+  GroupController.createGroup
+);
+router.put(
+  "/edit/:id",
+  authMiddleware,
+  upload.single("image"),
+  GroupController.editGroup
+);
+router.get("/details/:id", authMiddleware, GroupController.getDetailsGroup);
 
 module.exports = router;
 

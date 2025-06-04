@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const GroupMemberController = require("../controllers/GroupMemberController");
+const authMiddleware = require("../middlewares/auth.middleware");
 
-router.post("/add", GroupMemberController.addMember);
-router.put("/kick/:group_id/:user_id", GroupMemberController.kickMember);
-router.get("/group/:group_id", GroupMemberController.getAllMemberInGroup);
-router.get("/user/:user_id", GroupMemberController.getAllGroupByUser);
+router.post("/add", authMiddleware, GroupMemberController.addMember);
+router.put("/kick/:group_id/:user_id", authMiddleware, GroupMemberController.kickMember);
+router.get("/group/:group_id", authMiddleware, GroupMemberController.getAllMemberInGroup);
+router.get("/user/:user_id", authMiddleware, GroupMemberController.getAllGroupByUser);
 
 module.exports = router;
 
