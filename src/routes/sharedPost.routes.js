@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const SharedPostController = require("../controllers/SharedPostController");
+const authMiddleware = require("../middlewares/auth.middleware");
 
-router.get("/getAll", SharedPostController.getAllSharedPost);
-router.post("/create", SharedPostController.createSharedPost);
+router.get("/getAll", authMiddleware, SharedPostController.getAllSharedPost);
+router.post("/create", authMiddleware, SharedPostController.createSharedPost);
 
 module.exports = router;
 
@@ -96,5 +97,3 @@ module.exports = router;
  *       201:
  *         description: Đã tạo bài viết chia sẻ thành công
  */
-
-

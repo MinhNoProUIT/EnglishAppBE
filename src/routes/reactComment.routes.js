@@ -1,10 +1,23 @@
 const express = require("express");
 const router = express.Router();
 const ReactCommentController = require("../controllers/ReactCommentController");
+const authMiddleware = require("../middlewares/auth.middleware");
 
-router.get("/getAllByPost/:id", ReactCommentController.getAllReactCommentsByPost);
-router.post("/create", ReactCommentController.createReactComment);
-router.delete("/delete/:id", ReactCommentController.deleteReactComment);
+router.get(
+  "/getAllByPost/:id",
+  authMiddleware,
+  ReactCommentController.getAllReactCommentsByPost
+);
+router.post(
+  "/create",
+  authMiddleware,
+  ReactCommentController.createReactComment
+);
+router.delete(
+  "/delete/:id",
+  authMiddleware,
+  ReactCommentController.deleteReactComment
+);
 
 module.exports = router;
 
@@ -88,5 +101,3 @@ module.exports = router;
  *       200:
  *         description: Đã xóa react khỏi bình luận thành công
  */
-
-

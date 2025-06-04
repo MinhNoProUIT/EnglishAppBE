@@ -5,6 +5,7 @@ const AuthController = {
   async register(req, res) {
     try {
       const result = await AuthService.createUser(req.body);
+      console.log("result", result);
       res.status(201).json(result);
     } catch (err) {
       res.status(400).json({ error: err.message });
