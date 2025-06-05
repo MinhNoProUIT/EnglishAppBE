@@ -9,7 +9,7 @@ const AttendanceController = {
       if (id === null) return;
 
       const attendance = await AttendanceService.getAllUserAttendance(id);
-      res.json(attendance);
+      res.json(formatResponse(true, attendance));
     } catch (err) {
       console.error("Error in getAllUserAttendance:", err);
       res.status(500).json({ error: "Internal Server Error" });
@@ -19,7 +19,7 @@ const AttendanceController = {
   async getAllAttendance(req, res) {
     try {
       const attendance = await AttendanceService.getAllAttendance();
-      res.json(attendance);
+      res.json(formatResponse(true, attendance));
     } catch (err) {
       console.error("Error in getAllAttendance:", err);
       res.status(500).json({ error: "Internal Server Error" });

@@ -102,4 +102,22 @@ router.get("/status/:orderCode", controller.getOrderStatus);
  */
 router.post("/webhook", controller.handleWebhook);
 
+/**
+ * @swagger
+ * /api/payments/getAll:
+ *   get:
+ *     summary: Lấy tất cả giao dịch
+ *     tags: [Payment]
+ *     responses:
+ *       200:
+ *         description: Danh sách tất cả giao dịch
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ */
+router.get("/getAll", controller.getAllPayment);
+
 module.exports = router;
