@@ -6,6 +6,7 @@ router.get("/getAll", WordController.getAllWords);
 router.post("/create", WordController.createWord);
 router.put("/update/:id", WordController.updateWord);
 router.delete("/delete/:id", WordController.deleteWord);
+router.get("/getAllByCourse/:id", WordController.getAllWordsByCourse);
 
 module.exports = router;
 
@@ -134,4 +135,23 @@ module.exports = router;
  *     responses:
  *       200:
  *         description: Xóa từ vựng thành công
+ */
+
+/**
+ * @swagger
+ * /api/words/getAllByCourse/{id}::
+ *   get:
+ *     summary: Lấy danh sách tất cả từ vựng theo khóa học
+ *     tags: [Words]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID của khóa học
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *     responses:
+ *       200:
+ *         description: Danh sách từ vựng của khóa học
  */
