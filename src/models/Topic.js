@@ -5,7 +5,7 @@ class Topic {
     description,
   }) {
     this.id = id;
-    this.name = name
+    this.name = name;
     this.description = description;
   }
 }

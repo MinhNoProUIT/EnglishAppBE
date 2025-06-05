@@ -33,6 +33,14 @@ const WordService = {
       where: { id },
     });
   },
+
+  async getAllWordsByCourse(courseId) {
+    return await prisma.words.findMany({
+      where: { course_id: courseId },
+      orderBy: { englishname: 'asc' },
+    });
+  },
+
 };
 
 module.exports = WordService;

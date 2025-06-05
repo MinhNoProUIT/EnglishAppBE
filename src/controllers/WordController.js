@@ -3,6 +3,7 @@ const {
   mapGetAllWordsToVModel,
   mapCreateWordToVModel,
   mapUpdateWordToVModel,
+  mapGetAllWordsByCourseToVModel,
 } = require("../mappings/WordMapping");
 
 const WordController = {
@@ -43,6 +44,17 @@ const WordController = {
     } catch (err) {
       console.error("Error in deleteWord:", err);
       res.status(400).json({ error: err.message });
+    }
+  },
+
+  async getAllWordsByCourse(req, res) {
+    try {
+      const { course_id } = req.params;
+      const allWords = await WordService.getAllWordsByCourse(course_id);
+      res.json(allWords.map(mapGetAllWordsByCourseToVModel));
+    } catch (err) {
+      console.error("Error in get all words by course:", err);
+      res.status(500).json({ error: "Internal Server Error" });
     }
   },
 };

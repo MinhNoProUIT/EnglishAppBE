@@ -2,6 +2,7 @@ const {
   getAllWordsVModel,
   createWordVModel,
   updateWordVModel,
+  getAllWordsByCourseVModel
 } = require("../viewmodels/WordVModel");
 
 function mapGetAllWordsToVModel(word) {
@@ -16,8 +17,13 @@ function mapUpdateWordToVModel(word) {
   return new updateWordVModel(word);
 }
 
+function mapGetAllWordsByCourseToVModel(word) {
+  return new getAllWordsByCourseVModel(word);
+}
+
 module.exports = {
   mapGetAllWordsToVModel,
   mapCreateWordToVModel,
   mapUpdateWordToVModel,
+  mapGetAllWordsByCourseToVModel,
 };
