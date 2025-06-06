@@ -4,15 +4,73 @@ const {
   mapUserInPostToVModel,
   mapTopFiveUserInPostToVModel,
 } = require("../mappings/UserMapping");
+const { Criteria } = require("../viewmodels/CriteriaVModel");
+const { getCurrentUserId } = require("../utils/CurrentUser");
 
 const UserController = {
   async getUsers(req, res) {
     try {
-      const users = await UserService.getAllUsers();
-      res.json(users.map(mapUserToVModel));
+      // Lấy các tham số từ query string hoặc body
+      const { search, page, rowsPerPage, sortBy, sortOrder } = req.query;
+
+      // Tạo đối tượng Criteria với các tham số từ client
+      const criteria = new Criteria({
+        search: search || "", // Nếu không có search thì để rỗng
+        page: parseInt(page) || 1, // Nếu không có page thì mặc định là trang 1
+        rowsPerPage: parseInt(rowsPerPage) || 10, // Nếu không có rowsPerPage thì mặc định là 10
+        sortBy: sortBy || "id", // Nếu không có sortBy thì mặc định là "id"
+        sortOrder: sortOrder || "ASC", // Nếu không có sortOrder thì mặc định là "ASC"
+      });
+
+      // Gọi service để lấy danh sách người dùng
+      const result = await UserService.getAllUsers(criteria);
+
+      // Trả kết quả về frontend
+      res.json({
+        users: result.users.map(mapUserToVModel),
+        total: result.total,
+      });
     } catch (err) {
       console.error("Error in getAllUsers:", err);
       res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
+
+  async getLearningList(req, res) {
+    try {
+      const criteria = {
+        search: req.query.search || "",
+        page: parseInt(req.query.page) || 0,
+        rowsPerPage: parseInt(req.query.rowsPerPage) || 10,
+        sortBy: req.query.sortBy || "fullname", // fullname, chuoi, tu, chude
+        sortOrder: req.query.sortOrder || "asc", // asc | desc
+      };
+
+      const result = await UserService.getLearningList(criteria);
+      res.json(result);
+    } catch (err) {
+      console.error("Lỗi khi lấy danh sách học tập:", err);
+      res.status(500).json({ error: err.message });
+    }
+  },
+
+  async getById(req, res) {
+    try {
+      const { id } = req.params;
+      const user = await UserService.getById(id);
+
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      // Chuyển đổi đối tượng người dùng thành model view (nếu cần)
+      const userVModel = mapUserToVModel(user);
+
+      // Trả về thông tin người dùng
+      res.json(userVModel);
+    } catch (err) {
+      console.error("Error in getUserById:", err); // Ghi log lỗi
+      res.status(500).json({ error: "Internal Server Error" }); // Trả về lỗi 500 nếu có lỗi trong quá trình xử lý
     }
   },
 
@@ -96,18 +154,21 @@ const UserController = {
     }
   },
   async updateUser(req, res) {
+    const userId = getCurrentUserId(req);
+    const newData = req.body;
+
+    // 👇 bạn có thể dùng `req.user.id` nếu có middleware auth
+    const changedBy = userId;
+
     try {
-      const { id } = req.params;
-
-      const userUpdateVModel = req.body;
-
-      const updateUser = await UserService.updateUser(id, userUpdateVModel);
-      res
-        .status(200)
-        .json({ message: "User updated successfully", data: updateUser });
-    } catch (error) {
-      console.error("Error in updateUser:", error);
-      res.status(400).json({ message: error.message });
+      const result = await UserService.updateUser(userId, newData, changedBy);
+      res.json(result);
+    } catch (err) {
+      console.error("Lỗi cập nhật user:", err);
+      if (err.message.includes("không tồn tại")) {
+        return res.status(404).json({ error: err.message });
+      }
+      res.status(500).json({ error: err.message });
     }
   },
 
@@ -136,6 +197,42 @@ const UserController = {
     } catch (err) {
       console.error("Error in remove user", err);
       res.status(400).json({ message: err.message });
+    }
+  },
+
+  async getLongestAndShortestStreak(req, res) {
+    try {
+      const result = await UserService.getLongestAndShortestStreak();
+      console.log(result);
+      if (!result.longestFullname || !result.shortestFullname) {
+        return res.status(404).json({ error: "No attendance records found" });
+      }
+
+      res.json(result);
+    } catch (err) {
+      console.error("Error in getLongestAndShortestStreakHandler:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
+
+  async getTopFiveLearning(req, res) {
+    try {
+      const data = await UserService.getTopFiveLearning();
+      res.json(data);
+    } catch (err) {
+      res.status(500).json({ err: "Internal Server Error", details: err });
+    }
+  },
+  async getTopLearnedTopics(req, res) {
+    try {
+      const data = await UserService.getTopSevenTopic();
+      res.status(200).json(data);
+    } catch (error) {
+      console.error("Lỗi khi truy vấn top topic:", error); // ← thêm dòng này
+      res.status(500).json({
+        error: "Internal Server Error",
+        details: error,
+      });
     }
   },
 };
