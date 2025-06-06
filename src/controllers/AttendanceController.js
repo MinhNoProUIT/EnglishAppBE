@@ -1,14 +1,17 @@
 const AttendanceService = require("../services/AttendanceService");
 const { Parser } = require("json2csv");
 const { formatResponse } = require("../utils/responseHelper");
+const { getCurrentUserId } = require("../utils/CurrentUser");
 
 const AttendanceController = {
   async getAllUserAttendance(req, res) {
     try {
-      const id = req.id;
-      if (id === null) return;
+      // const id = req.id;
+      // if (id === null) return;
 
-      const attendance = await AttendanceService.getAllUserAttendance(id);
+      const attendance = await AttendanceService.getAllUserAttendance(
+        getCurrentUserId(req)
+      );
       res.json(formatResponse(true, attendance));
     } catch (err) {
       console.error("Error in getAllUserAttendance:", err);

@@ -142,15 +142,6 @@ model messages {
   users        users     @relation(fields: [sender_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_sender_id_messengers")
 }
 
-model packages {
-  id            String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name          String
-  duration_days Int
-  price         Int
-  is_premium    Boolean?        @default(false)
-  user_packages user_packages[]
-}
-
 model posts {
   id                   String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   user_id              String           @db.Uuid
@@ -202,26 +193,11 @@ model shared_post {
   users             users         @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "sharedpost_user_id_fkey")
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-model study_access_topic {
-  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user_id     String    @db.Uuid
-  topic_id    String    @db.Uuid
-  access_type String?   @default("coin")
-  access_date DateTime? @default(dbgenerated("CURRENT_DATE")) @db.Date
-  expire_date DateTime  @db.Date
-  topics      topics    @relation(fields: [topic_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_access_topic")
-  users       users     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_access_user")
-
-  @@unique([user_id, topic_id, access_date], map: "unique_access")
-}
-
 model topics {
-  id                 String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name               String
-  description        String?
-  courses            courses[]
-  study_access_topic study_access_topic[]
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name        String
+  description String?
+  courses     courses[]
 }
 
 model transaction_history {
@@ -250,6 +226,7 @@ model user_courses {
   user_id       String    @db.Uuid
   course_id     String    @db.Uuid
   purchase_date DateTime? @default(now()) @db.Timestamp(6)
+  isActive      Boolean   @default(false)
   courses       courses   @relation(fields: [course_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_courses_id_user_courses")
   users         users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_users_id_user_courses")
 
@@ -269,14 +246,12 @@ model user_error_reports {
 }
 
 model user_packages {
-  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user_id    String    @db.Uuid
-  package_id String    @db.Uuid
-  start_date DateTime? @default(dbgenerated("CURRENT_DATE")) @db.Date
-  end_date   DateTime  @db.Date
-  is_active  Boolean?  @default(true)
-  packages   packages  @relation(fields: [package_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_package_package")
-  users      users     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_package_user")
+  id         String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id    String           @db.Uuid
+  package_id String           @db.Uuid
+  start_date DateTime?        @default(dbgenerated("CURRENT_DATE")) @db.Date
+  packages   premium_packages @relation(fields: [package_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_package_package")
+  users      users            @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_package_user")
 }
 
 model user_profile_history {
@@ -320,6 +295,7 @@ model users {
   is_block                                                    Boolean?                 @default(false)
   is_verified                                                 Boolean?                 @default(false)
   firebase_uid                                                String?
+  isPremium                                                   Boolean                  @default(false)
   abuse_report_feedbacks                                      abuse_report_feedbacks[]
   attendance                                                  attendance[]
   coin_transaction                                            coin_transaction[]
@@ -335,7 +311,6 @@ model users {
   react_comments                                              react_comments[]
   react_posts                                                 react_posts[]
   shared_post                                                 shared_post[]
-  study_access_topic                                          study_access_topic[]
   transaction_history                                         transaction_history[]
   user_abuse_reports                                          user_abuse_reports[]
   user_courses                                                user_courses[]
@@ -375,4 +350,12 @@ model quizzes {
   created_date   DateTime         @default(now()) @db.Timestamp(6)
   quiz_questions quiz_questions[]
   users          users            @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_user_id_quizzes")
+}
+
+model premium_packages {
+  id            String          @id(map: "packages_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name          String
+  duration_days Int
+  price         Int
+  user_packages user_packages[]
 }

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const AttendanceController = require("../controllers/AttendanceController");
+const authMiddleware = require("../middlewares/auth.middleware");
 
 /**
  * @swagger
@@ -12,18 +13,10 @@ const AttendanceController = require("../controllers/AttendanceController");
 /**
 /**
  * @swagger
- * /api/attendance/getAllUser/{id}:
+ * /api/attendance/getAllUser:
  *   get:
  *     summary: Lấy tất cả điểm danh của user theo user_id truyền vào path
  *     tags: [Attendance]
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: string
- *           format: uuid
- *         required: true
- *         description: ID của user điểm danh
  *     responses:
  *       200:
  *         description: Danh sách điểm danh của user
@@ -34,7 +27,11 @@ const AttendanceController = require("../controllers/AttendanceController");
  *               items:
  *                 type: object
  */
-router.get("/getAllUser/:id", AttendanceController.getAllUserAttendance);
+router.get(
+  "/getAllUser",
+  authMiddleware,
+  AttendanceController.getAllUserAttendance
+);
 
 /**
  * @swagger

@@ -222,14 +222,6 @@ exports.Prisma.MessagesScalarFieldEnum = {
   content: 'content'
 };
 
-exports.Prisma.PackagesScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  duration_days: 'duration_days',
-  price: 'price',
-  is_premium: 'is_premium'
-};
-
 exports.Prisma.PostsScalarFieldEnum = {
   id: 'id',
   user_id: 'user_id',
@@ -267,15 +259,6 @@ exports.Prisma.Shared_postScalarFieldEnum = {
   shared_count: 'shared_count'
 };
 
-exports.Prisma.Study_access_topicScalarFieldEnum = {
-  id: 'id',
-  user_id: 'user_id',
-  topic_id: 'topic_id',
-  access_type: 'access_type',
-  access_date: 'access_date',
-  expire_date: 'expire_date'
-};
-
 exports.Prisma.TopicsScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -304,7 +287,8 @@ exports.Prisma.User_coursesScalarFieldEnum = {
   id: 'id',
   user_id: 'user_id',
   course_id: 'course_id',
-  purchase_date: 'purchase_date'
+  purchase_date: 'purchase_date',
+  isActive: 'isActive'
 };
 
 exports.Prisma.User_error_reportsScalarFieldEnum = {
@@ -321,9 +305,7 @@ exports.Prisma.User_packagesScalarFieldEnum = {
   id: 'id',
   user_id: 'user_id',
   package_id: 'package_id',
-  start_date: 'start_date',
-  end_date: 'end_date',
-  is_active: 'is_active'
+  start_date: 'start_date'
 };
 
 exports.Prisma.User_profile_historyScalarFieldEnum = {
@@ -361,7 +343,8 @@ exports.Prisma.UsersScalarFieldEnum = {
   image_url: 'image_url',
   is_block: 'is_block',
   is_verified: 'is_verified',
-  firebase_uid: 'firebase_uid'
+  firebase_uid: 'firebase_uid',
+  isPremium: 'isPremium'
 };
 
 exports.Prisma.WordsScalarFieldEnum = {
@@ -388,6 +371,13 @@ exports.Prisma.QuizzesScalarFieldEnum = {
   user_id: 'user_id',
   title: 'title',
   created_date: 'created_date'
+};
+
+exports.Prisma.Premium_packagesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  duration_days: 'duration_days',
+  price: 'price'
 };
 
 exports.Prisma.SortOrder = {
@@ -429,12 +419,10 @@ exports.Prisma.ModelName = {
   group_posts: 'group_posts',
   groups: 'groups',
   messages: 'messages',
-  packages: 'packages',
   posts: 'posts',
   react_comments: 'react_comments',
   react_posts: 'react_posts',
   shared_post: 'shared_post',
-  study_access_topic: 'study_access_topic',
   topics: 'topics',
   transaction_history: 'transaction_history',
   user_abuse_reports: 'user_abuse_reports',
@@ -446,7 +434,8 @@ exports.Prisma.ModelName = {
   users: 'users',
   words: 'words',
   quiz_questions: 'quiz_questions',
-  quizzes: 'quizzes'
+  quizzes: 'quizzes',
+  premium_packages: 'premium_packages'
 };
 
 /**

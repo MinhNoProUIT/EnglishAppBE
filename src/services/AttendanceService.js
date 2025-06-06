@@ -6,9 +6,9 @@ const AttendanceService = {
     return await prisma.attendance.findMany();
   },
 
-  async getAllUserAttendance(id) {
+  async getAllUserAttendance(user_id) {
     return await prisma.attendance.findMany({
-      where: { id },
+      where: { user_id: user_id },
     });
   },
 
