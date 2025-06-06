@@ -44,16 +44,33 @@ const GroupService = {
     }
   },
 
-  async editGroup(id, data) {
-    const { name, image_url } = data;
+  async changeNameGroup(id, data) {
+    const { name } = data;
 
     const result = await pool.query(
       `UPDATE groups
-       SET name = $1,
-           image_url = $2
-       WHERE id = $3
+       SET name = $1
+       WHERE id = $2
        RETURNING *`,
-      [name, image_url, id]
+      [name, id]
+    );
+
+    if (result.rows.length === 0) {
+      throw new Error("Group not found or update failed");
+    }
+
+    return new Group(result.rows[0]);
+  },
+
+  async changeImageGroup(id, data) {
+    const { image_url } = data;
+
+    const result = await pool.query(
+      `UPDATE groups
+       SET image_url = $1
+       WHERE id = $2
+       RETURNING *`,
+      [image_url, id]
     );
 
     if (result.rows.length === 0) {
