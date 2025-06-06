@@ -4,11 +4,11 @@ const upload = require('../middlewares/upload.middleware');
 const PostController = require("../controllers/PostController");
 const authMiddleware = require("../middlewares/auth.middleware");
 
-router.get("/getAll", authMiddleware, PostController.getAllPosts);
-router.get("/getTotal", authMiddleware, PostController.getTotalPosts);
-router.post("/create", authMiddleware, upload.single('image'), PostController.createPost);
-router.get("/getData", authMiddleware, PostController.getPostChartData);
-router.get("/month-stats", authMiddleware, PostController.getMonthlyPostStats);
+router.get("/getAll", PostController.getAllPosts);
+router.get("/getTotal", PostController.getTotalPosts);
+router.post("/create", upload.single('image'), PostController.createPost);
+router.get("/getData", PostController.getPostChartData);
+router.get("/month-stats", PostController.getMonthlyPostStats);
 
 module.exports = router;
 

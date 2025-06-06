@@ -3,12 +3,8 @@ const router = express.Router();
 const MessageController = require("../controllers/MessageController");
 const authMiddleware = require("../middlewares/auth.middleware");
 
-router.post("/send", authMiddleware, MessageController.sendMesage);
-router.get(
-  "/getAll/:group_id",
-  authMiddleware,
-  MessageController.getAllMessageInGroup
-);
+router.post("/send", MessageController.sendMesage);
+router.get("/getAll/:group_id", MessageController.getAllMessageInGroup);
 
 module.exports = router;
 
