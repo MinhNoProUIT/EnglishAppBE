@@ -4,20 +4,20 @@ const UserController = require("../controllers/UserController");
 const authMiddleware = require("../middlewares/auth.middleware");
 const checkPermission = require("../middlewares/checkPermission");
 
-router.get(
-  "/GetAll",
-  authMiddleware,
-  checkPermission("user"),
-  UserController.getUsers
-);
+router.get("/GetAll", authMiddleware, UserController.getUsers);
+router.get("/getById/:id", UserController.getById);
 router.get("/getAll-post", UserController.getAllUsersInPost);
 router.get("/search", UserController.filterUsersInPost);
 router.post("/Create", UserController.createUser);
 router.get("/getTopFive", UserController.getTopFiveUserInPost);
-router.put("/update/:id", UserController.updateUser);
+router.put("/update/:id", authMiddleware, UserController.updateUser);
 router.put("/lock/:id", UserController.blockUser);
 router.delete("/remove/:id", UserController.removeUser);
 router.get("/quarter-stats", UserController.getQuarterlyUserStats);
+router.get("/attendance-streak", UserController.getLongestAndShortestStreak);
+router.get("/top-learning", UserController.getTopFiveLearning);
+router.get("/top-topic", UserController.getTopLearnedTopics);
+router.get("/learning", UserController.getLearningList);
 
 module.exports = router;
 
@@ -66,12 +66,138 @@ module.exports = router;
 /**
  * @swagger
  * /api/users/GetAll:
+ *    get:
+ *      summary: "Lấy danh sách người dùng với các tham số tìm kiếm, phân trang và sắp xếp"
+ *      description: "Truy vấn người dùng từ cơ sở dữ liệu với khả năng lọc, phân trang, và sắp xếp."
+ *      tags: [Users]
+ *      parameters:
+ *        - in: query
+ *          name: search
+ *          description: "Từ khóa tìm kiếm cho username và email"
+ *          required: false
+ *          schema:
+ *            type: string
+ *        - in: query
+ *          name: page
+ *          description: "Trang hiện tại (mặc định là 1)"
+ *          required: false
+ *          schema:
+ *            type: integer
+ *            default: 1
+ *        - in: query
+ *          name: rowsPerPage
+ *          description: "Số dòng mỗi trang (mặc định là 10)"
+ *          required: false
+ *          schema:
+ *            type: integer
+ *            default: 10
+ *        - in: query
+ *          name: sortBy
+ *          description: "Trường để sắp xếp (mặc định là id)"
+ *          required: false
+ *          schema:
+ *            type: string
+ *            default: "id"
+ *        - in: query
+ *          name: sortOrder
+ *          description: "Chiều sắp xếp, có thể là ASC hoặc DESC (mặc định là ASC)"
+ *          required: false
+ *          schema:
+ *            type: string
+ *            default: "ASC"
+ *      responses:
+ *        '200':
+ *          description: "Danh sách người dùng đã được lọc, phân trang và sắp xếp"
+ *          content:
+ *            application/json:
+ *              schema:
+ *                type: object
+ *                properties:
+ *                  users:
+ *                    type: array
+ *                    items:
+ *                      $ref: '#/components/schemas/User'
+ *                  total:
+ *                    type: integer
+ *                    description: "Tổng số người dùng thỏa mãn điều kiện tìm kiếm"
+ *        '500':
+ *          description: "Internal Server Error"
+ *          content:
+ *            application/json:
+ *              schema:
+ *                type: object
+ *                properties:
+ *                  error:
+ *                    type: string
+ *                    example: "Internal Server Error"
+ */
+
+/**
+ * @swagger
+ * /api/users/learning:
  *   get:
- *     summary: Lấy danh sách người dùng
- *     tags: [Users]    # Đặt tên nhóm ở đây
+ *     summary: Lấy danh sách học tập người dùng
+ *     tags:
+ *       - Users
+ *     parameters:
+ *       - in: query
+ *         name: search
+ *         description: "Từ khóa tìm kiếm cho username và email"
+ *         required: false
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: page
+ *         description: "Trang hiện tại (mặc định là 1)"
+ *         required: false
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *       - in: query
+ *         name: rowsPerPage
+ *         description: "Số dòng mỗi trang (mặc định là 10)"
+ *         required: false
+ *         schema:
+ *           type: integer
+ *           default: 10
+ *       - in: query
+ *         name: sortBy
+ *         description: "Trường để sắp xếp (mặc định là id)"
+ *         required: false
+ *         schema:
+ *           type: string
+ *           default: fullname
+ *       - in: query
+ *         name: sortOrder
+ *         description: "Chiều sắp xếp, có thể là ASC hoặc DESC (mặc định là ASC)"
+ *         required: false
+ *         schema:
+ *           type: string
+ *           default: ASC
  *     responses:
  *       200:
- *         description: Danh sách người dùng
+ *         description: Danh sách người dùng và thống kê học tập
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   fullname:
+ *                     type: string
+ *                     example: Nguyễn Văn A
+ *                   chuoi:
+ *                     type: integer
+ *                     example: 15
+ *                   tu:
+ *                     type: integer
+ *                     example: 520
+ *                   chude:
+ *                     type: integer
+ *                     example: 25
+ *       500:
+ *         description: Lỗi server
  */
 
 /**
@@ -138,6 +264,62 @@ module.exports = router;
  *                       type: integer
  *                     limit:
  *                       type: integer
+ */
+/**
+ * @swagger
+ *  /api/users/getById/{id}:
+ *    get:
+ *      summary: "Lấy thông tin người dùng theo ID"
+ *      description: "Truy vấn người dùng từ cơ sở dữ liệu theo ID (UUID)"
+ *      tags: [Users]
+ *      parameters:
+ *        - in: path
+ *          name: id
+ *          required: true
+ *          description: "UUID của người dùng cần lấy thông tin"
+ *          schema:
+ *            type: string
+ *            format: uuid
+ *      responses:
+ *        '200':
+ *          description: "Thông tin người dùng thành công"
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/User'
+ *        '404':
+ *          description: "Không tìm thấy người dùng với ID này"
+ *        '500':
+ *          description: "Lỗi máy chủ nội bộ"
+ */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *           format: uuid
+ *           description: "UUID của người dùng"
+ *         username:
+ *           type: string
+ *           description: "Tên người dùng"
+ *         email:
+ *           type: string
+ *           description: "Email của người dùng"
+ *         fullname:
+ *           type: string
+ *           description: "Họ và tên người dùng"
+ *         isVerified:
+ *           type: boolean
+ *           description: "Trạng thái xác thực email"
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *           description: "Thời gian người dùng được tạo"
  */
 
 /**
@@ -287,15 +469,13 @@ module.exports = router;
  *             properties:
  *               username:
  *                 type: string
- *               email:
- *                 type: string
  *               phonenumber:
  *                 type: string
  *               birthday:
  *                 type: string
  *                 format: date
  *               gender:
- *                 type: string
+ *                 type: boolean
  *               fullname:
  *                 type: string
  *               address:
@@ -392,6 +572,92 @@ module.exports = router;
  *                       example: true
  *       400:
  *         description: Lỗi hoặc không tìm thấy người dùng
+ */
+
+/**
+ * @swagger
+ *  /api/users/attendance-streak:
+ *    get:
+ *      summary: "Lấy người giữ chuỗi học lâu nhất và thấp nhất"
+ *      description: "Truy vấn người giữ chuỗi học lâu nhất và thấp nhất từ bảng attendance"
+ *      tags: [Users]
+ *      responses:
+ *        '200':
+ *          description: "Danh sách người dùng với chuỗi học lâu nhất và thấp nhất"
+ *          content:
+ *            application/json:
+ *              schema:
+ *                type: object
+ *                properties:
+ *                  longestFullname:
+ *                    type: string
+ *                    description: "Tên người dùng có chuỗi học lâu nhất"
+ *                  longestStreak:
+ *                    type: integer
+ *                    description: "Chuỗi học lâu nhất"
+ *                  shortestFullname:
+ *                    type: string
+ *                    description: "Tên người dùng có chuỗi học ngắn nhất"
+ *                  shortestStreak:
+ *                    type: integer
+ *                    description: "Chuỗi học ngắn nhất"
+ *        '404':
+ *          description: "Không tìm thấy bản ghi tham gia học"
+ *        '500':
+ *          description: "Lỗi máy chủ nội bộ"
+ */
+/**
+ * @swagger
+ * /api/users/top-learning:
+ *   get:
+ *     summary: Lấy top 5 người dùng học nhiều từ nhất
+ *     description: Truy vấn số từ mỗi người học từ bảng user_progress, join với bảng users và trả về 5 người học nhiều nhất.
+ *     tags: [Users]
+ *     responses:
+ *       200:
+ *         description: Danh sách top 5 người dùng học nhiều từ nhất
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   fullname:
+ *                     type: string
+ *                     example: Nguyễn Văn A
+ *                   wordCount:
+ *                     type: integer
+ *                     example: 42
+ *       500:
+ *         description: Lỗi máy chủ nội bộ
+ */
+
+/**
+ * @swagger
+ * /api/users/top-topic:
+ *   get:
+ *     summary: Lấy 7 topic được học nhiều nhất
+ *     description: Đếm số lượt truy cập vào mỗi topic trong study_access_topic và trả về 7 topic có số lượt học cao nhất.
+ *     tags: [Users]
+ *     responses:
+ *       200:
+ *         description: Danh sách top 7 topic được học nhiều nhất
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   name:
+ *                     type: string
+ *                     example: "Ngữ pháp cơ bản"
+ *                   accessCount:
+ *                     type: integer
+ *                     example: 128
+ *       500:
+ *         description: Lỗi máy chủ nội bộ
  */
 
 router.post("/", UserController.createUser);

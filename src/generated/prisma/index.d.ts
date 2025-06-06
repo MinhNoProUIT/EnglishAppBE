@@ -148,6 +148,16 @@ export type users = $Result.DefaultSelection<Prisma.$usersPayload>
  * 
  */
 export type words = $Result.DefaultSelection<Prisma.$wordsPayload>
+/**
+ * Model quiz_questions
+ * 
+ */
+export type quiz_questions = $Result.DefaultSelection<Prisma.$quiz_questionsPayload>
+/**
+ * Model quizzes
+ * 
+ */
+export type quizzes = $Result.DefaultSelection<Prisma.$quizzesPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -543,6 +553,26 @@ export class PrismaClient<
     * ```
     */
   get words(): Prisma.wordsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.quiz_questions`: Exposes CRUD operations for the **quiz_questions** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Quiz_questions
+    * const quiz_questions = await prisma.quiz_questions.findMany()
+    * ```
+    */
+  get quiz_questions(): Prisma.quiz_questionsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.quizzes`: Exposes CRUD operations for the **quizzes** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Quizzes
+    * const quizzes = await prisma.quizzes.findMany()
+    * ```
+    */
+  get quizzes(): Prisma.quizzesDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1009,7 +1039,9 @@ export namespace Prisma {
     user_profile_history: 'user_profile_history',
     user_progress: 'user_progress',
     users: 'users',
-    words: 'words'
+    words: 'words',
+    quiz_questions: 'quiz_questions',
+    quizzes: 'quizzes'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1028,7 +1060,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "abuse_report_feedbacks" | "attendance" | "coin_transaction" | "comments" | "comments_group" | "courses" | "error_report_feedbacks" | "group_members" | "group_posts" | "groups" | "messages" | "packages" | "posts" | "react_comments" | "react_posts" | "shared_post" | "study_access_topic" | "topics" | "transaction_history" | "user_abuse_reports" | "user_courses" | "user_error_reports" | "user_packages" | "user_profile_history" | "user_progress" | "users" | "words"
+      modelProps: "abuse_report_feedbacks" | "attendance" | "coin_transaction" | "comments" | "comments_group" | "courses" | "error_report_feedbacks" | "group_members" | "group_posts" | "groups" | "messages" | "packages" | "posts" | "react_comments" | "react_posts" | "shared_post" | "study_access_topic" | "topics" | "transaction_history" | "user_abuse_reports" | "user_courses" | "user_error_reports" | "user_packages" | "user_profile_history" | "user_progress" | "users" | "words" | "quiz_questions" | "quizzes"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3030,6 +3062,154 @@ export namespace Prisma {
           }
         }
       }
+      quiz_questions: {
+        payload: Prisma.$quiz_questionsPayload<ExtArgs>
+        fields: Prisma.quiz_questionsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.quiz_questionsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quiz_questionsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.quiz_questionsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quiz_questionsPayload>
+          }
+          findFirst: {
+            args: Prisma.quiz_questionsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quiz_questionsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.quiz_questionsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quiz_questionsPayload>
+          }
+          findMany: {
+            args: Prisma.quiz_questionsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quiz_questionsPayload>[]
+          }
+          create: {
+            args: Prisma.quiz_questionsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quiz_questionsPayload>
+          }
+          createMany: {
+            args: Prisma.quiz_questionsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.quiz_questionsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quiz_questionsPayload>[]
+          }
+          delete: {
+            args: Prisma.quiz_questionsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quiz_questionsPayload>
+          }
+          update: {
+            args: Prisma.quiz_questionsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quiz_questionsPayload>
+          }
+          deleteMany: {
+            args: Prisma.quiz_questionsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.quiz_questionsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.quiz_questionsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quiz_questionsPayload>[]
+          }
+          upsert: {
+            args: Prisma.quiz_questionsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quiz_questionsPayload>
+          }
+          aggregate: {
+            args: Prisma.Quiz_questionsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateQuiz_questions>
+          }
+          groupBy: {
+            args: Prisma.quiz_questionsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Quiz_questionsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.quiz_questionsCountArgs<ExtArgs>
+            result: $Utils.Optional<Quiz_questionsCountAggregateOutputType> | number
+          }
+        }
+      }
+      quizzes: {
+        payload: Prisma.$quizzesPayload<ExtArgs>
+        fields: Prisma.quizzesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.quizzesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quizzesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.quizzesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quizzesPayload>
+          }
+          findFirst: {
+            args: Prisma.quizzesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quizzesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.quizzesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quizzesPayload>
+          }
+          findMany: {
+            args: Prisma.quizzesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quizzesPayload>[]
+          }
+          create: {
+            args: Prisma.quizzesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quizzesPayload>
+          }
+          createMany: {
+            args: Prisma.quizzesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.quizzesCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quizzesPayload>[]
+          }
+          delete: {
+            args: Prisma.quizzesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quizzesPayload>
+          }
+          update: {
+            args: Prisma.quizzesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quizzesPayload>
+          }
+          deleteMany: {
+            args: Prisma.quizzesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.quizzesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.quizzesUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quizzesPayload>[]
+          }
+          upsert: {
+            args: Prisma.quizzesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$quizzesPayload>
+          }
+          aggregate: {
+            args: Prisma.QuizzesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateQuizzes>
+          }
+          groupBy: {
+            args: Prisma.quizzesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<QuizzesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.quizzesCountArgs<ExtArgs>
+            result: $Utils.Optional<QuizzesCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3141,6 +3321,8 @@ export namespace Prisma {
     user_progress?: user_progressOmit
     users?: usersOmit
     words?: wordsOmit
+    quiz_questions?: quiz_questionsOmit
+    quizzes?: quizzesOmit
   }
 
   /* Types for Logging */
@@ -3606,6 +3788,7 @@ export namespace Prisma {
     groups: number
     messages: number
     posts: number
+    quizzes: number
     react_comments: number
     react_posts: number
     shared_post: number
@@ -3632,6 +3815,7 @@ export namespace Prisma {
     groups?: boolean | UsersCountOutputTypeCountGroupsArgs
     messages?: boolean | UsersCountOutputTypeCountMessagesArgs
     posts?: boolean | UsersCountOutputTypeCountPostsArgs
+    quizzes?: boolean | UsersCountOutputTypeCountQuizzesArgs
     react_comments?: boolean | UsersCountOutputTypeCountReact_commentsArgs
     react_posts?: boolean | UsersCountOutputTypeCountReact_postsArgs
     shared_post?: boolean | UsersCountOutputTypeCountShared_postArgs
@@ -3732,6 +3916,13 @@ export namespace Prisma {
    */
   export type UsersCountOutputTypeCountPostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: postsWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountQuizzesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: quizzesWhereInput
   }
 
   /**
@@ -3847,6 +4038,37 @@ export namespace Prisma {
    */
   export type WordsCountOutputTypeCountUser_progressArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: user_progressWhereInput
+  }
+
+
+  /**
+   * Count Type QuizzesCountOutputType
+   */
+
+  export type QuizzesCountOutputType = {
+    quiz_questions: number
+  }
+
+  export type QuizzesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    quiz_questions?: boolean | QuizzesCountOutputTypeCountQuiz_questionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * QuizzesCountOutputType without action
+   */
+  export type QuizzesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuizzesCountOutputType
+     */
+    select?: QuizzesCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * QuizzesCountOutputType without action
+   */
+  export type QuizzesCountOutputTypeCountQuiz_questionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: quiz_questionsWhereInput
   }
 
 
@@ -4952,19 +5174,19 @@ export namespace Prisma {
   export type AttendanceMinAggregateOutputType = {
     id: string | null
     user_id: string | null
-    checkin_date: Date | null
+    created_date: Date | null
   }
 
   export type AttendanceMaxAggregateOutputType = {
     id: string | null
     user_id: string | null
-    checkin_date: Date | null
+    created_date: Date | null
   }
 
   export type AttendanceCountAggregateOutputType = {
     id: number
     user_id: number
-    checkin_date: number
+    created_date: number
     _all: number
   }
 
@@ -4972,19 +5194,19 @@ export namespace Prisma {
   export type AttendanceMinAggregateInputType = {
     id?: true
     user_id?: true
-    checkin_date?: true
+    created_date?: true
   }
 
   export type AttendanceMaxAggregateInputType = {
     id?: true
     user_id?: true
-    checkin_date?: true
+    created_date?: true
   }
 
   export type AttendanceCountAggregateInputType = {
     id?: true
     user_id?: true
-    checkin_date?: true
+    created_date?: true
     _all?: true
   }
 
@@ -5063,7 +5285,7 @@ export namespace Prisma {
   export type AttendanceGroupByOutputType = {
     id: string
     user_id: string
-    checkin_date: Date
+    created_date: Date
     _count: AttendanceCountAggregateOutputType | null
     _min: AttendanceMinAggregateOutputType | null
     _max: AttendanceMaxAggregateOutputType | null
@@ -5086,31 +5308,31 @@ export namespace Prisma {
   export type attendanceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     user_id?: boolean
-    checkin_date?: boolean
+    created_date?: boolean
     users?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["attendance"]>
 
   export type attendanceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     user_id?: boolean
-    checkin_date?: boolean
+    created_date?: boolean
     users?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["attendance"]>
 
   export type attendanceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     user_id?: boolean
-    checkin_date?: boolean
+    created_date?: boolean
     users?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["attendance"]>
 
   export type attendanceSelectScalar = {
     id?: boolean
     user_id?: boolean
-    checkin_date?: boolean
+    created_date?: boolean
   }
 
-  export type attendanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "checkin_date", ExtArgs["result"]["attendance"]>
+  export type attendanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "created_date", ExtArgs["result"]["attendance"]>
   export type attendanceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | usersDefaultArgs<ExtArgs>
   }
@@ -5129,7 +5351,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       user_id: string
-      checkin_date: Date
+      created_date: Date
     }, ExtArgs["result"]["attendance"]>
     composites: {}
   }
@@ -5556,7 +5778,7 @@ export namespace Prisma {
   interface attendanceFieldRefs {
     readonly id: FieldRef<"attendance", 'String'>
     readonly user_id: FieldRef<"attendance", 'String'>
-    readonly checkin_date: FieldRef<"attendance", 'DateTime'>
+    readonly created_date: FieldRef<"attendance", 'DateTime'>
   }
     
 
@@ -23070,19 +23292,19 @@ export namespace Prisma {
   export type TopicsMinAggregateOutputType = {
     id: string | null
     name: string | null
-    decription: string | null
+    description: string | null
   }
 
   export type TopicsMaxAggregateOutputType = {
     id: string | null
     name: string | null
-    decription: string | null
+    description: string | null
   }
 
   export type TopicsCountAggregateOutputType = {
     id: number
     name: number
-    decription: number
+    description: number
     _all: number
   }
 
@@ -23090,19 +23312,19 @@ export namespace Prisma {
   export type TopicsMinAggregateInputType = {
     id?: true
     name?: true
-    decription?: true
+    description?: true
   }
 
   export type TopicsMaxAggregateInputType = {
     id?: true
     name?: true
-    decription?: true
+    description?: true
   }
 
   export type TopicsCountAggregateInputType = {
     id?: true
     name?: true
-    decription?: true
+    description?: true
     _all?: true
   }
 
@@ -23181,7 +23403,7 @@ export namespace Prisma {
   export type TopicsGroupByOutputType = {
     id: string
     name: string
-    decription: string | null
+    description: string | null
     _count: TopicsCountAggregateOutputType | null
     _min: TopicsMinAggregateOutputType | null
     _max: TopicsMaxAggregateOutputType | null
@@ -23204,7 +23426,7 @@ export namespace Prisma {
   export type topicsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    decription?: boolean
+    description?: boolean
     courses?: boolean | topics$coursesArgs<ExtArgs>
     study_access_topic?: boolean | topics$study_access_topicArgs<ExtArgs>
     _count?: boolean | TopicsCountOutputTypeDefaultArgs<ExtArgs>
@@ -23213,22 +23435,22 @@ export namespace Prisma {
   export type topicsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    decription?: boolean
+    description?: boolean
   }, ExtArgs["result"]["topics"]>
 
   export type topicsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    decription?: boolean
+    description?: boolean
   }, ExtArgs["result"]["topics"]>
 
   export type topicsSelectScalar = {
     id?: boolean
     name?: boolean
-    decription?: boolean
+    description?: boolean
   }
 
-  export type topicsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "decription", ExtArgs["result"]["topics"]>
+  export type topicsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description", ExtArgs["result"]["topics"]>
   export type topicsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     courses?: boolean | topics$coursesArgs<ExtArgs>
     study_access_topic?: boolean | topics$study_access_topicArgs<ExtArgs>
@@ -23246,7 +23468,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
-      decription: string | null
+      description: string | null
     }, ExtArgs["result"]["topics"]>
     composites: {}
   }
@@ -23674,7 +23896,7 @@ export namespace Prisma {
   interface topicsFieldRefs {
     readonly id: FieldRef<"topics", 'String'>
     readonly name: FieldRef<"topics", 'String'>
-    readonly decription: FieldRef<"topics", 'String'>
+    readonly description: FieldRef<"topics", 'String'>
   }
     
 
@@ -24142,63 +24364,87 @@ export namespace Prisma {
   }
 
   export type Transaction_historyAvgAggregateOutputType = {
-    price: Decimal | null
+    amount: Decimal | null
   }
 
   export type Transaction_historySumAggregateOutputType = {
-    price: Decimal | null
+    amount: Decimal | null
   }
 
   export type Transaction_historyMinAggregateOutputType = {
     id: string | null
     user_id: string | null
-    price: Decimal | null
-    createddate: Date | null
+    amount: Decimal | null
+    created_date: Date | null
+    order_code: string | null
+    status: string | null
+    paid_at: Date | null
+    description: string | null
   }
 
   export type Transaction_historyMaxAggregateOutputType = {
     id: string | null
     user_id: string | null
-    price: Decimal | null
-    createddate: Date | null
+    amount: Decimal | null
+    created_date: Date | null
+    order_code: string | null
+    status: string | null
+    paid_at: Date | null
+    description: string | null
   }
 
   export type Transaction_historyCountAggregateOutputType = {
     id: number
     user_id: number
-    price: number
-    createddate: number
+    amount: number
+    created_date: number
+    order_code: number
+    status: number
+    paid_at: number
+    description: number
     _all: number
   }
 
 
   export type Transaction_historyAvgAggregateInputType = {
-    price?: true
+    amount?: true
   }
 
   export type Transaction_historySumAggregateInputType = {
-    price?: true
+    amount?: true
   }
 
   export type Transaction_historyMinAggregateInputType = {
     id?: true
     user_id?: true
-    price?: true
-    createddate?: true
+    amount?: true
+    created_date?: true
+    order_code?: true
+    status?: true
+    paid_at?: true
+    description?: true
   }
 
   export type Transaction_historyMaxAggregateInputType = {
     id?: true
     user_id?: true
-    price?: true
-    createddate?: true
+    amount?: true
+    created_date?: true
+    order_code?: true
+    status?: true
+    paid_at?: true
+    description?: true
   }
 
   export type Transaction_historyCountAggregateInputType = {
     id?: true
     user_id?: true
-    price?: true
-    createddate?: true
+    amount?: true
+    created_date?: true
+    order_code?: true
+    status?: true
+    paid_at?: true
+    description?: true
     _all?: true
   }
 
@@ -24291,8 +24537,12 @@ export namespace Prisma {
   export type Transaction_historyGroupByOutputType = {
     id: string
     user_id: string
-    price: Decimal | null
-    createddate: Date | null
+    amount: Decimal | null
+    created_date: Date | null
+    order_code: string
+    status: string | null
+    paid_at: Date | null
+    description: string | null
     _count: Transaction_historyCountAggregateOutputType | null
     _avg: Transaction_historyAvgAggregateOutputType | null
     _sum: Transaction_historySumAggregateOutputType | null
@@ -24317,35 +24567,51 @@ export namespace Prisma {
   export type transaction_historySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     user_id?: boolean
-    price?: boolean
-    createddate?: boolean
+    amount?: boolean
+    created_date?: boolean
+    order_code?: boolean
+    status?: boolean
+    paid_at?: boolean
+    description?: boolean
     users?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["transaction_history"]>
 
   export type transaction_historySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     user_id?: boolean
-    price?: boolean
-    createddate?: boolean
+    amount?: boolean
+    created_date?: boolean
+    order_code?: boolean
+    status?: boolean
+    paid_at?: boolean
+    description?: boolean
     users?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["transaction_history"]>
 
   export type transaction_historySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     user_id?: boolean
-    price?: boolean
-    createddate?: boolean
+    amount?: boolean
+    created_date?: boolean
+    order_code?: boolean
+    status?: boolean
+    paid_at?: boolean
+    description?: boolean
     users?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["transaction_history"]>
 
   export type transaction_historySelectScalar = {
     id?: boolean
     user_id?: boolean
-    price?: boolean
-    createddate?: boolean
+    amount?: boolean
+    created_date?: boolean
+    order_code?: boolean
+    status?: boolean
+    paid_at?: boolean
+    description?: boolean
   }
 
-  export type transaction_historyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "price" | "createddate", ExtArgs["result"]["transaction_history"]>
+  export type transaction_historyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "amount" | "created_date" | "order_code" | "status" | "paid_at" | "description", ExtArgs["result"]["transaction_history"]>
   export type transaction_historyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | usersDefaultArgs<ExtArgs>
   }
@@ -24364,8 +24630,12 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       user_id: string
-      price: Prisma.Decimal | null
-      createddate: Date | null
+      amount: Prisma.Decimal | null
+      created_date: Date | null
+      order_code: string
+      status: string | null
+      paid_at: Date | null
+      description: string | null
     }, ExtArgs["result"]["transaction_history"]>
     composites: {}
   }
@@ -24792,8 +25062,12 @@ export namespace Prisma {
   interface transaction_historyFieldRefs {
     readonly id: FieldRef<"transaction_history", 'String'>
     readonly user_id: FieldRef<"transaction_history", 'String'>
-    readonly price: FieldRef<"transaction_history", 'Decimal'>
-    readonly createddate: FieldRef<"transaction_history", 'DateTime'>
+    readonly amount: FieldRef<"transaction_history", 'Decimal'>
+    readonly created_date: FieldRef<"transaction_history", 'DateTime'>
+    readonly order_code: FieldRef<"transaction_history", 'String'>
+    readonly status: FieldRef<"transaction_history", 'String'>
+    readonly paid_at: FieldRef<"transaction_history", 'DateTime'>
+    readonly description: FieldRef<"transaction_history", 'String'>
   }
     
 
@@ -32037,6 +32311,7 @@ export namespace Prisma {
     groups?: boolean | users$groupsArgs<ExtArgs>
     messages?: boolean | users$messagesArgs<ExtArgs>
     posts?: boolean | users$postsArgs<ExtArgs>
+    quizzes?: boolean | users$quizzesArgs<ExtArgs>
     react_comments?: boolean | users$react_commentsArgs<ExtArgs>
     react_posts?: boolean | users$react_postsArgs<ExtArgs>
     shared_post?: boolean | users$shared_postArgs<ExtArgs>
@@ -32125,6 +32400,7 @@ export namespace Prisma {
     groups?: boolean | users$groupsArgs<ExtArgs>
     messages?: boolean | users$messagesArgs<ExtArgs>
     posts?: boolean | users$postsArgs<ExtArgs>
+    quizzes?: boolean | users$quizzesArgs<ExtArgs>
     react_comments?: boolean | users$react_commentsArgs<ExtArgs>
     react_posts?: boolean | users$react_postsArgs<ExtArgs>
     shared_post?: boolean | users$shared_postArgs<ExtArgs>
@@ -32156,6 +32432,7 @@ export namespace Prisma {
       groups: Prisma.$groupsPayload<ExtArgs>[]
       messages: Prisma.$messagesPayload<ExtArgs>[]
       posts: Prisma.$postsPayload<ExtArgs>[]
+      quizzes: Prisma.$quizzesPayload<ExtArgs>[]
       react_comments: Prisma.$react_commentsPayload<ExtArgs>[]
       react_posts: Prisma.$react_postsPayload<ExtArgs>[]
       shared_post: Prisma.$shared_postPayload<ExtArgs>[]
@@ -32592,6 +32869,7 @@ export namespace Prisma {
     groups<T extends users$groupsArgs<ExtArgs> = {}>(args?: Subset<T, users$groupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$groupsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     messages<T extends users$messagesArgs<ExtArgs> = {}>(args?: Subset<T, users$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$messagesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     posts<T extends users$postsArgs<ExtArgs> = {}>(args?: Subset<T, users$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$postsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    quizzes<T extends users$quizzesArgs<ExtArgs> = {}>(args?: Subset<T, users$quizzesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$quizzesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     react_comments<T extends users$react_commentsArgs<ExtArgs> = {}>(args?: Subset<T, users$react_commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$react_commentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     react_posts<T extends users$react_postsArgs<ExtArgs> = {}>(args?: Subset<T, users$react_postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$react_postsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     shared_post<T extends users$shared_postArgs<ExtArgs> = {}>(args?: Subset<T, users$shared_postArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$shared_postPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -33299,6 +33577,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PostsScalarFieldEnum | PostsScalarFieldEnum[]
+  }
+
+  /**
+   * users.quizzes
+   */
+  export type users$quizzesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quizzes
+     */
+    select?: quizzesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quizzes
+     */
+    omit?: quizzesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quizzesInclude<ExtArgs> | null
+    where?: quizzesWhereInput
+    orderBy?: quizzesOrderByWithRelationInput | quizzesOrderByWithRelationInput[]
+    cursor?: quizzesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: QuizzesScalarFieldEnum | QuizzesScalarFieldEnum[]
   }
 
   /**
@@ -34755,6 +35057,2135 @@ export namespace Prisma {
 
 
   /**
+   * Model quiz_questions
+   */
+
+  export type AggregateQuiz_questions = {
+    _count: Quiz_questionsCountAggregateOutputType | null
+    _min: Quiz_questionsMinAggregateOutputType | null
+    _max: Quiz_questionsMaxAggregateOutputType | null
+  }
+
+  export type Quiz_questionsMinAggregateOutputType = {
+    id: string | null
+    quiz_id: string | null
+    question_text: string | null
+    correct_answer: string | null
+  }
+
+  export type Quiz_questionsMaxAggregateOutputType = {
+    id: string | null
+    quiz_id: string | null
+    question_text: string | null
+    correct_answer: string | null
+  }
+
+  export type Quiz_questionsCountAggregateOutputType = {
+    id: number
+    quiz_id: number
+    question_text: number
+    options: number
+    correct_answer: number
+    _all: number
+  }
+
+
+  export type Quiz_questionsMinAggregateInputType = {
+    id?: true
+    quiz_id?: true
+    question_text?: true
+    correct_answer?: true
+  }
+
+  export type Quiz_questionsMaxAggregateInputType = {
+    id?: true
+    quiz_id?: true
+    question_text?: true
+    correct_answer?: true
+  }
+
+  export type Quiz_questionsCountAggregateInputType = {
+    id?: true
+    quiz_id?: true
+    question_text?: true
+    options?: true
+    correct_answer?: true
+    _all?: true
+  }
+
+  export type Quiz_questionsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which quiz_questions to aggregate.
+     */
+    where?: quiz_questionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of quiz_questions to fetch.
+     */
+    orderBy?: quiz_questionsOrderByWithRelationInput | quiz_questionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: quiz_questionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` quiz_questions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` quiz_questions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned quiz_questions
+    **/
+    _count?: true | Quiz_questionsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Quiz_questionsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Quiz_questionsMaxAggregateInputType
+  }
+
+  export type GetQuiz_questionsAggregateType<T extends Quiz_questionsAggregateArgs> = {
+        [P in keyof T & keyof AggregateQuiz_questions]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateQuiz_questions[P]>
+      : GetScalarType<T[P], AggregateQuiz_questions[P]>
+  }
+
+
+
+
+  export type quiz_questionsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: quiz_questionsWhereInput
+    orderBy?: quiz_questionsOrderByWithAggregationInput | quiz_questionsOrderByWithAggregationInput[]
+    by: Quiz_questionsScalarFieldEnum[] | Quiz_questionsScalarFieldEnum
+    having?: quiz_questionsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Quiz_questionsCountAggregateInputType | true
+    _min?: Quiz_questionsMinAggregateInputType
+    _max?: Quiz_questionsMaxAggregateInputType
+  }
+
+  export type Quiz_questionsGroupByOutputType = {
+    id: string
+    quiz_id: string
+    question_text: string
+    options: string[]
+    correct_answer: string
+    _count: Quiz_questionsCountAggregateOutputType | null
+    _min: Quiz_questionsMinAggregateOutputType | null
+    _max: Quiz_questionsMaxAggregateOutputType | null
+  }
+
+  type GetQuiz_questionsGroupByPayload<T extends quiz_questionsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Quiz_questionsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Quiz_questionsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Quiz_questionsGroupByOutputType[P]>
+            : GetScalarType<T[P], Quiz_questionsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type quiz_questionsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    quiz_id?: boolean
+    question_text?: boolean
+    options?: boolean
+    correct_answer?: boolean
+    quizzes?: boolean | quizzesDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quiz_questions"]>
+
+  export type quiz_questionsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    quiz_id?: boolean
+    question_text?: boolean
+    options?: boolean
+    correct_answer?: boolean
+    quizzes?: boolean | quizzesDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quiz_questions"]>
+
+  export type quiz_questionsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    quiz_id?: boolean
+    question_text?: boolean
+    options?: boolean
+    correct_answer?: boolean
+    quizzes?: boolean | quizzesDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quiz_questions"]>
+
+  export type quiz_questionsSelectScalar = {
+    id?: boolean
+    quiz_id?: boolean
+    question_text?: boolean
+    options?: boolean
+    correct_answer?: boolean
+  }
+
+  export type quiz_questionsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "quiz_id" | "question_text" | "options" | "correct_answer", ExtArgs["result"]["quiz_questions"]>
+  export type quiz_questionsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    quizzes?: boolean | quizzesDefaultArgs<ExtArgs>
+  }
+  export type quiz_questionsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    quizzes?: boolean | quizzesDefaultArgs<ExtArgs>
+  }
+  export type quiz_questionsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    quizzes?: boolean | quizzesDefaultArgs<ExtArgs>
+  }
+
+  export type $quiz_questionsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "quiz_questions"
+    objects: {
+      quizzes: Prisma.$quizzesPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      quiz_id: string
+      question_text: string
+      options: string[]
+      correct_answer: string
+    }, ExtArgs["result"]["quiz_questions"]>
+    composites: {}
+  }
+
+  type quiz_questionsGetPayload<S extends boolean | null | undefined | quiz_questionsDefaultArgs> = $Result.GetResult<Prisma.$quiz_questionsPayload, S>
+
+  type quiz_questionsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<quiz_questionsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Quiz_questionsCountAggregateInputType | true
+    }
+
+  export interface quiz_questionsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['quiz_questions'], meta: { name: 'quiz_questions' } }
+    /**
+     * Find zero or one Quiz_questions that matches the filter.
+     * @param {quiz_questionsFindUniqueArgs} args - Arguments to find a Quiz_questions
+     * @example
+     * // Get one Quiz_questions
+     * const quiz_questions = await prisma.quiz_questions.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends quiz_questionsFindUniqueArgs>(args: SelectSubset<T, quiz_questionsFindUniqueArgs<ExtArgs>>): Prisma__quiz_questionsClient<$Result.GetResult<Prisma.$quiz_questionsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Quiz_questions that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {quiz_questionsFindUniqueOrThrowArgs} args - Arguments to find a Quiz_questions
+     * @example
+     * // Get one Quiz_questions
+     * const quiz_questions = await prisma.quiz_questions.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends quiz_questionsFindUniqueOrThrowArgs>(args: SelectSubset<T, quiz_questionsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__quiz_questionsClient<$Result.GetResult<Prisma.$quiz_questionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Quiz_questions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {quiz_questionsFindFirstArgs} args - Arguments to find a Quiz_questions
+     * @example
+     * // Get one Quiz_questions
+     * const quiz_questions = await prisma.quiz_questions.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends quiz_questionsFindFirstArgs>(args?: SelectSubset<T, quiz_questionsFindFirstArgs<ExtArgs>>): Prisma__quiz_questionsClient<$Result.GetResult<Prisma.$quiz_questionsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Quiz_questions that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {quiz_questionsFindFirstOrThrowArgs} args - Arguments to find a Quiz_questions
+     * @example
+     * // Get one Quiz_questions
+     * const quiz_questions = await prisma.quiz_questions.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends quiz_questionsFindFirstOrThrowArgs>(args?: SelectSubset<T, quiz_questionsFindFirstOrThrowArgs<ExtArgs>>): Prisma__quiz_questionsClient<$Result.GetResult<Prisma.$quiz_questionsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Quiz_questions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {quiz_questionsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Quiz_questions
+     * const quiz_questions = await prisma.quiz_questions.findMany()
+     * 
+     * // Get first 10 Quiz_questions
+     * const quiz_questions = await prisma.quiz_questions.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const quiz_questionsWithIdOnly = await prisma.quiz_questions.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends quiz_questionsFindManyArgs>(args?: SelectSubset<T, quiz_questionsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$quiz_questionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Quiz_questions.
+     * @param {quiz_questionsCreateArgs} args - Arguments to create a Quiz_questions.
+     * @example
+     * // Create one Quiz_questions
+     * const Quiz_questions = await prisma.quiz_questions.create({
+     *   data: {
+     *     // ... data to create a Quiz_questions
+     *   }
+     * })
+     * 
+     */
+    create<T extends quiz_questionsCreateArgs>(args: SelectSubset<T, quiz_questionsCreateArgs<ExtArgs>>): Prisma__quiz_questionsClient<$Result.GetResult<Prisma.$quiz_questionsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Quiz_questions.
+     * @param {quiz_questionsCreateManyArgs} args - Arguments to create many Quiz_questions.
+     * @example
+     * // Create many Quiz_questions
+     * const quiz_questions = await prisma.quiz_questions.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends quiz_questionsCreateManyArgs>(args?: SelectSubset<T, quiz_questionsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Quiz_questions and returns the data saved in the database.
+     * @param {quiz_questionsCreateManyAndReturnArgs} args - Arguments to create many Quiz_questions.
+     * @example
+     * // Create many Quiz_questions
+     * const quiz_questions = await prisma.quiz_questions.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Quiz_questions and only return the `id`
+     * const quiz_questionsWithIdOnly = await prisma.quiz_questions.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends quiz_questionsCreateManyAndReturnArgs>(args?: SelectSubset<T, quiz_questionsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$quiz_questionsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Quiz_questions.
+     * @param {quiz_questionsDeleteArgs} args - Arguments to delete one Quiz_questions.
+     * @example
+     * // Delete one Quiz_questions
+     * const Quiz_questions = await prisma.quiz_questions.delete({
+     *   where: {
+     *     // ... filter to delete one Quiz_questions
+     *   }
+     * })
+     * 
+     */
+    delete<T extends quiz_questionsDeleteArgs>(args: SelectSubset<T, quiz_questionsDeleteArgs<ExtArgs>>): Prisma__quiz_questionsClient<$Result.GetResult<Prisma.$quiz_questionsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Quiz_questions.
+     * @param {quiz_questionsUpdateArgs} args - Arguments to update one Quiz_questions.
+     * @example
+     * // Update one Quiz_questions
+     * const quiz_questions = await prisma.quiz_questions.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends quiz_questionsUpdateArgs>(args: SelectSubset<T, quiz_questionsUpdateArgs<ExtArgs>>): Prisma__quiz_questionsClient<$Result.GetResult<Prisma.$quiz_questionsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Quiz_questions.
+     * @param {quiz_questionsDeleteManyArgs} args - Arguments to filter Quiz_questions to delete.
+     * @example
+     * // Delete a few Quiz_questions
+     * const { count } = await prisma.quiz_questions.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends quiz_questionsDeleteManyArgs>(args?: SelectSubset<T, quiz_questionsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Quiz_questions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {quiz_questionsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Quiz_questions
+     * const quiz_questions = await prisma.quiz_questions.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends quiz_questionsUpdateManyArgs>(args: SelectSubset<T, quiz_questionsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Quiz_questions and returns the data updated in the database.
+     * @param {quiz_questionsUpdateManyAndReturnArgs} args - Arguments to update many Quiz_questions.
+     * @example
+     * // Update many Quiz_questions
+     * const quiz_questions = await prisma.quiz_questions.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Quiz_questions and only return the `id`
+     * const quiz_questionsWithIdOnly = await prisma.quiz_questions.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends quiz_questionsUpdateManyAndReturnArgs>(args: SelectSubset<T, quiz_questionsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$quiz_questionsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Quiz_questions.
+     * @param {quiz_questionsUpsertArgs} args - Arguments to update or create a Quiz_questions.
+     * @example
+     * // Update or create a Quiz_questions
+     * const quiz_questions = await prisma.quiz_questions.upsert({
+     *   create: {
+     *     // ... data to create a Quiz_questions
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Quiz_questions we want to update
+     *   }
+     * })
+     */
+    upsert<T extends quiz_questionsUpsertArgs>(args: SelectSubset<T, quiz_questionsUpsertArgs<ExtArgs>>): Prisma__quiz_questionsClient<$Result.GetResult<Prisma.$quiz_questionsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Quiz_questions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {quiz_questionsCountArgs} args - Arguments to filter Quiz_questions to count.
+     * @example
+     * // Count the number of Quiz_questions
+     * const count = await prisma.quiz_questions.count({
+     *   where: {
+     *     // ... the filter for the Quiz_questions we want to count
+     *   }
+     * })
+    **/
+    count<T extends quiz_questionsCountArgs>(
+      args?: Subset<T, quiz_questionsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Quiz_questionsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Quiz_questions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Quiz_questionsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Quiz_questionsAggregateArgs>(args: Subset<T, Quiz_questionsAggregateArgs>): Prisma.PrismaPromise<GetQuiz_questionsAggregateType<T>>
+
+    /**
+     * Group by Quiz_questions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {quiz_questionsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends quiz_questionsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: quiz_questionsGroupByArgs['orderBy'] }
+        : { orderBy?: quiz_questionsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, quiz_questionsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetQuiz_questionsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the quiz_questions model
+   */
+  readonly fields: quiz_questionsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for quiz_questions.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__quiz_questionsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    quizzes<T extends quizzesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, quizzesDefaultArgs<ExtArgs>>): Prisma__quizzesClient<$Result.GetResult<Prisma.$quizzesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the quiz_questions model
+   */
+  interface quiz_questionsFieldRefs {
+    readonly id: FieldRef<"quiz_questions", 'String'>
+    readonly quiz_id: FieldRef<"quiz_questions", 'String'>
+    readonly question_text: FieldRef<"quiz_questions", 'String'>
+    readonly options: FieldRef<"quiz_questions", 'String[]'>
+    readonly correct_answer: FieldRef<"quiz_questions", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * quiz_questions findUnique
+   */
+  export type quiz_questionsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quiz_questions
+     */
+    select?: quiz_questionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quiz_questions
+     */
+    omit?: quiz_questionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quiz_questionsInclude<ExtArgs> | null
+    /**
+     * Filter, which quiz_questions to fetch.
+     */
+    where: quiz_questionsWhereUniqueInput
+  }
+
+  /**
+   * quiz_questions findUniqueOrThrow
+   */
+  export type quiz_questionsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quiz_questions
+     */
+    select?: quiz_questionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quiz_questions
+     */
+    omit?: quiz_questionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quiz_questionsInclude<ExtArgs> | null
+    /**
+     * Filter, which quiz_questions to fetch.
+     */
+    where: quiz_questionsWhereUniqueInput
+  }
+
+  /**
+   * quiz_questions findFirst
+   */
+  export type quiz_questionsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quiz_questions
+     */
+    select?: quiz_questionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quiz_questions
+     */
+    omit?: quiz_questionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quiz_questionsInclude<ExtArgs> | null
+    /**
+     * Filter, which quiz_questions to fetch.
+     */
+    where?: quiz_questionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of quiz_questions to fetch.
+     */
+    orderBy?: quiz_questionsOrderByWithRelationInput | quiz_questionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for quiz_questions.
+     */
+    cursor?: quiz_questionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` quiz_questions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` quiz_questions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of quiz_questions.
+     */
+    distinct?: Quiz_questionsScalarFieldEnum | Quiz_questionsScalarFieldEnum[]
+  }
+
+  /**
+   * quiz_questions findFirstOrThrow
+   */
+  export type quiz_questionsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quiz_questions
+     */
+    select?: quiz_questionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quiz_questions
+     */
+    omit?: quiz_questionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quiz_questionsInclude<ExtArgs> | null
+    /**
+     * Filter, which quiz_questions to fetch.
+     */
+    where?: quiz_questionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of quiz_questions to fetch.
+     */
+    orderBy?: quiz_questionsOrderByWithRelationInput | quiz_questionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for quiz_questions.
+     */
+    cursor?: quiz_questionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` quiz_questions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` quiz_questions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of quiz_questions.
+     */
+    distinct?: Quiz_questionsScalarFieldEnum | Quiz_questionsScalarFieldEnum[]
+  }
+
+  /**
+   * quiz_questions findMany
+   */
+  export type quiz_questionsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quiz_questions
+     */
+    select?: quiz_questionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quiz_questions
+     */
+    omit?: quiz_questionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quiz_questionsInclude<ExtArgs> | null
+    /**
+     * Filter, which quiz_questions to fetch.
+     */
+    where?: quiz_questionsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of quiz_questions to fetch.
+     */
+    orderBy?: quiz_questionsOrderByWithRelationInput | quiz_questionsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing quiz_questions.
+     */
+    cursor?: quiz_questionsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` quiz_questions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` quiz_questions.
+     */
+    skip?: number
+    distinct?: Quiz_questionsScalarFieldEnum | Quiz_questionsScalarFieldEnum[]
+  }
+
+  /**
+   * quiz_questions create
+   */
+  export type quiz_questionsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quiz_questions
+     */
+    select?: quiz_questionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quiz_questions
+     */
+    omit?: quiz_questionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quiz_questionsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a quiz_questions.
+     */
+    data: XOR<quiz_questionsCreateInput, quiz_questionsUncheckedCreateInput>
+  }
+
+  /**
+   * quiz_questions createMany
+   */
+  export type quiz_questionsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many quiz_questions.
+     */
+    data: quiz_questionsCreateManyInput | quiz_questionsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * quiz_questions createManyAndReturn
+   */
+  export type quiz_questionsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quiz_questions
+     */
+    select?: quiz_questionsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the quiz_questions
+     */
+    omit?: quiz_questionsOmit<ExtArgs> | null
+    /**
+     * The data used to create many quiz_questions.
+     */
+    data: quiz_questionsCreateManyInput | quiz_questionsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quiz_questionsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * quiz_questions update
+   */
+  export type quiz_questionsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quiz_questions
+     */
+    select?: quiz_questionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quiz_questions
+     */
+    omit?: quiz_questionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quiz_questionsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a quiz_questions.
+     */
+    data: XOR<quiz_questionsUpdateInput, quiz_questionsUncheckedUpdateInput>
+    /**
+     * Choose, which quiz_questions to update.
+     */
+    where: quiz_questionsWhereUniqueInput
+  }
+
+  /**
+   * quiz_questions updateMany
+   */
+  export type quiz_questionsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update quiz_questions.
+     */
+    data: XOR<quiz_questionsUpdateManyMutationInput, quiz_questionsUncheckedUpdateManyInput>
+    /**
+     * Filter which quiz_questions to update
+     */
+    where?: quiz_questionsWhereInput
+    /**
+     * Limit how many quiz_questions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * quiz_questions updateManyAndReturn
+   */
+  export type quiz_questionsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quiz_questions
+     */
+    select?: quiz_questionsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the quiz_questions
+     */
+    omit?: quiz_questionsOmit<ExtArgs> | null
+    /**
+     * The data used to update quiz_questions.
+     */
+    data: XOR<quiz_questionsUpdateManyMutationInput, quiz_questionsUncheckedUpdateManyInput>
+    /**
+     * Filter which quiz_questions to update
+     */
+    where?: quiz_questionsWhereInput
+    /**
+     * Limit how many quiz_questions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quiz_questionsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * quiz_questions upsert
+   */
+  export type quiz_questionsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quiz_questions
+     */
+    select?: quiz_questionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quiz_questions
+     */
+    omit?: quiz_questionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quiz_questionsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the quiz_questions to update in case it exists.
+     */
+    where: quiz_questionsWhereUniqueInput
+    /**
+     * In case the quiz_questions found by the `where` argument doesn't exist, create a new quiz_questions with this data.
+     */
+    create: XOR<quiz_questionsCreateInput, quiz_questionsUncheckedCreateInput>
+    /**
+     * In case the quiz_questions was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<quiz_questionsUpdateInput, quiz_questionsUncheckedUpdateInput>
+  }
+
+  /**
+   * quiz_questions delete
+   */
+  export type quiz_questionsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quiz_questions
+     */
+    select?: quiz_questionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quiz_questions
+     */
+    omit?: quiz_questionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quiz_questionsInclude<ExtArgs> | null
+    /**
+     * Filter which quiz_questions to delete.
+     */
+    where: quiz_questionsWhereUniqueInput
+  }
+
+  /**
+   * quiz_questions deleteMany
+   */
+  export type quiz_questionsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which quiz_questions to delete
+     */
+    where?: quiz_questionsWhereInput
+    /**
+     * Limit how many quiz_questions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * quiz_questions without action
+   */
+  export type quiz_questionsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quiz_questions
+     */
+    select?: quiz_questionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quiz_questions
+     */
+    omit?: quiz_questionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quiz_questionsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model quizzes
+   */
+
+  export type AggregateQuizzes = {
+    _count: QuizzesCountAggregateOutputType | null
+    _min: QuizzesMinAggregateOutputType | null
+    _max: QuizzesMaxAggregateOutputType | null
+  }
+
+  export type QuizzesMinAggregateOutputType = {
+    id: string | null
+    user_id: string | null
+    title: string | null
+    created_date: Date | null
+  }
+
+  export type QuizzesMaxAggregateOutputType = {
+    id: string | null
+    user_id: string | null
+    title: string | null
+    created_date: Date | null
+  }
+
+  export type QuizzesCountAggregateOutputType = {
+    id: number
+    user_id: number
+    title: number
+    created_date: number
+    _all: number
+  }
+
+
+  export type QuizzesMinAggregateInputType = {
+    id?: true
+    user_id?: true
+    title?: true
+    created_date?: true
+  }
+
+  export type QuizzesMaxAggregateInputType = {
+    id?: true
+    user_id?: true
+    title?: true
+    created_date?: true
+  }
+
+  export type QuizzesCountAggregateInputType = {
+    id?: true
+    user_id?: true
+    title?: true
+    created_date?: true
+    _all?: true
+  }
+
+  export type QuizzesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which quizzes to aggregate.
+     */
+    where?: quizzesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of quizzes to fetch.
+     */
+    orderBy?: quizzesOrderByWithRelationInput | quizzesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: quizzesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` quizzes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` quizzes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned quizzes
+    **/
+    _count?: true | QuizzesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: QuizzesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: QuizzesMaxAggregateInputType
+  }
+
+  export type GetQuizzesAggregateType<T extends QuizzesAggregateArgs> = {
+        [P in keyof T & keyof AggregateQuizzes]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateQuizzes[P]>
+      : GetScalarType<T[P], AggregateQuizzes[P]>
+  }
+
+
+
+
+  export type quizzesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: quizzesWhereInput
+    orderBy?: quizzesOrderByWithAggregationInput | quizzesOrderByWithAggregationInput[]
+    by: QuizzesScalarFieldEnum[] | QuizzesScalarFieldEnum
+    having?: quizzesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: QuizzesCountAggregateInputType | true
+    _min?: QuizzesMinAggregateInputType
+    _max?: QuizzesMaxAggregateInputType
+  }
+
+  export type QuizzesGroupByOutputType = {
+    id: string
+    user_id: string
+    title: string
+    created_date: Date
+    _count: QuizzesCountAggregateOutputType | null
+    _min: QuizzesMinAggregateOutputType | null
+    _max: QuizzesMaxAggregateOutputType | null
+  }
+
+  type GetQuizzesGroupByPayload<T extends quizzesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<QuizzesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof QuizzesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], QuizzesGroupByOutputType[P]>
+            : GetScalarType<T[P], QuizzesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type quizzesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    title?: boolean
+    created_date?: boolean
+    quiz_questions?: boolean | quizzes$quiz_questionsArgs<ExtArgs>
+    users?: boolean | usersDefaultArgs<ExtArgs>
+    _count?: boolean | QuizzesCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quizzes"]>
+
+  export type quizzesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    title?: boolean
+    created_date?: boolean
+    users?: boolean | usersDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quizzes"]>
+
+  export type quizzesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    title?: boolean
+    created_date?: boolean
+    users?: boolean | usersDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["quizzes"]>
+
+  export type quizzesSelectScalar = {
+    id?: boolean
+    user_id?: boolean
+    title?: boolean
+    created_date?: boolean
+  }
+
+  export type quizzesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "title" | "created_date", ExtArgs["result"]["quizzes"]>
+  export type quizzesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    quiz_questions?: boolean | quizzes$quiz_questionsArgs<ExtArgs>
+    users?: boolean | usersDefaultArgs<ExtArgs>
+    _count?: boolean | QuizzesCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type quizzesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    users?: boolean | usersDefaultArgs<ExtArgs>
+  }
+  export type quizzesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    users?: boolean | usersDefaultArgs<ExtArgs>
+  }
+
+  export type $quizzesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "quizzes"
+    objects: {
+      quiz_questions: Prisma.$quiz_questionsPayload<ExtArgs>[]
+      users: Prisma.$usersPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      user_id: string
+      title: string
+      created_date: Date
+    }, ExtArgs["result"]["quizzes"]>
+    composites: {}
+  }
+
+  type quizzesGetPayload<S extends boolean | null | undefined | quizzesDefaultArgs> = $Result.GetResult<Prisma.$quizzesPayload, S>
+
+  type quizzesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<quizzesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: QuizzesCountAggregateInputType | true
+    }
+
+  export interface quizzesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['quizzes'], meta: { name: 'quizzes' } }
+    /**
+     * Find zero or one Quizzes that matches the filter.
+     * @param {quizzesFindUniqueArgs} args - Arguments to find a Quizzes
+     * @example
+     * // Get one Quizzes
+     * const quizzes = await prisma.quizzes.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends quizzesFindUniqueArgs>(args: SelectSubset<T, quizzesFindUniqueArgs<ExtArgs>>): Prisma__quizzesClient<$Result.GetResult<Prisma.$quizzesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Quizzes that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {quizzesFindUniqueOrThrowArgs} args - Arguments to find a Quizzes
+     * @example
+     * // Get one Quizzes
+     * const quizzes = await prisma.quizzes.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends quizzesFindUniqueOrThrowArgs>(args: SelectSubset<T, quizzesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__quizzesClient<$Result.GetResult<Prisma.$quizzesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Quizzes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {quizzesFindFirstArgs} args - Arguments to find a Quizzes
+     * @example
+     * // Get one Quizzes
+     * const quizzes = await prisma.quizzes.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends quizzesFindFirstArgs>(args?: SelectSubset<T, quizzesFindFirstArgs<ExtArgs>>): Prisma__quizzesClient<$Result.GetResult<Prisma.$quizzesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Quizzes that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {quizzesFindFirstOrThrowArgs} args - Arguments to find a Quizzes
+     * @example
+     * // Get one Quizzes
+     * const quizzes = await prisma.quizzes.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends quizzesFindFirstOrThrowArgs>(args?: SelectSubset<T, quizzesFindFirstOrThrowArgs<ExtArgs>>): Prisma__quizzesClient<$Result.GetResult<Prisma.$quizzesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Quizzes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {quizzesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Quizzes
+     * const quizzes = await prisma.quizzes.findMany()
+     * 
+     * // Get first 10 Quizzes
+     * const quizzes = await prisma.quizzes.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const quizzesWithIdOnly = await prisma.quizzes.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends quizzesFindManyArgs>(args?: SelectSubset<T, quizzesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$quizzesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Quizzes.
+     * @param {quizzesCreateArgs} args - Arguments to create a Quizzes.
+     * @example
+     * // Create one Quizzes
+     * const Quizzes = await prisma.quizzes.create({
+     *   data: {
+     *     // ... data to create a Quizzes
+     *   }
+     * })
+     * 
+     */
+    create<T extends quizzesCreateArgs>(args: SelectSubset<T, quizzesCreateArgs<ExtArgs>>): Prisma__quizzesClient<$Result.GetResult<Prisma.$quizzesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Quizzes.
+     * @param {quizzesCreateManyArgs} args - Arguments to create many Quizzes.
+     * @example
+     * // Create many Quizzes
+     * const quizzes = await prisma.quizzes.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends quizzesCreateManyArgs>(args?: SelectSubset<T, quizzesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Quizzes and returns the data saved in the database.
+     * @param {quizzesCreateManyAndReturnArgs} args - Arguments to create many Quizzes.
+     * @example
+     * // Create many Quizzes
+     * const quizzes = await prisma.quizzes.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Quizzes and only return the `id`
+     * const quizzesWithIdOnly = await prisma.quizzes.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends quizzesCreateManyAndReturnArgs>(args?: SelectSubset<T, quizzesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$quizzesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Quizzes.
+     * @param {quizzesDeleteArgs} args - Arguments to delete one Quizzes.
+     * @example
+     * // Delete one Quizzes
+     * const Quizzes = await prisma.quizzes.delete({
+     *   where: {
+     *     // ... filter to delete one Quizzes
+     *   }
+     * })
+     * 
+     */
+    delete<T extends quizzesDeleteArgs>(args: SelectSubset<T, quizzesDeleteArgs<ExtArgs>>): Prisma__quizzesClient<$Result.GetResult<Prisma.$quizzesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Quizzes.
+     * @param {quizzesUpdateArgs} args - Arguments to update one Quizzes.
+     * @example
+     * // Update one Quizzes
+     * const quizzes = await prisma.quizzes.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends quizzesUpdateArgs>(args: SelectSubset<T, quizzesUpdateArgs<ExtArgs>>): Prisma__quizzesClient<$Result.GetResult<Prisma.$quizzesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Quizzes.
+     * @param {quizzesDeleteManyArgs} args - Arguments to filter Quizzes to delete.
+     * @example
+     * // Delete a few Quizzes
+     * const { count } = await prisma.quizzes.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends quizzesDeleteManyArgs>(args?: SelectSubset<T, quizzesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Quizzes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {quizzesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Quizzes
+     * const quizzes = await prisma.quizzes.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends quizzesUpdateManyArgs>(args: SelectSubset<T, quizzesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Quizzes and returns the data updated in the database.
+     * @param {quizzesUpdateManyAndReturnArgs} args - Arguments to update many Quizzes.
+     * @example
+     * // Update many Quizzes
+     * const quizzes = await prisma.quizzes.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Quizzes and only return the `id`
+     * const quizzesWithIdOnly = await prisma.quizzes.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends quizzesUpdateManyAndReturnArgs>(args: SelectSubset<T, quizzesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$quizzesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Quizzes.
+     * @param {quizzesUpsertArgs} args - Arguments to update or create a Quizzes.
+     * @example
+     * // Update or create a Quizzes
+     * const quizzes = await prisma.quizzes.upsert({
+     *   create: {
+     *     // ... data to create a Quizzes
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Quizzes we want to update
+     *   }
+     * })
+     */
+    upsert<T extends quizzesUpsertArgs>(args: SelectSubset<T, quizzesUpsertArgs<ExtArgs>>): Prisma__quizzesClient<$Result.GetResult<Prisma.$quizzesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Quizzes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {quizzesCountArgs} args - Arguments to filter Quizzes to count.
+     * @example
+     * // Count the number of Quizzes
+     * const count = await prisma.quizzes.count({
+     *   where: {
+     *     // ... the filter for the Quizzes we want to count
+     *   }
+     * })
+    **/
+    count<T extends quizzesCountArgs>(
+      args?: Subset<T, quizzesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], QuizzesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Quizzes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QuizzesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends QuizzesAggregateArgs>(args: Subset<T, QuizzesAggregateArgs>): Prisma.PrismaPromise<GetQuizzesAggregateType<T>>
+
+    /**
+     * Group by Quizzes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {quizzesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends quizzesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: quizzesGroupByArgs['orderBy'] }
+        : { orderBy?: quizzesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, quizzesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetQuizzesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the quizzes model
+   */
+  readonly fields: quizzesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for quizzes.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__quizzesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    quiz_questions<T extends quizzes$quiz_questionsArgs<ExtArgs> = {}>(args?: Subset<T, quizzes$quiz_questionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$quiz_questionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    users<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the quizzes model
+   */
+  interface quizzesFieldRefs {
+    readonly id: FieldRef<"quizzes", 'String'>
+    readonly user_id: FieldRef<"quizzes", 'String'>
+    readonly title: FieldRef<"quizzes", 'String'>
+    readonly created_date: FieldRef<"quizzes", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * quizzes findUnique
+   */
+  export type quizzesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quizzes
+     */
+    select?: quizzesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quizzes
+     */
+    omit?: quizzesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quizzesInclude<ExtArgs> | null
+    /**
+     * Filter, which quizzes to fetch.
+     */
+    where: quizzesWhereUniqueInput
+  }
+
+  /**
+   * quizzes findUniqueOrThrow
+   */
+  export type quizzesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quizzes
+     */
+    select?: quizzesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quizzes
+     */
+    omit?: quizzesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quizzesInclude<ExtArgs> | null
+    /**
+     * Filter, which quizzes to fetch.
+     */
+    where: quizzesWhereUniqueInput
+  }
+
+  /**
+   * quizzes findFirst
+   */
+  export type quizzesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quizzes
+     */
+    select?: quizzesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quizzes
+     */
+    omit?: quizzesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quizzesInclude<ExtArgs> | null
+    /**
+     * Filter, which quizzes to fetch.
+     */
+    where?: quizzesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of quizzes to fetch.
+     */
+    orderBy?: quizzesOrderByWithRelationInput | quizzesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for quizzes.
+     */
+    cursor?: quizzesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` quizzes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` quizzes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of quizzes.
+     */
+    distinct?: QuizzesScalarFieldEnum | QuizzesScalarFieldEnum[]
+  }
+
+  /**
+   * quizzes findFirstOrThrow
+   */
+  export type quizzesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quizzes
+     */
+    select?: quizzesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quizzes
+     */
+    omit?: quizzesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quizzesInclude<ExtArgs> | null
+    /**
+     * Filter, which quizzes to fetch.
+     */
+    where?: quizzesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of quizzes to fetch.
+     */
+    orderBy?: quizzesOrderByWithRelationInput | quizzesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for quizzes.
+     */
+    cursor?: quizzesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` quizzes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` quizzes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of quizzes.
+     */
+    distinct?: QuizzesScalarFieldEnum | QuizzesScalarFieldEnum[]
+  }
+
+  /**
+   * quizzes findMany
+   */
+  export type quizzesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quizzes
+     */
+    select?: quizzesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quizzes
+     */
+    omit?: quizzesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quizzesInclude<ExtArgs> | null
+    /**
+     * Filter, which quizzes to fetch.
+     */
+    where?: quizzesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of quizzes to fetch.
+     */
+    orderBy?: quizzesOrderByWithRelationInput | quizzesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing quizzes.
+     */
+    cursor?: quizzesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` quizzes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` quizzes.
+     */
+    skip?: number
+    distinct?: QuizzesScalarFieldEnum | QuizzesScalarFieldEnum[]
+  }
+
+  /**
+   * quizzes create
+   */
+  export type quizzesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quizzes
+     */
+    select?: quizzesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quizzes
+     */
+    omit?: quizzesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quizzesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a quizzes.
+     */
+    data: XOR<quizzesCreateInput, quizzesUncheckedCreateInput>
+  }
+
+  /**
+   * quizzes createMany
+   */
+  export type quizzesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many quizzes.
+     */
+    data: quizzesCreateManyInput | quizzesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * quizzes createManyAndReturn
+   */
+  export type quizzesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quizzes
+     */
+    select?: quizzesSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the quizzes
+     */
+    omit?: quizzesOmit<ExtArgs> | null
+    /**
+     * The data used to create many quizzes.
+     */
+    data: quizzesCreateManyInput | quizzesCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quizzesIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * quizzes update
+   */
+  export type quizzesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quizzes
+     */
+    select?: quizzesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quizzes
+     */
+    omit?: quizzesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quizzesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a quizzes.
+     */
+    data: XOR<quizzesUpdateInput, quizzesUncheckedUpdateInput>
+    /**
+     * Choose, which quizzes to update.
+     */
+    where: quizzesWhereUniqueInput
+  }
+
+  /**
+   * quizzes updateMany
+   */
+  export type quizzesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update quizzes.
+     */
+    data: XOR<quizzesUpdateManyMutationInput, quizzesUncheckedUpdateManyInput>
+    /**
+     * Filter which quizzes to update
+     */
+    where?: quizzesWhereInput
+    /**
+     * Limit how many quizzes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * quizzes updateManyAndReturn
+   */
+  export type quizzesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quizzes
+     */
+    select?: quizzesSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the quizzes
+     */
+    omit?: quizzesOmit<ExtArgs> | null
+    /**
+     * The data used to update quizzes.
+     */
+    data: XOR<quizzesUpdateManyMutationInput, quizzesUncheckedUpdateManyInput>
+    /**
+     * Filter which quizzes to update
+     */
+    where?: quizzesWhereInput
+    /**
+     * Limit how many quizzes to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quizzesIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * quizzes upsert
+   */
+  export type quizzesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quizzes
+     */
+    select?: quizzesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quizzes
+     */
+    omit?: quizzesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quizzesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the quizzes to update in case it exists.
+     */
+    where: quizzesWhereUniqueInput
+    /**
+     * In case the quizzes found by the `where` argument doesn't exist, create a new quizzes with this data.
+     */
+    create: XOR<quizzesCreateInput, quizzesUncheckedCreateInput>
+    /**
+     * In case the quizzes was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<quizzesUpdateInput, quizzesUncheckedUpdateInput>
+  }
+
+  /**
+   * quizzes delete
+   */
+  export type quizzesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quizzes
+     */
+    select?: quizzesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quizzes
+     */
+    omit?: quizzesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quizzesInclude<ExtArgs> | null
+    /**
+     * Filter which quizzes to delete.
+     */
+    where: quizzesWhereUniqueInput
+  }
+
+  /**
+   * quizzes deleteMany
+   */
+  export type quizzesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which quizzes to delete
+     */
+    where?: quizzesWhereInput
+    /**
+     * Limit how many quizzes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * quizzes.quiz_questions
+   */
+  export type quizzes$quiz_questionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quiz_questions
+     */
+    select?: quiz_questionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quiz_questions
+     */
+    omit?: quiz_questionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quiz_questionsInclude<ExtArgs> | null
+    where?: quiz_questionsWhereInput
+    orderBy?: quiz_questionsOrderByWithRelationInput | quiz_questionsOrderByWithRelationInput[]
+    cursor?: quiz_questionsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Quiz_questionsScalarFieldEnum | Quiz_questionsScalarFieldEnum[]
+  }
+
+  /**
+   * quizzes without action
+   */
+  export type quizzesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the quizzes
+     */
+    select?: quizzesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the quizzes
+     */
+    omit?: quizzesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: quizzesInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -34782,7 +37213,7 @@ export namespace Prisma {
   export const AttendanceScalarFieldEnum: {
     id: 'id',
     user_id: 'user_id',
-    checkin_date: 'checkin_date'
+    created_date: 'created_date'
   };
 
   export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]
@@ -34978,7 +37409,7 @@ export namespace Prisma {
   export const TopicsScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    decription: 'decription'
+    description: 'description'
   };
 
   export type TopicsScalarFieldEnum = (typeof TopicsScalarFieldEnum)[keyof typeof TopicsScalarFieldEnum]
@@ -34987,8 +37418,12 @@ export namespace Prisma {
   export const Transaction_historyScalarFieldEnum: {
     id: 'id',
     user_id: 'user_id',
-    price: 'price',
-    createddate: 'createddate'
+    amount: 'amount',
+    created_date: 'created_date',
+    order_code: 'order_code',
+    status: 'status',
+    paid_at: 'paid_at',
+    description: 'description'
   };
 
   export type Transaction_historyScalarFieldEnum = (typeof Transaction_historyScalarFieldEnum)[keyof typeof Transaction_historyScalarFieldEnum]
@@ -35098,6 +37533,27 @@ export namespace Prisma {
   };
 
   export type WordsScalarFieldEnum = (typeof WordsScalarFieldEnum)[keyof typeof WordsScalarFieldEnum]
+
+
+  export const Quiz_questionsScalarFieldEnum: {
+    id: 'id',
+    quiz_id: 'quiz_id',
+    question_text: 'question_text',
+    options: 'options',
+    correct_answer: 'correct_answer'
+  };
+
+  export type Quiz_questionsScalarFieldEnum = (typeof Quiz_questionsScalarFieldEnum)[keyof typeof Quiz_questionsScalarFieldEnum]
+
+
+  export const QuizzesScalarFieldEnum: {
+    id: 'id',
+    user_id: 'user_id',
+    title: 'title',
+    created_date: 'created_date'
+  };
+
+  export type QuizzesScalarFieldEnum = (typeof QuizzesScalarFieldEnum)[keyof typeof QuizzesScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -35304,32 +37760,32 @@ export namespace Prisma {
     NOT?: attendanceWhereInput | attendanceWhereInput[]
     id?: UuidFilter<"attendance"> | string
     user_id?: UuidFilter<"attendance"> | string
-    checkin_date?: DateTimeFilter<"attendance"> | Date | string
+    created_date?: DateTimeFilter<"attendance"> | Date | string
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }
 
   export type attendanceOrderByWithRelationInput = {
     id?: SortOrder
     user_id?: SortOrder
-    checkin_date?: SortOrder
+    created_date?: SortOrder
     users?: usersOrderByWithRelationInput
   }
 
   export type attendanceWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    user_id_checkin_date?: attendanceUser_idCheckin_dateCompoundUniqueInput
+    user_id_created_date?: attendanceUser_idCreated_dateCompoundUniqueInput
     AND?: attendanceWhereInput | attendanceWhereInput[]
     OR?: attendanceWhereInput[]
     NOT?: attendanceWhereInput | attendanceWhereInput[]
     user_id?: UuidFilter<"attendance"> | string
-    checkin_date?: DateTimeFilter<"attendance"> | Date | string
+    created_date?: DateTimeFilter<"attendance"> | Date | string
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
-  }, "id" | "user_id_checkin_date">
+  }, "id" | "user_id_created_date">
 
   export type attendanceOrderByWithAggregationInput = {
     id?: SortOrder
     user_id?: SortOrder
-    checkin_date?: SortOrder
+    created_date?: SortOrder
     _count?: attendanceCountOrderByAggregateInput
     _max?: attendanceMaxOrderByAggregateInput
     _min?: attendanceMinOrderByAggregateInput
@@ -35341,7 +37797,7 @@ export namespace Prisma {
     NOT?: attendanceScalarWhereWithAggregatesInput | attendanceScalarWhereWithAggregatesInput[]
     id?: UuidWithAggregatesFilter<"attendance"> | string
     user_id?: UuidWithAggregatesFilter<"attendance"> | string
-    checkin_date?: DateTimeWithAggregatesFilter<"attendance"> | Date | string
+    created_date?: DateTimeWithAggregatesFilter<"attendance"> | Date | string
   }
 
   export type coin_transactionWhereInput = {
@@ -36383,7 +38839,7 @@ export namespace Prisma {
     NOT?: topicsWhereInput | topicsWhereInput[]
     id?: UuidFilter<"topics"> | string
     name?: StringFilter<"topics"> | string
-    decription?: StringNullableFilter<"topics"> | string | null
+    description?: StringNullableFilter<"topics"> | string | null
     courses?: CoursesListRelationFilter
     study_access_topic?: Study_access_topicListRelationFilter
   }
@@ -36391,7 +38847,7 @@ export namespace Prisma {
   export type topicsOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    decription?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     courses?: coursesOrderByRelationAggregateInput
     study_access_topic?: study_access_topicOrderByRelationAggregateInput
   }
@@ -36402,7 +38858,7 @@ export namespace Prisma {
     OR?: topicsWhereInput[]
     NOT?: topicsWhereInput | topicsWhereInput[]
     name?: StringFilter<"topics"> | string
-    decription?: StringNullableFilter<"topics"> | string | null
+    description?: StringNullableFilter<"topics"> | string | null
     courses?: CoursesListRelationFilter
     study_access_topic?: Study_access_topicListRelationFilter
   }, "id">
@@ -36410,7 +38866,7 @@ export namespace Prisma {
   export type topicsOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    decription?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     _count?: topicsCountOrderByAggregateInput
     _max?: topicsMaxOrderByAggregateInput
     _min?: topicsMinOrderByAggregateInput
@@ -36422,7 +38878,7 @@ export namespace Prisma {
     NOT?: topicsScalarWhereWithAggregatesInput | topicsScalarWhereWithAggregatesInput[]
     id?: UuidWithAggregatesFilter<"topics"> | string
     name?: StringWithAggregatesFilter<"topics"> | string
-    decription?: StringNullableWithAggregatesFilter<"topics"> | string | null
+    description?: StringNullableWithAggregatesFilter<"topics"> | string | null
   }
 
   export type transaction_historyWhereInput = {
@@ -36431,16 +38887,24 @@ export namespace Prisma {
     NOT?: transaction_historyWhereInput | transaction_historyWhereInput[]
     id?: UuidFilter<"transaction_history"> | string
     user_id?: UuidFilter<"transaction_history"> | string
-    price?: DecimalNullableFilter<"transaction_history"> | Decimal | DecimalJsLike | number | string | null
-    createddate?: DateTimeNullableFilter<"transaction_history"> | Date | string | null
+    amount?: DecimalNullableFilter<"transaction_history"> | Decimal | DecimalJsLike | number | string | null
+    created_date?: DateTimeNullableFilter<"transaction_history"> | Date | string | null
+    order_code?: StringFilter<"transaction_history"> | string
+    status?: StringNullableFilter<"transaction_history"> | string | null
+    paid_at?: DateTimeNullableFilter<"transaction_history"> | Date | string | null
+    description?: StringNullableFilter<"transaction_history"> | string | null
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }
 
   export type transaction_historyOrderByWithRelationInput = {
     id?: SortOrder
     user_id?: SortOrder
-    price?: SortOrderInput | SortOrder
-    createddate?: SortOrderInput | SortOrder
+    amount?: SortOrderInput | SortOrder
+    created_date?: SortOrderInput | SortOrder
+    order_code?: SortOrder
+    status?: SortOrderInput | SortOrder
+    paid_at?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     users?: usersOrderByWithRelationInput
   }
 
@@ -36450,16 +38914,24 @@ export namespace Prisma {
     OR?: transaction_historyWhereInput[]
     NOT?: transaction_historyWhereInput | transaction_historyWhereInput[]
     user_id?: UuidFilter<"transaction_history"> | string
-    price?: DecimalNullableFilter<"transaction_history"> | Decimal | DecimalJsLike | number | string | null
-    createddate?: DateTimeNullableFilter<"transaction_history"> | Date | string | null
+    amount?: DecimalNullableFilter<"transaction_history"> | Decimal | DecimalJsLike | number | string | null
+    created_date?: DateTimeNullableFilter<"transaction_history"> | Date | string | null
+    order_code?: StringFilter<"transaction_history"> | string
+    status?: StringNullableFilter<"transaction_history"> | string | null
+    paid_at?: DateTimeNullableFilter<"transaction_history"> | Date | string | null
+    description?: StringNullableFilter<"transaction_history"> | string | null
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }, "id">
 
   export type transaction_historyOrderByWithAggregationInput = {
     id?: SortOrder
     user_id?: SortOrder
-    price?: SortOrderInput | SortOrder
-    createddate?: SortOrderInput | SortOrder
+    amount?: SortOrderInput | SortOrder
+    created_date?: SortOrderInput | SortOrder
+    order_code?: SortOrder
+    status?: SortOrderInput | SortOrder
+    paid_at?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     _count?: transaction_historyCountOrderByAggregateInput
     _avg?: transaction_historyAvgOrderByAggregateInput
     _max?: transaction_historyMaxOrderByAggregateInput
@@ -36473,8 +38945,12 @@ export namespace Prisma {
     NOT?: transaction_historyScalarWhereWithAggregatesInput | transaction_historyScalarWhereWithAggregatesInput[]
     id?: UuidWithAggregatesFilter<"transaction_history"> | string
     user_id?: UuidWithAggregatesFilter<"transaction_history"> | string
-    price?: DecimalNullableWithAggregatesFilter<"transaction_history"> | Decimal | DecimalJsLike | number | string | null
-    createddate?: DateTimeNullableWithAggregatesFilter<"transaction_history"> | Date | string | null
+    amount?: DecimalNullableWithAggregatesFilter<"transaction_history"> | Decimal | DecimalJsLike | number | string | null
+    created_date?: DateTimeNullableWithAggregatesFilter<"transaction_history"> | Date | string | null
+    order_code?: StringWithAggregatesFilter<"transaction_history"> | string
+    status?: StringNullableWithAggregatesFilter<"transaction_history"> | string | null
+    paid_at?: DateTimeNullableWithAggregatesFilter<"transaction_history"> | Date | string | null
+    description?: StringNullableWithAggregatesFilter<"transaction_history"> | string | null
   }
 
   export type user_abuse_reportsWhereInput = {
@@ -36875,6 +39351,7 @@ export namespace Prisma {
     groups?: GroupsListRelationFilter
     messages?: MessagesListRelationFilter
     posts?: PostsListRelationFilter
+    quizzes?: QuizzesListRelationFilter
     react_comments?: React_commentsListRelationFilter
     react_posts?: React_postsListRelationFilter
     shared_post?: Shared_postListRelationFilter
@@ -36918,6 +39395,7 @@ export namespace Prisma {
     groups?: groupsOrderByRelationAggregateInput
     messages?: messagesOrderByRelationAggregateInput
     posts?: postsOrderByRelationAggregateInput
+    quizzes?: quizzesOrderByRelationAggregateInput
     react_comments?: react_commentsOrderByRelationAggregateInput
     react_posts?: react_postsOrderByRelationAggregateInput
     shared_post?: shared_postOrderByRelationAggregateInput
@@ -36964,6 +39442,7 @@ export namespace Prisma {
     groups?: GroupsListRelationFilter
     messages?: MessagesListRelationFilter
     posts?: PostsListRelationFilter
+    quizzes?: QuizzesListRelationFilter
     react_comments?: React_commentsListRelationFilter
     react_posts?: React_postsListRelationFilter
     shared_post?: Shared_postListRelationFilter
@@ -37099,6 +39578,114 @@ export namespace Prisma {
     course_id?: UuidNullableWithAggregatesFilter<"words"> | string | null
   }
 
+  export type quiz_questionsWhereInput = {
+    AND?: quiz_questionsWhereInput | quiz_questionsWhereInput[]
+    OR?: quiz_questionsWhereInput[]
+    NOT?: quiz_questionsWhereInput | quiz_questionsWhereInput[]
+    id?: UuidFilter<"quiz_questions"> | string
+    quiz_id?: UuidFilter<"quiz_questions"> | string
+    question_text?: StringFilter<"quiz_questions"> | string
+    options?: StringNullableListFilter<"quiz_questions">
+    correct_answer?: StringFilter<"quiz_questions"> | string
+    quizzes?: XOR<QuizzesScalarRelationFilter, quizzesWhereInput>
+  }
+
+  export type quiz_questionsOrderByWithRelationInput = {
+    id?: SortOrder
+    quiz_id?: SortOrder
+    question_text?: SortOrder
+    options?: SortOrder
+    correct_answer?: SortOrder
+    quizzes?: quizzesOrderByWithRelationInput
+  }
+
+  export type quiz_questionsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: quiz_questionsWhereInput | quiz_questionsWhereInput[]
+    OR?: quiz_questionsWhereInput[]
+    NOT?: quiz_questionsWhereInput | quiz_questionsWhereInput[]
+    quiz_id?: UuidFilter<"quiz_questions"> | string
+    question_text?: StringFilter<"quiz_questions"> | string
+    options?: StringNullableListFilter<"quiz_questions">
+    correct_answer?: StringFilter<"quiz_questions"> | string
+    quizzes?: XOR<QuizzesScalarRelationFilter, quizzesWhereInput>
+  }, "id">
+
+  export type quiz_questionsOrderByWithAggregationInput = {
+    id?: SortOrder
+    quiz_id?: SortOrder
+    question_text?: SortOrder
+    options?: SortOrder
+    correct_answer?: SortOrder
+    _count?: quiz_questionsCountOrderByAggregateInput
+    _max?: quiz_questionsMaxOrderByAggregateInput
+    _min?: quiz_questionsMinOrderByAggregateInput
+  }
+
+  export type quiz_questionsScalarWhereWithAggregatesInput = {
+    AND?: quiz_questionsScalarWhereWithAggregatesInput | quiz_questionsScalarWhereWithAggregatesInput[]
+    OR?: quiz_questionsScalarWhereWithAggregatesInput[]
+    NOT?: quiz_questionsScalarWhereWithAggregatesInput | quiz_questionsScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"quiz_questions"> | string
+    quiz_id?: UuidWithAggregatesFilter<"quiz_questions"> | string
+    question_text?: StringWithAggregatesFilter<"quiz_questions"> | string
+    options?: StringNullableListFilter<"quiz_questions">
+    correct_answer?: StringWithAggregatesFilter<"quiz_questions"> | string
+  }
+
+  export type quizzesWhereInput = {
+    AND?: quizzesWhereInput | quizzesWhereInput[]
+    OR?: quizzesWhereInput[]
+    NOT?: quizzesWhereInput | quizzesWhereInput[]
+    id?: UuidFilter<"quizzes"> | string
+    user_id?: UuidFilter<"quizzes"> | string
+    title?: StringFilter<"quizzes"> | string
+    created_date?: DateTimeFilter<"quizzes"> | Date | string
+    quiz_questions?: Quiz_questionsListRelationFilter
+    users?: XOR<UsersScalarRelationFilter, usersWhereInput>
+  }
+
+  export type quizzesOrderByWithRelationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    title?: SortOrder
+    created_date?: SortOrder
+    quiz_questions?: quiz_questionsOrderByRelationAggregateInput
+    users?: usersOrderByWithRelationInput
+  }
+
+  export type quizzesWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: quizzesWhereInput | quizzesWhereInput[]
+    OR?: quizzesWhereInput[]
+    NOT?: quizzesWhereInput | quizzesWhereInput[]
+    user_id?: UuidFilter<"quizzes"> | string
+    title?: StringFilter<"quizzes"> | string
+    created_date?: DateTimeFilter<"quizzes"> | Date | string
+    quiz_questions?: Quiz_questionsListRelationFilter
+    users?: XOR<UsersScalarRelationFilter, usersWhereInput>
+  }, "id">
+
+  export type quizzesOrderByWithAggregationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    title?: SortOrder
+    created_date?: SortOrder
+    _count?: quizzesCountOrderByAggregateInput
+    _max?: quizzesMaxOrderByAggregateInput
+    _min?: quizzesMinOrderByAggregateInput
+  }
+
+  export type quizzesScalarWhereWithAggregatesInput = {
+    AND?: quizzesScalarWhereWithAggregatesInput | quizzesScalarWhereWithAggregatesInput[]
+    OR?: quizzesScalarWhereWithAggregatesInput[]
+    NOT?: quizzesScalarWhereWithAggregatesInput | quizzesScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"quizzes"> | string
+    user_id?: UuidWithAggregatesFilter<"quizzes"> | string
+    title?: StringWithAggregatesFilter<"quizzes"> | string
+    created_date?: DateTimeWithAggregatesFilter<"quizzes"> | Date | string
+  }
+
   export type abuse_report_feedbacksCreateInput = {
     id?: string
     feedback?: string | null
@@ -37155,43 +39742,43 @@ export namespace Prisma {
 
   export type attendanceCreateInput = {
     id?: string
-    checkin_date?: Date | string
+    created_date?: Date | string
     users: usersCreateNestedOneWithoutAttendanceInput
   }
 
   export type attendanceUncheckedCreateInput = {
     id?: string
     user_id: string
-    checkin_date?: Date | string
+    created_date?: Date | string
   }
 
   export type attendanceUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    checkin_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_date?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutAttendanceNestedInput
   }
 
   export type attendanceUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
-    checkin_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type attendanceCreateManyInput = {
     id?: string
     user_id: string
-    checkin_date?: Date | string
+    created_date?: Date | string
   }
 
   export type attendanceUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    checkin_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type attendanceUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
-    checkin_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type coin_transactionCreateInput = {
@@ -38220,7 +40807,7 @@ export namespace Prisma {
   export type topicsCreateInput = {
     id?: string
     name: string
-    decription?: string | null
+    description?: string | null
     courses?: coursesCreateNestedManyWithoutTopicsInput
     study_access_topic?: study_access_topicCreateNestedManyWithoutTopicsInput
   }
@@ -38228,7 +40815,7 @@ export namespace Prisma {
   export type topicsUncheckedCreateInput = {
     id?: string
     name: string
-    decription?: string | null
+    description?: string | null
     courses?: coursesUncheckedCreateNestedManyWithoutTopicsInput
     study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutTopicsInput
   }
@@ -38236,7 +40823,7 @@ export namespace Prisma {
   export type topicsUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    decription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     courses?: coursesUpdateManyWithoutTopicsNestedInput
     study_access_topic?: study_access_topicUpdateManyWithoutTopicsNestedInput
   }
@@ -38244,7 +40831,7 @@ export namespace Prisma {
   export type topicsUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    decription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     courses?: coursesUncheckedUpdateManyWithoutTopicsNestedInput
     study_access_topic?: study_access_topicUncheckedUpdateManyWithoutTopicsNestedInput
   }
@@ -38252,67 +40839,95 @@ export namespace Prisma {
   export type topicsCreateManyInput = {
     id?: string
     name: string
-    decription?: string | null
+    description?: string | null
   }
 
   export type topicsUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    decription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type topicsUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    decription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transaction_historyCreateInput = {
     id?: string
-    price?: Decimal | DecimalJsLike | number | string | null
-    createddate?: Date | string | null
+    amount?: Decimal | DecimalJsLike | number | string | null
+    created_date?: Date | string | null
+    order_code: string
+    status?: string | null
+    paid_at?: Date | string | null
+    description?: string | null
     users: usersCreateNestedOneWithoutTransaction_historyInput
   }
 
   export type transaction_historyUncheckedCreateInput = {
     id?: string
     user_id: string
-    price?: Decimal | DecimalJsLike | number | string | null
-    createddate?: Date | string | null
+    amount?: Decimal | DecimalJsLike | number | string | null
+    created_date?: Date | string | null
+    order_code: string
+    status?: string | null
+    paid_at?: Date | string | null
+    description?: string | null
   }
 
   export type transaction_historyUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    createddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    order_code?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     users?: usersUpdateOneRequiredWithoutTransaction_historyNestedInput
   }
 
   export type transaction_historyUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
-    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    createddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    order_code?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transaction_historyCreateManyInput = {
     id?: string
     user_id: string
-    price?: Decimal | DecimalJsLike | number | string | null
-    createddate?: Date | string | null
+    amount?: Decimal | DecimalJsLike | number | string | null
+    created_date?: Date | string | null
+    order_code: string
+    status?: string | null
+    paid_at?: Date | string | null
+    description?: string | null
   }
 
   export type transaction_historyUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    createddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    order_code?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transaction_historyUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
-    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    createddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    order_code?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type user_abuse_reportsCreateInput = {
@@ -38699,6 +41314,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -38742,6 +41358,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -38785,6 +41402,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -38828,6 +41446,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -38980,6 +41599,113 @@ export namespace Prisma {
     imageurl?: NullableStringFieldUpdateOperationsInput | string | null
     transcription?: NullableStringFieldUpdateOperationsInput | string | null
     course_id?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type quiz_questionsCreateInput = {
+    id: string
+    question_text: string
+    options?: quiz_questionsCreateoptionsInput | string[]
+    correct_answer: string
+    quizzes: quizzesCreateNestedOneWithoutQuiz_questionsInput
+  }
+
+  export type quiz_questionsUncheckedCreateInput = {
+    id: string
+    quiz_id: string
+    question_text: string
+    options?: quiz_questionsCreateoptionsInput | string[]
+    correct_answer: string
+  }
+
+  export type quiz_questionsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question_text?: StringFieldUpdateOperationsInput | string
+    options?: quiz_questionsUpdateoptionsInput | string[]
+    correct_answer?: StringFieldUpdateOperationsInput | string
+    quizzes?: quizzesUpdateOneRequiredWithoutQuiz_questionsNestedInput
+  }
+
+  export type quiz_questionsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quiz_id?: StringFieldUpdateOperationsInput | string
+    question_text?: StringFieldUpdateOperationsInput | string
+    options?: quiz_questionsUpdateoptionsInput | string[]
+    correct_answer?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type quiz_questionsCreateManyInput = {
+    id: string
+    quiz_id: string
+    question_text: string
+    options?: quiz_questionsCreateoptionsInput | string[]
+    correct_answer: string
+  }
+
+  export type quiz_questionsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question_text?: StringFieldUpdateOperationsInput | string
+    options?: quiz_questionsUpdateoptionsInput | string[]
+    correct_answer?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type quiz_questionsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    quiz_id?: StringFieldUpdateOperationsInput | string
+    question_text?: StringFieldUpdateOperationsInput | string
+    options?: quiz_questionsUpdateoptionsInput | string[]
+    correct_answer?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type quizzesCreateInput = {
+    id: string
+    title: string
+    created_date: Date | string
+    quiz_questions?: quiz_questionsCreateNestedManyWithoutQuizzesInput
+    users: usersCreateNestedOneWithoutQuizzesInput
+  }
+
+  export type quizzesUncheckedCreateInput = {
+    id: string
+    user_id: string
+    title: string
+    created_date: Date | string
+    quiz_questions?: quiz_questionsUncheckedCreateNestedManyWithoutQuizzesInput
+  }
+
+  export type quizzesUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    created_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    quiz_questions?: quiz_questionsUpdateManyWithoutQuizzesNestedInput
+    users?: usersUpdateOneRequiredWithoutQuizzesNestedInput
+  }
+
+  export type quizzesUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    created_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    quiz_questions?: quiz_questionsUncheckedUpdateManyWithoutQuizzesNestedInput
+  }
+
+  export type quizzesCreateManyInput = {
+    id: string
+    user_id: string
+    title: string
+    created_date: Date | string
+  }
+
+  export type quizzesUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    created_date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type quizzesUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    created_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UuidFilter<$PrismaModel = never> = {
@@ -39149,27 +41875,27 @@ export namespace Prisma {
     isNot?: usersWhereInput
   }
 
-  export type attendanceUser_idCheckin_dateCompoundUniqueInput = {
+  export type attendanceUser_idCreated_dateCompoundUniqueInput = {
     user_id: string
-    checkin_date: Date | string
+    created_date: Date | string
   }
 
   export type attendanceCountOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
-    checkin_date?: SortOrder
+    created_date?: SortOrder
   }
 
   export type attendanceMaxOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
-    checkin_date?: SortOrder
+    created_date?: SortOrder
   }
 
   export type attendanceMinOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
-    checkin_date?: SortOrder
+    created_date?: SortOrder
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -39991,19 +42717,19 @@ export namespace Prisma {
   export type topicsCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    decription?: SortOrder
+    description?: SortOrder
   }
 
   export type topicsMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    decription?: SortOrder
+    description?: SortOrder
   }
 
   export type topicsMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    decription?: SortOrder
+    description?: SortOrder
   }
 
   export type DecimalNullableFilter<$PrismaModel = never> = {
@@ -40020,30 +42746,42 @@ export namespace Prisma {
   export type transaction_historyCountOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
-    price?: SortOrder
-    createddate?: SortOrder
+    amount?: SortOrder
+    created_date?: SortOrder
+    order_code?: SortOrder
+    status?: SortOrder
+    paid_at?: SortOrder
+    description?: SortOrder
   }
 
   export type transaction_historyAvgOrderByAggregateInput = {
-    price?: SortOrder
+    amount?: SortOrder
   }
 
   export type transaction_historyMaxOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
-    price?: SortOrder
-    createddate?: SortOrder
+    amount?: SortOrder
+    created_date?: SortOrder
+    order_code?: SortOrder
+    status?: SortOrder
+    paid_at?: SortOrder
+    description?: SortOrder
   }
 
   export type transaction_historyMinOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
-    price?: SortOrder
-    createddate?: SortOrder
+    amount?: SortOrder
+    created_date?: SortOrder
+    order_code?: SortOrder
+    status?: SortOrder
+    paid_at?: SortOrder
+    description?: SortOrder
   }
 
   export type transaction_historySumOrderByAggregateInput = {
-    price?: SortOrder
+    amount?: SortOrder
   }
 
   export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -40332,6 +43070,12 @@ export namespace Prisma {
     none?: postsWhereInput
   }
 
+  export type QuizzesListRelationFilter = {
+    every?: quizzesWhereInput
+    some?: quizzesWhereInput
+    none?: quizzesWhereInput
+  }
+
   export type Transaction_historyListRelationFilter = {
     every?: transaction_historyWhereInput
     some?: transaction_historyWhereInput
@@ -40375,6 +43119,10 @@ export namespace Prisma {
   }
 
   export type postsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type quizzesOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -40502,6 +43250,72 @@ export namespace Prisma {
     imageurl?: SortOrder
     transcription?: SortOrder
     course_id?: SortOrder
+  }
+
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
+  export type QuizzesScalarRelationFilter = {
+    is?: quizzesWhereInput
+    isNot?: quizzesWhereInput
+  }
+
+  export type quiz_questionsCountOrderByAggregateInput = {
+    id?: SortOrder
+    quiz_id?: SortOrder
+    question_text?: SortOrder
+    options?: SortOrder
+    correct_answer?: SortOrder
+  }
+
+  export type quiz_questionsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    quiz_id?: SortOrder
+    question_text?: SortOrder
+    correct_answer?: SortOrder
+  }
+
+  export type quiz_questionsMinOrderByAggregateInput = {
+    id?: SortOrder
+    quiz_id?: SortOrder
+    question_text?: SortOrder
+    correct_answer?: SortOrder
+  }
+
+  export type Quiz_questionsListRelationFilter = {
+    every?: quiz_questionsWhereInput
+    some?: quiz_questionsWhereInput
+    none?: quiz_questionsWhereInput
+  }
+
+  export type quiz_questionsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type quizzesCountOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    title?: SortOrder
+    created_date?: SortOrder
+  }
+
+  export type quizzesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    title?: SortOrder
+    created_date?: SortOrder
+  }
+
+  export type quizzesMinOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    title?: SortOrder
+    created_date?: SortOrder
   }
 
   export type user_abuse_reportsCreateNestedOneWithoutAbuse_report_feedbacksInput = {
@@ -41975,6 +44789,13 @@ export namespace Prisma {
     connect?: postsWhereUniqueInput | postsWhereUniqueInput[]
   }
 
+  export type quizzesCreateNestedManyWithoutUsersInput = {
+    create?: XOR<quizzesCreateWithoutUsersInput, quizzesUncheckedCreateWithoutUsersInput> | quizzesCreateWithoutUsersInput[] | quizzesUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: quizzesCreateOrConnectWithoutUsersInput | quizzesCreateOrConnectWithoutUsersInput[]
+    createMany?: quizzesCreateManyUsersInputEnvelope
+    connect?: quizzesWhereUniqueInput | quizzesWhereUniqueInput[]
+  }
+
   export type react_commentsCreateNestedManyWithoutUsersInput = {
     create?: XOR<react_commentsCreateWithoutUsersInput, react_commentsUncheckedCreateWithoutUsersInput> | react_commentsCreateWithoutUsersInput[] | react_commentsUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: react_commentsCreateOrConnectWithoutUsersInput | react_commentsCreateOrConnectWithoutUsersInput[]
@@ -42134,6 +44955,13 @@ export namespace Prisma {
     connectOrCreate?: postsCreateOrConnectWithoutUsersInput | postsCreateOrConnectWithoutUsersInput[]
     createMany?: postsCreateManyUsersInputEnvelope
     connect?: postsWhereUniqueInput | postsWhereUniqueInput[]
+  }
+
+  export type quizzesUncheckedCreateNestedManyWithoutUsersInput = {
+    create?: XOR<quizzesCreateWithoutUsersInput, quizzesUncheckedCreateWithoutUsersInput> | quizzesCreateWithoutUsersInput[] | quizzesUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: quizzesCreateOrConnectWithoutUsersInput | quizzesCreateOrConnectWithoutUsersInput[]
+    createMany?: quizzesCreateManyUsersInputEnvelope
+    connect?: quizzesWhereUniqueInput | quizzesWhereUniqueInput[]
   }
 
   export type react_commentsUncheckedCreateNestedManyWithoutUsersInput = {
@@ -42372,6 +45200,20 @@ export namespace Prisma {
     update?: postsUpdateWithWhereUniqueWithoutUsersInput | postsUpdateWithWhereUniqueWithoutUsersInput[]
     updateMany?: postsUpdateManyWithWhereWithoutUsersInput | postsUpdateManyWithWhereWithoutUsersInput[]
     deleteMany?: postsScalarWhereInput | postsScalarWhereInput[]
+  }
+
+  export type quizzesUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<quizzesCreateWithoutUsersInput, quizzesUncheckedCreateWithoutUsersInput> | quizzesCreateWithoutUsersInput[] | quizzesUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: quizzesCreateOrConnectWithoutUsersInput | quizzesCreateOrConnectWithoutUsersInput[]
+    upsert?: quizzesUpsertWithWhereUniqueWithoutUsersInput | quizzesUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: quizzesCreateManyUsersInputEnvelope
+    set?: quizzesWhereUniqueInput | quizzesWhereUniqueInput[]
+    disconnect?: quizzesWhereUniqueInput | quizzesWhereUniqueInput[]
+    delete?: quizzesWhereUniqueInput | quizzesWhereUniqueInput[]
+    connect?: quizzesWhereUniqueInput | quizzesWhereUniqueInput[]
+    update?: quizzesUpdateWithWhereUniqueWithoutUsersInput | quizzesUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: quizzesUpdateManyWithWhereWithoutUsersInput | quizzesUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: quizzesScalarWhereInput | quizzesScalarWhereInput[]
   }
 
   export type react_commentsUpdateManyWithoutUsersNestedInput = {
@@ -42696,6 +45538,20 @@ export namespace Prisma {
     deleteMany?: postsScalarWhereInput | postsScalarWhereInput[]
   }
 
+  export type quizzesUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<quizzesCreateWithoutUsersInput, quizzesUncheckedCreateWithoutUsersInput> | quizzesCreateWithoutUsersInput[] | quizzesUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: quizzesCreateOrConnectWithoutUsersInput | quizzesCreateOrConnectWithoutUsersInput[]
+    upsert?: quizzesUpsertWithWhereUniqueWithoutUsersInput | quizzesUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: quizzesCreateManyUsersInputEnvelope
+    set?: quizzesWhereUniqueInput | quizzesWhereUniqueInput[]
+    disconnect?: quizzesWhereUniqueInput | quizzesWhereUniqueInput[]
+    delete?: quizzesWhereUniqueInput | quizzesWhereUniqueInput[]
+    connect?: quizzesWhereUniqueInput | quizzesWhereUniqueInput[]
+    update?: quizzesUpdateWithWhereUniqueWithoutUsersInput | quizzesUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: quizzesUpdateManyWithWhereWithoutUsersInput | quizzesUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: quizzesScalarWhereInput | quizzesScalarWhereInput[]
+  }
+
   export type react_commentsUncheckedUpdateManyWithoutUsersNestedInput = {
     create?: XOR<react_commentsCreateWithoutUsersInput, react_commentsUncheckedCreateWithoutUsersInput> | react_commentsCreateWithoutUsersInput[] | react_commentsUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: react_commentsCreateOrConnectWithoutUsersInput | react_commentsCreateOrConnectWithoutUsersInput[]
@@ -42920,6 +45776,85 @@ export namespace Prisma {
     update?: user_progressUpdateWithWhereUniqueWithoutWordsInput | user_progressUpdateWithWhereUniqueWithoutWordsInput[]
     updateMany?: user_progressUpdateManyWithWhereWithoutWordsInput | user_progressUpdateManyWithWhereWithoutWordsInput[]
     deleteMany?: user_progressScalarWhereInput | user_progressScalarWhereInput[]
+  }
+
+  export type quiz_questionsCreateoptionsInput = {
+    set: string[]
+  }
+
+  export type quizzesCreateNestedOneWithoutQuiz_questionsInput = {
+    create?: XOR<quizzesCreateWithoutQuiz_questionsInput, quizzesUncheckedCreateWithoutQuiz_questionsInput>
+    connectOrCreate?: quizzesCreateOrConnectWithoutQuiz_questionsInput
+    connect?: quizzesWhereUniqueInput
+  }
+
+  export type quiz_questionsUpdateoptionsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type quizzesUpdateOneRequiredWithoutQuiz_questionsNestedInput = {
+    create?: XOR<quizzesCreateWithoutQuiz_questionsInput, quizzesUncheckedCreateWithoutQuiz_questionsInput>
+    connectOrCreate?: quizzesCreateOrConnectWithoutQuiz_questionsInput
+    upsert?: quizzesUpsertWithoutQuiz_questionsInput
+    connect?: quizzesWhereUniqueInput
+    update?: XOR<XOR<quizzesUpdateToOneWithWhereWithoutQuiz_questionsInput, quizzesUpdateWithoutQuiz_questionsInput>, quizzesUncheckedUpdateWithoutQuiz_questionsInput>
+  }
+
+  export type quiz_questionsCreateNestedManyWithoutQuizzesInput = {
+    create?: XOR<quiz_questionsCreateWithoutQuizzesInput, quiz_questionsUncheckedCreateWithoutQuizzesInput> | quiz_questionsCreateWithoutQuizzesInput[] | quiz_questionsUncheckedCreateWithoutQuizzesInput[]
+    connectOrCreate?: quiz_questionsCreateOrConnectWithoutQuizzesInput | quiz_questionsCreateOrConnectWithoutQuizzesInput[]
+    createMany?: quiz_questionsCreateManyQuizzesInputEnvelope
+    connect?: quiz_questionsWhereUniqueInput | quiz_questionsWhereUniqueInput[]
+  }
+
+  export type usersCreateNestedOneWithoutQuizzesInput = {
+    create?: XOR<usersCreateWithoutQuizzesInput, usersUncheckedCreateWithoutQuizzesInput>
+    connectOrCreate?: usersCreateOrConnectWithoutQuizzesInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type quiz_questionsUncheckedCreateNestedManyWithoutQuizzesInput = {
+    create?: XOR<quiz_questionsCreateWithoutQuizzesInput, quiz_questionsUncheckedCreateWithoutQuizzesInput> | quiz_questionsCreateWithoutQuizzesInput[] | quiz_questionsUncheckedCreateWithoutQuizzesInput[]
+    connectOrCreate?: quiz_questionsCreateOrConnectWithoutQuizzesInput | quiz_questionsCreateOrConnectWithoutQuizzesInput[]
+    createMany?: quiz_questionsCreateManyQuizzesInputEnvelope
+    connect?: quiz_questionsWhereUniqueInput | quiz_questionsWhereUniqueInput[]
+  }
+
+  export type quiz_questionsUpdateManyWithoutQuizzesNestedInput = {
+    create?: XOR<quiz_questionsCreateWithoutQuizzesInput, quiz_questionsUncheckedCreateWithoutQuizzesInput> | quiz_questionsCreateWithoutQuizzesInput[] | quiz_questionsUncheckedCreateWithoutQuizzesInput[]
+    connectOrCreate?: quiz_questionsCreateOrConnectWithoutQuizzesInput | quiz_questionsCreateOrConnectWithoutQuizzesInput[]
+    upsert?: quiz_questionsUpsertWithWhereUniqueWithoutQuizzesInput | quiz_questionsUpsertWithWhereUniqueWithoutQuizzesInput[]
+    createMany?: quiz_questionsCreateManyQuizzesInputEnvelope
+    set?: quiz_questionsWhereUniqueInput | quiz_questionsWhereUniqueInput[]
+    disconnect?: quiz_questionsWhereUniqueInput | quiz_questionsWhereUniqueInput[]
+    delete?: quiz_questionsWhereUniqueInput | quiz_questionsWhereUniqueInput[]
+    connect?: quiz_questionsWhereUniqueInput | quiz_questionsWhereUniqueInput[]
+    update?: quiz_questionsUpdateWithWhereUniqueWithoutQuizzesInput | quiz_questionsUpdateWithWhereUniqueWithoutQuizzesInput[]
+    updateMany?: quiz_questionsUpdateManyWithWhereWithoutQuizzesInput | quiz_questionsUpdateManyWithWhereWithoutQuizzesInput[]
+    deleteMany?: quiz_questionsScalarWhereInput | quiz_questionsScalarWhereInput[]
+  }
+
+  export type usersUpdateOneRequiredWithoutQuizzesNestedInput = {
+    create?: XOR<usersCreateWithoutQuizzesInput, usersUncheckedCreateWithoutQuizzesInput>
+    connectOrCreate?: usersCreateOrConnectWithoutQuizzesInput
+    upsert?: usersUpsertWithoutQuizzesInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutQuizzesInput, usersUpdateWithoutQuizzesInput>, usersUncheckedUpdateWithoutQuizzesInput>
+  }
+
+  export type quiz_questionsUncheckedUpdateManyWithoutQuizzesNestedInput = {
+    create?: XOR<quiz_questionsCreateWithoutQuizzesInput, quiz_questionsUncheckedCreateWithoutQuizzesInput> | quiz_questionsCreateWithoutQuizzesInput[] | quiz_questionsUncheckedCreateWithoutQuizzesInput[]
+    connectOrCreate?: quiz_questionsCreateOrConnectWithoutQuizzesInput | quiz_questionsCreateOrConnectWithoutQuizzesInput[]
+    upsert?: quiz_questionsUpsertWithWhereUniqueWithoutQuizzesInput | quiz_questionsUpsertWithWhereUniqueWithoutQuizzesInput[]
+    createMany?: quiz_questionsCreateManyQuizzesInputEnvelope
+    set?: quiz_questionsWhereUniqueInput | quiz_questionsWhereUniqueInput[]
+    disconnect?: quiz_questionsWhereUniqueInput | quiz_questionsWhereUniqueInput[]
+    delete?: quiz_questionsWhereUniqueInput | quiz_questionsWhereUniqueInput[]
+    connect?: quiz_questionsWhereUniqueInput | quiz_questionsWhereUniqueInput[]
+    update?: quiz_questionsUpdateWithWhereUniqueWithoutQuizzesInput | quiz_questionsUpdateWithWhereUniqueWithoutQuizzesInput[]
+    updateMany?: quiz_questionsUpdateManyWithWhereWithoutQuizzesInput | quiz_questionsUpdateManyWithWhereWithoutQuizzesInput[]
+    deleteMany?: quiz_questionsScalarWhereInput | quiz_questionsScalarWhereInput[]
   }
 
   export type NestedUuidFilter<$PrismaModel = never> = {
@@ -43283,6 +46218,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -43325,6 +46261,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -43408,6 +46345,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -43450,6 +46388,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -43492,6 +46431,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -43534,6 +46474,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -43592,6 +46533,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -43634,6 +46576,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -43676,6 +46619,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -43718,6 +46662,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -43776,6 +46721,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -43818,6 +46764,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -43893,6 +46840,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -43935,6 +46883,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -44085,6 +47034,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -44127,6 +47077,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -44294,6 +47245,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -44336,6 +47288,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -44468,6 +47421,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -44510,6 +47464,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -44527,14 +47482,14 @@ export namespace Prisma {
   export type topicsCreateWithoutCoursesInput = {
     id?: string
     name: string
-    decription?: string | null
+    description?: string | null
     study_access_topic?: study_access_topicCreateNestedManyWithoutTopicsInput
   }
 
   export type topicsUncheckedCreateWithoutCoursesInput = {
     id?: string
     name: string
-    decription?: string | null
+    description?: string | null
     study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutTopicsInput
   }
 
@@ -44611,14 +47566,14 @@ export namespace Prisma {
   export type topicsUpdateWithoutCoursesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    decription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     study_access_topic?: study_access_topicUpdateManyWithoutTopicsNestedInput
   }
 
   export type topicsUncheckedUpdateWithoutCoursesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    decription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     study_access_topic?: study_access_topicUncheckedUpdateManyWithoutTopicsNestedInput
   }
 
@@ -44706,6 +47661,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -44748,6 +47704,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -44831,6 +47788,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -44873,6 +47831,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -44975,6 +47934,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -45017,6 +47977,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -45110,6 +48071,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -45152,6 +48114,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -45223,6 +48186,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -45265,6 +48229,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -45358,6 +48323,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -45400,6 +48366,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -45526,6 +48493,7 @@ export namespace Prisma {
     group_posts?: group_postsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -45568,6 +48536,7 @@ export namespace Prisma {
     group_posts?: group_postsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -45737,6 +48706,7 @@ export namespace Prisma {
     group_posts?: group_postsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -45779,6 +48749,7 @@ export namespace Prisma {
     group_posts?: group_postsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -45877,6 +48848,7 @@ export namespace Prisma {
     group_posts?: group_postsCreateNestedManyWithoutUsersInput
     groups?: groupsCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -45919,6 +48891,7 @@ export namespace Prisma {
     group_posts?: group_postsUncheckedCreateNestedManyWithoutUsersInput
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -46012,6 +48985,7 @@ export namespace Prisma {
     group_posts?: group_postsUpdateManyWithoutUsersNestedInput
     groups?: groupsUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -46054,6 +49028,7 @@ export namespace Prisma {
     group_posts?: group_postsUncheckedUpdateManyWithoutUsersNestedInput
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -46214,6 +49189,7 @@ export namespace Prisma {
     group_posts?: group_postsCreateNestedManyWithoutUsersInput
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -46256,6 +49232,7 @@ export namespace Prisma {
     group_posts?: group_postsUncheckedCreateNestedManyWithoutUsersInput
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -46419,6 +49396,7 @@ export namespace Prisma {
     group_posts?: group_postsUpdateManyWithoutUsersNestedInput
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -46461,6 +49439,7 @@ export namespace Prisma {
     group_posts?: group_postsUncheckedUpdateManyWithoutUsersNestedInput
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -46590,6 +49569,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
@@ -46632,6 +49612,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
@@ -46725,6 +49706,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
@@ -46767,6 +49749,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
@@ -46842,6 +49825,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
@@ -46884,6 +49868,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
@@ -46981,6 +49966,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
@@ -47023,6 +50009,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
@@ -47199,6 +50186,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
@@ -47241,6 +50229,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
@@ -47407,6 +50396,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
@@ -47449,6 +50439,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
@@ -47465,14 +50456,14 @@ export namespace Prisma {
   export type topicsCreateWithoutStudy_access_topicInput = {
     id?: string
     name: string
-    decription?: string | null
+    description?: string | null
     courses?: coursesCreateNestedManyWithoutTopicsInput
   }
 
   export type topicsUncheckedCreateWithoutStudy_access_topicInput = {
     id?: string
     name: string
-    decription?: string | null
+    description?: string | null
     courses?: coursesUncheckedCreateNestedManyWithoutTopicsInput
   }
 
@@ -47510,6 +50501,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -47552,6 +50544,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -47584,14 +50577,14 @@ export namespace Prisma {
   export type topicsUpdateWithoutStudy_access_topicInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    decription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     courses?: coursesUpdateManyWithoutTopicsNestedInput
   }
 
   export type topicsUncheckedUpdateWithoutStudy_access_topicInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    decription?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     courses?: coursesUncheckedUpdateManyWithoutTopicsNestedInput
   }
 
@@ -47635,6 +50628,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -47677,6 +50671,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -47837,6 +50832,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -47879,6 +50875,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -47937,6 +50934,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -47979,6 +50977,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -48045,6 +51044,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -48087,6 +51087,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -48172,6 +51173,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -48214,6 +51216,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -48285,6 +51288,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -48327,6 +51331,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -48420,6 +51425,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -48462,6 +51468,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -48528,6 +51535,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -48570,6 +51578,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -48655,6 +51664,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -48697,6 +51707,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -48760,6 +51771,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -48802,6 +51814,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -48887,6 +51900,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -48929,6 +51943,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -48971,6 +51986,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -49013,6 +52029,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -49060,6 +52077,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -49102,6 +52120,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -49160,6 +52179,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -49202,6 +52222,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -49255,6 +52276,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -49297,6 +52319,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -49339,6 +52362,7 @@ export namespace Prisma {
     groups?: groupsCreateNestedManyWithoutUsersInput
     messages?: messagesCreateNestedManyWithoutUsersInput
     posts?: postsCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
@@ -49381,6 +52405,7 @@ export namespace Prisma {
     groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
     messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
     posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
@@ -49466,6 +52491,7 @@ export namespace Prisma {
     groups?: groupsUpdateManyWithoutUsersNestedInput
     messages?: messagesUpdateManyWithoutUsersNestedInput
     posts?: postsUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
@@ -49508,6 +52534,7 @@ export namespace Prisma {
     groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
     messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
     posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
@@ -49580,12 +52607,12 @@ export namespace Prisma {
 
   export type attendanceCreateWithoutUsersInput = {
     id?: string
-    checkin_date?: Date | string
+    created_date?: Date | string
   }
 
   export type attendanceUncheckedCreateWithoutUsersInput = {
     id?: string
-    checkin_date?: Date | string
+    created_date?: Date | string
   }
 
   export type attendanceCreateOrConnectWithoutUsersInput = {
@@ -49864,6 +52891,30 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type quizzesCreateWithoutUsersInput = {
+    id: string
+    title: string
+    created_date: Date | string
+    quiz_questions?: quiz_questionsCreateNestedManyWithoutQuizzesInput
+  }
+
+  export type quizzesUncheckedCreateWithoutUsersInput = {
+    id: string
+    title: string
+    created_date: Date | string
+    quiz_questions?: quiz_questionsUncheckedCreateNestedManyWithoutQuizzesInput
+  }
+
+  export type quizzesCreateOrConnectWithoutUsersInput = {
+    where: quizzesWhereUniqueInput
+    create: XOR<quizzesCreateWithoutUsersInput, quizzesUncheckedCreateWithoutUsersInput>
+  }
+
+  export type quizzesCreateManyUsersInputEnvelope = {
+    data: quizzesCreateManyUsersInput | quizzesCreateManyUsersInput[]
+    skipDuplicates?: boolean
+  }
+
   export type react_commentsCreateWithoutUsersInput = {
     id?: string
     created_date?: Date | string
@@ -49972,14 +53023,22 @@ export namespace Prisma {
 
   export type transaction_historyCreateWithoutUsersInput = {
     id?: string
-    price?: Decimal | DecimalJsLike | number | string | null
-    createddate?: Date | string | null
+    amount?: Decimal | DecimalJsLike | number | string | null
+    created_date?: Date | string | null
+    order_code: string
+    status?: string | null
+    paid_at?: Date | string | null
+    description?: string | null
   }
 
   export type transaction_historyUncheckedCreateWithoutUsersInput = {
     id?: string
-    price?: Decimal | DecimalJsLike | number | string | null
-    createddate?: Date | string | null
+    amount?: Decimal | DecimalJsLike | number | string | null
+    created_date?: Date | string | null
+    order_code: string
+    status?: string | null
+    paid_at?: Date | string | null
+    description?: string | null
   }
 
   export type transaction_historyCreateOrConnectWithoutUsersInput = {
@@ -50210,7 +53269,7 @@ export namespace Prisma {
     NOT?: attendanceScalarWhereInput | attendanceScalarWhereInput[]
     id?: UuidFilter<"attendance"> | string
     user_id?: UuidFilter<"attendance"> | string
-    checkin_date?: DateTimeFilter<"attendance"> | Date | string
+    created_date?: DateTimeFilter<"attendance"> | Date | string
   }
 
   export type coin_transactionUpsertWithWhereUniqueWithoutUsersInput = {
@@ -50396,6 +53455,32 @@ export namespace Prisma {
     comment_count?: IntNullableFilter<"posts"> | number | null
   }
 
+  export type quizzesUpsertWithWhereUniqueWithoutUsersInput = {
+    where: quizzesWhereUniqueInput
+    update: XOR<quizzesUpdateWithoutUsersInput, quizzesUncheckedUpdateWithoutUsersInput>
+    create: XOR<quizzesCreateWithoutUsersInput, quizzesUncheckedCreateWithoutUsersInput>
+  }
+
+  export type quizzesUpdateWithWhereUniqueWithoutUsersInput = {
+    where: quizzesWhereUniqueInput
+    data: XOR<quizzesUpdateWithoutUsersInput, quizzesUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type quizzesUpdateManyWithWhereWithoutUsersInput = {
+    where: quizzesScalarWhereInput
+    data: XOR<quizzesUpdateManyMutationInput, quizzesUncheckedUpdateManyWithoutUsersInput>
+  }
+
+  export type quizzesScalarWhereInput = {
+    AND?: quizzesScalarWhereInput | quizzesScalarWhereInput[]
+    OR?: quizzesScalarWhereInput[]
+    NOT?: quizzesScalarWhereInput | quizzesScalarWhereInput[]
+    id?: UuidFilter<"quizzes"> | string
+    user_id?: UuidFilter<"quizzes"> | string
+    title?: StringFilter<"quizzes"> | string
+    created_date?: DateTimeFilter<"quizzes"> | Date | string
+  }
+
   export type react_commentsUpsertWithWhereUniqueWithoutUsersInput = {
     where: react_commentsWhereUniqueInput
     update: XOR<react_commentsUpdateWithoutUsersInput, react_commentsUncheckedUpdateWithoutUsersInput>
@@ -50482,8 +53567,12 @@ export namespace Prisma {
     NOT?: transaction_historyScalarWhereInput | transaction_historyScalarWhereInput[]
     id?: UuidFilter<"transaction_history"> | string
     user_id?: UuidFilter<"transaction_history"> | string
-    price?: DecimalNullableFilter<"transaction_history"> | Decimal | DecimalJsLike | number | string | null
-    createddate?: DateTimeNullableFilter<"transaction_history"> | Date | string | null
+    amount?: DecimalNullableFilter<"transaction_history"> | Decimal | DecimalJsLike | number | string | null
+    created_date?: DateTimeNullableFilter<"transaction_history"> | Date | string | null
+    order_code?: StringFilter<"transaction_history"> | string
+    status?: StringNullableFilter<"transaction_history"> | string | null
+    paid_at?: DateTimeNullableFilter<"transaction_history"> | Date | string | null
+    description?: StringNullableFilter<"transaction_history"> | string | null
   }
 
   export type user_abuse_reportsUpsertWithWhereUniqueWithoutUsersInput = {
@@ -50749,6 +53838,289 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     created_date?: DateTimeFieldUpdateOperationsInput | Date | string
     user_courses?: user_coursesUncheckedUpdateManyWithoutCoursesNestedInput
+  }
+
+  export type quizzesCreateWithoutQuiz_questionsInput = {
+    id: string
+    title: string
+    created_date: Date | string
+    users: usersCreateNestedOneWithoutQuizzesInput
+  }
+
+  export type quizzesUncheckedCreateWithoutQuiz_questionsInput = {
+    id: string
+    user_id: string
+    title: string
+    created_date: Date | string
+  }
+
+  export type quizzesCreateOrConnectWithoutQuiz_questionsInput = {
+    where: quizzesWhereUniqueInput
+    create: XOR<quizzesCreateWithoutQuiz_questionsInput, quizzesUncheckedCreateWithoutQuiz_questionsInput>
+  }
+
+  export type quizzesUpsertWithoutQuiz_questionsInput = {
+    update: XOR<quizzesUpdateWithoutQuiz_questionsInput, quizzesUncheckedUpdateWithoutQuiz_questionsInput>
+    create: XOR<quizzesCreateWithoutQuiz_questionsInput, quizzesUncheckedCreateWithoutQuiz_questionsInput>
+    where?: quizzesWhereInput
+  }
+
+  export type quizzesUpdateToOneWithWhereWithoutQuiz_questionsInput = {
+    where?: quizzesWhereInput
+    data: XOR<quizzesUpdateWithoutQuiz_questionsInput, quizzesUncheckedUpdateWithoutQuiz_questionsInput>
+  }
+
+  export type quizzesUpdateWithoutQuiz_questionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    created_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: usersUpdateOneRequiredWithoutQuizzesNestedInput
+  }
+
+  export type quizzesUncheckedUpdateWithoutQuiz_questionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    created_date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type quiz_questionsCreateWithoutQuizzesInput = {
+    id: string
+    question_text: string
+    options?: quiz_questionsCreateoptionsInput | string[]
+    correct_answer: string
+  }
+
+  export type quiz_questionsUncheckedCreateWithoutQuizzesInput = {
+    id: string
+    question_text: string
+    options?: quiz_questionsCreateoptionsInput | string[]
+    correct_answer: string
+  }
+
+  export type quiz_questionsCreateOrConnectWithoutQuizzesInput = {
+    where: quiz_questionsWhereUniqueInput
+    create: XOR<quiz_questionsCreateWithoutQuizzesInput, quiz_questionsUncheckedCreateWithoutQuizzesInput>
+  }
+
+  export type quiz_questionsCreateManyQuizzesInputEnvelope = {
+    data: quiz_questionsCreateManyQuizzesInput | quiz_questionsCreateManyQuizzesInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type usersCreateWithoutQuizzesInput = {
+    id?: string
+    username: string
+    passwordhash: string
+    birthday?: Date | string | null
+    gender?: boolean | null
+    fullname?: string | null
+    address?: string | null
+    email?: string | null
+    phonenumber?: string | null
+    created_date?: Date | string | null
+    isactive?: boolean | null
+    isadmin?: boolean | null
+    balance?: number | null
+    image_url?: string | null
+    is_block?: boolean | null
+    is_verified?: boolean | null
+    firebase_uid?: string | null
+    abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
+    attendance?: attendanceCreateNestedManyWithoutUsersInput
+    coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
+    comments?: commentsCreateNestedManyWithoutUsersInput
+    comments_group?: comments_groupCreateNestedManyWithoutUsersInput
+    error_report_feedbacks?: error_report_feedbacksCreateNestedManyWithoutUsersInput
+    group_members?: group_membersCreateNestedManyWithoutUsersInput
+    group_posts?: group_postsCreateNestedManyWithoutUsersInput
+    groups?: groupsCreateNestedManyWithoutUsersInput
+    messages?: messagesCreateNestedManyWithoutUsersInput
+    posts?: postsCreateNestedManyWithoutUsersInput
+    react_comments?: react_commentsCreateNestedManyWithoutUsersInput
+    react_posts?: react_postsCreateNestedManyWithoutUsersInput
+    shared_post?: shared_postCreateNestedManyWithoutUsersInput
+    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
+    transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
+    user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
+    user_courses?: user_coursesCreateNestedManyWithoutUsersInput
+    user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
+    user_packages?: user_packagesCreateNestedManyWithoutUsersInput
+    user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyCreateNestedManyWithoutUsers_user_profile_history_changed_byTousersInput
+    user_profile_history_user_profile_history_user_idTousers?: user_profile_historyCreateNestedManyWithoutUsers_user_profile_history_user_idTousersInput
+    user_progress?: user_progressCreateNestedManyWithoutUsersInput
+  }
+
+  export type usersUncheckedCreateWithoutQuizzesInput = {
+    id?: string
+    username: string
+    passwordhash: string
+    birthday?: Date | string | null
+    gender?: boolean | null
+    fullname?: string | null
+    address?: string | null
+    email?: string | null
+    phonenumber?: string | null
+    created_date?: Date | string | null
+    isactive?: boolean | null
+    isadmin?: boolean | null
+    balance?: number | null
+    image_url?: string | null
+    is_block?: boolean | null
+    is_verified?: boolean | null
+    firebase_uid?: string | null
+    abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
+    attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
+    coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
+    comments?: commentsUncheckedCreateNestedManyWithoutUsersInput
+    comments_group?: comments_groupUncheckedCreateNestedManyWithoutUsersInput
+    error_report_feedbacks?: error_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
+    group_members?: group_membersUncheckedCreateNestedManyWithoutUsersInput
+    group_posts?: group_postsUncheckedCreateNestedManyWithoutUsersInput
+    groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
+    messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
+    posts?: postsUncheckedCreateNestedManyWithoutUsersInput
+    react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
+    react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
+    shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
+    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
+    transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
+    user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
+    user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
+    user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
+    user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
+    user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyUncheckedCreateNestedManyWithoutUsers_user_profile_history_changed_byTousersInput
+    user_profile_history_user_profile_history_user_idTousers?: user_profile_historyUncheckedCreateNestedManyWithoutUsers_user_profile_history_user_idTousersInput
+    user_progress?: user_progressUncheckedCreateNestedManyWithoutUsersInput
+  }
+
+  export type usersCreateOrConnectWithoutQuizzesInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutQuizzesInput, usersUncheckedCreateWithoutQuizzesInput>
+  }
+
+  export type quiz_questionsUpsertWithWhereUniqueWithoutQuizzesInput = {
+    where: quiz_questionsWhereUniqueInput
+    update: XOR<quiz_questionsUpdateWithoutQuizzesInput, quiz_questionsUncheckedUpdateWithoutQuizzesInput>
+    create: XOR<quiz_questionsCreateWithoutQuizzesInput, quiz_questionsUncheckedCreateWithoutQuizzesInput>
+  }
+
+  export type quiz_questionsUpdateWithWhereUniqueWithoutQuizzesInput = {
+    where: quiz_questionsWhereUniqueInput
+    data: XOR<quiz_questionsUpdateWithoutQuizzesInput, quiz_questionsUncheckedUpdateWithoutQuizzesInput>
+  }
+
+  export type quiz_questionsUpdateManyWithWhereWithoutQuizzesInput = {
+    where: quiz_questionsScalarWhereInput
+    data: XOR<quiz_questionsUpdateManyMutationInput, quiz_questionsUncheckedUpdateManyWithoutQuizzesInput>
+  }
+
+  export type quiz_questionsScalarWhereInput = {
+    AND?: quiz_questionsScalarWhereInput | quiz_questionsScalarWhereInput[]
+    OR?: quiz_questionsScalarWhereInput[]
+    NOT?: quiz_questionsScalarWhereInput | quiz_questionsScalarWhereInput[]
+    id?: UuidFilter<"quiz_questions"> | string
+    quiz_id?: UuidFilter<"quiz_questions"> | string
+    question_text?: StringFilter<"quiz_questions"> | string
+    options?: StringNullableListFilter<"quiz_questions">
+    correct_answer?: StringFilter<"quiz_questions"> | string
+  }
+
+  export type usersUpsertWithoutQuizzesInput = {
+    update: XOR<usersUpdateWithoutQuizzesInput, usersUncheckedUpdateWithoutQuizzesInput>
+    create: XOR<usersCreateWithoutQuizzesInput, usersUncheckedCreateWithoutQuizzesInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutQuizzesInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutQuizzesInput, usersUncheckedUpdateWithoutQuizzesInput>
+  }
+
+  export type usersUpdateWithoutQuizzesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    passwordhash?: StringFieldUpdateOperationsInput | string
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fullname?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isactive?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    isadmin?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    balance?: NullableIntFieldUpdateOperationsInput | number | null
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
+    attendance?: attendanceUpdateManyWithoutUsersNestedInput
+    coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
+    comments?: commentsUpdateManyWithoutUsersNestedInput
+    comments_group?: comments_groupUpdateManyWithoutUsersNestedInput
+    error_report_feedbacks?: error_report_feedbacksUpdateManyWithoutUsersNestedInput
+    group_members?: group_membersUpdateManyWithoutUsersNestedInput
+    group_posts?: group_postsUpdateManyWithoutUsersNestedInput
+    groups?: groupsUpdateManyWithoutUsersNestedInput
+    messages?: messagesUpdateManyWithoutUsersNestedInput
+    posts?: postsUpdateManyWithoutUsersNestedInput
+    react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
+    react_posts?: react_postsUpdateManyWithoutUsersNestedInput
+    shared_post?: shared_postUpdateManyWithoutUsersNestedInput
+    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
+    transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
+    user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
+    user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
+    user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
+    user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
+    user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyUpdateManyWithoutUsers_user_profile_history_changed_byTousersNestedInput
+    user_profile_history_user_profile_history_user_idTousers?: user_profile_historyUpdateManyWithoutUsers_user_profile_history_user_idTousersNestedInput
+    user_progress?: user_progressUpdateManyWithoutUsersNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutQuizzesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    passwordhash?: StringFieldUpdateOperationsInput | string
+    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fullname?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isactive?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    isadmin?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    balance?: NullableIntFieldUpdateOperationsInput | number | null
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
+    attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
+    coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
+    comments?: commentsUncheckedUpdateManyWithoutUsersNestedInput
+    comments_group?: comments_groupUncheckedUpdateManyWithoutUsersNestedInput
+    error_report_feedbacks?: error_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
+    group_members?: group_membersUncheckedUpdateManyWithoutUsersNestedInput
+    group_posts?: group_postsUncheckedUpdateManyWithoutUsersNestedInput
+    groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
+    messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
+    posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
+    react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
+    react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
+    shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
+    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
+    transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
+    user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
+    user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
+    user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
+    user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
+    user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyUncheckedUpdateManyWithoutUsers_user_profile_history_changed_byTousersNestedInput
+    user_profile_history_user_profile_history_user_idTousers?: user_profile_historyUncheckedUpdateManyWithoutUsers_user_profile_history_user_idTousersNestedInput
+    user_progress?: user_progressUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type react_commentsCreateManyCommentsInput = {
@@ -51402,7 +54774,7 @@ export namespace Prisma {
 
   export type attendanceCreateManyUsersInput = {
     id?: string
-    checkin_date?: Date | string
+    created_date?: Date | string
   }
 
   export type coin_transactionCreateManyUsersInput = {
@@ -51484,6 +54856,12 @@ export namespace Prisma {
     comment_count?: number | null
   }
 
+  export type quizzesCreateManyUsersInput = {
+    id: string
+    title: string
+    created_date: Date | string
+  }
+
   export type react_commentsCreateManyUsersInput = {
     id?: string
     comment_id: string
@@ -51517,8 +54895,12 @@ export namespace Prisma {
 
   export type transaction_historyCreateManyUsersInput = {
     id?: string
-    price?: Decimal | DecimalJsLike | number | string | null
-    createddate?: Date | string | null
+    amount?: Decimal | DecimalJsLike | number | string | null
+    created_date?: Date | string | null
+    order_code: string
+    status?: string | null
+    paid_at?: Date | string | null
+    description?: string | null
   }
 
   export type user_abuse_reportsCreateManyUsersInput = {
@@ -51597,17 +54979,17 @@ export namespace Prisma {
 
   export type attendanceUpdateWithoutUsersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    checkin_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type attendanceUncheckedUpdateWithoutUsersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    checkin_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type attendanceUncheckedUpdateManyWithoutUsersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    checkin_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type coin_transactionUpdateWithoutUsersInput = {
@@ -51865,6 +55247,26 @@ export namespace Prisma {
     comment_count?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
+  export type quizzesUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    created_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    quiz_questions?: quiz_questionsUpdateManyWithoutQuizzesNestedInput
+  }
+
+  export type quizzesUncheckedUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    created_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    quiz_questions?: quiz_questionsUncheckedUpdateManyWithoutQuizzesNestedInput
+  }
+
+  export type quizzesUncheckedUpdateManyWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    created_date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type react_commentsUpdateWithoutUsersInput = {
     id?: StringFieldUpdateOperationsInput | string
     created_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -51964,20 +55366,32 @@ export namespace Prisma {
 
   export type transaction_historyUpdateWithoutUsersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    createddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    order_code?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transaction_historyUncheckedUpdateWithoutUsersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    createddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    order_code?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type transaction_historyUncheckedUpdateManyWithoutUsersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    createddate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    order_code?: StringFieldUpdateOperationsInput | string
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    paid_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type user_abuse_reportsUpdateWithoutUsersInput = {
@@ -52173,6 +55587,34 @@ export namespace Prisma {
     level?: IntFieldUpdateOperationsInput | number
     createdstudydate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedstudydate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type quiz_questionsCreateManyQuizzesInput = {
+    id: string
+    question_text: string
+    options?: quiz_questionsCreateoptionsInput | string[]
+    correct_answer: string
+  }
+
+  export type quiz_questionsUpdateWithoutQuizzesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question_text?: StringFieldUpdateOperationsInput | string
+    options?: quiz_questionsUpdateoptionsInput | string[]
+    correct_answer?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type quiz_questionsUncheckedUpdateWithoutQuizzesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question_text?: StringFieldUpdateOperationsInput | string
+    options?: quiz_questionsUpdateoptionsInput | string[]
+    correct_answer?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type quiz_questionsUncheckedUpdateManyWithoutQuizzesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question_text?: StringFieldUpdateOperationsInput | string
+    options?: quiz_questionsUpdateoptionsInput | string[]
+    correct_answer?: StringFieldUpdateOperationsInput | string
   }
 
 

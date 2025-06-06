@@ -25,11 +25,16 @@ const AuthService = {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const userRecord = await admin.auth().createUser({
-      email,
-      password,
-      displayName: username,
-    });
+    const userRecord = await admin
+      .auth()
+      .createUser({
+        email,
+        password,
+        displayName: username,
+      })
+      .catch((error) => {
+        throw new Error(`Firebase user creation failed: ${error.message}`);
+      });
 
     const newUser = await UserService.createUser({
       username,
@@ -39,6 +44,9 @@ const AuthService = {
       isVerified: false,
     });
 
+    if (!newUser) {
+      throw new Error("Không thể tạo người dùng mới");
+    }
     return {
       message: "User tạo thành công. Vui lòng xác thực email",
       user: newUser,

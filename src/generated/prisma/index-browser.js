@@ -131,7 +131,7 @@ exports.Prisma.Abuse_report_feedbacksScalarFieldEnum = {
 exports.Prisma.AttendanceScalarFieldEnum = {
   id: 'id',
   user_id: 'user_id',
-  checkin_date: 'checkin_date'
+  created_date: 'created_date'
 };
 
 exports.Prisma.Coin_transactionScalarFieldEnum = {
@@ -279,14 +279,18 @@ exports.Prisma.Study_access_topicScalarFieldEnum = {
 exports.Prisma.TopicsScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  decription: 'decription'
+  description: 'description'
 };
 
 exports.Prisma.Transaction_historyScalarFieldEnum = {
   id: 'id',
   user_id: 'user_id',
-  price: 'price',
-  createddate: 'createddate'
+  amount: 'amount',
+  created_date: 'created_date',
+  order_code: 'order_code',
+  status: 'status',
+  paid_at: 'paid_at',
+  description: 'description'
 };
 
 exports.Prisma.User_abuse_reportsScalarFieldEnum = {
@@ -371,6 +375,21 @@ exports.Prisma.WordsScalarFieldEnum = {
   course_id: 'course_id'
 };
 
+exports.Prisma.Quiz_questionsScalarFieldEnum = {
+  id: 'id',
+  quiz_id: 'quiz_id',
+  question_text: 'question_text',
+  options: 'options',
+  correct_answer: 'correct_answer'
+};
+
+exports.Prisma.QuizzesScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  title: 'title',
+  created_date: 'created_date'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -425,7 +444,9 @@ exports.Prisma.ModelName = {
   user_profile_history: 'user_profile_history',
   user_progress: 'user_progress',
   users: 'users',
-  words: 'words'
+  words: 'words',
+  quiz_questions: 'quiz_questions',
+  quizzes: 'quizzes'
 };
 
 /**

@@ -23,9 +23,144 @@ function getQuarter(date) {
 }
 
 const UserService = {
-  async getAllUsers() {
-    const result = await pool.query("SELECT * FROM users");
-    return result.rows.map((row) => new User(row));
+  async getAllUsers(criteria) {
+    const { search, page, rowsPerPage, sortBy, sortOrder } = criteria;
+    let where = {};
+    if (search) {
+      where = {
+        OR: [
+          { username: { contains: search, mode: "insensitive" } },
+          { email: { contains: search, mode: "insensitive" } },
+          { fullname: { contains: search, mode: "insensitive" } },
+        ],
+      };
+    }
+
+    const validSortColumn = ["id", "username", "email"];
+    const sortColumn = validSortColumn.includes(sortBy) ? sortBy : "id";
+    const sortDirection = sortOrder.toUpperCase() === "DESC" ? "desc" : "asc";
+
+    const skip = (page - 1) * rowsPerPage;
+    const take = rowsPerPage;
+
+    const users = await prisma.users.findMany({
+      where,
+      orderBy: {
+        [sortColumn]: sortDirection,
+      },
+      skip,
+      take,
+    });
+
+    const totalUsers = await prisma.users.count({
+      where,
+    });
+    return {
+      users,
+      totalUsers,
+    };
+  },
+
+  async getLearningList(criteria) {
+    const {
+      search,
+      page = 1,
+      rowsPerPage = 10,
+      sortBy = "fullname", // "fullname" | "chuoi" | "tu" | "chude"
+      sortOrder = "asc", // "asc" | "desc" (case-insensitive)
+    } = criteria;
+
+    const sortOrderNormalized = sortOrder.toLowerCase();
+
+    // Tìm theo tên nếu có
+    const where = search
+      ? {
+          fullname: {
+            contains: search,
+            mode: "insensitive",
+          },
+        }
+      : {};
+
+    // Lấy danh sách users (chỉ sắp xếp bằng Prisma nếu là fullname)
+    const users = await prisma.users.findMany({
+      where,
+      skip: (page - 1) * rowsPerPage,
+      take: rowsPerPage,
+      orderBy:
+        sortBy === "fullname" ? { fullname: sortOrderNormalized } : undefined,
+      select: {
+        id: true,
+        fullname: true,
+        image_url: true,
+      },
+    });
+
+    const userIds = users.map((u) => u.id);
+
+    // Lấy chuỗi, chủ đề, từ đã học
+    const [attendanceCounts, topicCounts, wordCounts] = await Promise.all([
+      prisma.attendance.groupBy({
+        by: ["user_id"],
+        where: { user_id: { in: userIds } },
+        _count: true,
+      }),
+      prisma.study_access_topic.groupBy({
+        by: ["user_id"],
+        where: { user_id: { in: userIds } },
+        _count: true,
+      }),
+      prisma.user_progress.groupBy({
+        by: ["user_id"],
+        where: { user_id: { in: userIds } },
+        _count: true,
+      }),
+    ]);
+
+    // Tổng hợp dữ liệu
+    const result = users.map((user) => {
+      const chuoi =
+        attendanceCounts.find((a) => a.user_id === user.id)?._count || 0;
+      const chude = topicCounts.find((t) => t.user_id === user.id)?._count || 0;
+      const tu = wordCounts.find((w) => w.user_id === user.id)?._count || 0;
+
+      return {
+        fullname: user.fullname,
+        image_url: user.image_url,
+        chuoi,
+        tu,
+        chude,
+      };
+    });
+
+    // Nếu sắp xếp theo chuoi/tu/chude thì sort thủ công
+    if (sortBy !== "fullname") {
+      result.sort((a, b) => {
+        const valA = a[sortBy];
+        const valB = b[sortBy];
+        return sortOrderNormalized === "asc" ? valA - valB : valB - valA;
+      });
+    }
+
+    return result;
+  },
+
+  async getById(id) {
+    try {
+      const user = await prisma.users.findUnique({
+        where: {
+          id: id,
+        },
+      });
+      if (!user) {
+        throw new Error("User not found");
+      }
+
+      return user;
+    } catch (err) {
+      console.error("Error in getById", err);
+      throw new Error("Internal server error");
+    }
   },
 
   async getQuarterlyUserStats() {
@@ -234,52 +369,47 @@ const UserService = {
     );
     return result.rows;
   },
-  async updateUser(id, data) {
-    const {
-      username,
-      email,
-      phonenumber,
-      birthday,
-      gender,
-      fullname,
-      address,
-      image_url,
-    } = data;
+  async updateUser(userId, newData, changedBy) {
+    return await prisma.$transaction(async (tx) => {
+      // Lấy dữ liệu cũ
+      const oldUser = await tx.users.findUnique({
+        where: { id: userId },
+      });
 
-    // Bước 1: Kiểm tra người dùng có tồn tại không
-    const check = await pool.query(`SELECT * FROM users WHERE id = $1`, [id]);
-    if (check.rows.length === 0) {
-      throw new Error("User not found");
-    }
+      if (!oldUser) {
+        throw new Error("Người dùng không tồn tại");
+      }
 
-    // Bước 2: Tiến hành cập nhật
-    const result = await pool.query(
-      `UPDATE users
-      SET
-        username = $1,
-        email = $2,
-        phonenumber = $3,
-        birthday = $4,
-        gender = $5,
-        fullname = $6,
-        address = $7,
-        image_url = $8
-      WHERE id = $9
-      RETURNING *`,
-      [
-        username,
-        email,
-        phonenumber,
-        birthday,
-        gender,
-        fullname,
-        address,
-        image_url,
-        id,
-      ]
-    );
+      // Ép kiểu birthday nếu có
+      if (newData.birthday) {
+        try {
+          newData.birthday = new Date(newData.birthday);
+          if (isNaN(newData.birthday.getTime())) {
+            throw new Error("Ngày sinh không đúng định dạng");
+          }
+        } catch (e) {
+          throw new Error("Ngày sinh không hợp lệ");
+        }
+      }
 
-    return new UserUpdateVModel(result.rows[0]);
+      // Cập nhật user
+      const updatedUser = await tx.users.update({
+        where: { id: userId },
+        data: newData,
+      });
+
+      // Ghi lịch sử cập nhật
+      await tx.user_profile_history.create({
+        data: {
+          user_id: userId,
+          changed_by: changedBy,
+          old_data: oldUser,
+          new_data: updatedUser,
+        },
+      });
+
+      return updatedUser;
+    });
   },
   async blockUser(id) {
     const check = await pool.query(`SELECT * FROM users WHERE id = $1`, [id]);
@@ -346,6 +476,122 @@ const UserService = {
       return null; // hoặc undefined
     }
     return result.rows[0]; // Trả về user object
+  },
+
+  async getLongestAndShortestStreak() {
+    try {
+      const records = await prisma.attendance.findMany({
+        orderBy: [{ user_id: "asc" }, { created_date: "asc" }],
+      });
+
+      const streaks = {};
+      let currentUserId = null;
+      let countStreak = 0;
+
+      records.forEach((record, index) => {
+        if (record.user_id !== currentUserId) {
+          if (currentUserId !== null) {
+            streaks[currentUserId] = streaks[currentUserId] || [];
+            streaks[currentUserId].push(countStreak);
+          }
+          currentUserId = record.user_id;
+          countStreak = 1;
+        } else {
+          const prevRecord = records[index - 1];
+          const dayDiff =
+            (new Date(record.created_date) -
+              new Date(prevRecord.created_date)) /
+            (1000 * 3600 * 24);
+
+          if (dayDiff === 1) {
+            countStreak++;
+          } else {
+            streaks[currentUserId].push(countStreak);
+            countStreak = 1;
+          }
+        }
+      });
+
+      if (currentUserId !== null) {
+        streaks[currentUserId] = streaks[currentUserId] || [];
+        streaks[currentUserId].push(countStreak);
+      }
+
+      let longestUserId = null;
+      let shortestUserId = null;
+      let longestStreak = 0;
+      let shortestStreak = Infinity;
+
+      for (const userId in streaks) {
+        const maxStreak = Math.max(...streaks[userId]);
+        const minStreak = Math.min(...streaks[userId]);
+
+        if (maxStreak > longestStreak) {
+          longestStreak = maxStreak;
+          longestUserId = userId;
+        }
+
+        if (minStreak < shortestStreak) {
+          shortestStreak = minStreak;
+          shortestUserId = userId;
+        }
+      }
+
+      const longestUser = await prisma.users.findUnique({
+        where: { id: longestUserId },
+      });
+
+      const shortestUser = await prisma.users.findUnique({
+        where: { id: shortestUserId },
+      });
+
+      return {
+        longestFullname: longestUser ? longestUser.fullname : "N/A",
+        longestStreak,
+        shortestFullname: shortestUser ? shortestUser.fullname : "N/A",
+        shortestStreak,
+      };
+    } catch (err) {
+      console.error("Error in getLongestAndShortestStreak:", err);
+      throw new Error("Failed to fetch streak data");
+    }
+  },
+
+  async getTopSevenTopic() {
+    const rawResults = await prisma.$queryRawUnsafe(`
+      SELECT t.name, COUNT(sat.topic_id) AS access_count
+      FROM study_access_topic sat
+      JOIN topics t ON sat.topic_id = t.id
+      GROUP BY t.name
+      ORDER BY access_count DESC
+      LIMIT 7;
+    `);
+
+    return rawResults.map((item) => ({
+      name: item.name,
+      accessCount: Number(item.access_count),
+    }));
+  },
+
+  async getTopFiveLearning() {
+    const result = await prisma.user_progress.groupBy({
+      by: ["user_id"],
+      _count: { word_id: true },
+    });
+
+    const enriched = await Promise.all(
+      result.map(async (item) => {
+        const user = await prisma.users.findUnique({
+          where: { id: item.user_id },
+          select: { fullname: true },
+        });
+        return {
+          fullname: user?.fullname || "unknown",
+          wordCount: item._count.word_id,
+        };
+      })
+    );
+    return enriched.sort((a, b) => b.wordCount - a.wordCount).slice(0, 5);
   },
 };
 
