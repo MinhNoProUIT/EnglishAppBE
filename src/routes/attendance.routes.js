@@ -58,18 +58,9 @@ router.get("/getAll", AttendanceController.getAllAttendance);
  *     summary: Tạo điểm danh mới
  *     tags: [Attendance]
  *     requestBody:
- *       required: true
+ *       required: false
  *       content:
  *         application/json:
- *           schema:
- *             type: object
- *             required:
- *               - user_id
- *             properties:
- *               user_id:
- *                 type: string
- *                 format: uuid
- *                 description: ID của user điểm danh
  *     responses:
  *       201:
  *         description: Tạo điểm danh thành công
@@ -78,7 +69,7 @@ router.get("/getAll", AttendanceController.getAllAttendance);
  *             schema:
  *               type: object
  */
-router.post("/create", AttendanceController.createAttendance);
+router.post("/create", authMiddleware, AttendanceController.createAttendance);
 
 /**
  * @swagger

@@ -12,8 +12,12 @@ const AttendanceService = {
     });
   },
 
-  async createAttendance(data) {
-    return await prisma.attendance.create({ data });
+  async createAttendance(userId) {
+    return await prisma.attendance.create({
+      data: {
+        user_id: userId, // Đảm bảo sử dụng đúng tên trường trong schema
+      },
+    });
   },
 
   async deleteAttendance(id) {

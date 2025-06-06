@@ -31,8 +31,10 @@ const AttendanceController = {
 
   async createAttendance(req, res) {
     try {
-      const data = req.body;
-      const created = await AttendanceService.createAttendance(data);
+      //const data = req.body;
+      const created = await AttendanceService.createAttendance(
+        getCurrentUserId(req)
+      );
       res.status(201).json(formatResponse(true, created));
     } catch (err) {
       console.error("Error in createAttendance:", err);
