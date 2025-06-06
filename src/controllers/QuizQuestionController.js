@@ -8,8 +8,8 @@ const {
 const QuizQuestionController = {
   async getAllQuizQuestionsByQuiz(req, res) {
     try {
-      const { quiz_id } = req.params;
-      const allQuizQuestions = await QuizQuestionService.getAllQuizQuestionsByQuiz(quiz_id);
+      const { id } = req.params;
+      const allQuizQuestions = await QuizQuestionService.getAllQuizQuestionsByQuiz(id);
       res.json(allQuizQuestions.map(mapGetAllQuizQuestionsByQuizToVModel));
     } catch (err) {
       console.error("Error in getAllQuizQuestionsByQuiz:", err);

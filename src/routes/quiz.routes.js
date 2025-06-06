@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const QuizController = require("../controllers/QuizController");
 
-router.get("/getAllByUser/:id", QuizController.getAllQuizzesByUser);
+router.get("/getAllByUser", QuizController.getAllQuizzesByUser);
 router.post("/create", QuizController.createQuiz);
 router.put("/update/:id", QuizController.updateQuiz);
 router.delete("/delete/:id", QuizController.deleteQuiz);
@@ -18,18 +18,10 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/quizzes/getAllByUser/{id}:
+ * /api/quizzes/getAllByUser:
  *   get:
  *     summary: Lấy danh sách tất cả quiz theo người dùng
  *     tags: [Quizzes]
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         description: ID của người dùng
- *         schema:
- *           type: string
- *           format: uuid
  *     responses:
  *       200:
  *         description: Danh sách quiz của người dùng
