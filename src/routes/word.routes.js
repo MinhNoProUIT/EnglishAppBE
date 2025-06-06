@@ -139,7 +139,7 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/words/getAllByCourse/{id}::
+ * /api/words/getAllByCourse/{id}:
  *   get:
  *     summary: Lấy danh sách tất cả từ vựng theo khóa học
  *     tags: [Words]
