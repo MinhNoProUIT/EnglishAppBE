@@ -1,14 +1,19 @@
 const pool = require("../config/db");
-const Course = require("../models/Course");
+const { PrismaClient } = require("../generated/prisma");
+const prisma = new PrismaClient();
 
 const CourseService = {
   async getAllCourses() {
-    const result = await pool.query(
-      `
-      SELECT * FROM courses
-    `
-    );
-    return result.rows;
+    return await prisma.courses.findMany({
+      orderBy: { title: 'asc' },
+      include: {
+        topics: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
   },
 
   async getTotalCourses() {
@@ -40,17 +45,22 @@ const CourseService = {
   },
 
   async createCourse(data) {
-    const { title, topic_id, level, description, image_url, price } = data;
+    return await prisma.courses.create({
+      data,
+    });
+  },
 
-    const result = await pool.query(
-      `INSERT INTO courses 
-        (title, topic_id, level, description, image_url, price)
-       VALUES ($1, $2, $3, $4, $5, $6)
-       RETURNING *`,
-      [title, topic_id, level, description, image_url, price]
-    );
+  async updateCourse(id, data) {
+    return await prisma.courses.update({
+      where: { id },
+      data,
+    });
+  },
 
-    return new Course(result.rows[0]);
+  async deleteCourse(id) {
+    return await prisma.courses.delete({
+      where: { id },
+    });
   },
 };
 

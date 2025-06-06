@@ -1,8 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const ReactCommentController = require("../controllers/ReactCommentController");
+const authMiddleware = require("../middlewares/auth.middleware");
 
-router.get("/getAllByPost/:id", ReactCommentController.getAllReactCommentsByPost);
+router.get(
+  "/getAllByPost/:id",
+  ReactCommentController.getAllReactCommentsByPost
+);
 router.post("/create", ReactCommentController.createReactComment);
 router.delete("/delete/:id", ReactCommentController.deleteReactComment);
 
@@ -88,5 +92,3 @@ module.exports = router;
  *       200:
  *         description: Đã xóa react khỏi bình luận thành công
  */
-
-

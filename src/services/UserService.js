@@ -180,21 +180,21 @@ const UserService = {
 
     const users = await prisma.users.findMany({
       where: {
-        createddate: {
+        created_date: {
           gte: startDate,
           lte: endDate,
         },
       },
       select: {
-        createddate: true,
+        created_date: true,
       },
     });
 
     const counts = {};
 
-    users.forEach(({ createddate }) => {
-      const year = createddate.getFullYear();
-      const quarter = getQuarter(createddate);
+    users.forEach(({ created_date }) => {
+      const year = created_date.getFullYear();
+      const quarter = getQuarter(created_date);
       const key = `${year}-Q${quarter}`;
       counts[key] = (counts[key] || 0) + 1;
     });

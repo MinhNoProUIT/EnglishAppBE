@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const ReactPostController = require("../controllers/ReactPostController");
+const authMiddleware = require("../middlewares/auth.middleware");
 
 router.get("/getTotal/:id", ReactPostController.getTotalReactPost);
-router.post("/create", ReactPostController.createReactPost);
+router.post("/create", authMiddleware, ReactPostController.createReactPost);
 router.delete("/delete/:id", ReactPostController.deleteReactPost);
 
 module.exports = router;
@@ -83,5 +84,3 @@ module.exports = router;
  *       200:
  *         description: Đã xóa react khỏi bài viết thành công
  */
-
-

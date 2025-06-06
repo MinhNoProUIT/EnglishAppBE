@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const MessageController = require("../controllers/MessageController");
+const authMiddleware = require("../middlewares/auth.middleware");
 
 router.post("/send", MessageController.sendMesage);
 router.get("/getAll/:group_id", MessageController.getAllMessageInGroup);
@@ -77,7 +78,7 @@ module.exports = router;
  *                     type: string
  *                   sender_id:
  *                     type: string
- *                     format: uuid   
+ *                     format: uuid
  *                   sender_username:
  *                     type: string
  *                   sender_image_url:
@@ -90,4 +91,3 @@ module.exports = router;
  *       400:
  *         description: Không thể lấy tin nhắn
  */
-

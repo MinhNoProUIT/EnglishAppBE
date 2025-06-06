@@ -5,6 +5,8 @@ const CourseController = require("../controllers/CourseController");
 router.get("/getAll", CourseController.getAllCourses);
 router.get("/getTotal", CourseController.getTotalCourses);
 router.post("/create", CourseController.createCourse);
+router.put("/update/:id", CourseController.updateCourse);
+router.delete("/delete/:id", CourseController.deleteCourse);
 
 module.exports = router;
 
@@ -87,11 +89,82 @@ module.exports = router;
  *               image_url:
  *                 type: string
  *               price:
- *                 type: number
- *                 format: float
+ *                 type: integer
+ *             example:
+ *               title: Basic English
+ *               topic_id: 4f0d231d-ad92-4459-a282-63f391bc32fe
+ *               level: A1 - A2
+ *               description: A beginner English course
+ *               image_url: https://example.com/image.png
+ *               price: 100
  *     responses:
  *       201:
  *         description: Đã tạo khóa học thành công
+ */
+
+/**
+ * @swagger
+ * /api/courses/update/{id}:
+ *   put:
+ *     summary: Chỉnh sửa khóa học
+ *     tags: [Courses]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID khóa học cần chỉnh sửa
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               topic_id:
+ *                 type: string
+ *                 format: uuid
+ *               level:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               image_url:
+ *                 type: string
+ *               price:
+ *                 type: integer
+ *             example:
+ *               title: Basic English
+ *               topic_id: 4f0d231d-ad92-4459-a282-63f391bc32fe
+ *               level: A1 - A2
+ *               description: A beginner English course
+ *               image_url: https://example.com/image.png
+ *               price: 100 
+ *     responses:
+ *       200:
+ *         description: Đã chỉnh sửa khóa học thành công
+ */
+
+/**
+ * @swagger
+ * /api/courses/delete/{id}:
+ *   delete:
+ *     summary: Xóa khóa học
+ *     tags: [Courses]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: ID khóa học cần xóa
+ *     responses:
+ *       200:
+ *         description: Xóa khóa học thành công
  */
 
 /**

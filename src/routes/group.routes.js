@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const upload = require('../middlewares/upload.middleware');
+const upload = require("../middlewares/upload.middleware");
 const GroupController = require("../controllers/GroupController");
+const authMiddleware = require("../middlewares/auth.middleware");
 
-router.post("/create", upload.single('image'), GroupController.createGroup);
-router.put("/edit/:id", upload.single('image'), GroupController.editGroup);
+router.post("/create", upload.single("image"), GroupController.createGroup);
+router.patch("/change-name/:id", GroupController.changeNameGroup);
+router.patch("/change-image/:id", upload.single("image"), GroupController.changeImageGroup);
 router.get("/details/:id", GroupController.getDetailsGroup);
 
 module.exports = router;
@@ -53,9 +55,9 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/groups/edit/{id}:
- *   put:
- *     summary: Chỉnh sửa thông tin nhóm
+ * /api/groups/change-name/{id}:
+ *   patch:
+ *     summary: Đổi tên nhóm
  *     tags: [Group]
  *     parameters:
  *       - in: path
@@ -66,19 +68,52 @@ module.exports = router;
  *           type: string
  *           format: uuid
  *     requestBody:
+ *       required: true
  *       content:
- *          multipart/form-data:
+ *         application/json:
  *           schema:
  *             type: object
  *             properties:
  *               name:
  *                 type: string
+ *     responses:
+ *       200:
+ *         description: Tên nhóm đã được cập nhật
+ *       400:
+ *         description: Yêu cầu không hợp lệ
+ *       404:
+ *         description: Không tìm thấy nhóm
+ */
+
+/**
+ * @swagger
+ * /api/groups/change-image/{id}:
+ *   patch:
+ *     summary: Đổi ảnh nhóm
+ *     tags: [Group]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID của nhóm
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
  *               image:
  *                 type: string
  *                 format: binary
  *     responses:
  *       200:
- *         description: Cập nhật nhóm thành công
+ *         description: Ảnh nhóm đã được cập nhật
+ *       400:
+ *         description: Yêu cầu không hợp lệ
  *       404:
  *         description: Không tìm thấy nhóm
  */

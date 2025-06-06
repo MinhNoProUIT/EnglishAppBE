@@ -40,6 +40,24 @@ class createCourseVModel {
   }
 }
 
+class updateCourseVModel {
+  constructor({
+    title,
+    topic_id,
+    level,
+    description,
+    image_url,
+    price,
+  }) {
+    this.title = title;
+    this.topic_id = topic_id;
+    this.level = level;
+    this.description = description;
+    this.image_url = image_url;
+    this.price = price;
+  }
+}
+
 class getTotalCourseVModel {
   constructor({ total, rate }) {
     this.total = total;
@@ -50,5 +68,6 @@ class getTotalCourseVModel {
 module.exports = {
   getAllCoursesVModel,
   createCourseVModel,
+  updateCourseVModel,
   getTotalCourseVModel
 };

@@ -3,7 +3,9 @@ const cors = require("cors");
 const userRoutes = require("./routes/user.routes");
 const postRoutes = require("./routes/post.routes");
 const userErrorReportRoutes = require("./routes/userErrorReport.routes");
+const topicRoutes = require("./routes/topic.routes");
 const courseRoutes = require("./routes/course.routes");
+const wordRoutes = require("./routes/word.routes");
 const commentRoutes = require("./routes/comment.routes");
 const reactCommentRoutes = require("./routes/reactComment.routes");
 const reactPostRoutes = require("./routes/reactPost.routes");
@@ -13,10 +15,21 @@ const groupMemberRoutes = require("./routes/groupMember.routes");
 const messageRoutes = require("./routes/message.routes");
 const authRoutes = require("./routes/auth.routes");
 const coinTransactionRoutes = require("./routes/cointransaction.routes");
-const userAbuseReport = require("./routes/userabuserreport.routes");
+const userAbuseReportRoutes = require("./routes/userabuserreport.routes");
+const attendanceRoutes = require("./routes/attendance.routes");
+const paymentRoutes = require("./routes/payment.routes");
+const userProgressRoutes = require("./routes/userProgress.routes");
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
+
+// const PayOS = require("@payos/node");
+
+// const payOS = new PayOS(
+//   process.env.PAYOS_CLIENT_ID,
+//   process.env.PAYOS_API_KEY,
+//   process.env.PAYOS_CHECKSUM_KEY
+// );
 
 const app = express();
 app.use(cors());
@@ -59,7 +72,9 @@ app.use(
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/user-error-reports", userErrorReportRoutes);
+app.use("/api/topics", topicRoutes);
 app.use("/api/courses", courseRoutes);
+app.use("/api/words", wordRoutes);
 app.use("/api/comments", commentRoutes);
 app.use("/api/react-comments", reactCommentRoutes);
 app.use("/api/react-posts", reactPostRoutes);
@@ -70,6 +85,9 @@ app.use("/api/messages", messageRoutes);
 app.use("/auth", authRoutes);
 
 app.use("/api/coin-transactions", coinTransactionRoutes);
-app.use("/api/user-abuse-reports", userAbuseReport);
+app.use("/api/user-abuse-reports", userAbuseReportRoutes);
+app.use("/api/attendance", attendanceRoutes);
+app.use("/api/payments", paymentRoutes);
+app.use("/api/user-progress", userProgressRoutes);
 
 module.exports = app;

@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const upload = require('../middlewares/upload.middleware');
+const upload = require("../middlewares/upload.middleware");
 const PostController = require("../controllers/PostController");
+const authMiddleware = require("../middlewares/auth.middleware");
 
 router.get("/getAll", PostController.getAllPosts);
 router.get("/getTotal", PostController.getTotalPosts);
-router.post("/create", upload.single('image'), PostController.createPost);
+router.post("/create", upload.single("image"), PostController.createPost);
 router.get("/getData", PostController.getPostChartData);
 router.get("/month-stats", PostController.getMonthlyPostStats);
 

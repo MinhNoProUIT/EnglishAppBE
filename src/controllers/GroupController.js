@@ -2,15 +2,18 @@ const {
   mapCreateGroupToVModel,
   mapEditGroupToVModel,
   mapGetDetailsGroupToVModel,
+  mapChangeImageGroupToVModel,
+  mapChangeNameGroupToVModel,
 } = require("../mappings/GroupMapping");
 const GroupService = require("../services/GroupService");
 const { uploadToCloudinary } = require("../services/UploadService");
+const { formatResponse } = require("../utils/responseHelper");
 
 const GroupController = {
   async createGroup(req, res) {
     try {
       if (req.file) {
-        const result = await uploadToCloudinary(req.file.buffer, 'english-app');
+        const result = await uploadToCloudinary(req.file.buffer, "english-app");
         req.body.image_url = result.secure_url;
       }
       const newGroup = await GroupService.createGroup(req.body);
@@ -20,15 +23,25 @@ const GroupController = {
     }
   },
 
-  async editGroup(req, res) {
+  async changeNameGroup(req, res) {
+    try {
+      const { id } = req.params;
+      const editGroup = await GroupService.changeNameGroup(id, req.body);
+      res.status(200).json(mapChangeNameGroupToVModel(editGroup));
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
+  },
+
+  async changeImageGroup(req, res) {
     try {
       const { id } = req.params;
       if (req.file) {
-        const result = await uploadToCloudinary(req.file.buffer, 'english-app');
+        const result = await uploadToCloudinary(req.file.buffer, "english-app");
         req.body.image_url = result.secure_url;
       }
-      const editGroup = await GroupService.editGroup(id, req.body);
-      res.status(200).json(mapEditGroupToVModel(editGroup));
+      const editGroup = await GroupService.changeImageGroup(id, req.body);
+      res.status(200).json(mapChangeImageGroupToVModel(editGroup));
     } catch (err) {
       res.status(400).json({ error: err.message });
     }
@@ -42,7 +55,20 @@ const GroupController = {
     } catch (err) {
       res.status(400).json({ error: err.message });
     }
-  }
+  },
+
+  async getMonthlyGroupSummary(req, res) {
+    try {
+      const groups = await GroupService.getMonthlyGroupSummary();
+      res.json(formatResponse(true, groups));
+    } catch (err) {
+      res.status(500).json({
+        Success: false,
+        Data: null,
+        Message: "Internal Server Error",
+      });
+    }
+  },
 };
 
 module.exports = GroupController;
