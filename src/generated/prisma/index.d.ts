@@ -41602,7 +41602,7 @@ export namespace Prisma {
   }
 
   export type quiz_questionsCreateInput = {
-    id: string
+    id?: string
     question_text: string
     options?: quiz_questionsCreateoptionsInput | string[]
     correct_answer: string
@@ -41610,7 +41610,7 @@ export namespace Prisma {
   }
 
   export type quiz_questionsUncheckedCreateInput = {
-    id: string
+    id?: string
     quiz_id: string
     question_text: string
     options?: quiz_questionsCreateoptionsInput | string[]
@@ -41634,7 +41634,7 @@ export namespace Prisma {
   }
 
   export type quiz_questionsCreateManyInput = {
-    id: string
+    id?: string
     quiz_id: string
     question_text: string
     options?: quiz_questionsCreateoptionsInput | string[]
@@ -41657,18 +41657,18 @@ export namespace Prisma {
   }
 
   export type quizzesCreateInput = {
-    id: string
+    id?: string
     title: string
-    created_date: Date | string
+    created_date?: Date | string
     quiz_questions?: quiz_questionsCreateNestedManyWithoutQuizzesInput
     users: usersCreateNestedOneWithoutQuizzesInput
   }
 
   export type quizzesUncheckedCreateInput = {
-    id: string
+    id?: string
     user_id: string
     title: string
-    created_date: Date | string
+    created_date?: Date | string
     quiz_questions?: quiz_questionsUncheckedCreateNestedManyWithoutQuizzesInput
   }
 
@@ -41689,10 +41689,10 @@ export namespace Prisma {
   }
 
   export type quizzesCreateManyInput = {
-    id: string
+    id?: string
     user_id: string
     title: string
-    created_date: Date | string
+    created_date?: Date | string
   }
 
   export type quizzesUpdateManyMutationInput = {
@@ -52892,16 +52892,16 @@ export namespace Prisma {
   }
 
   export type quizzesCreateWithoutUsersInput = {
-    id: string
+    id?: string
     title: string
-    created_date: Date | string
+    created_date?: Date | string
     quiz_questions?: quiz_questionsCreateNestedManyWithoutQuizzesInput
   }
 
   export type quizzesUncheckedCreateWithoutUsersInput = {
-    id: string
+    id?: string
     title: string
-    created_date: Date | string
+    created_date?: Date | string
     quiz_questions?: quiz_questionsUncheckedCreateNestedManyWithoutQuizzesInput
   }
 
@@ -53841,17 +53841,17 @@ export namespace Prisma {
   }
 
   export type quizzesCreateWithoutQuiz_questionsInput = {
-    id: string
+    id?: string
     title: string
-    created_date: Date | string
+    created_date?: Date | string
     users: usersCreateNestedOneWithoutQuizzesInput
   }
 
   export type quizzesUncheckedCreateWithoutQuiz_questionsInput = {
-    id: string
+    id?: string
     user_id: string
     title: string
-    created_date: Date | string
+    created_date?: Date | string
   }
 
   export type quizzesCreateOrConnectWithoutQuiz_questionsInput = {
@@ -53885,14 +53885,14 @@ export namespace Prisma {
   }
 
   export type quiz_questionsCreateWithoutQuizzesInput = {
-    id: string
+    id?: string
     question_text: string
     options?: quiz_questionsCreateoptionsInput | string[]
     correct_answer: string
   }
 
   export type quiz_questionsUncheckedCreateWithoutQuizzesInput = {
-    id: string
+    id?: string
     question_text: string
     options?: quiz_questionsCreateoptionsInput | string[]
     correct_answer: string
@@ -54857,9 +54857,9 @@ export namespace Prisma {
   }
 
   export type quizzesCreateManyUsersInput = {
-    id: string
+    id?: string
     title: string
-    created_date: Date | string
+    created_date?: Date | string
   }
 
   export type react_commentsCreateManyUsersInput = {
@@ -55590,7 +55590,7 @@ export namespace Prisma {
   }
 
   export type quiz_questionsCreateManyQuizzesInput = {
-    id: string
+    id?: string
     question_text: string
     options?: quiz_questionsCreateoptionsInput | string[]
     correct_answer: string

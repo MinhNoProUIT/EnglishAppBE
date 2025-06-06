@@ -4,7 +4,7 @@ const UserProgressController = require("../controllers/UserProgressController");
 
 router.get("/getAllByCourse/:user_id/:course_id", UserProgressController.getAllUserProgressByCourse);
 router.post("/create", UserProgressController.createUserProgress);
-router.put("/update/:user_id/:word_id", UserProgressController.updateUserProgress);
+router.put("/update/:id", UserProgressController.updateUserProgress);
 router.delete("/delete/:id", UserProgressController.deleteUserProgress);
 router.get("/getUnlearnedWordsByCourse/:user_id/:course_id", UserProgressController.getUnlearnedWordsByCourse);
 router.get("/getAllTodayRepeatWordsByCourse/:user_id/:course_id", UserProgressController.getAllTodayRepeatWordsByCourse);
@@ -74,25 +74,18 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/user-progress/update/{user_id}/{word_id}:
+ * /api/user-progress/update/{id}:
  *   put:
  *     summary: Cập nhật tiến độ học của người dùng cho một từ vựng
  *     tags: [UserProgress]
  *     parameters:
  *       - in: path
- *         name: user_id
+ *         name: id
  *         required: true
- *         description: ID của người dùng
  *         schema:
  *           type: string
  *           format: uuid
- *       - in: path
- *         name: word_id
- *         required: true
- *         description: ID của từ vựng
- *         schema:
- *           type: string
- *           format: uuid
+ *         description: ID tiến độ học cần cập nhật
  *     requestBody:
  *       required: true
  *       content:

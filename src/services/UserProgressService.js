@@ -21,33 +21,25 @@ const UserProgressService = {
             data: {
                 user_id,
                 word_id,
-                level: 1,
-                createdstudydate: new Date(),
-                updatedstudydate: new Date(),
             },
         });
     },
 
-    async updateUserProgress(user_id, word_id, { isCorrect, isRetry }) {
+    async updateUserProgress(id, { isCorrect, isRetry }) {
         const progress = await prisma.user_progress.findFirst({
-            where: {
-                user_id,
-                word_id,
-            },
+            where: { id },
         });
 
         if (!progress) return null;
 
-        const newLevel = isCorrect && !isRetry ? (progress.level + 1) : progress.level;
+        let newLevel = isCorrect && !isRetry ? (progress.level + 1) : progress.level;
+        if (newLevel > 6) newLevel = 6;
 
-        return await prisma.user_progress.updateMany({
-            where: {
-                user_id,
-                word_id,
-            },
+        return await prisma.user_progress.update({
+            where: { id },
             data: {
                 level: newLevel,
-                updatedstudydate: new Date,
+                updatedstudydate: new Date(),
             },
         });
     },
@@ -59,16 +51,14 @@ const UserProgressService = {
     },
 
     async getUnlearnedWordsByCourse(userId, courseId) {
-        const result = await prisma.user_progress.findMany({
+        const result = await prisma.words.findMany({
             where: {
-                user_id: userId,
-                level: 1,
-                words: {
-                    course_id: courseId,
+                course_id: courseId,
+                user_progress: {
+                    none: {
+                        user_id: userId
+                    },
                 },
-            },
-            include: {
-                words: true,
             },
         });
         return result;

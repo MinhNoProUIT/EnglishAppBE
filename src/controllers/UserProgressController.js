@@ -28,8 +28,8 @@ const UserProgressController = {
 
   async updateUserProgress(req, res) {
     try {
-      const { user_id, word_id } = req.params;
-      const updateUserProgress = await UserProgressService.updateUserProgress(user_id, word_id, req.body);
+      const { id } = req.params;
+      const updateUserProgress = await UserProgressService.updateUserProgress(id, req.body);
       res.status(200).json(mapUpdateUserProgressToVModel(updateUserProgress));
     } catch (err) {
       res.status(400).json({ error: err.message });

@@ -19,6 +19,8 @@ const userAbuseReportRoutes = require("./routes/userabuserreport.routes");
 const attendanceRoutes = require("./routes/attendance.routes");
 const paymentRoutes = require("./routes/payment.routes");
 const userProgressRoutes = require("./routes/userProgress.routes");
+const quizRoutes = require("./routes/quiz.routes");
+const quizQuestionRoutes = require("./routes/quizQuestion.routes");
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
@@ -89,5 +91,7 @@ app.use("/api/user-abuse-reports", userAbuseReportRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/user-progress", userProgressRoutes);
+app.use("/api/quizzes", quizRoutes);
+app.use("/api/quiz-questions", quizQuestionRoutes);
 
 module.exports = app;
