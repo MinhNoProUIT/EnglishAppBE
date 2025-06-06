@@ -4,12 +4,12 @@ const {
   mapCreateQuizToVModel,
   mapUpdateQuizToVModel,
 } = require("../mappings/QuizMapping");
+const { getCurrentUserId } = require("../utils/CurrentUser")
 
 const QuizController = {
   async getAllQuizzesByUser(req, res) {
     try {
-      const { user_id } = req.params;
-      const allQuizzes = await QuizService.getAllQuizzesByUser(user_id);
+      const allQuizzes = await QuizService.getAllQuizzesByUser(getCurrentUserId(req));
       res.json(allQuizzes.map(mapGetAllQuizzesByUserToVModel));
     } catch (err) {
       console.error("Error in getAllQuizzesByUser:", err);
