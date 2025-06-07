@@ -1,5 +1,4 @@
 const pool = require("../config/db");
-const GroupMember = require("../models/GroupMember");
 
 const GroupMemberService = {
   async addMembers(data) {
@@ -43,7 +42,43 @@ const GroupMemberService = {
     }
   },
   
-  async kickMember(user_id, group_id) {
+  async kickMembers(data) {
+    const { user_ids, group_id } = data; 
+    const client = await pool.connect();
+
+    try {
+      await client.query("BEGIN");
+
+      const deleteResult = await client.query(
+        `DELETE FROM group_members
+         WHERE user_id = ANY($1) AND group_id = $2
+         RETURNING *`,
+        [user_ids, group_id]
+      );
+
+      if (deleteResult.rows.length === 0) {
+        throw new Error("Member not found in the group");
+      }
+
+      await client.query(
+        `UPDATE groups
+         SET count_member = GREATEST(COALESCE(count_member, 0) - $1, 0)
+         WHERE id = $2`,
+        [deleteResult.rowCount, group_id]
+      );
+
+      await client.query("COMMIT");
+      return deleteResult.rows;
+    } catch (error) {
+      await client.query("ROLLBACK");
+      throw error;
+    } finally {
+      client.release();
+    }
+  },
+
+  async leaveGroup(data) {
+    const { user_id, group_id } = data; 
     const client = await pool.connect();
 
     try {
@@ -62,11 +97,11 @@ const GroupMemberService = {
 
       await client.query(
         `UPDATE groups
-         SET count_member = GREATEST(COALESCE(count_member, 1) - 1, 0)
+         SET count_member = GREATEST(COALESCE(count_member, 0) - 1, 0)
          WHERE id = $1`,
         [group_id]
       );
-
+  
       await client.query("COMMIT");
       return deleteResult.rows[0];
     } catch (error) {

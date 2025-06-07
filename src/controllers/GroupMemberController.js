@@ -18,12 +18,17 @@ const GroupMemberController = {
 
   async kickMember(req, res) {
     try {
-      const { user_id, group_id } = req.params;
-      const kickedMember = await GroupMemberService.kickMember(
-        user_id,
-        group_id
-      );
-      res.status(200).json(mapKickMemberToVModel(kickedMember));
+      const kickedMembers = await GroupMemberService.kickMembers(req.body);
+      res.status(200).json(kickedMembers.map(mapKickMemberToVModel));
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
+  },
+
+  async leaveGroup(req, res) {
+    try {
+      const leaveMember = await GroupMemberService.leaveGroup(req.body);
+      res.status(200).json((mapKickMemberToVModel(leaveMember)));
     } catch (err) {
       res.status(400).json({ error: err.message });
     }

@@ -4,7 +4,7 @@ const GroupMemberService = require("./GroupMemberService");
 
 const GroupService = {
   async createGroup(data) {
-    const { name, image_url, created_by, count_member, user_ids = [] } = data;
+    const { name, image_url, created_by, count_member, user_ids } = data;
     const client = await pool.connect();
 
     try {
@@ -24,15 +24,11 @@ const GroupService = {
         [created_by, group.id, true]
       );
 
-      for (const user_id of user_ids) {
-        if (user_id !== created_by) {
-          await GroupMemberService.addMember({
-            user_id,
-            group_id: group.id,
-            is_admin: false,
-          });
-        }
-      }
+      await GroupMemberService.addMembers({
+        group_id: group.id,
+        user_ids: user_ids,
+        is_admin: false,
+      });
 
       await client.query("COMMIT");
       return new Group(group);

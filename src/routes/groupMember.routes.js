@@ -4,7 +4,8 @@ const GroupMemberController = require("../controllers/GroupMemberController");
 const authMiddleware = require("../middlewares/auth.middleware");
 
 router.post("/add", authMiddleware, GroupMemberController.addMembers);
-router.delete("/kick/:group_id/:user_id",authMiddleware, GroupMemberController.kickMember);
+router.delete("/kick",authMiddleware, GroupMemberController.kickMember);
+router.delete("/leave",authMiddleware, GroupMemberController.leaveGroup);
 router.delete("/dishband/:group_id",authMiddleware, GroupMemberController.dishBand);
 router.get("/group/:group_id", authMiddleware, GroupMemberController.getAllMemberInGroup);
 router.get("/user/:user_id", authMiddleware, GroupMemberController.getAllGroupByUser);
@@ -57,30 +58,68 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/group-members/kick/{group_id}/{user_id}:
+ * /api/group-members/kick:
  *   delete:
  *     summary: Xóa thành viên khỏi nhóm
  *     tags: [GroupMember]
- *     parameters:
- *       - in: path
- *         name: group_id
- *         required: true
- *         description: ID của nhóm
- *         schema:
- *           type: string
- *           format: uuid
- *       - in: path
- *         name: user_id
- *         required: true
- *         description: ID của thành viên bị xóa
- *         schema:
- *           type: string
- *           format: uuid
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - group_id
+ *               - user_ids
+ *             properties:
+ *               group_id:
+ *                 type: string
+ *                 format: uuid
+ *                 description: ID của nhóm
+ *               user_ids:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   format: uuid
+ *                 description: Danh sách ID thành viên bị xóa
  *     responses:
  *       200:
  *         description: Xóa thành viên thành công
  *       400:
  *         description: Xóa thành viên thất bại
+ */
+
+/**
+ * @swagger
+ * /api/group-members/leave:
+ *   delete:
+ *     summary: Rời nhóm
+ *     tags: [GroupMember]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - group_id
+ *               - user_id
+ *             properties:
+ *               group_id:
+ *                 type: string
+ *                 format: uuid
+ *                 description: ID của nhóm
+ *               user_id:
+ *                 type: string
+ *                 items:
+ *                   type: string
+ *                   format: uuid
+ *                 description: ID thành viên rời nhóm
+ *     responses:
+ *       200:
+ *         description: Rời nhóm thành công
+ *       400:
+ *         description: Rời nhóm thất bại
  */
 
 /**
