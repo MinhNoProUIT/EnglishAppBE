@@ -66,6 +66,34 @@ module.exports = router;
 
 /**
  * @swagger
+ * /api/users/get-recommend:
+ *   get:
+ *     summary: Lấy danh sách người dùng được hệ thống gợi ý (recommendation)
+ *     tags: [Users]
+ *     responses:
+ *       200:
+ *         description: Danh sách người dùng được gợi ý
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/User'
+ *       401:
+ *         description: Không có quyền truy cập (Unauthorized)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *       500:
+ *         description: Lỗi hệ thống
+ */
+
+/**
+ * @swagger
  * /api/users/GetAll:
  *    get:
  *      summary: "Lấy danh sách người dùng với các tham số tìm kiếm, phân trang và sắp xếp"

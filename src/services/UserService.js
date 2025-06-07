@@ -63,8 +63,8 @@ const UserService = {
 
   async getAllUserRecommend() {
     try {
-      const users = await User.findAll(); 
-      return users;
+      const result = await pool.query(`SELECT * FROM users`);
+      return result.rows;
     } catch (error) {
       console.error("Error in getAllUserRecommend:", error);
       throw new Error("Could not fetch users");
