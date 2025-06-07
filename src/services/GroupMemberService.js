@@ -45,24 +45,36 @@ const GroupMemberService = {
   async kickMembers(data) {
     const { user_ids, group_id } = data; 
     const client = await pool.connect();
-
+  
     try {
       await client.query("BEGIN");
-
-      const deleteResult = await client.query(
-        `DELETE FROM group_members
-         WHERE user_id = ANY($1) AND group_id = $2
-         RETURNING *`,
-        [user_ids, group_id]
-      );
-
+  
+      if (!user_ids || user_ids.length === 0) {
+        throw new Error("No user IDs provided");
+      }
+      // Tạo danh sách placeholder: $1, $2, ..., $n
+      const placeholders = user_ids.map((_, index) => `$${index + 1}`).join(", ");
+      const groupIdPlaceholder = `$${user_ids.length + 1}`;
+  
+      const deleteQuery = `
+        DELETE FROM group_members
+        WHERE user_id IN (${placeholders}) AND group_id = ${groupIdPlaceholder}
+        RETURNING *
+      `;
+  
+      const deleteResult = await client.query(deleteQuery, [...user_ids, group_id]);
+  
+      if (deleteResult.rows.length === 0) {
+        throw new Error("No members removed. Either group_id is invalid or users not in group.");
+      }
+  
       await client.query(
         `UPDATE groups
          SET count_member = GREATEST(COALESCE(count_member, 0) - $1, 0)
          WHERE id = $2`,
         [deleteResult.rowCount, group_id]
       );
-
+  
       await client.query("COMMIT");
       return deleteResult.rows;
     } catch (error) {
@@ -72,7 +84,7 @@ const GroupMemberService = {
       client.release();
     }
   },
-
+  
   async leaveGroup(data) {
     const { user_id, group_id } = data; 
     const client = await pool.connect();
