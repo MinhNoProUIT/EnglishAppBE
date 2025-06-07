@@ -56,10 +56,6 @@ const GroupMemberService = {
         [user_ids, group_id]
       );
 
-      if (deleteResult.rows.length === 0) {
-        throw new Error("Member not found in the group");
-      }
-
       await client.query(
         `UPDATE groups
          SET count_member = GREATEST(COALESCE(count_member, 0) - $1, 0)
