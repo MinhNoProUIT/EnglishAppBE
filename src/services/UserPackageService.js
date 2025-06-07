@@ -1,13 +1,13 @@
 const { PrismaClient } = require("../generated/prisma"); // hoặc '@prisma/client' nếu dùng mặc định
 const prisma = new PrismaClient();
 
-const UserPackage = {
+const UserPackageService = {
   async getAllUserPackage() {
     return await prisma.user_packages.findMany();
   },
 
-  async createAttendance(userId, package_id) {
-    return await prisma.attendance.create({
+  async createUserPackage(userId, package_id) {
+    return await prisma.user_packages.create({
       data: {
         user_id: userId,
         package_id,
@@ -15,4 +15,4 @@ const UserPackage = {
     });
   },
 };
-module.exports = UserPackage;
+module.exports = UserPackageService;

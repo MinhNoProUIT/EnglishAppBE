@@ -5,7 +5,11 @@ const authMiddleware = require("../middlewares/auth.middleware");
 const checkPermission = require("../middlewares/checkPermission");
 
 router.get("/GetAll", authMiddleware, UserController.getUsers);
-router.get("/get-recommend", authMiddleware, UserController.getAllUserRecommend);
+router.get(
+  "/get-recommend",
+  authMiddleware,
+  UserController.getAllUserRecommend
+);
 router.get("/getById/:id", UserController.getById);
 router.get("/getAll-post", UserController.getAllUsersInPost);
 router.get("/search", UserController.filterUsersInPost);
@@ -19,6 +23,7 @@ router.get("/attendance-streak", UserController.getLongestAndShortestStreak);
 router.get("/top-learning", UserController.getTopFiveLearning);
 router.get("/top-topic", UserController.getTopLearnedTopics);
 router.get("/learning", UserController.getLearningList);
+router.put("/updateToPremium", authMiddleware, UserController.upgradeToPremium);
 
 module.exports = router;
 

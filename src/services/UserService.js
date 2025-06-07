@@ -70,7 +70,7 @@ const UserService = {
       throw new Error("Could not fetch users");
     }
   },
-  
+
   async getLearningList(criteria) {
     const {
       search,
@@ -602,6 +602,24 @@ const UserService = {
       })
     );
     return enriched.sort((a, b) => b.wordCount - a.wordCount).slice(0, 5);
+  },
+
+  async upgradeToPremium(user_id) {
+    const user = await prisma.users.findUnique({
+      where: { id: user_id },
+    });
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    if (!user.isPremium) {
+      await prisma.users.update({
+        where: { id: user_id },
+        data: { isPremium: true },
+      });
+      return true;
+    }
   },
 };
 
