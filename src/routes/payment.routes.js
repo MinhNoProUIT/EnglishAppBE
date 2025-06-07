@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/PaymentController");
+const authMiddleware = require("../middlewares/auth.middleware");
 
 /**
  * @swagger
@@ -22,19 +23,15 @@ const controller = require("../controllers/PaymentController");
  *           schema:
  *             type: object
  *             required:
- *               - userId
  *               - amount
  *               - description
  *             properties:
- *               userId:
- *                 type: string
- *                 example: "user-uuid-here"
  *               amount:
  *                 type: integer
  *                 example: 100000
  *               description:
  *                 type: string
- *                 example: "Thanh toán khóa học tiếng Anh"
+ *                 example: "Thanh toán"
  *     responses:
  *       200:
  *         description: Thông tin đơn thanh toán
@@ -50,7 +47,7 @@ const controller = require("../controllers/PaymentController");
  *                 qrCode:
  *                   type: string
  */
-router.post("/create", controller.createOrder);
+router.post("/create", authMiddleware, controller.createOrder);
 
 /**
  * @swagger
