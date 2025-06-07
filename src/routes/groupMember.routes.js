@@ -4,8 +4,8 @@ const GroupMemberController = require("../controllers/GroupMemberController");
 const authMiddleware = require("../middlewares/auth.middleware");
 
 router.post("/add", authMiddleware, GroupMemberController.addMembers);
-router.delete("/kick",authMiddleware, GroupMemberController.kickMember);
-router.delete("/leave",authMiddleware, GroupMemberController.leaveGroup);
+router.post("/kick",authMiddleware, GroupMemberController.kickMember);
+router.post("/leave",authMiddleware, GroupMemberController.leaveGroup);
 router.delete("/dishband/:group_id",authMiddleware, GroupMemberController.dishBand);
 router.get("/group/:group_id", authMiddleware, GroupMemberController.getAllMemberInGroup);
 router.get("/user/:user_id", authMiddleware, GroupMemberController.getAllGroupByUser);
@@ -59,7 +59,7 @@ module.exports = router;
 /**
  * @swagger
  * /api/group-members/kick:
- *   delete:
+ *   post:
  *     summary: Xóa thành viên khỏi nhóm
  *     tags: [GroupMember]
  *     requestBody:
@@ -92,7 +92,7 @@ module.exports = router;
 /**
  * @swagger
  * /api/group-members/leave:
- *   delete:
+ *   post:
  *     summary: Rời nhóm
  *     tags: [GroupMember]
  *     requestBody:
