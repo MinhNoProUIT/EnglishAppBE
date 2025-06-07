@@ -36,6 +36,17 @@ const UserController = {
     }
   },
 
+  async getAllUserRecommend(req, res) 
+  {
+    try {
+      const result = await UserService.getAllUserRecommend();
+      res.json(result.users.map(mapUserToVModel));
+    } catch (err) {
+      console.error("Error in get all user recommend:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
+
   async getLearningList(req, res) {
     try {
       const criteria = {

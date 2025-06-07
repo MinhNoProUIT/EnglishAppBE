@@ -68,6 +68,37 @@ const GroupMemberService = {
     }
   },
 
+  async dishBand(group_id) {
+    const client = await pool.connect();
+  
+    try {
+      await client.query("BEGIN");
+  
+      await client.query(
+        `DELETE FROM group_members WHERE group_id = $1`,
+        [group_id]
+      );
+  
+      const deleteResult = await client.query(
+        `DELETE FROM groups WHERE id = $1 RETURNING *`,
+        [group_id]
+      );
+  
+      if (deleteResult.rows.length === 0) {
+        throw new Error("Group not found");
+      }
+  
+      await client.query("COMMIT");
+  
+      return deleteResult.rows[0]; 
+    } catch (error) {
+      await client.query("ROLLBACK");
+      throw error;
+    } finally {
+      client.release();
+    }
+  },
+  
   async getAllMemberInGroup(groupId) {
     const result = await pool.query(
       `SELECT gm.id, gm.user_id, gm.is_admin, u.username, u.image_url

@@ -4,10 +4,10 @@ const upload = require("../middlewares/upload.middleware");
 const GroupController = require("../controllers/GroupController");
 const authMiddleware = require("../middlewares/auth.middleware");
 
-router.post("/create", upload.single("image"), GroupController.createGroup);
-router.patch("/change-name/:id", GroupController.changeNameGroup);
-router.patch("/change-image/:id", upload.single("image"), GroupController.changeImageGroup);
-router.get("/details/:id", GroupController.getDetailsGroup);
+router.post("/create", authMiddleware, upload.single("image"), GroupController.createGroup);
+router.patch("/change-name/:id", authMiddleware, GroupController.changeNameGroup);
+router.patch("/change-image/:id", authMiddleware, upload.single("image"), GroupController.changeImageGroup);
+router.get("/details/:id", authMiddleware, GroupController.getDetailsGroup);
 
 module.exports = router;
 
