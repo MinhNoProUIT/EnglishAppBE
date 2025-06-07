@@ -5,10 +5,19 @@ const authMiddleware = require("../middlewares/auth.middleware");
 
 router.get(
   "/getAllByPost/:id",
+  authMiddleware,
   ReactCommentController.getAllReactCommentsByPost
 );
-router.post("/create", ReactCommentController.createReactComment);
-router.delete("/delete/:id", ReactCommentController.deleteReactComment);
+router.post(
+  "/create",
+  authMiddleware,
+  ReactCommentController.createReactComment
+);
+router.delete(
+  "/delete/:id",
+  authMiddleware,
+  ReactCommentController.deleteReactComment
+);
 
 module.exports = router;
 

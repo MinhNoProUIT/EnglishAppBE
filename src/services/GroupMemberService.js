@@ -2,30 +2,39 @@ const pool = require("../config/db");
 const GroupMember = require("../models/GroupMember");
 
 const GroupMemberService = {
-  async addMember(data) {
-    const { user_id, group_id, is_admin } = data;
+  async addMembers(data) {
+    const { user_ids, group_id, is_admin = false } = data; 
     const client = await pool.connect();
-
+  
     try {
       await client.query("BEGIN");
-
-      const result = await client.query(
-        `INSERT INTO group_members 
-          (user_id, group_id, is_admin)
-         VALUES ($1, $2, $3)
-         RETURNING *`,
-        [user_id, group_id, is_admin]
-      );
-
+  
+      const values = user_ids
+        .filter((id) => !!id) 
+        .map((id) => `('${id}', '${group_id}', ${is_admin})`)
+        .join(",");
+  
+      if (values.length === 0) {
+        throw new Error("No valid user_ids to insert.");
+      }
+  
+      const insertQuery = `
+        INSERT INTO group_members (user_id, group_id, is_admin)
+        VALUES ${values}
+        RETURNING *`;
+  
+      const result = await client.query(insertQuery);
+  
       await client.query(
         `UPDATE groups
-         SET count_member = COALESCE(count_member, 0) + 1
-         WHERE id = $1`,
-        [group_id]
+         SET count_member = COALESCE(count_member, 0) + $1
+         WHERE id = $2`,
+        [result.rows.length, group_id]
       );
-
+  
       await client.query("COMMIT");
-      return new GroupMember(result.rows[0]);
+  
+      return result.rows;
     } catch (error) {
       await client.query("ROLLBACK");
       throw error;
@@ -33,7 +42,7 @@ const GroupMemberService = {
       client.release();
     }
   },
-
+  
   async kickMember(user_id, group_id) {
     const client = await pool.connect();
 

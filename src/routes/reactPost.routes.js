@@ -3,9 +3,9 @@ const router = express.Router();
 const ReactPostController = require("../controllers/ReactPostController");
 const authMiddleware = require("../middlewares/auth.middleware");
 
-router.get("/getTotal/:id", ReactPostController.getTotalReactPost);
+router.get("/getTotal/:id", authMiddleware, ReactPostController.getTotalReactPost);
 router.post("/create", authMiddleware, ReactPostController.createReactPost);
-router.delete("/delete/:id", ReactPostController.deleteReactPost);
+router.delete("/delete/:id", authMiddleware, ReactPostController.deleteReactPost);
 
 module.exports = router;
 
