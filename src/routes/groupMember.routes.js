@@ -3,10 +3,11 @@ const router = express.Router();
 const GroupMemberController = require("../controllers/GroupMemberController");
 const authMiddleware = require("../middlewares/auth.middleware");
 
-router.post("/add", GroupMemberController.addMember);
-router.put("/kick/:group_id/:user_id", GroupMemberController.kickMember);
-router.get("/group/:group_id", GroupMemberController.getAllMemberInGroup);
-router.get("/user/:user_id", GroupMemberController.getAllGroupByUser);
+router.post("/add", authMiddleware, GroupMemberController.addMember);
+router.delete("/kick/:group_id/:user_id",authMiddleware, GroupMemberController.kickMember);
+router.delete("/dishband/:group_id",authMiddleware, GroupMemberController.dishBand);
+router.get("/group/:group_id", authMiddleware, GroupMemberController.getAllMemberInGroup);
+router.get("/user/:user_id", authMiddleware, GroupMemberController.getAllGroupByUser);
 
 module.exports = router;
 
@@ -75,6 +76,41 @@ module.exports = router;
  *         description: Xóa thành viên thành công
  *       400:
  *         description: Xóa thành viên thất bại
+ */
+
+/**
+ * @swagger
+ * /api/group-members/dishband/{group_id}:
+ *   delete:
+ *     summary: Xóa nhóm
+ *     tags: [GroupMember]
+ *     parameters:
+ *       - in: path
+ *         name: group_id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the group to disband
+ *     responses:
+ *       200:
+ *         description: Group disbanded successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Group disbanded successfully
+ *       400:
+ *         description: Error occurred
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
  */
 
 /**

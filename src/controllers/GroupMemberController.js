@@ -18,12 +18,22 @@ const GroupMemberController = {
 
   async kickMember(req, res) {
     try {
-      const { user_id, group_id } = req.body;
+      const { user_id, group_id } = req.params;
       const kickedMember = await GroupMemberService.kickMember(
         user_id,
         group_id
       );
       res.status(200).json(mapKickMemberToVModel(kickedMember));
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
+  },
+
+  async dishBand(req, res) {
+    try {
+      const { group_id } = req.params;
+      const result = await GroupMemberService.dishBand(group_id);
+      res.status(200).json({ message: "Group disbanded successfully", group: result });
     } catch (err) {
       res.status(400).json({ error: err.message });
     }
