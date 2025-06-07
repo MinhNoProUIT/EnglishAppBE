@@ -3,7 +3,7 @@ const router = express.Router();
 const GroupMemberController = require("../controllers/GroupMemberController");
 const authMiddleware = require("../middlewares/auth.middleware");
 
-router.post("/add", authMiddleware, GroupMemberController.addMember);
+router.post("/add", authMiddleware, GroupMemberController.addMembers);
 router.delete("/kick/:group_id/:user_id",authMiddleware, GroupMemberController.kickMember);
 router.delete("/dishband/:group_id",authMiddleware, GroupMemberController.dishBand);
 router.get("/group/:group_id", authMiddleware, GroupMemberController.getAllMemberInGroup);
@@ -22,7 +22,7 @@ module.exports = router;
  * @swagger
  * /api/group-members/add:
  *   post:
- *     summary: Thêm thành viên vào nhóm
+ *     summary: Thêm nhiều thành viên vào nhóm
  *     tags: [GroupMember]
  *     requestBody:
  *       required: true
@@ -31,21 +31,26 @@ module.exports = router;
  *           schema:
  *             type: object
  *             required:
- *               - user_id
+ *               - user_ids
  *               - group_id
  *             properties:
- *               user_id:
- *                 type: string
- *                 format: uuid
+ *               user_ids:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   format: uuid
+ *                 description: Danh sách ID của người dùng cần thêm vào nhóm
  *               group_id:
  *                 type: string
  *                 format: uuid
+ *                 description: ID của nhóm
  *               is_admin:
  *                 type: boolean
  *                 default: false
+ *                 description: Gán quyền admin cho các thành viên (mặc định là false)
  *     responses:
  *       201:
- *         description: Thành viên được thêm vào nhóm thành công
+ *         description: Các thành viên được thêm vào nhóm thành công
  *       400:
  *         description: Thêm thành viên thất bại
  */

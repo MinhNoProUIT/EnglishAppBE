@@ -7,10 +7,10 @@ const {
 const GroupMemberService = require("../services/GroupMemberService");
 
 const GroupMemberController = {
-  async addMember(req, res) {
+  async addMembers(req, res) {
     try {
-      const newMember = await GroupMemberService.addMember(req.body);
-      res.status(201).json(mapAddMemberToVModel(newMember));
+      const newMembers = await GroupMemberService.addMembers(req.body);
+      res.status(201).json(newMembers.map(mapAddMemberToVModel));
     } catch (err) {
       res.status(400).json({ error: err.message });
     }
