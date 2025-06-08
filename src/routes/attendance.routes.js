@@ -116,4 +116,41 @@ router.get(
   AttendanceController.getMonthlyAttendanceSummary
 );
 
+/**
+ * @swagger
+ * /api/attendance/weekly:
+ *   get:
+ *     summary: Lấy thông tin điểm danh tuần hiện tại của người dùng
+ *     tags: [Attendance]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Thành công
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 Success:
+ *                   type: boolean
+ *                 Data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       day:
+ *                         type: string
+ *                       date:
+ *                         type: string
+ *                         format: date
+ *                       attended:
+ *                         type: boolean
+ */
+router.get(
+  "/weekly",
+  authMiddleware,
+  AttendanceController.getWeeklyAttendanceStatus
+);
+
 module.exports = router;

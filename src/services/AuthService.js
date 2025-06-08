@@ -6,9 +6,7 @@ const {
   signRefreshToken,
   verifyRefreshToken,
 } = require("../utils/jwt");
-const {
-  checkAndUpdatePremiumStatus,
-} = require("../services/PremiumPackageService");
+const PremiumPackageService = require("../services/PremiumPackageService");
 
 const AuthService = {
   async createUser({ username, email, password, confirmPassword }) {
@@ -74,7 +72,7 @@ const AuthService = {
       isAdmin: user.is_admin || false,
     };
 
-    await checkAndUpdatePremiumStatus(user.id);
+    await PremiumPackageService.checkAndUpdatePremiumStatus(user.id);
 
     return {
       accessToken: signAccessToken(payload),

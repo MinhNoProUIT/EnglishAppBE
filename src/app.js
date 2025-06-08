@@ -21,7 +21,7 @@ const paymentRoutes = require("./routes/payment.routes");
 const userProgressRoutes = require("./routes/userProgress.routes");
 const quizRoutes = require("./routes/quiz.routes");
 const quizQuestionRoutes = require("./routes/quizQuestion.routes");
-
+const premiumPackageRoutes = require("./routes/premiumpackage.routes");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 
@@ -92,5 +92,6 @@ app.use("/api/payments", paymentRoutes);
 app.use("/api/user-progress", userProgressRoutes);
 app.use("/api/quizzes", quizRoutes);
 app.use("/api/quiz-questions", quizQuestionRoutes);
+app.use("/api/premium-package", premiumPackageRoutes);
 
 module.exports = app;

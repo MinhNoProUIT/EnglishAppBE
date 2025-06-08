@@ -15,7 +15,11 @@ const AttendanceController = {
       res.json(formatResponse(true, attendance));
     } catch (err) {
       console.error("Error in getAllUserAttendance:", err);
-      res.status(500).json({ error: "Internal Server Error" });
+      res.status(500).json({
+        Success: false,
+        Data: null,
+        Message: "Internal Server Error",
+      });
     }
   },
 
@@ -25,7 +29,11 @@ const AttendanceController = {
       res.json(formatResponse(true, attendance));
     } catch (err) {
       console.error("Error in getAllAttendance:", err);
-      res.status(500).json({ error: "Internal Server Error" });
+      res.status(500).json({
+        Success: false,
+        Data: null,
+        Message: "Internal Server Error",
+      });
     }
   },
 
@@ -66,6 +74,21 @@ const AttendanceController = {
       const attendance = await AttendanceService.getMonthlyAttendanceSummary();
       res.json(formatResponse(true, attendance));
     } catch (err) {
+      res.status(500).json({
+        Success: false,
+        Data: null,
+        Message: "Internal Server Error",
+      });
+    }
+  },
+
+  async getWeeklyAttendanceStatus(req, res) {
+    try {
+      const user_id = getCurrentUserId(req);
+      const result = await AttendanceService.getWeeklyAttendanceStatus(user_id);
+      res.json(formatResponse(true, result));
+    } catch (err) {
+      console.error("Error in getWeeklyAttendanceStatus:", err);
       res.status(500).json({
         Success: false,
         Data: null,
