@@ -82,16 +82,25 @@ const AuthService = {
     };
   },
 
-  async changePassword({ uid, oldPassword, newPassword }) {
-    const user = await UserService.findUserByFirebaseUid(uid);
+  async changePassword({ user_id, oldPassword, newPassword }) {
+    // Tìm người dùng từ Firebase qua UID
+    const user = await UserService.getUserById(user_id);
     if (!user) throw new Error("Người dùng không tồn tại");
 
+    // So sánh mật khẩu cũ với mật khẩu đã lưu trong cơ sở dữ liệu
     const isMatch = await bcrypt.compare(oldPassword, user.passwordhash);
     if (!isMatch) throw new Error("Mật khẩu cũ không đúng");
 
+    // Mã hóa mật khẩu mới
     const newHashed = await bcrypt.hash(newPassword, 10);
-    await admin.auth().updateUser(uid, { password: newPassword });
-    await UserService.updatePassword(uid, newHashed);
+
+    // Cập nhật mật khẩu trên Firebase
+    await admin.auth().updateUser(user.uid, { password: newPassword });
+
+    // Cập nhật mật khẩu mới vào cơ sở dữ liệu
+    await UserService.updatePassword(user_id, newHashed);
+
+    return { message: "Mật khẩu đã được thay đổi thành công" };
   },
 
   async logout(uid) {

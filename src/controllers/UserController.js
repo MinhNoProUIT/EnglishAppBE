@@ -66,21 +66,22 @@ const UserController = {
 
   async getById(req, res) {
     try {
-      const { id } = req.params;
+      const { id } = getCurrentUserId(req);
       const user = await UserService.getById(id);
 
       if (!user) {
         return res.status(404).json({ error: "User not found" });
       }
 
-      // Chuyển đổi đối tượng người dùng thành model view (nếu cần)
-      const userVModel = mapUserToVModel(user);
-
-      // Trả về thông tin người dùng
-      res.json(userVModel);
+      return res.json(user);
     } catch (err) {
-      console.error("Error in getUserById:", err); // Ghi log lỗi
-      res.status(500).json({ error: "Internal Server Error" }); // Trả về lỗi 500 nếu có lỗi trong quá trình xử lý
+      console.error("Error in getUserById:", err);
+
+      // Cải thiện thông báo lỗi dựa trên loại lỗi
+      if (err.message === "User not found") {
+        return res.status(404).json({ error: "User not found" });
+      }
+      return res.status(500).json({ error: "Internal Server Error" });
     }
   },
 

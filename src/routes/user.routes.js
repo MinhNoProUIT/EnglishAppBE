@@ -5,12 +5,12 @@ const authMiddleware = require("../middlewares/auth.middleware");
 const checkPermission = require("../middlewares/checkPermission");
 
 router.get("/GetAll", authMiddleware, UserController.getUsers);
+router.get("/getById", authMiddleware, UserController.getById);
 router.get(
   "/get-recommend",
   authMiddleware,
   UserController.getAllUserRecommend
 );
-router.get("/getById/:id", UserController.getById);
 router.get("/getAll-post", UserController.getAllUsersInPost);
 router.get("/search", UserController.filterUsersInPost);
 router.post("/Create", UserController.createUser);
@@ -301,19 +301,11 @@ module.exports = router;
  */
 /**
  * @swagger
- *  /api/users/getById/{id}:
+ *  /api/users/getById:
  *    get:
  *      summary: "Lấy thông tin người dùng theo ID"
  *      description: "Truy vấn người dùng từ cơ sở dữ liệu theo ID (UUID)"
  *      tags: [Users]
- *      parameters:
- *        - in: path
- *          name: id
- *          required: true
- *          description: "UUID của người dùng cần lấy thông tin"
- *          schema:
- *            type: string
- *            format: uuid
  *      responses:
  *        '200':
  *          description: "Thông tin người dùng thành công"
@@ -334,26 +326,28 @@ module.exports = router;
  *     User:
  *       type: object
  *       properties:
- *         id:
- *           type: string
- *           format: uuid
- *           description: "UUID của người dùng"
  *         username:
  *           type: string
  *           description: "Tên người dùng"
- *         email:
+ *         phonenumber:
  *           type: string
- *           description: "Email của người dùng"
+ *           description: "Số điện thoại người dùng"
+ *         birthday:
+ *           type: string
+ *           format: date-time
+ *           description: "Ngày sinh người dùng"
+ *         gender:
+ *           type: string
+ *           description: "Giới tính người dùng"
  *         fullname:
  *           type: string
  *           description: "Họ và tên người dùng"
- *         isVerified:
- *           type: boolean
- *           description: "Trạng thái xác thực email"
- *         createdAt:
+ *         address:
  *           type: string
- *           format: date-time
- *           description: "Thời gian người dùng được tạo"
+ *           description: "Địa chỉ người dùng"
+ *         image_url:
+ *           type: string
+ *           description: "URL hình ảnh người dùng"
  */
 
 /**
