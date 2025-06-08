@@ -34848,11 +34848,13 @@ export namespace Prisma {
   export type Premium_packagesAvgAggregateOutputType = {
     duration_days: number | null
     price: number | null
+    original_price: number | null
   }
 
   export type Premium_packagesSumAggregateOutputType = {
     duration_days: number | null
     price: number | null
+    original_price: number | null
   }
 
   export type Premium_packagesMinAggregateOutputType = {
@@ -34860,6 +34862,8 @@ export namespace Prisma {
     name: string | null
     duration_days: number | null
     price: number | null
+    original_price: number | null
+    discount: string | null
   }
 
   export type Premium_packagesMaxAggregateOutputType = {
@@ -34867,6 +34871,8 @@ export namespace Prisma {
     name: string | null
     duration_days: number | null
     price: number | null
+    original_price: number | null
+    discount: string | null
   }
 
   export type Premium_packagesCountAggregateOutputType = {
@@ -34874,6 +34880,8 @@ export namespace Prisma {
     name: number
     duration_days: number
     price: number
+    original_price: number
+    discount: number
     _all: number
   }
 
@@ -34881,11 +34889,13 @@ export namespace Prisma {
   export type Premium_packagesAvgAggregateInputType = {
     duration_days?: true
     price?: true
+    original_price?: true
   }
 
   export type Premium_packagesSumAggregateInputType = {
     duration_days?: true
     price?: true
+    original_price?: true
   }
 
   export type Premium_packagesMinAggregateInputType = {
@@ -34893,6 +34903,8 @@ export namespace Prisma {
     name?: true
     duration_days?: true
     price?: true
+    original_price?: true
+    discount?: true
   }
 
   export type Premium_packagesMaxAggregateInputType = {
@@ -34900,6 +34912,8 @@ export namespace Prisma {
     name?: true
     duration_days?: true
     price?: true
+    original_price?: true
+    discount?: true
   }
 
   export type Premium_packagesCountAggregateInputType = {
@@ -34907,6 +34921,8 @@ export namespace Prisma {
     name?: true
     duration_days?: true
     price?: true
+    original_price?: true
+    discount?: true
     _all?: true
   }
 
@@ -35001,6 +35017,8 @@ export namespace Prisma {
     name: string
     duration_days: number
     price: number
+    original_price: number
+    discount: string
     _count: Premium_packagesCountAggregateOutputType | null
     _avg: Premium_packagesAvgAggregateOutputType | null
     _sum: Premium_packagesSumAggregateOutputType | null
@@ -35027,6 +35045,8 @@ export namespace Prisma {
     name?: boolean
     duration_days?: boolean
     price?: boolean
+    original_price?: boolean
+    discount?: boolean
     user_packages?: boolean | premium_packages$user_packagesArgs<ExtArgs>
     _count?: boolean | Premium_packagesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["premium_packages"]>
@@ -35036,6 +35056,8 @@ export namespace Prisma {
     name?: boolean
     duration_days?: boolean
     price?: boolean
+    original_price?: boolean
+    discount?: boolean
   }, ExtArgs["result"]["premium_packages"]>
 
   export type premium_packagesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -35043,6 +35065,8 @@ export namespace Prisma {
     name?: boolean
     duration_days?: boolean
     price?: boolean
+    original_price?: boolean
+    discount?: boolean
   }, ExtArgs["result"]["premium_packages"]>
 
   export type premium_packagesSelectScalar = {
@@ -35050,9 +35074,11 @@ export namespace Prisma {
     name?: boolean
     duration_days?: boolean
     price?: boolean
+    original_price?: boolean
+    discount?: boolean
   }
 
-  export type premium_packagesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "duration_days" | "price", ExtArgs["result"]["premium_packages"]>
+  export type premium_packagesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "duration_days" | "price" | "original_price" | "discount", ExtArgs["result"]["premium_packages"]>
   export type premium_packagesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user_packages?: boolean | premium_packages$user_packagesArgs<ExtArgs>
     _count?: boolean | Premium_packagesCountOutputTypeDefaultArgs<ExtArgs>
@@ -35070,6 +35096,8 @@ export namespace Prisma {
       name: string
       duration_days: number
       price: number
+      original_price: number
+      discount: string
     }, ExtArgs["result"]["premium_packages"]>
     composites: {}
   }
@@ -35498,6 +35526,8 @@ export namespace Prisma {
     readonly name: FieldRef<"premium_packages", 'String'>
     readonly duration_days: FieldRef<"premium_packages", 'Int'>
     readonly price: FieldRef<"premium_packages", 'Int'>
+    readonly original_price: FieldRef<"premium_packages", 'Int'>
+    readonly discount: FieldRef<"premium_packages", 'String'>
   }
     
 
@@ -36280,7 +36310,9 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     duration_days: 'duration_days',
-    price: 'price'
+    price: 'price',
+    original_price: 'original_price',
+    discount: 'discount'
   };
 
   export type Premium_packagesScalarFieldEnum = (typeof Premium_packagesScalarFieldEnum)[keyof typeof Premium_packagesScalarFieldEnum]
@@ -38297,6 +38329,8 @@ export namespace Prisma {
     name?: StringFilter<"premium_packages"> | string
     duration_days?: IntFilter<"premium_packages"> | number
     price?: IntFilter<"premium_packages"> | number
+    original_price?: IntFilter<"premium_packages"> | number
+    discount?: StringFilter<"premium_packages"> | string
     user_packages?: User_packagesListRelationFilter
   }
 
@@ -38305,6 +38339,8 @@ export namespace Prisma {
     name?: SortOrder
     duration_days?: SortOrder
     price?: SortOrder
+    original_price?: SortOrder
+    discount?: SortOrder
     user_packages?: user_packagesOrderByRelationAggregateInput
   }
 
@@ -38316,6 +38352,8 @@ export namespace Prisma {
     name?: StringFilter<"premium_packages"> | string
     duration_days?: IntFilter<"premium_packages"> | number
     price?: IntFilter<"premium_packages"> | number
+    original_price?: IntFilter<"premium_packages"> | number
+    discount?: StringFilter<"premium_packages"> | string
     user_packages?: User_packagesListRelationFilter
   }, "id">
 
@@ -38324,6 +38362,8 @@ export namespace Prisma {
     name?: SortOrder
     duration_days?: SortOrder
     price?: SortOrder
+    original_price?: SortOrder
+    discount?: SortOrder
     _count?: premium_packagesCountOrderByAggregateInput
     _avg?: premium_packagesAvgOrderByAggregateInput
     _max?: premium_packagesMaxOrderByAggregateInput
@@ -38339,6 +38379,8 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"premium_packages"> | string
     duration_days?: IntWithAggregatesFilter<"premium_packages"> | number
     price?: IntWithAggregatesFilter<"premium_packages"> | number
+    original_price?: IntWithAggregatesFilter<"premium_packages"> | number
+    discount?: StringWithAggregatesFilter<"premium_packages"> | string
   }
 
   export type abuse_report_feedbacksCreateInput = {
@@ -40239,6 +40281,8 @@ export namespace Prisma {
     name: string
     duration_days: number
     price: number
+    original_price?: number
+    discount?: string
     user_packages?: user_packagesCreateNestedManyWithoutPackagesInput
   }
 
@@ -40247,6 +40291,8 @@ export namespace Prisma {
     name: string
     duration_days: number
     price: number
+    original_price?: number
+    discount?: string
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutPackagesInput
   }
 
@@ -40255,6 +40301,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     duration_days?: IntFieldUpdateOperationsInput | number
     price?: IntFieldUpdateOperationsInput | number
+    original_price?: IntFieldUpdateOperationsInput | number
+    discount?: StringFieldUpdateOperationsInput | string
     user_packages?: user_packagesUpdateManyWithoutPackagesNestedInput
   }
 
@@ -40263,6 +40311,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     duration_days?: IntFieldUpdateOperationsInput | number
     price?: IntFieldUpdateOperationsInput | number
+    original_price?: IntFieldUpdateOperationsInput | number
+    discount?: StringFieldUpdateOperationsInput | string
     user_packages?: user_packagesUncheckedUpdateManyWithoutPackagesNestedInput
   }
 
@@ -40271,6 +40321,8 @@ export namespace Prisma {
     name: string
     duration_days: number
     price: number
+    original_price?: number
+    discount?: string
   }
 
   export type premium_packagesUpdateManyMutationInput = {
@@ -40278,6 +40330,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     duration_days?: IntFieldUpdateOperationsInput | number
     price?: IntFieldUpdateOperationsInput | number
+    original_price?: IntFieldUpdateOperationsInput | number
+    discount?: StringFieldUpdateOperationsInput | string
   }
 
   export type premium_packagesUncheckedUpdateManyInput = {
@@ -40285,6 +40339,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     duration_days?: IntFieldUpdateOperationsInput | number
     price?: IntFieldUpdateOperationsInput | number
+    original_price?: IntFieldUpdateOperationsInput | number
+    discount?: StringFieldUpdateOperationsInput | string
   }
 
   export type UuidFilter<$PrismaModel = never> = {
@@ -41820,11 +41876,14 @@ export namespace Prisma {
     name?: SortOrder
     duration_days?: SortOrder
     price?: SortOrder
+    original_price?: SortOrder
+    discount?: SortOrder
   }
 
   export type premium_packagesAvgOrderByAggregateInput = {
     duration_days?: SortOrder
     price?: SortOrder
+    original_price?: SortOrder
   }
 
   export type premium_packagesMaxOrderByAggregateInput = {
@@ -41832,6 +41891,8 @@ export namespace Prisma {
     name?: SortOrder
     duration_days?: SortOrder
     price?: SortOrder
+    original_price?: SortOrder
+    discount?: SortOrder
   }
 
   export type premium_packagesMinOrderByAggregateInput = {
@@ -41839,11 +41900,14 @@ export namespace Prisma {
     name?: SortOrder
     duration_days?: SortOrder
     price?: SortOrder
+    original_price?: SortOrder
+    discount?: SortOrder
   }
 
   export type premium_packagesSumOrderByAggregateInput = {
     duration_days?: SortOrder
     price?: SortOrder
+    original_price?: SortOrder
   }
 
   export type user_abuse_reportsCreateNestedOneWithoutAbuse_report_feedbacksInput = {
@@ -49801,6 +49865,8 @@ export namespace Prisma {
     name: string
     duration_days: number
     price: number
+    original_price?: number
+    discount?: string
   }
 
   export type premium_packagesUncheckedCreateWithoutUser_packagesInput = {
@@ -49808,6 +49874,8 @@ export namespace Prisma {
     name: string
     duration_days: number
     price: number
+    original_price?: number
+    discount?: string
   }
 
   export type premium_packagesCreateOrConnectWithoutUser_packagesInput = {
@@ -49922,6 +49990,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     duration_days?: IntFieldUpdateOperationsInput | number
     price?: IntFieldUpdateOperationsInput | number
+    original_price?: IntFieldUpdateOperationsInput | number
+    discount?: StringFieldUpdateOperationsInput | string
   }
 
   export type premium_packagesUncheckedUpdateWithoutUser_packagesInput = {
@@ -49929,6 +49999,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     duration_days?: IntFieldUpdateOperationsInput | number
     price?: IntFieldUpdateOperationsInput | number
+    original_price?: IntFieldUpdateOperationsInput | number
+    discount?: StringFieldUpdateOperationsInput | string
   }
 
   export type usersUpsertWithoutUser_packagesInput = {

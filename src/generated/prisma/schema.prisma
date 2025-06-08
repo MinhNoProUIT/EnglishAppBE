@@ -353,9 +353,11 @@ model quizzes {
 }
 
 model premium_packages {
-  id            String          @id(map: "packages_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name          String
-  duration_days Int
-  price         Int
-  user_packages user_packages[]
+  id             String          @id(map: "packages_pkey") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name           String
+  duration_days  Int
+  price          Int
+  original_price Int             @default(0)
+  discount       String          @default(" ")
+  user_packages  user_packages[]
 }

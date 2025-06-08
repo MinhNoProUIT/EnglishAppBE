@@ -377,7 +377,9 @@ exports.Prisma.Premium_packagesScalarFieldEnum = {
   id: 'id',
   name: 'name',
   duration_days: 'duration_days',
-  price: 'price'
+  price: 'price',
+  original_price: 'original_price',
+  discount: 'discount'
 };
 
 exports.Prisma.SortOrder = {
