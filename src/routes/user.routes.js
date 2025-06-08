@@ -497,7 +497,7 @@ module.exports = router;
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
  *             type: object
  *             properties:
@@ -516,7 +516,7 @@ module.exports = router;
  *                 type: string
  *               image_url:
  *                 type: string
- *                 format: binary   # Định nghĩa file ảnh
+ *                 format: binary  # Định nghĩa file ảnh (binary)
  *     responses:
  *       200:
  *         description: Cập nhật thành công
@@ -532,6 +532,10 @@ module.exports = router;
  *                   $ref: '#/components/schemas/UserUpdateVModel'
  *       400:
  *         description: Không tìm thấy người dùng hoặc lỗi dữ liệu
+ *       404:
+ *         description: Người dùng không tồn tại
+ *       500:
+ *         description: Lỗi máy chủ
  */
 
 /**
