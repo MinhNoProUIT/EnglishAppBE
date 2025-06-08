@@ -1,19 +1,23 @@
 require("dotenv").config();
 const app = require("./src/app");
 const https = require("https");
+const http = require("http");
 const { Server } = require("socket.io");
 const socketHandler = require("./src/sockets/index");
+const fs = require("fs");
+const path = require("path");
 
 const PORT = process.env.PORT || 5000;
 
-// Load SSL certs (bạn phải có file key.pem và cert.pem ở thư mục ssl/)
-const privateKey = fs.readFileSync(path.join(__dirname, "ssl", "key.pem"), "utf8");
-const certificate = fs.readFileSync(path.join(__dirname, "ssl", "cert.pem"), "utf8");
+// // Load SSL certs (bạn phải có file key.pem và cert.pem ở thư mục ssl/)
+// const privateKey = fs.readFileSync(path.join(__dirname, "ssl", "key.pem"), "utf8");
+// const certificate = fs.readFileSync(path.join(__dirname, "ssl", "cert.pem"), "utf8");
 
-const credentials = { key: privateKey, cert: certificate };
+// const credentials = { key: privateKey, cert: certificate };
 
 // Tạo HTTPS server
-const server = https.createServer(credentials, app);
+// const server = https.createServer(credentials, app);
+const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
