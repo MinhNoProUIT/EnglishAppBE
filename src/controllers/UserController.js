@@ -172,6 +172,8 @@ const UserController = {
       req.body.image_url = result.secure_url;
     }
 
+    req.body.gender = req.body.gender === "true"; // Nếu "true", chuyển thành true, còn "false" chuyển thành false
+
     try {
       const result = await UserService.updateUser(
         userId,
