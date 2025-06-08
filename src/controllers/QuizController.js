@@ -4,13 +4,13 @@ const {
   mapCreateQuizToVModel,
   mapUpdateQuizToVModel,
 } = require("../mappings/QuizMapping");
-const { getCurrentUserId } = require("../utils/CurrentUser")
+const { getCurrentUserId } = require("../utils/CurrentUser");
 
 const QuizController = {
   async getAllQuizzesByUser(req, res) {
     try {
       const allQuizzes = await QuizService.getAllQuizzesByUser(getCurrentUserId(req));
-      res.json(allQuizzes.map(mapGetAllQuizzesByUserToVModel));
+      res.json(allQuizzes);
     } catch (err) {
       console.error("Error in getAllQuizzesByUser:", err);
       res.status(500).json({ error: "Internal Server Error" });
@@ -19,7 +19,9 @@ const QuizController = {
 
   async createQuiz(req, res) {
     try {
-      const newQuiz = await QuizService.createQuiz(req.body);
+      const userId = getCurrentUserId(req);
+      const { title } = req.body;
+      const newQuiz = await QuizService.createQuiz({ user_id: userId, title });
       res.status(201).json(mapCreateQuizToVModel(newQuiz));
     } catch (err) {
       res.status(400).json({ error: err.message });
@@ -46,6 +48,32 @@ const QuizController = {
       res.status(400).json({ error: err.message });
     }
   },
+
+  async createQuizWithQuestions(req, res) {
+    try {
+      const userId = getCurrentUserId(req);
+      const { title, questions } = req.body;
+
+      const quiz = await QuizService.createQuizWithQuestions(userId, title, questions);
+      res.status(201).json(quiz);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  },
+  
+  async updateQuizWithQuestions(req, res) {
+    try {
+      const userId = getCurrentUserId(req);
+      const { quiz_id } = req.params;
+      const { title, questions } = req.body;
+
+      const quiz = await QuizService.updateQuizWithQuestions(userId, quiz_id, title, questions);
+      res.status(201).json(quiz);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  }
+
 };
 
 module.exports = QuizController;
