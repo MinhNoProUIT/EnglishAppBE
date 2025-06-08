@@ -1,11 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const QuizController = require("../controllers/QuizController");
+const authMiddleware = require("../middlewares/auth.middleware");
 
-router.get("/getAllByUser", QuizController.getAllQuizzesByUser);
-router.post("/create", QuizController.createQuiz);
+router.get("/getAllByUser", authMiddleware, QuizController.getAllQuizzesByUser);
+router.post("/create", authMiddleware, QuizController.createQuiz);
 router.put("/update/:id", QuizController.updateQuiz);
 router.delete("/delete/:id", QuizController.deleteQuiz);
+router.post("/createQuizWithQuestions", authMiddleware, QuizController.createQuizWithQuestions);
+router.post("/updateQuizWithQuestions/:quiz_id", authMiddleware, QuizController.updateQuizWithQuestions);
 
 module.exports = router;
 
@@ -100,4 +103,99 @@ module.exports = router;
  *     responses:
  *       200:
  *         description: Xóa quiz thành công
+ */
+
+/**
+ * @swagger
+ * /api/quizzes/createQuizWithQuestions:
+ *   post:
+ *     summary: Tạo quiz mới cùng bộ câu hỏi
+ *     tags: [Quizzes]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - title
+ *               - questions
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 example: "Geography"
+ *               questions:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   required:
+ *                     - question_text
+ *                     - options
+ *                     - correct_answer
+ *                   properties:
+ *                     question_text:
+ *                       type: string
+ *                       example: "What is the capital of France?"
+ *                     options:
+ *                       type: array
+ *                       items:
+ *                         type: string
+ *                       example: ["Paris", "London", "Berlin", "Rome"]
+ *                     correct_answer:
+ *                       type: string
+ *                       example: "Paris"
+ *     responses:
+ *       201:
+ *         description: Đã tạo quiz thành công
+ */
+
+/**
+ * @swagger
+ * /api/quizzes/updateQuizWithQuestions/{quiz_id}:
+ *   put:
+ *     summary: Chỉnh sửa quiz và câu hỏi
+ *     tags: [Quizzes]
+ *     parameters:
+ *       - in: path
+ *         name: quiz_id
+ *         required: true
+ *         description: ID quiz cần chỉnh sửa
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               questions:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   required:
+ *                     - question_text
+ *                     - options
+ *                     - correct_answer
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                       format: uuid
+ *                     question_text:
+ *                       type: string
+ *                       example: "What is the capital of France?"
+ *                     options:
+ *                       type: array
+ *                       items:
+ *                         type: string
+ *                       example: ["Paris", "London", "Berlin", "Rome"]
+ *                     correct_answer:
+ *                       type: string
+ *                       example: "Paris"
+ *     responses:
+ *       200:
+ *         description: Đã chỉnh sửa quiz thành công
  */
