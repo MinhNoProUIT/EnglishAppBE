@@ -3,6 +3,7 @@ const MessageService = require("../services/MessageService")
 module.exports = function (io) {
   io.on("connection", (socket) => {
     console.log("New client connected:", socket.id);
+    console.log("IO received in socketHandler:", typeof io, io?.constructor?.name);
 
     socket.on("joinGroup", (groupId) => {
       socket.join(groupId);
