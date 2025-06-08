@@ -16,7 +16,11 @@ const PremiumPackageService = {
   },
 
   async getAllPremiumPackages() {
-    return await prisma.premium_packages.findMany();
+    return await prisma.premium_packages.findMany({
+      orderBy: {
+        price: "asc", // 'asc' cho giá tăng dần (giá nhỏ nhất ở đầu)
+      },
+    });
   },
 
   async checkAndUpdatePremiumStatus(user_id) {
