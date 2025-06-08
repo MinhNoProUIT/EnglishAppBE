@@ -6,6 +6,7 @@ const {
 } = require("../mappings/UserMapping");
 const { Criteria } = require("../viewmodels/CriteriaVModel");
 const { getCurrentUserId } = require("../utils/CurrentUser");
+const { uploadToCloudinary } = require("../services/UploadService");
 
 const UserController = {
   async getUsers(req, res) {
