@@ -23,6 +23,17 @@ const SharedPostController = {
       res.status(400).json({ error: err.message });
     }
   },
+
+  async getAllSharedPostByUserId(req, res) {
+    try {
+      const { user_id } = req.params;
+      const allSharedPost = await SharedPostService.getAllSharedPostByUserId(user_id);
+      res.json(allSharedPost.map(mapGetAllSharedPostToVModel));
+    } catch (err) {
+      console.error("Error in get all shared posts:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
 };
 
 module.exports = SharedPostController;
