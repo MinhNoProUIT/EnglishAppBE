@@ -20,8 +20,8 @@ const SharedPostService = {
         sp.created_date,
         p.image_url
       FROM shared_post sp
-      JOIN posts p ON sp.post_id = p.id
-      JOIN users au ON p.user_id = au.id           
+      LEFT JOIN posts p ON sp.post_id = p.id
+      LEFT JOIN users au ON p.user_id = au.id           
       JOIN users us ON sp.user_id = us.id 
       ORDER BY sp.created_date DESC
       `,
@@ -85,6 +85,40 @@ const SharedPostService = {
       client.release();
     }
   },
+
+  async getAllSharedPostByUserId(userId) {
+    if (!userId) {
+      throw new Error('userId is required');
+    }
+  
+    const result = await pool.query(
+      `
+      SELECT 
+        sp.id,
+        p.user_id AS author_id,
+        au.username AS author_name,
+        au.image_url AS author_image_url,
+        sp.user_id AS user_shared_id,
+        us.username AS user_shared_name,
+        us.image_url AS user_shared_image_url,
+        sp.react_count,
+        sp.comment_count,
+        sp.shared_count,
+        sp.content,
+        sp.created_date,
+        p.image_url
+      FROM shared_post sp
+      LEFT JOIN posts p ON sp.post_id = p.id
+      LEFT JOIN users au ON p.user_id = au.id           
+      JOIN users us ON sp.user_id = us.id 
+      WHERE sp.user_id = $1
+      ORDER BY sp.created_date DESC
+      `,
+      [userId]
+    );
+  
+    return result.rows;
+  }
 };
 
 module.exports = SharedPostService;

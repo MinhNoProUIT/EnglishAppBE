@@ -164,6 +164,27 @@ const PostService = {
       changePercent: Number(changePercent.toFixed(2)),
     };
   },
+
+  async getAllPostByUser(userId) {
+    if (!userId) {
+      throw new Error("userId is required");
+    }
+  
+    const result = await pool.query(
+      `
+      SELECT 
+        posts.*, 
+        users.username AS author_name,
+        users.image_url AS author_image_url
+      FROM posts
+      JOIN users ON posts.user_id = users.id
+      WHERE posts.user_id = $1
+      ORDER BY posts.created_date DESC
+      `,
+      [userId]
+    );
+    return result.rows;
+  }
 };
 
 module.exports = PostService;
