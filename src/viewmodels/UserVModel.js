@@ -46,6 +46,7 @@ class UserUpdateVModel {
     fullname,
     address,
     image_url,
+    created_date,
   }) {
     this.username = username;
     this.phonenumber = phonenumber;
@@ -54,6 +55,7 @@ class UserUpdateVModel {
     this.fullname = fullname;
     this.address = address;
     this.image_url = image_url;
+    this.created_date = created_date;
   }
 }
 
