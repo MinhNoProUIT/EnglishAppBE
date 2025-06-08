@@ -164,14 +164,20 @@ const UserController = {
     }
   },
   async updateUser(req, res) {
-    const userId = getCurrentUserId(req);
+    const userId = req.params.id;
     const newData = req.body;
 
-    // 👇 bạn có thể dùng `req.user.id` nếu có middleware auth
-    const changedBy = userId;
+    if (req.file) {
+      const result = await uploadToCloudinary(req.file.buffer, "english-app");
+      req.body.image_url = result.secure_url;
+    }
 
     try {
-      const result = await UserService.updateUser(userId, newData, changedBy);
+      const result = await UserService.updateUser(
+        userId,
+        newData,
+        getCurrentUserId(req)
+      );
       res.json(result);
     } catch (err) {
       console.error("Lỗi cập nhật user:", err);

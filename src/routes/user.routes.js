@@ -3,6 +3,7 @@ const router = express.Router();
 const UserController = require("../controllers/UserController");
 const authMiddleware = require("../middlewares/auth.middleware");
 const checkPermission = require("../middlewares/checkPermission");
+const upload = require("../middlewares/upload.middleware");
 
 router.get("/GetAll", authMiddleware, UserController.getUsers);
 router.get("/getById", authMiddleware, UserController.getById);
@@ -15,7 +16,12 @@ router.get("/getAll-post", UserController.getAllUsersInPost);
 router.get("/search", UserController.filterUsersInPost);
 router.post("/Create", UserController.createUser);
 router.get("/getTopFive", UserController.getTopFiveUserInPost);
-router.put("/update/:id", authMiddleware, UserController.updateUser);
+router.put(
+  "/update/:id",
+  authMiddleware,
+  upload.single("image"),
+  UserController.updateUser
+);
 router.put("/lock/:id", UserController.blockUser);
 router.delete("/remove/:id", UserController.removeUser);
 router.get("/quarter-stats", UserController.getQuarterlyUserStats);
@@ -510,7 +516,7 @@ module.exports = router;
  *                 type: string
  *               image_url:
  *                 type: string
- *                 format: uri
+ *                 format: binary   # Định nghĩa file ảnh
  *     responses:
  *       200:
  *         description: Cập nhật thành công
