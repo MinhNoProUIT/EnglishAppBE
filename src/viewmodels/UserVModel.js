@@ -39,9 +39,7 @@ class UserCreateVModel {
 
 class UserUpdateVModel {
   constructor({
-    id,
     username,
-    email,
     phonenumber,
     birthday,
     gender,

@@ -69,11 +69,6 @@ export type groups = $Result.DefaultSelection<Prisma.$groupsPayload>
  */
 export type messages = $Result.DefaultSelection<Prisma.$messagesPayload>
 /**
- * Model packages
- * 
- */
-export type packages = $Result.DefaultSelection<Prisma.$packagesPayload>
-/**
  * Model posts
  * 
  */
@@ -93,11 +88,6 @@ export type react_posts = $Result.DefaultSelection<Prisma.$react_postsPayload>
  * 
  */
 export type shared_post = $Result.DefaultSelection<Prisma.$shared_postPayload>
-/**
- * Model study_access_topic
- * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
- */
-export type study_access_topic = $Result.DefaultSelection<Prisma.$study_access_topicPayload>
 /**
  * Model topics
  * 
@@ -158,6 +148,11 @@ export type quiz_questions = $Result.DefaultSelection<Prisma.$quiz_questionsPayl
  * 
  */
 export type quizzes = $Result.DefaultSelection<Prisma.$quizzesPayload>
+/**
+ * Model premium_packages
+ * 
+ */
+export type premium_packages = $Result.DefaultSelection<Prisma.$premium_packagesPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -395,16 +390,6 @@ export class PrismaClient<
   get messages(): Prisma.messagesDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.packages`: Exposes CRUD operations for the **packages** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Packages
-    * const packages = await prisma.packages.findMany()
-    * ```
-    */
-  get packages(): Prisma.packagesDelegate<ExtArgs, ClientOptions>;
-
-  /**
    * `prisma.posts`: Exposes CRUD operations for the **posts** model.
     * Example usage:
     * ```ts
@@ -443,16 +428,6 @@ export class PrismaClient<
     * ```
     */
   get shared_post(): Prisma.shared_postDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.study_access_topic`: Exposes CRUD operations for the **study_access_topic** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Study_access_topics
-    * const study_access_topics = await prisma.study_access_topic.findMany()
-    * ```
-    */
-  get study_access_topic(): Prisma.study_access_topicDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.topics`: Exposes CRUD operations for the **topics** model.
@@ -573,6 +548,16 @@ export class PrismaClient<
     * ```
     */
   get quizzes(): Prisma.quizzesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.premium_packages`: Exposes CRUD operations for the **premium_packages** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Premium_packages
+    * const premium_packages = await prisma.premium_packages.findMany()
+    * ```
+    */
+  get premium_packages(): Prisma.premium_packagesDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1024,12 +1009,10 @@ export namespace Prisma {
     group_posts: 'group_posts',
     groups: 'groups',
     messages: 'messages',
-    packages: 'packages',
     posts: 'posts',
     react_comments: 'react_comments',
     react_posts: 'react_posts',
     shared_post: 'shared_post',
-    study_access_topic: 'study_access_topic',
     topics: 'topics',
     transaction_history: 'transaction_history',
     user_abuse_reports: 'user_abuse_reports',
@@ -1041,7 +1024,8 @@ export namespace Prisma {
     users: 'users',
     words: 'words',
     quiz_questions: 'quiz_questions',
-    quizzes: 'quizzes'
+    quizzes: 'quizzes',
+    premium_packages: 'premium_packages'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1060,7 +1044,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "abuse_report_feedbacks" | "attendance" | "coin_transaction" | "comments" | "comments_group" | "courses" | "error_report_feedbacks" | "group_members" | "group_posts" | "groups" | "messages" | "packages" | "posts" | "react_comments" | "react_posts" | "shared_post" | "study_access_topic" | "topics" | "transaction_history" | "user_abuse_reports" | "user_courses" | "user_error_reports" | "user_packages" | "user_profile_history" | "user_progress" | "users" | "words" | "quiz_questions" | "quizzes"
+      modelProps: "abuse_report_feedbacks" | "attendance" | "coin_transaction" | "comments" | "comments_group" | "courses" | "error_report_feedbacks" | "group_members" | "group_posts" | "groups" | "messages" | "posts" | "react_comments" | "react_posts" | "shared_post" | "topics" | "transaction_history" | "user_abuse_reports" | "user_courses" | "user_error_reports" | "user_packages" | "user_profile_history" | "user_progress" | "users" | "words" | "quiz_questions" | "quizzes" | "premium_packages"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1878,80 +1862,6 @@ export namespace Prisma {
           }
         }
       }
-      packages: {
-        payload: Prisma.$packagesPayload<ExtArgs>
-        fields: Prisma.packagesFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.packagesFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$packagesPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.packagesFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$packagesPayload>
-          }
-          findFirst: {
-            args: Prisma.packagesFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$packagesPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.packagesFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$packagesPayload>
-          }
-          findMany: {
-            args: Prisma.packagesFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$packagesPayload>[]
-          }
-          create: {
-            args: Prisma.packagesCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$packagesPayload>
-          }
-          createMany: {
-            args: Prisma.packagesCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.packagesCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$packagesPayload>[]
-          }
-          delete: {
-            args: Prisma.packagesDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$packagesPayload>
-          }
-          update: {
-            args: Prisma.packagesUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$packagesPayload>
-          }
-          deleteMany: {
-            args: Prisma.packagesDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.packagesUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.packagesUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$packagesPayload>[]
-          }
-          upsert: {
-            args: Prisma.packagesUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$packagesPayload>
-          }
-          aggregate: {
-            args: Prisma.PackagesAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePackages>
-          }
-          groupBy: {
-            args: Prisma.packagesGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PackagesGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.packagesCountArgs<ExtArgs>
-            result: $Utils.Optional<PackagesCountAggregateOutputType> | number
-          }
-        }
-      }
       posts: {
         payload: Prisma.$postsPayload<ExtArgs>
         fields: Prisma.postsFieldRefs
@@ -2245,80 +2155,6 @@ export namespace Prisma {
           count: {
             args: Prisma.shared_postCountArgs<ExtArgs>
             result: $Utils.Optional<Shared_postCountAggregateOutputType> | number
-          }
-        }
-      }
-      study_access_topic: {
-        payload: Prisma.$study_access_topicPayload<ExtArgs>
-        fields: Prisma.study_access_topicFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.study_access_topicFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$study_access_topicPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.study_access_topicFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$study_access_topicPayload>
-          }
-          findFirst: {
-            args: Prisma.study_access_topicFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$study_access_topicPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.study_access_topicFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$study_access_topicPayload>
-          }
-          findMany: {
-            args: Prisma.study_access_topicFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$study_access_topicPayload>[]
-          }
-          create: {
-            args: Prisma.study_access_topicCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$study_access_topicPayload>
-          }
-          createMany: {
-            args: Prisma.study_access_topicCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.study_access_topicCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$study_access_topicPayload>[]
-          }
-          delete: {
-            args: Prisma.study_access_topicDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$study_access_topicPayload>
-          }
-          update: {
-            args: Prisma.study_access_topicUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$study_access_topicPayload>
-          }
-          deleteMany: {
-            args: Prisma.study_access_topicDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.study_access_topicUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.study_access_topicUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$study_access_topicPayload>[]
-          }
-          upsert: {
-            args: Prisma.study_access_topicUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$study_access_topicPayload>
-          }
-          aggregate: {
-            args: Prisma.Study_access_topicAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateStudy_access_topic>
-          }
-          groupBy: {
-            args: Prisma.study_access_topicGroupByArgs<ExtArgs>
-            result: $Utils.Optional<Study_access_topicGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.study_access_topicCountArgs<ExtArgs>
-            result: $Utils.Optional<Study_access_topicCountAggregateOutputType> | number
           }
         }
       }
@@ -3210,6 +3046,80 @@ export namespace Prisma {
           }
         }
       }
+      premium_packages: {
+        payload: Prisma.$premium_packagesPayload<ExtArgs>
+        fields: Prisma.premium_packagesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.premium_packagesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$premium_packagesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.premium_packagesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$premium_packagesPayload>
+          }
+          findFirst: {
+            args: Prisma.premium_packagesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$premium_packagesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.premium_packagesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$premium_packagesPayload>
+          }
+          findMany: {
+            args: Prisma.premium_packagesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$premium_packagesPayload>[]
+          }
+          create: {
+            args: Prisma.premium_packagesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$premium_packagesPayload>
+          }
+          createMany: {
+            args: Prisma.premium_packagesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.premium_packagesCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$premium_packagesPayload>[]
+          }
+          delete: {
+            args: Prisma.premium_packagesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$premium_packagesPayload>
+          }
+          update: {
+            args: Prisma.premium_packagesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$premium_packagesPayload>
+          }
+          deleteMany: {
+            args: Prisma.premium_packagesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.premium_packagesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.premium_packagesUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$premium_packagesPayload>[]
+          }
+          upsert: {
+            args: Prisma.premium_packagesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$premium_packagesPayload>
+          }
+          aggregate: {
+            args: Prisma.Premium_packagesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePremium_packages>
+          }
+          groupBy: {
+            args: Prisma.premium_packagesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Premium_packagesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.premium_packagesCountArgs<ExtArgs>
+            result: $Utils.Optional<Premium_packagesCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3305,12 +3215,10 @@ export namespace Prisma {
     group_posts?: group_postsOmit
     groups?: groupsOmit
     messages?: messagesOmit
-    packages?: packagesOmit
     posts?: postsOmit
     react_comments?: react_commentsOmit
     react_posts?: react_postsOmit
     shared_post?: shared_postOmit
-    study_access_topic?: study_access_topicOmit
     topics?: topicsOmit
     transaction_history?: transaction_historyOmit
     user_abuse_reports?: user_abuse_reportsOmit
@@ -3323,6 +3231,7 @@ export namespace Prisma {
     words?: wordsOmit
     quiz_questions?: quiz_questionsOmit
     quizzes?: quizzesOmit
+    premium_packages?: premium_packagesOmit
   }
 
   /* Types for Logging */
@@ -3542,37 +3451,6 @@ export namespace Prisma {
 
 
   /**
-   * Count Type PackagesCountOutputType
-   */
-
-  export type PackagesCountOutputType = {
-    user_packages: number
-  }
-
-  export type PackagesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user_packages?: boolean | PackagesCountOutputTypeCountUser_packagesArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * PackagesCountOutputType without action
-   */
-  export type PackagesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PackagesCountOutputType
-     */
-    select?: PackagesCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * PackagesCountOutputType without action
-   */
-  export type PackagesCountOutputTypeCountUser_packagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: user_packagesWhereInput
-  }
-
-
-  /**
    * Count Type PostsCountOutputType
    */
 
@@ -3676,12 +3554,10 @@ export namespace Prisma {
 
   export type TopicsCountOutputType = {
     courses: number
-    study_access_topic: number
   }
 
   export type TopicsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     courses?: boolean | TopicsCountOutputTypeCountCoursesArgs
-    study_access_topic?: boolean | TopicsCountOutputTypeCountStudy_access_topicArgs
   }
 
   // Custom InputTypes
@@ -3700,13 +3576,6 @@ export namespace Prisma {
    */
   export type TopicsCountOutputTypeCountCoursesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: coursesWhereInput
-  }
-
-  /**
-   * TopicsCountOutputType without action
-   */
-  export type TopicsCountOutputTypeCountStudy_access_topicArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: study_access_topicWhereInput
   }
 
 
@@ -3792,7 +3661,6 @@ export namespace Prisma {
     react_comments: number
     react_posts: number
     shared_post: number
-    study_access_topic: number
     transaction_history: number
     user_abuse_reports: number
     user_courses: number
@@ -3819,7 +3687,6 @@ export namespace Prisma {
     react_comments?: boolean | UsersCountOutputTypeCountReact_commentsArgs
     react_posts?: boolean | UsersCountOutputTypeCountReact_postsArgs
     shared_post?: boolean | UsersCountOutputTypeCountShared_postArgs
-    study_access_topic?: boolean | UsersCountOutputTypeCountStudy_access_topicArgs
     transaction_history?: boolean | UsersCountOutputTypeCountTransaction_historyArgs
     user_abuse_reports?: boolean | UsersCountOutputTypeCountUser_abuse_reportsArgs
     user_courses?: boolean | UsersCountOutputTypeCountUser_coursesArgs
@@ -3949,13 +3816,6 @@ export namespace Prisma {
   /**
    * UsersCountOutputType without action
    */
-  export type UsersCountOutputTypeCountStudy_access_topicArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: study_access_topicWhereInput
-  }
-
-  /**
-   * UsersCountOutputType without action
-   */
   export type UsersCountOutputTypeCountTransaction_historyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: transaction_historyWhereInput
   }
@@ -4069,6 +3929,37 @@ export namespace Prisma {
    */
   export type QuizzesCountOutputTypeCountQuiz_questionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: quiz_questionsWhereInput
+  }
+
+
+  /**
+   * Count Type Premium_packagesCountOutputType
+   */
+
+  export type Premium_packagesCountOutputType = {
+    user_packages: number
+  }
+
+  export type Premium_packagesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user_packages?: boolean | Premium_packagesCountOutputTypeCountUser_packagesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * Premium_packagesCountOutputType without action
+   */
+  export type Premium_packagesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Premium_packagesCountOutputType
+     */
+    select?: Premium_packagesCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * Premium_packagesCountOutputType without action
+   */
+  export type Premium_packagesCountOutputTypeCountUser_packagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: user_packagesWhereInput
   }
 
 
@@ -16470,1114 +16361,6 @@ export namespace Prisma {
 
 
   /**
-   * Model packages
-   */
-
-  export type AggregatePackages = {
-    _count: PackagesCountAggregateOutputType | null
-    _avg: PackagesAvgAggregateOutputType | null
-    _sum: PackagesSumAggregateOutputType | null
-    _min: PackagesMinAggregateOutputType | null
-    _max: PackagesMaxAggregateOutputType | null
-  }
-
-  export type PackagesAvgAggregateOutputType = {
-    duration_days: number | null
-    price: number | null
-  }
-
-  export type PackagesSumAggregateOutputType = {
-    duration_days: number | null
-    price: number | null
-  }
-
-  export type PackagesMinAggregateOutputType = {
-    id: string | null
-    name: string | null
-    duration_days: number | null
-    price: number | null
-    is_premium: boolean | null
-  }
-
-  export type PackagesMaxAggregateOutputType = {
-    id: string | null
-    name: string | null
-    duration_days: number | null
-    price: number | null
-    is_premium: boolean | null
-  }
-
-  export type PackagesCountAggregateOutputType = {
-    id: number
-    name: number
-    duration_days: number
-    price: number
-    is_premium: number
-    _all: number
-  }
-
-
-  export type PackagesAvgAggregateInputType = {
-    duration_days?: true
-    price?: true
-  }
-
-  export type PackagesSumAggregateInputType = {
-    duration_days?: true
-    price?: true
-  }
-
-  export type PackagesMinAggregateInputType = {
-    id?: true
-    name?: true
-    duration_days?: true
-    price?: true
-    is_premium?: true
-  }
-
-  export type PackagesMaxAggregateInputType = {
-    id?: true
-    name?: true
-    duration_days?: true
-    price?: true
-    is_premium?: true
-  }
-
-  export type PackagesCountAggregateInputType = {
-    id?: true
-    name?: true
-    duration_days?: true
-    price?: true
-    is_premium?: true
-    _all?: true
-  }
-
-  export type PackagesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which packages to aggregate.
-     */
-    where?: packagesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of packages to fetch.
-     */
-    orderBy?: packagesOrderByWithRelationInput | packagesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: packagesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` packages from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` packages.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned packages
-    **/
-    _count?: true | PackagesCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: PackagesAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: PackagesSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: PackagesMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: PackagesMaxAggregateInputType
-  }
-
-  export type GetPackagesAggregateType<T extends PackagesAggregateArgs> = {
-        [P in keyof T & keyof AggregatePackages]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregatePackages[P]>
-      : GetScalarType<T[P], AggregatePackages[P]>
-  }
-
-
-
-
-  export type packagesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: packagesWhereInput
-    orderBy?: packagesOrderByWithAggregationInput | packagesOrderByWithAggregationInput[]
-    by: PackagesScalarFieldEnum[] | PackagesScalarFieldEnum
-    having?: packagesScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: PackagesCountAggregateInputType | true
-    _avg?: PackagesAvgAggregateInputType
-    _sum?: PackagesSumAggregateInputType
-    _min?: PackagesMinAggregateInputType
-    _max?: PackagesMaxAggregateInputType
-  }
-
-  export type PackagesGroupByOutputType = {
-    id: string
-    name: string
-    duration_days: number
-    price: number
-    is_premium: boolean | null
-    _count: PackagesCountAggregateOutputType | null
-    _avg: PackagesAvgAggregateOutputType | null
-    _sum: PackagesSumAggregateOutputType | null
-    _min: PackagesMinAggregateOutputType | null
-    _max: PackagesMaxAggregateOutputType | null
-  }
-
-  type GetPackagesGroupByPayload<T extends packagesGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<PackagesGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PackagesGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], PackagesGroupByOutputType[P]>
-            : GetScalarType<T[P], PackagesGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type packagesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    duration_days?: boolean
-    price?: boolean
-    is_premium?: boolean
-    user_packages?: boolean | packages$user_packagesArgs<ExtArgs>
-    _count?: boolean | PackagesCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["packages"]>
-
-  export type packagesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    duration_days?: boolean
-    price?: boolean
-    is_premium?: boolean
-  }, ExtArgs["result"]["packages"]>
-
-  export type packagesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    duration_days?: boolean
-    price?: boolean
-    is_premium?: boolean
-  }, ExtArgs["result"]["packages"]>
-
-  export type packagesSelectScalar = {
-    id?: boolean
-    name?: boolean
-    duration_days?: boolean
-    price?: boolean
-    is_premium?: boolean
-  }
-
-  export type packagesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "duration_days" | "price" | "is_premium", ExtArgs["result"]["packages"]>
-  export type packagesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user_packages?: boolean | packages$user_packagesArgs<ExtArgs>
-    _count?: boolean | PackagesCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type packagesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type packagesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-
-  export type $packagesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "packages"
-    objects: {
-      user_packages: Prisma.$user_packagesPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      name: string
-      duration_days: number
-      price: number
-      is_premium: boolean | null
-    }, ExtArgs["result"]["packages"]>
-    composites: {}
-  }
-
-  type packagesGetPayload<S extends boolean | null | undefined | packagesDefaultArgs> = $Result.GetResult<Prisma.$packagesPayload, S>
-
-  type packagesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<packagesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: PackagesCountAggregateInputType | true
-    }
-
-  export interface packagesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['packages'], meta: { name: 'packages' } }
-    /**
-     * Find zero or one Packages that matches the filter.
-     * @param {packagesFindUniqueArgs} args - Arguments to find a Packages
-     * @example
-     * // Get one Packages
-     * const packages = await prisma.packages.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends packagesFindUniqueArgs>(args: SelectSubset<T, packagesFindUniqueArgs<ExtArgs>>): Prisma__packagesClient<$Result.GetResult<Prisma.$packagesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Packages that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {packagesFindUniqueOrThrowArgs} args - Arguments to find a Packages
-     * @example
-     * // Get one Packages
-     * const packages = await prisma.packages.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends packagesFindUniqueOrThrowArgs>(args: SelectSubset<T, packagesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__packagesClient<$Result.GetResult<Prisma.$packagesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Packages that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {packagesFindFirstArgs} args - Arguments to find a Packages
-     * @example
-     * // Get one Packages
-     * const packages = await prisma.packages.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends packagesFindFirstArgs>(args?: SelectSubset<T, packagesFindFirstArgs<ExtArgs>>): Prisma__packagesClient<$Result.GetResult<Prisma.$packagesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Packages that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {packagesFindFirstOrThrowArgs} args - Arguments to find a Packages
-     * @example
-     * // Get one Packages
-     * const packages = await prisma.packages.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends packagesFindFirstOrThrowArgs>(args?: SelectSubset<T, packagesFindFirstOrThrowArgs<ExtArgs>>): Prisma__packagesClient<$Result.GetResult<Prisma.$packagesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Packages that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {packagesFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Packages
-     * const packages = await prisma.packages.findMany()
-     * 
-     * // Get first 10 Packages
-     * const packages = await prisma.packages.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const packagesWithIdOnly = await prisma.packages.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends packagesFindManyArgs>(args?: SelectSubset<T, packagesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$packagesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Packages.
-     * @param {packagesCreateArgs} args - Arguments to create a Packages.
-     * @example
-     * // Create one Packages
-     * const Packages = await prisma.packages.create({
-     *   data: {
-     *     // ... data to create a Packages
-     *   }
-     * })
-     * 
-     */
-    create<T extends packagesCreateArgs>(args: SelectSubset<T, packagesCreateArgs<ExtArgs>>): Prisma__packagesClient<$Result.GetResult<Prisma.$packagesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Packages.
-     * @param {packagesCreateManyArgs} args - Arguments to create many Packages.
-     * @example
-     * // Create many Packages
-     * const packages = await prisma.packages.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends packagesCreateManyArgs>(args?: SelectSubset<T, packagesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Packages and returns the data saved in the database.
-     * @param {packagesCreateManyAndReturnArgs} args - Arguments to create many Packages.
-     * @example
-     * // Create many Packages
-     * const packages = await prisma.packages.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Packages and only return the `id`
-     * const packagesWithIdOnly = await prisma.packages.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends packagesCreateManyAndReturnArgs>(args?: SelectSubset<T, packagesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$packagesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Packages.
-     * @param {packagesDeleteArgs} args - Arguments to delete one Packages.
-     * @example
-     * // Delete one Packages
-     * const Packages = await prisma.packages.delete({
-     *   where: {
-     *     // ... filter to delete one Packages
-     *   }
-     * })
-     * 
-     */
-    delete<T extends packagesDeleteArgs>(args: SelectSubset<T, packagesDeleteArgs<ExtArgs>>): Prisma__packagesClient<$Result.GetResult<Prisma.$packagesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Packages.
-     * @param {packagesUpdateArgs} args - Arguments to update one Packages.
-     * @example
-     * // Update one Packages
-     * const packages = await prisma.packages.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends packagesUpdateArgs>(args: SelectSubset<T, packagesUpdateArgs<ExtArgs>>): Prisma__packagesClient<$Result.GetResult<Prisma.$packagesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Packages.
-     * @param {packagesDeleteManyArgs} args - Arguments to filter Packages to delete.
-     * @example
-     * // Delete a few Packages
-     * const { count } = await prisma.packages.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends packagesDeleteManyArgs>(args?: SelectSubset<T, packagesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Packages.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {packagesUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Packages
-     * const packages = await prisma.packages.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends packagesUpdateManyArgs>(args: SelectSubset<T, packagesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Packages and returns the data updated in the database.
-     * @param {packagesUpdateManyAndReturnArgs} args - Arguments to update many Packages.
-     * @example
-     * // Update many Packages
-     * const packages = await prisma.packages.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Packages and only return the `id`
-     * const packagesWithIdOnly = await prisma.packages.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends packagesUpdateManyAndReturnArgs>(args: SelectSubset<T, packagesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$packagesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Packages.
-     * @param {packagesUpsertArgs} args - Arguments to update or create a Packages.
-     * @example
-     * // Update or create a Packages
-     * const packages = await prisma.packages.upsert({
-     *   create: {
-     *     // ... data to create a Packages
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Packages we want to update
-     *   }
-     * })
-     */
-    upsert<T extends packagesUpsertArgs>(args: SelectSubset<T, packagesUpsertArgs<ExtArgs>>): Prisma__packagesClient<$Result.GetResult<Prisma.$packagesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Packages.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {packagesCountArgs} args - Arguments to filter Packages to count.
-     * @example
-     * // Count the number of Packages
-     * const count = await prisma.packages.count({
-     *   where: {
-     *     // ... the filter for the Packages we want to count
-     *   }
-     * })
-    **/
-    count<T extends packagesCountArgs>(
-      args?: Subset<T, packagesCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], PackagesCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Packages.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PackagesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends PackagesAggregateArgs>(args: Subset<T, PackagesAggregateArgs>): Prisma.PrismaPromise<GetPackagesAggregateType<T>>
-
-    /**
-     * Group by Packages.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {packagesGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends packagesGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: packagesGroupByArgs['orderBy'] }
-        : { orderBy?: packagesGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, packagesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPackagesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the packages model
-   */
-  readonly fields: packagesFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for packages.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__packagesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    user_packages<T extends packages$user_packagesArgs<ExtArgs> = {}>(args?: Subset<T, packages$user_packagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_packagesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the packages model
-   */
-  interface packagesFieldRefs {
-    readonly id: FieldRef<"packages", 'String'>
-    readonly name: FieldRef<"packages", 'String'>
-    readonly duration_days: FieldRef<"packages", 'Int'>
-    readonly price: FieldRef<"packages", 'Int'>
-    readonly is_premium: FieldRef<"packages", 'Boolean'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * packages findUnique
-   */
-  export type packagesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the packages
-     */
-    select?: packagesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the packages
-     */
-    omit?: packagesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: packagesInclude<ExtArgs> | null
-    /**
-     * Filter, which packages to fetch.
-     */
-    where: packagesWhereUniqueInput
-  }
-
-  /**
-   * packages findUniqueOrThrow
-   */
-  export type packagesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the packages
-     */
-    select?: packagesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the packages
-     */
-    omit?: packagesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: packagesInclude<ExtArgs> | null
-    /**
-     * Filter, which packages to fetch.
-     */
-    where: packagesWhereUniqueInput
-  }
-
-  /**
-   * packages findFirst
-   */
-  export type packagesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the packages
-     */
-    select?: packagesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the packages
-     */
-    omit?: packagesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: packagesInclude<ExtArgs> | null
-    /**
-     * Filter, which packages to fetch.
-     */
-    where?: packagesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of packages to fetch.
-     */
-    orderBy?: packagesOrderByWithRelationInput | packagesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for packages.
-     */
-    cursor?: packagesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` packages from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` packages.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of packages.
-     */
-    distinct?: PackagesScalarFieldEnum | PackagesScalarFieldEnum[]
-  }
-
-  /**
-   * packages findFirstOrThrow
-   */
-  export type packagesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the packages
-     */
-    select?: packagesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the packages
-     */
-    omit?: packagesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: packagesInclude<ExtArgs> | null
-    /**
-     * Filter, which packages to fetch.
-     */
-    where?: packagesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of packages to fetch.
-     */
-    orderBy?: packagesOrderByWithRelationInput | packagesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for packages.
-     */
-    cursor?: packagesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` packages from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` packages.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of packages.
-     */
-    distinct?: PackagesScalarFieldEnum | PackagesScalarFieldEnum[]
-  }
-
-  /**
-   * packages findMany
-   */
-  export type packagesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the packages
-     */
-    select?: packagesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the packages
-     */
-    omit?: packagesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: packagesInclude<ExtArgs> | null
-    /**
-     * Filter, which packages to fetch.
-     */
-    where?: packagesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of packages to fetch.
-     */
-    orderBy?: packagesOrderByWithRelationInput | packagesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing packages.
-     */
-    cursor?: packagesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` packages from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` packages.
-     */
-    skip?: number
-    distinct?: PackagesScalarFieldEnum | PackagesScalarFieldEnum[]
-  }
-
-  /**
-   * packages create
-   */
-  export type packagesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the packages
-     */
-    select?: packagesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the packages
-     */
-    omit?: packagesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: packagesInclude<ExtArgs> | null
-    /**
-     * The data needed to create a packages.
-     */
-    data: XOR<packagesCreateInput, packagesUncheckedCreateInput>
-  }
-
-  /**
-   * packages createMany
-   */
-  export type packagesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many packages.
-     */
-    data: packagesCreateManyInput | packagesCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * packages createManyAndReturn
-   */
-  export type packagesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the packages
-     */
-    select?: packagesSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the packages
-     */
-    omit?: packagesOmit<ExtArgs> | null
-    /**
-     * The data used to create many packages.
-     */
-    data: packagesCreateManyInput | packagesCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * packages update
-   */
-  export type packagesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the packages
-     */
-    select?: packagesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the packages
-     */
-    omit?: packagesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: packagesInclude<ExtArgs> | null
-    /**
-     * The data needed to update a packages.
-     */
-    data: XOR<packagesUpdateInput, packagesUncheckedUpdateInput>
-    /**
-     * Choose, which packages to update.
-     */
-    where: packagesWhereUniqueInput
-  }
-
-  /**
-   * packages updateMany
-   */
-  export type packagesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update packages.
-     */
-    data: XOR<packagesUpdateManyMutationInput, packagesUncheckedUpdateManyInput>
-    /**
-     * Filter which packages to update
-     */
-    where?: packagesWhereInput
-    /**
-     * Limit how many packages to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * packages updateManyAndReturn
-   */
-  export type packagesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the packages
-     */
-    select?: packagesSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the packages
-     */
-    omit?: packagesOmit<ExtArgs> | null
-    /**
-     * The data used to update packages.
-     */
-    data: XOR<packagesUpdateManyMutationInput, packagesUncheckedUpdateManyInput>
-    /**
-     * Filter which packages to update
-     */
-    where?: packagesWhereInput
-    /**
-     * Limit how many packages to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * packages upsert
-   */
-  export type packagesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the packages
-     */
-    select?: packagesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the packages
-     */
-    omit?: packagesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: packagesInclude<ExtArgs> | null
-    /**
-     * The filter to search for the packages to update in case it exists.
-     */
-    where: packagesWhereUniqueInput
-    /**
-     * In case the packages found by the `where` argument doesn't exist, create a new packages with this data.
-     */
-    create: XOR<packagesCreateInput, packagesUncheckedCreateInput>
-    /**
-     * In case the packages was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<packagesUpdateInput, packagesUncheckedUpdateInput>
-  }
-
-  /**
-   * packages delete
-   */
-  export type packagesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the packages
-     */
-    select?: packagesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the packages
-     */
-    omit?: packagesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: packagesInclude<ExtArgs> | null
-    /**
-     * Filter which packages to delete.
-     */
-    where: packagesWhereUniqueInput
-  }
-
-  /**
-   * packages deleteMany
-   */
-  export type packagesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which packages to delete
-     */
-    where?: packagesWhereInput
-    /**
-     * Limit how many packages to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * packages.user_packages
-   */
-  export type packages$user_packagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the user_packages
-     */
-    select?: user_packagesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the user_packages
-     */
-    omit?: user_packagesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: user_packagesInclude<ExtArgs> | null
-    where?: user_packagesWhereInput
-    orderBy?: user_packagesOrderByWithRelationInput | user_packagesOrderByWithRelationInput[]
-    cursor?: user_packagesWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: User_packagesScalarFieldEnum | User_packagesScalarFieldEnum[]
-  }
-
-  /**
-   * packages without action
-   */
-  export type packagesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the packages
-     */
-    select?: packagesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the packages
-     */
-    omit?: packagesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: packagesInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model posts
    */
 
@@ -22201,1085 +20984,6 @@ export namespace Prisma {
 
 
   /**
-   * Model study_access_topic
-   */
-
-  export type AggregateStudy_access_topic = {
-    _count: Study_access_topicCountAggregateOutputType | null
-    _min: Study_access_topicMinAggregateOutputType | null
-    _max: Study_access_topicMaxAggregateOutputType | null
-  }
-
-  export type Study_access_topicMinAggregateOutputType = {
-    id: string | null
-    user_id: string | null
-    topic_id: string | null
-    access_type: string | null
-    access_date: Date | null
-    expire_date: Date | null
-  }
-
-  export type Study_access_topicMaxAggregateOutputType = {
-    id: string | null
-    user_id: string | null
-    topic_id: string | null
-    access_type: string | null
-    access_date: Date | null
-    expire_date: Date | null
-  }
-
-  export type Study_access_topicCountAggregateOutputType = {
-    id: number
-    user_id: number
-    topic_id: number
-    access_type: number
-    access_date: number
-    expire_date: number
-    _all: number
-  }
-
-
-  export type Study_access_topicMinAggregateInputType = {
-    id?: true
-    user_id?: true
-    topic_id?: true
-    access_type?: true
-    access_date?: true
-    expire_date?: true
-  }
-
-  export type Study_access_topicMaxAggregateInputType = {
-    id?: true
-    user_id?: true
-    topic_id?: true
-    access_type?: true
-    access_date?: true
-    expire_date?: true
-  }
-
-  export type Study_access_topicCountAggregateInputType = {
-    id?: true
-    user_id?: true
-    topic_id?: true
-    access_type?: true
-    access_date?: true
-    expire_date?: true
-    _all?: true
-  }
-
-  export type Study_access_topicAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which study_access_topic to aggregate.
-     */
-    where?: study_access_topicWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of study_access_topics to fetch.
-     */
-    orderBy?: study_access_topicOrderByWithRelationInput | study_access_topicOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: study_access_topicWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` study_access_topics from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` study_access_topics.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned study_access_topics
-    **/
-    _count?: true | Study_access_topicCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: Study_access_topicMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: Study_access_topicMaxAggregateInputType
-  }
-
-  export type GetStudy_access_topicAggregateType<T extends Study_access_topicAggregateArgs> = {
-        [P in keyof T & keyof AggregateStudy_access_topic]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateStudy_access_topic[P]>
-      : GetScalarType<T[P], AggregateStudy_access_topic[P]>
-  }
-
-
-
-
-  export type study_access_topicGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: study_access_topicWhereInput
-    orderBy?: study_access_topicOrderByWithAggregationInput | study_access_topicOrderByWithAggregationInput[]
-    by: Study_access_topicScalarFieldEnum[] | Study_access_topicScalarFieldEnum
-    having?: study_access_topicScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: Study_access_topicCountAggregateInputType | true
-    _min?: Study_access_topicMinAggregateInputType
-    _max?: Study_access_topicMaxAggregateInputType
-  }
-
-  export type Study_access_topicGroupByOutputType = {
-    id: string
-    user_id: string
-    topic_id: string
-    access_type: string | null
-    access_date: Date | null
-    expire_date: Date
-    _count: Study_access_topicCountAggregateOutputType | null
-    _min: Study_access_topicMinAggregateOutputType | null
-    _max: Study_access_topicMaxAggregateOutputType | null
-  }
-
-  type GetStudy_access_topicGroupByPayload<T extends study_access_topicGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<Study_access_topicGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof Study_access_topicGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], Study_access_topicGroupByOutputType[P]>
-            : GetScalarType<T[P], Study_access_topicGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type study_access_topicSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    user_id?: boolean
-    topic_id?: boolean
-    access_type?: boolean
-    access_date?: boolean
-    expire_date?: boolean
-    topics?: boolean | topicsDefaultArgs<ExtArgs>
-    users?: boolean | usersDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["study_access_topic"]>
-
-  export type study_access_topicSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    user_id?: boolean
-    topic_id?: boolean
-    access_type?: boolean
-    access_date?: boolean
-    expire_date?: boolean
-    topics?: boolean | topicsDefaultArgs<ExtArgs>
-    users?: boolean | usersDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["study_access_topic"]>
-
-  export type study_access_topicSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    user_id?: boolean
-    topic_id?: boolean
-    access_type?: boolean
-    access_date?: boolean
-    expire_date?: boolean
-    topics?: boolean | topicsDefaultArgs<ExtArgs>
-    users?: boolean | usersDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["study_access_topic"]>
-
-  export type study_access_topicSelectScalar = {
-    id?: boolean
-    user_id?: boolean
-    topic_id?: boolean
-    access_type?: boolean
-    access_date?: boolean
-    expire_date?: boolean
-  }
-
-  export type study_access_topicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "topic_id" | "access_type" | "access_date" | "expire_date", ExtArgs["result"]["study_access_topic"]>
-  export type study_access_topicInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    topics?: boolean | topicsDefaultArgs<ExtArgs>
-    users?: boolean | usersDefaultArgs<ExtArgs>
-  }
-  export type study_access_topicIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    topics?: boolean | topicsDefaultArgs<ExtArgs>
-    users?: boolean | usersDefaultArgs<ExtArgs>
-  }
-  export type study_access_topicIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    topics?: boolean | topicsDefaultArgs<ExtArgs>
-    users?: boolean | usersDefaultArgs<ExtArgs>
-  }
-
-  export type $study_access_topicPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "study_access_topic"
-    objects: {
-      topics: Prisma.$topicsPayload<ExtArgs>
-      users: Prisma.$usersPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      user_id: string
-      topic_id: string
-      access_type: string | null
-      access_date: Date | null
-      expire_date: Date
-    }, ExtArgs["result"]["study_access_topic"]>
-    composites: {}
-  }
-
-  type study_access_topicGetPayload<S extends boolean | null | undefined | study_access_topicDefaultArgs> = $Result.GetResult<Prisma.$study_access_topicPayload, S>
-
-  type study_access_topicCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<study_access_topicFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: Study_access_topicCountAggregateInputType | true
-    }
-
-  export interface study_access_topicDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['study_access_topic'], meta: { name: 'study_access_topic' } }
-    /**
-     * Find zero or one Study_access_topic that matches the filter.
-     * @param {study_access_topicFindUniqueArgs} args - Arguments to find a Study_access_topic
-     * @example
-     * // Get one Study_access_topic
-     * const study_access_topic = await prisma.study_access_topic.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends study_access_topicFindUniqueArgs>(args: SelectSubset<T, study_access_topicFindUniqueArgs<ExtArgs>>): Prisma__study_access_topicClient<$Result.GetResult<Prisma.$study_access_topicPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Study_access_topic that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {study_access_topicFindUniqueOrThrowArgs} args - Arguments to find a Study_access_topic
-     * @example
-     * // Get one Study_access_topic
-     * const study_access_topic = await prisma.study_access_topic.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends study_access_topicFindUniqueOrThrowArgs>(args: SelectSubset<T, study_access_topicFindUniqueOrThrowArgs<ExtArgs>>): Prisma__study_access_topicClient<$Result.GetResult<Prisma.$study_access_topicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Study_access_topic that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {study_access_topicFindFirstArgs} args - Arguments to find a Study_access_topic
-     * @example
-     * // Get one Study_access_topic
-     * const study_access_topic = await prisma.study_access_topic.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends study_access_topicFindFirstArgs>(args?: SelectSubset<T, study_access_topicFindFirstArgs<ExtArgs>>): Prisma__study_access_topicClient<$Result.GetResult<Prisma.$study_access_topicPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Study_access_topic that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {study_access_topicFindFirstOrThrowArgs} args - Arguments to find a Study_access_topic
-     * @example
-     * // Get one Study_access_topic
-     * const study_access_topic = await prisma.study_access_topic.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends study_access_topicFindFirstOrThrowArgs>(args?: SelectSubset<T, study_access_topicFindFirstOrThrowArgs<ExtArgs>>): Prisma__study_access_topicClient<$Result.GetResult<Prisma.$study_access_topicPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Study_access_topics that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {study_access_topicFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Study_access_topics
-     * const study_access_topics = await prisma.study_access_topic.findMany()
-     * 
-     * // Get first 10 Study_access_topics
-     * const study_access_topics = await prisma.study_access_topic.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const study_access_topicWithIdOnly = await prisma.study_access_topic.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends study_access_topicFindManyArgs>(args?: SelectSubset<T, study_access_topicFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$study_access_topicPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Study_access_topic.
-     * @param {study_access_topicCreateArgs} args - Arguments to create a Study_access_topic.
-     * @example
-     * // Create one Study_access_topic
-     * const Study_access_topic = await prisma.study_access_topic.create({
-     *   data: {
-     *     // ... data to create a Study_access_topic
-     *   }
-     * })
-     * 
-     */
-    create<T extends study_access_topicCreateArgs>(args: SelectSubset<T, study_access_topicCreateArgs<ExtArgs>>): Prisma__study_access_topicClient<$Result.GetResult<Prisma.$study_access_topicPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Study_access_topics.
-     * @param {study_access_topicCreateManyArgs} args - Arguments to create many Study_access_topics.
-     * @example
-     * // Create many Study_access_topics
-     * const study_access_topic = await prisma.study_access_topic.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends study_access_topicCreateManyArgs>(args?: SelectSubset<T, study_access_topicCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Study_access_topics and returns the data saved in the database.
-     * @param {study_access_topicCreateManyAndReturnArgs} args - Arguments to create many Study_access_topics.
-     * @example
-     * // Create many Study_access_topics
-     * const study_access_topic = await prisma.study_access_topic.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Study_access_topics and only return the `id`
-     * const study_access_topicWithIdOnly = await prisma.study_access_topic.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends study_access_topicCreateManyAndReturnArgs>(args?: SelectSubset<T, study_access_topicCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$study_access_topicPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Study_access_topic.
-     * @param {study_access_topicDeleteArgs} args - Arguments to delete one Study_access_topic.
-     * @example
-     * // Delete one Study_access_topic
-     * const Study_access_topic = await prisma.study_access_topic.delete({
-     *   where: {
-     *     // ... filter to delete one Study_access_topic
-     *   }
-     * })
-     * 
-     */
-    delete<T extends study_access_topicDeleteArgs>(args: SelectSubset<T, study_access_topicDeleteArgs<ExtArgs>>): Prisma__study_access_topicClient<$Result.GetResult<Prisma.$study_access_topicPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Study_access_topic.
-     * @param {study_access_topicUpdateArgs} args - Arguments to update one Study_access_topic.
-     * @example
-     * // Update one Study_access_topic
-     * const study_access_topic = await prisma.study_access_topic.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends study_access_topicUpdateArgs>(args: SelectSubset<T, study_access_topicUpdateArgs<ExtArgs>>): Prisma__study_access_topicClient<$Result.GetResult<Prisma.$study_access_topicPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Study_access_topics.
-     * @param {study_access_topicDeleteManyArgs} args - Arguments to filter Study_access_topics to delete.
-     * @example
-     * // Delete a few Study_access_topics
-     * const { count } = await prisma.study_access_topic.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends study_access_topicDeleteManyArgs>(args?: SelectSubset<T, study_access_topicDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Study_access_topics.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {study_access_topicUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Study_access_topics
-     * const study_access_topic = await prisma.study_access_topic.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends study_access_topicUpdateManyArgs>(args: SelectSubset<T, study_access_topicUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Study_access_topics and returns the data updated in the database.
-     * @param {study_access_topicUpdateManyAndReturnArgs} args - Arguments to update many Study_access_topics.
-     * @example
-     * // Update many Study_access_topics
-     * const study_access_topic = await prisma.study_access_topic.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Study_access_topics and only return the `id`
-     * const study_access_topicWithIdOnly = await prisma.study_access_topic.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends study_access_topicUpdateManyAndReturnArgs>(args: SelectSubset<T, study_access_topicUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$study_access_topicPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Study_access_topic.
-     * @param {study_access_topicUpsertArgs} args - Arguments to update or create a Study_access_topic.
-     * @example
-     * // Update or create a Study_access_topic
-     * const study_access_topic = await prisma.study_access_topic.upsert({
-     *   create: {
-     *     // ... data to create a Study_access_topic
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Study_access_topic we want to update
-     *   }
-     * })
-     */
-    upsert<T extends study_access_topicUpsertArgs>(args: SelectSubset<T, study_access_topicUpsertArgs<ExtArgs>>): Prisma__study_access_topicClient<$Result.GetResult<Prisma.$study_access_topicPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Study_access_topics.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {study_access_topicCountArgs} args - Arguments to filter Study_access_topics to count.
-     * @example
-     * // Count the number of Study_access_topics
-     * const count = await prisma.study_access_topic.count({
-     *   where: {
-     *     // ... the filter for the Study_access_topics we want to count
-     *   }
-     * })
-    **/
-    count<T extends study_access_topicCountArgs>(
-      args?: Subset<T, study_access_topicCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], Study_access_topicCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Study_access_topic.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {Study_access_topicAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends Study_access_topicAggregateArgs>(args: Subset<T, Study_access_topicAggregateArgs>): Prisma.PrismaPromise<GetStudy_access_topicAggregateType<T>>
-
-    /**
-     * Group by Study_access_topic.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {study_access_topicGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends study_access_topicGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: study_access_topicGroupByArgs['orderBy'] }
-        : { orderBy?: study_access_topicGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, study_access_topicGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStudy_access_topicGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the study_access_topic model
-   */
-  readonly fields: study_access_topicFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for study_access_topic.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__study_access_topicClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    topics<T extends topicsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, topicsDefaultArgs<ExtArgs>>): Prisma__topicsClient<$Result.GetResult<Prisma.$topicsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    users<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the study_access_topic model
-   */
-  interface study_access_topicFieldRefs {
-    readonly id: FieldRef<"study_access_topic", 'String'>
-    readonly user_id: FieldRef<"study_access_topic", 'String'>
-    readonly topic_id: FieldRef<"study_access_topic", 'String'>
-    readonly access_type: FieldRef<"study_access_topic", 'String'>
-    readonly access_date: FieldRef<"study_access_topic", 'DateTime'>
-    readonly expire_date: FieldRef<"study_access_topic", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * study_access_topic findUnique
-   */
-  export type study_access_topicFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the study_access_topic
-     */
-    select?: study_access_topicSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the study_access_topic
-     */
-    omit?: study_access_topicOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: study_access_topicInclude<ExtArgs> | null
-    /**
-     * Filter, which study_access_topic to fetch.
-     */
-    where: study_access_topicWhereUniqueInput
-  }
-
-  /**
-   * study_access_topic findUniqueOrThrow
-   */
-  export type study_access_topicFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the study_access_topic
-     */
-    select?: study_access_topicSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the study_access_topic
-     */
-    omit?: study_access_topicOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: study_access_topicInclude<ExtArgs> | null
-    /**
-     * Filter, which study_access_topic to fetch.
-     */
-    where: study_access_topicWhereUniqueInput
-  }
-
-  /**
-   * study_access_topic findFirst
-   */
-  export type study_access_topicFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the study_access_topic
-     */
-    select?: study_access_topicSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the study_access_topic
-     */
-    omit?: study_access_topicOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: study_access_topicInclude<ExtArgs> | null
-    /**
-     * Filter, which study_access_topic to fetch.
-     */
-    where?: study_access_topicWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of study_access_topics to fetch.
-     */
-    orderBy?: study_access_topicOrderByWithRelationInput | study_access_topicOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for study_access_topics.
-     */
-    cursor?: study_access_topicWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` study_access_topics from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` study_access_topics.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of study_access_topics.
-     */
-    distinct?: Study_access_topicScalarFieldEnum | Study_access_topicScalarFieldEnum[]
-  }
-
-  /**
-   * study_access_topic findFirstOrThrow
-   */
-  export type study_access_topicFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the study_access_topic
-     */
-    select?: study_access_topicSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the study_access_topic
-     */
-    omit?: study_access_topicOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: study_access_topicInclude<ExtArgs> | null
-    /**
-     * Filter, which study_access_topic to fetch.
-     */
-    where?: study_access_topicWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of study_access_topics to fetch.
-     */
-    orderBy?: study_access_topicOrderByWithRelationInput | study_access_topicOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for study_access_topics.
-     */
-    cursor?: study_access_topicWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` study_access_topics from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` study_access_topics.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of study_access_topics.
-     */
-    distinct?: Study_access_topicScalarFieldEnum | Study_access_topicScalarFieldEnum[]
-  }
-
-  /**
-   * study_access_topic findMany
-   */
-  export type study_access_topicFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the study_access_topic
-     */
-    select?: study_access_topicSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the study_access_topic
-     */
-    omit?: study_access_topicOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: study_access_topicInclude<ExtArgs> | null
-    /**
-     * Filter, which study_access_topics to fetch.
-     */
-    where?: study_access_topicWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of study_access_topics to fetch.
-     */
-    orderBy?: study_access_topicOrderByWithRelationInput | study_access_topicOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing study_access_topics.
-     */
-    cursor?: study_access_topicWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` study_access_topics from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` study_access_topics.
-     */
-    skip?: number
-    distinct?: Study_access_topicScalarFieldEnum | Study_access_topicScalarFieldEnum[]
-  }
-
-  /**
-   * study_access_topic create
-   */
-  export type study_access_topicCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the study_access_topic
-     */
-    select?: study_access_topicSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the study_access_topic
-     */
-    omit?: study_access_topicOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: study_access_topicInclude<ExtArgs> | null
-    /**
-     * The data needed to create a study_access_topic.
-     */
-    data: XOR<study_access_topicCreateInput, study_access_topicUncheckedCreateInput>
-  }
-
-  /**
-   * study_access_topic createMany
-   */
-  export type study_access_topicCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many study_access_topics.
-     */
-    data: study_access_topicCreateManyInput | study_access_topicCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * study_access_topic createManyAndReturn
-   */
-  export type study_access_topicCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the study_access_topic
-     */
-    select?: study_access_topicSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the study_access_topic
-     */
-    omit?: study_access_topicOmit<ExtArgs> | null
-    /**
-     * The data used to create many study_access_topics.
-     */
-    data: study_access_topicCreateManyInput | study_access_topicCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: study_access_topicIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * study_access_topic update
-   */
-  export type study_access_topicUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the study_access_topic
-     */
-    select?: study_access_topicSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the study_access_topic
-     */
-    omit?: study_access_topicOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: study_access_topicInclude<ExtArgs> | null
-    /**
-     * The data needed to update a study_access_topic.
-     */
-    data: XOR<study_access_topicUpdateInput, study_access_topicUncheckedUpdateInput>
-    /**
-     * Choose, which study_access_topic to update.
-     */
-    where: study_access_topicWhereUniqueInput
-  }
-
-  /**
-   * study_access_topic updateMany
-   */
-  export type study_access_topicUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update study_access_topics.
-     */
-    data: XOR<study_access_topicUpdateManyMutationInput, study_access_topicUncheckedUpdateManyInput>
-    /**
-     * Filter which study_access_topics to update
-     */
-    where?: study_access_topicWhereInput
-    /**
-     * Limit how many study_access_topics to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * study_access_topic updateManyAndReturn
-   */
-  export type study_access_topicUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the study_access_topic
-     */
-    select?: study_access_topicSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the study_access_topic
-     */
-    omit?: study_access_topicOmit<ExtArgs> | null
-    /**
-     * The data used to update study_access_topics.
-     */
-    data: XOR<study_access_topicUpdateManyMutationInput, study_access_topicUncheckedUpdateManyInput>
-    /**
-     * Filter which study_access_topics to update
-     */
-    where?: study_access_topicWhereInput
-    /**
-     * Limit how many study_access_topics to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: study_access_topicIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * study_access_topic upsert
-   */
-  export type study_access_topicUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the study_access_topic
-     */
-    select?: study_access_topicSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the study_access_topic
-     */
-    omit?: study_access_topicOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: study_access_topicInclude<ExtArgs> | null
-    /**
-     * The filter to search for the study_access_topic to update in case it exists.
-     */
-    where: study_access_topicWhereUniqueInput
-    /**
-     * In case the study_access_topic found by the `where` argument doesn't exist, create a new study_access_topic with this data.
-     */
-    create: XOR<study_access_topicCreateInput, study_access_topicUncheckedCreateInput>
-    /**
-     * In case the study_access_topic was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<study_access_topicUpdateInput, study_access_topicUncheckedUpdateInput>
-  }
-
-  /**
-   * study_access_topic delete
-   */
-  export type study_access_topicDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the study_access_topic
-     */
-    select?: study_access_topicSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the study_access_topic
-     */
-    omit?: study_access_topicOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: study_access_topicInclude<ExtArgs> | null
-    /**
-     * Filter which study_access_topic to delete.
-     */
-    where: study_access_topicWhereUniqueInput
-  }
-
-  /**
-   * study_access_topic deleteMany
-   */
-  export type study_access_topicDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which study_access_topics to delete
-     */
-    where?: study_access_topicWhereInput
-    /**
-     * Limit how many study_access_topics to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * study_access_topic without action
-   */
-  export type study_access_topicDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the study_access_topic
-     */
-    select?: study_access_topicSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the study_access_topic
-     */
-    omit?: study_access_topicOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: study_access_topicInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model topics
    */
 
@@ -23428,7 +21132,6 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     courses?: boolean | topics$coursesArgs<ExtArgs>
-    study_access_topic?: boolean | topics$study_access_topicArgs<ExtArgs>
     _count?: boolean | TopicsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["topics"]>
 
@@ -23453,7 +21156,6 @@ export namespace Prisma {
   export type topicsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description", ExtArgs["result"]["topics"]>
   export type topicsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     courses?: boolean | topics$coursesArgs<ExtArgs>
-    study_access_topic?: boolean | topics$study_access_topicArgs<ExtArgs>
     _count?: boolean | TopicsCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type topicsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -23463,7 +21165,6 @@ export namespace Prisma {
     name: "topics"
     objects: {
       courses: Prisma.$coursesPayload<ExtArgs>[]
-      study_access_topic: Prisma.$study_access_topicPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -23864,7 +21565,6 @@ export namespace Prisma {
   export interface Prisma__topicsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     courses<T extends topics$coursesArgs<ExtArgs> = {}>(args?: Subset<T, topics$coursesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$coursesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    study_access_topic<T extends topics$study_access_topicArgs<ExtArgs> = {}>(args?: Subset<T, topics$study_access_topicArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$study_access_topicPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -24306,30 +22006,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CoursesScalarFieldEnum | CoursesScalarFieldEnum[]
-  }
-
-  /**
-   * topics.study_access_topic
-   */
-  export type topics$study_access_topicArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the study_access_topic
-     */
-    select?: study_access_topicSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the study_access_topic
-     */
-    omit?: study_access_topicOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: study_access_topicInclude<ExtArgs> | null
-    where?: study_access_topicWhereInput
-    orderBy?: study_access_topicOrderByWithRelationInput | study_access_topicOrderByWithRelationInput[]
-    cursor?: study_access_topicWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: Study_access_topicScalarFieldEnum | Study_access_topicScalarFieldEnum[]
   }
 
   /**
@@ -26572,6 +24248,7 @@ export namespace Prisma {
     user_id: string | null
     course_id: string | null
     purchase_date: Date | null
+    isActive: boolean | null
   }
 
   export type User_coursesMaxAggregateOutputType = {
@@ -26579,6 +24256,7 @@ export namespace Prisma {
     user_id: string | null
     course_id: string | null
     purchase_date: Date | null
+    isActive: boolean | null
   }
 
   export type User_coursesCountAggregateOutputType = {
@@ -26586,6 +24264,7 @@ export namespace Prisma {
     user_id: number
     course_id: number
     purchase_date: number
+    isActive: number
     _all: number
   }
 
@@ -26595,6 +24274,7 @@ export namespace Prisma {
     user_id?: true
     course_id?: true
     purchase_date?: true
+    isActive?: true
   }
 
   export type User_coursesMaxAggregateInputType = {
@@ -26602,6 +24282,7 @@ export namespace Prisma {
     user_id?: true
     course_id?: true
     purchase_date?: true
+    isActive?: true
   }
 
   export type User_coursesCountAggregateInputType = {
@@ -26609,6 +24290,7 @@ export namespace Prisma {
     user_id?: true
     course_id?: true
     purchase_date?: true
+    isActive?: true
     _all?: true
   }
 
@@ -26689,6 +24371,7 @@ export namespace Prisma {
     user_id: string
     course_id: string
     purchase_date: Date | null
+    isActive: boolean
     _count: User_coursesCountAggregateOutputType | null
     _min: User_coursesMinAggregateOutputType | null
     _max: User_coursesMaxAggregateOutputType | null
@@ -26713,6 +24396,7 @@ export namespace Prisma {
     user_id?: boolean
     course_id?: boolean
     purchase_date?: boolean
+    isActive?: boolean
     courses?: boolean | coursesDefaultArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user_courses"]>
@@ -26722,6 +24406,7 @@ export namespace Prisma {
     user_id?: boolean
     course_id?: boolean
     purchase_date?: boolean
+    isActive?: boolean
     courses?: boolean | coursesDefaultArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user_courses"]>
@@ -26731,6 +24416,7 @@ export namespace Prisma {
     user_id?: boolean
     course_id?: boolean
     purchase_date?: boolean
+    isActive?: boolean
     courses?: boolean | coursesDefaultArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user_courses"]>
@@ -26740,9 +24426,10 @@ export namespace Prisma {
     user_id?: boolean
     course_id?: boolean
     purchase_date?: boolean
+    isActive?: boolean
   }
 
-  export type user_coursesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "course_id" | "purchase_date", ExtArgs["result"]["user_courses"]>
+  export type user_coursesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "course_id" | "purchase_date" | "isActive", ExtArgs["result"]["user_courses"]>
   export type user_coursesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     courses?: boolean | coursesDefaultArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
@@ -26767,6 +24454,7 @@ export namespace Prisma {
       user_id: string
       course_id: string
       purchase_date: Date | null
+      isActive: boolean
     }, ExtArgs["result"]["user_courses"]>
     composites: {}
   }
@@ -27196,6 +24884,7 @@ export namespace Prisma {
     readonly user_id: FieldRef<"user_courses", 'String'>
     readonly course_id: FieldRef<"user_courses", 'String'>
     readonly purchase_date: FieldRef<"user_courses", 'DateTime'>
+    readonly isActive: FieldRef<"user_courses", 'Boolean'>
   }
     
 
@@ -28739,8 +26428,6 @@ export namespace Prisma {
     user_id: string | null
     package_id: string | null
     start_date: Date | null
-    end_date: Date | null
-    is_active: boolean | null
   }
 
   export type User_packagesMaxAggregateOutputType = {
@@ -28748,8 +26435,6 @@ export namespace Prisma {
     user_id: string | null
     package_id: string | null
     start_date: Date | null
-    end_date: Date | null
-    is_active: boolean | null
   }
 
   export type User_packagesCountAggregateOutputType = {
@@ -28757,8 +26442,6 @@ export namespace Prisma {
     user_id: number
     package_id: number
     start_date: number
-    end_date: number
-    is_active: number
     _all: number
   }
 
@@ -28768,8 +26451,6 @@ export namespace Prisma {
     user_id?: true
     package_id?: true
     start_date?: true
-    end_date?: true
-    is_active?: true
   }
 
   export type User_packagesMaxAggregateInputType = {
@@ -28777,8 +26458,6 @@ export namespace Prisma {
     user_id?: true
     package_id?: true
     start_date?: true
-    end_date?: true
-    is_active?: true
   }
 
   export type User_packagesCountAggregateInputType = {
@@ -28786,8 +26465,6 @@ export namespace Prisma {
     user_id?: true
     package_id?: true
     start_date?: true
-    end_date?: true
-    is_active?: true
     _all?: true
   }
 
@@ -28868,8 +26545,6 @@ export namespace Prisma {
     user_id: string
     package_id: string
     start_date: Date | null
-    end_date: Date
-    is_active: boolean | null
     _count: User_packagesCountAggregateOutputType | null
     _min: User_packagesMinAggregateOutputType | null
     _max: User_packagesMaxAggregateOutputType | null
@@ -28894,9 +26569,7 @@ export namespace Prisma {
     user_id?: boolean
     package_id?: boolean
     start_date?: boolean
-    end_date?: boolean
-    is_active?: boolean
-    packages?: boolean | packagesDefaultArgs<ExtArgs>
+    packages?: boolean | premium_packagesDefaultArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user_packages"]>
 
@@ -28905,9 +26578,7 @@ export namespace Prisma {
     user_id?: boolean
     package_id?: boolean
     start_date?: boolean
-    end_date?: boolean
-    is_active?: boolean
-    packages?: boolean | packagesDefaultArgs<ExtArgs>
+    packages?: boolean | premium_packagesDefaultArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user_packages"]>
 
@@ -28916,9 +26587,7 @@ export namespace Prisma {
     user_id?: boolean
     package_id?: boolean
     start_date?: boolean
-    end_date?: boolean
-    is_active?: boolean
-    packages?: boolean | packagesDefaultArgs<ExtArgs>
+    packages?: boolean | premium_packagesDefaultArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user_packages"]>
 
@@ -28927,28 +26596,26 @@ export namespace Prisma {
     user_id?: boolean
     package_id?: boolean
     start_date?: boolean
-    end_date?: boolean
-    is_active?: boolean
   }
 
-  export type user_packagesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "package_id" | "start_date" | "end_date" | "is_active", ExtArgs["result"]["user_packages"]>
+  export type user_packagesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "package_id" | "start_date", ExtArgs["result"]["user_packages"]>
   export type user_packagesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    packages?: boolean | packagesDefaultArgs<ExtArgs>
+    packages?: boolean | premium_packagesDefaultArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
   }
   export type user_packagesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    packages?: boolean | packagesDefaultArgs<ExtArgs>
+    packages?: boolean | premium_packagesDefaultArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
   }
   export type user_packagesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    packages?: boolean | packagesDefaultArgs<ExtArgs>
+    packages?: boolean | premium_packagesDefaultArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
   }
 
   export type $user_packagesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "user_packages"
     objects: {
-      packages: Prisma.$packagesPayload<ExtArgs>
+      packages: Prisma.$premium_packagesPayload<ExtArgs>
       users: Prisma.$usersPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -28956,8 +26623,6 @@ export namespace Prisma {
       user_id: string
       package_id: string
       start_date: Date | null
-      end_date: Date
-      is_active: boolean | null
     }, ExtArgs["result"]["user_packages"]>
     composites: {}
   }
@@ -29352,7 +27017,7 @@ export namespace Prisma {
    */
   export interface Prisma__user_packagesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    packages<T extends packagesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, packagesDefaultArgs<ExtArgs>>): Prisma__packagesClient<$Result.GetResult<Prisma.$packagesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    packages<T extends premium_packagesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, premium_packagesDefaultArgs<ExtArgs>>): Prisma__premium_packagesClient<$Result.GetResult<Prisma.$premium_packagesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     users<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -29387,8 +27052,6 @@ export namespace Prisma {
     readonly user_id: FieldRef<"user_packages", 'String'>
     readonly package_id: FieldRef<"user_packages", 'String'>
     readonly start_date: FieldRef<"user_packages", 'DateTime'>
-    readonly end_date: FieldRef<"user_packages", 'DateTime'>
-    readonly is_active: FieldRef<"user_packages", 'Boolean'>
   }
     
 
@@ -32044,6 +29707,7 @@ export namespace Prisma {
     is_block: boolean | null
     is_verified: boolean | null
     firebase_uid: string | null
+    isPremium: boolean | null
   }
 
   export type UsersMaxAggregateOutputType = {
@@ -32064,6 +29728,7 @@ export namespace Prisma {
     is_block: boolean | null
     is_verified: boolean | null
     firebase_uid: string | null
+    isPremium: boolean | null
   }
 
   export type UsersCountAggregateOutputType = {
@@ -32084,6 +29749,7 @@ export namespace Prisma {
     is_block: number
     is_verified: number
     firebase_uid: number
+    isPremium: number
     _all: number
   }
 
@@ -32114,6 +29780,7 @@ export namespace Prisma {
     is_block?: true
     is_verified?: true
     firebase_uid?: true
+    isPremium?: true
   }
 
   export type UsersMaxAggregateInputType = {
@@ -32134,6 +29801,7 @@ export namespace Prisma {
     is_block?: true
     is_verified?: true
     firebase_uid?: true
+    isPremium?: true
   }
 
   export type UsersCountAggregateInputType = {
@@ -32154,6 +29822,7 @@ export namespace Prisma {
     is_block?: true
     is_verified?: true
     firebase_uid?: true
+    isPremium?: true
     _all?: true
   }
 
@@ -32261,6 +29930,7 @@ export namespace Prisma {
     is_block: boolean | null
     is_verified: boolean | null
     firebase_uid: string | null
+    isPremium: boolean
     _count: UsersCountAggregateOutputType | null
     _avg: UsersAvgAggregateOutputType | null
     _sum: UsersSumAggregateOutputType | null
@@ -32300,6 +29970,7 @@ export namespace Prisma {
     is_block?: boolean
     is_verified?: boolean
     firebase_uid?: boolean
+    isPremium?: boolean
     abuse_report_feedbacks?: boolean | users$abuse_report_feedbacksArgs<ExtArgs>
     attendance?: boolean | users$attendanceArgs<ExtArgs>
     coin_transaction?: boolean | users$coin_transactionArgs<ExtArgs>
@@ -32315,7 +29986,6 @@ export namespace Prisma {
     react_comments?: boolean | users$react_commentsArgs<ExtArgs>
     react_posts?: boolean | users$react_postsArgs<ExtArgs>
     shared_post?: boolean | users$shared_postArgs<ExtArgs>
-    study_access_topic?: boolean | users$study_access_topicArgs<ExtArgs>
     transaction_history?: boolean | users$transaction_historyArgs<ExtArgs>
     user_abuse_reports?: boolean | users$user_abuse_reportsArgs<ExtArgs>
     user_courses?: boolean | users$user_coursesArgs<ExtArgs>
@@ -32345,6 +30015,7 @@ export namespace Prisma {
     is_block?: boolean
     is_verified?: boolean
     firebase_uid?: boolean
+    isPremium?: boolean
   }, ExtArgs["result"]["users"]>
 
   export type usersSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -32365,6 +30036,7 @@ export namespace Prisma {
     is_block?: boolean
     is_verified?: boolean
     firebase_uid?: boolean
+    isPremium?: boolean
   }, ExtArgs["result"]["users"]>
 
   export type usersSelectScalar = {
@@ -32385,9 +30057,10 @@ export namespace Prisma {
     is_block?: boolean
     is_verified?: boolean
     firebase_uid?: boolean
+    isPremium?: boolean
   }
 
-  export type usersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "passwordhash" | "birthday" | "gender" | "fullname" | "address" | "email" | "phonenumber" | "created_date" | "isactive" | "isadmin" | "balance" | "image_url" | "is_block" | "is_verified" | "firebase_uid", ExtArgs["result"]["users"]>
+  export type usersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "passwordhash" | "birthday" | "gender" | "fullname" | "address" | "email" | "phonenumber" | "created_date" | "isactive" | "isadmin" | "balance" | "image_url" | "is_block" | "is_verified" | "firebase_uid" | "isPremium", ExtArgs["result"]["users"]>
   export type usersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     abuse_report_feedbacks?: boolean | users$abuse_report_feedbacksArgs<ExtArgs>
     attendance?: boolean | users$attendanceArgs<ExtArgs>
@@ -32404,7 +30077,6 @@ export namespace Prisma {
     react_comments?: boolean | users$react_commentsArgs<ExtArgs>
     react_posts?: boolean | users$react_postsArgs<ExtArgs>
     shared_post?: boolean | users$shared_postArgs<ExtArgs>
-    study_access_topic?: boolean | users$study_access_topicArgs<ExtArgs>
     transaction_history?: boolean | users$transaction_historyArgs<ExtArgs>
     user_abuse_reports?: boolean | users$user_abuse_reportsArgs<ExtArgs>
     user_courses?: boolean | users$user_coursesArgs<ExtArgs>
@@ -32436,7 +30108,6 @@ export namespace Prisma {
       react_comments: Prisma.$react_commentsPayload<ExtArgs>[]
       react_posts: Prisma.$react_postsPayload<ExtArgs>[]
       shared_post: Prisma.$shared_postPayload<ExtArgs>[]
-      study_access_topic: Prisma.$study_access_topicPayload<ExtArgs>[]
       transaction_history: Prisma.$transaction_historyPayload<ExtArgs>[]
       user_abuse_reports: Prisma.$user_abuse_reportsPayload<ExtArgs>[]
       user_courses: Prisma.$user_coursesPayload<ExtArgs>[]
@@ -32464,6 +30135,7 @@ export namespace Prisma {
       is_block: boolean | null
       is_verified: boolean | null
       firebase_uid: string | null
+      isPremium: boolean
     }, ExtArgs["result"]["users"]>
     composites: {}
   }
@@ -32873,7 +30545,6 @@ export namespace Prisma {
     react_comments<T extends users$react_commentsArgs<ExtArgs> = {}>(args?: Subset<T, users$react_commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$react_commentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     react_posts<T extends users$react_postsArgs<ExtArgs> = {}>(args?: Subset<T, users$react_postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$react_postsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     shared_post<T extends users$shared_postArgs<ExtArgs> = {}>(args?: Subset<T, users$shared_postArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$shared_postPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    study_access_topic<T extends users$study_access_topicArgs<ExtArgs> = {}>(args?: Subset<T, users$study_access_topicArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$study_access_topicPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     transaction_history<T extends users$transaction_historyArgs<ExtArgs> = {}>(args?: Subset<T, users$transaction_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$transaction_historyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user_abuse_reports<T extends users$user_abuse_reportsArgs<ExtArgs> = {}>(args?: Subset<T, users$user_abuse_reportsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_abuse_reportsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user_courses<T extends users$user_coursesArgs<ExtArgs> = {}>(args?: Subset<T, users$user_coursesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_coursesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -32928,6 +30599,7 @@ export namespace Prisma {
     readonly is_block: FieldRef<"users", 'Boolean'>
     readonly is_verified: FieldRef<"users", 'Boolean'>
     readonly firebase_uid: FieldRef<"users", 'String'>
+    readonly isPremium: FieldRef<"users", 'Boolean'>
   }
     
 
@@ -33673,30 +31345,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: Shared_postScalarFieldEnum | Shared_postScalarFieldEnum[]
-  }
-
-  /**
-   * users.study_access_topic
-   */
-  export type users$study_access_topicArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the study_access_topic
-     */
-    select?: study_access_topicSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the study_access_topic
-     */
-    omit?: study_access_topicOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: study_access_topicInclude<ExtArgs> | null
-    where?: study_access_topicWhereInput
-    orderBy?: study_access_topicOrderByWithRelationInput | study_access_topicOrderByWithRelationInput[]
-    cursor?: study_access_topicWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: Study_access_topicScalarFieldEnum | Study_access_topicScalarFieldEnum[]
   }
 
   /**
@@ -37186,6 +34834,1131 @@ export namespace Prisma {
 
 
   /**
+   * Model premium_packages
+   */
+
+  export type AggregatePremium_packages = {
+    _count: Premium_packagesCountAggregateOutputType | null
+    _avg: Premium_packagesAvgAggregateOutputType | null
+    _sum: Premium_packagesSumAggregateOutputType | null
+    _min: Premium_packagesMinAggregateOutputType | null
+    _max: Premium_packagesMaxAggregateOutputType | null
+  }
+
+  export type Premium_packagesAvgAggregateOutputType = {
+    duration_days: number | null
+    price: number | null
+    original_price: number | null
+  }
+
+  export type Premium_packagesSumAggregateOutputType = {
+    duration_days: number | null
+    price: number | null
+    original_price: number | null
+  }
+
+  export type Premium_packagesMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    duration_days: number | null
+    price: number | null
+    original_price: number | null
+    discount: string | null
+  }
+
+  export type Premium_packagesMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    duration_days: number | null
+    price: number | null
+    original_price: number | null
+    discount: string | null
+  }
+
+  export type Premium_packagesCountAggregateOutputType = {
+    id: number
+    name: number
+    duration_days: number
+    price: number
+    original_price: number
+    discount: number
+    _all: number
+  }
+
+
+  export type Premium_packagesAvgAggregateInputType = {
+    duration_days?: true
+    price?: true
+    original_price?: true
+  }
+
+  export type Premium_packagesSumAggregateInputType = {
+    duration_days?: true
+    price?: true
+    original_price?: true
+  }
+
+  export type Premium_packagesMinAggregateInputType = {
+    id?: true
+    name?: true
+    duration_days?: true
+    price?: true
+    original_price?: true
+    discount?: true
+  }
+
+  export type Premium_packagesMaxAggregateInputType = {
+    id?: true
+    name?: true
+    duration_days?: true
+    price?: true
+    original_price?: true
+    discount?: true
+  }
+
+  export type Premium_packagesCountAggregateInputType = {
+    id?: true
+    name?: true
+    duration_days?: true
+    price?: true
+    original_price?: true
+    discount?: true
+    _all?: true
+  }
+
+  export type Premium_packagesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which premium_packages to aggregate.
+     */
+    where?: premium_packagesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of premium_packages to fetch.
+     */
+    orderBy?: premium_packagesOrderByWithRelationInput | premium_packagesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: premium_packagesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` premium_packages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` premium_packages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned premium_packages
+    **/
+    _count?: true | Premium_packagesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Premium_packagesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Premium_packagesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Premium_packagesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Premium_packagesMaxAggregateInputType
+  }
+
+  export type GetPremium_packagesAggregateType<T extends Premium_packagesAggregateArgs> = {
+        [P in keyof T & keyof AggregatePremium_packages]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePremium_packages[P]>
+      : GetScalarType<T[P], AggregatePremium_packages[P]>
+  }
+
+
+
+
+  export type premium_packagesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: premium_packagesWhereInput
+    orderBy?: premium_packagesOrderByWithAggregationInput | premium_packagesOrderByWithAggregationInput[]
+    by: Premium_packagesScalarFieldEnum[] | Premium_packagesScalarFieldEnum
+    having?: premium_packagesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Premium_packagesCountAggregateInputType | true
+    _avg?: Premium_packagesAvgAggregateInputType
+    _sum?: Premium_packagesSumAggregateInputType
+    _min?: Premium_packagesMinAggregateInputType
+    _max?: Premium_packagesMaxAggregateInputType
+  }
+
+  export type Premium_packagesGroupByOutputType = {
+    id: string
+    name: string
+    duration_days: number
+    price: number
+    original_price: number
+    discount: string
+    _count: Premium_packagesCountAggregateOutputType | null
+    _avg: Premium_packagesAvgAggregateOutputType | null
+    _sum: Premium_packagesSumAggregateOutputType | null
+    _min: Premium_packagesMinAggregateOutputType | null
+    _max: Premium_packagesMaxAggregateOutputType | null
+  }
+
+  type GetPremium_packagesGroupByPayload<T extends premium_packagesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Premium_packagesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Premium_packagesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Premium_packagesGroupByOutputType[P]>
+            : GetScalarType<T[P], Premium_packagesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type premium_packagesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    duration_days?: boolean
+    price?: boolean
+    original_price?: boolean
+    discount?: boolean
+    user_packages?: boolean | premium_packages$user_packagesArgs<ExtArgs>
+    _count?: boolean | Premium_packagesCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["premium_packages"]>
+
+  export type premium_packagesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    duration_days?: boolean
+    price?: boolean
+    original_price?: boolean
+    discount?: boolean
+  }, ExtArgs["result"]["premium_packages"]>
+
+  export type premium_packagesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    duration_days?: boolean
+    price?: boolean
+    original_price?: boolean
+    discount?: boolean
+  }, ExtArgs["result"]["premium_packages"]>
+
+  export type premium_packagesSelectScalar = {
+    id?: boolean
+    name?: boolean
+    duration_days?: boolean
+    price?: boolean
+    original_price?: boolean
+    discount?: boolean
+  }
+
+  export type premium_packagesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "duration_days" | "price" | "original_price" | "discount", ExtArgs["result"]["premium_packages"]>
+  export type premium_packagesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user_packages?: boolean | premium_packages$user_packagesArgs<ExtArgs>
+    _count?: boolean | Premium_packagesCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type premium_packagesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type premium_packagesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $premium_packagesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "premium_packages"
+    objects: {
+      user_packages: Prisma.$user_packagesPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      duration_days: number
+      price: number
+      original_price: number
+      discount: string
+    }, ExtArgs["result"]["premium_packages"]>
+    composites: {}
+  }
+
+  type premium_packagesGetPayload<S extends boolean | null | undefined | premium_packagesDefaultArgs> = $Result.GetResult<Prisma.$premium_packagesPayload, S>
+
+  type premium_packagesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<premium_packagesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Premium_packagesCountAggregateInputType | true
+    }
+
+  export interface premium_packagesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['premium_packages'], meta: { name: 'premium_packages' } }
+    /**
+     * Find zero or one Premium_packages that matches the filter.
+     * @param {premium_packagesFindUniqueArgs} args - Arguments to find a Premium_packages
+     * @example
+     * // Get one Premium_packages
+     * const premium_packages = await prisma.premium_packages.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends premium_packagesFindUniqueArgs>(args: SelectSubset<T, premium_packagesFindUniqueArgs<ExtArgs>>): Prisma__premium_packagesClient<$Result.GetResult<Prisma.$premium_packagesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Premium_packages that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {premium_packagesFindUniqueOrThrowArgs} args - Arguments to find a Premium_packages
+     * @example
+     * // Get one Premium_packages
+     * const premium_packages = await prisma.premium_packages.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends premium_packagesFindUniqueOrThrowArgs>(args: SelectSubset<T, premium_packagesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__premium_packagesClient<$Result.GetResult<Prisma.$premium_packagesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Premium_packages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {premium_packagesFindFirstArgs} args - Arguments to find a Premium_packages
+     * @example
+     * // Get one Premium_packages
+     * const premium_packages = await prisma.premium_packages.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends premium_packagesFindFirstArgs>(args?: SelectSubset<T, premium_packagesFindFirstArgs<ExtArgs>>): Prisma__premium_packagesClient<$Result.GetResult<Prisma.$premium_packagesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Premium_packages that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {premium_packagesFindFirstOrThrowArgs} args - Arguments to find a Premium_packages
+     * @example
+     * // Get one Premium_packages
+     * const premium_packages = await prisma.premium_packages.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends premium_packagesFindFirstOrThrowArgs>(args?: SelectSubset<T, premium_packagesFindFirstOrThrowArgs<ExtArgs>>): Prisma__premium_packagesClient<$Result.GetResult<Prisma.$premium_packagesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Premium_packages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {premium_packagesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Premium_packages
+     * const premium_packages = await prisma.premium_packages.findMany()
+     * 
+     * // Get first 10 Premium_packages
+     * const premium_packages = await prisma.premium_packages.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const premium_packagesWithIdOnly = await prisma.premium_packages.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends premium_packagesFindManyArgs>(args?: SelectSubset<T, premium_packagesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$premium_packagesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Premium_packages.
+     * @param {premium_packagesCreateArgs} args - Arguments to create a Premium_packages.
+     * @example
+     * // Create one Premium_packages
+     * const Premium_packages = await prisma.premium_packages.create({
+     *   data: {
+     *     // ... data to create a Premium_packages
+     *   }
+     * })
+     * 
+     */
+    create<T extends premium_packagesCreateArgs>(args: SelectSubset<T, premium_packagesCreateArgs<ExtArgs>>): Prisma__premium_packagesClient<$Result.GetResult<Prisma.$premium_packagesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Premium_packages.
+     * @param {premium_packagesCreateManyArgs} args - Arguments to create many Premium_packages.
+     * @example
+     * // Create many Premium_packages
+     * const premium_packages = await prisma.premium_packages.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends premium_packagesCreateManyArgs>(args?: SelectSubset<T, premium_packagesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Premium_packages and returns the data saved in the database.
+     * @param {premium_packagesCreateManyAndReturnArgs} args - Arguments to create many Premium_packages.
+     * @example
+     * // Create many Premium_packages
+     * const premium_packages = await prisma.premium_packages.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Premium_packages and only return the `id`
+     * const premium_packagesWithIdOnly = await prisma.premium_packages.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends premium_packagesCreateManyAndReturnArgs>(args?: SelectSubset<T, premium_packagesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$premium_packagesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Premium_packages.
+     * @param {premium_packagesDeleteArgs} args - Arguments to delete one Premium_packages.
+     * @example
+     * // Delete one Premium_packages
+     * const Premium_packages = await prisma.premium_packages.delete({
+     *   where: {
+     *     // ... filter to delete one Premium_packages
+     *   }
+     * })
+     * 
+     */
+    delete<T extends premium_packagesDeleteArgs>(args: SelectSubset<T, premium_packagesDeleteArgs<ExtArgs>>): Prisma__premium_packagesClient<$Result.GetResult<Prisma.$premium_packagesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Premium_packages.
+     * @param {premium_packagesUpdateArgs} args - Arguments to update one Premium_packages.
+     * @example
+     * // Update one Premium_packages
+     * const premium_packages = await prisma.premium_packages.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends premium_packagesUpdateArgs>(args: SelectSubset<T, premium_packagesUpdateArgs<ExtArgs>>): Prisma__premium_packagesClient<$Result.GetResult<Prisma.$premium_packagesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Premium_packages.
+     * @param {premium_packagesDeleteManyArgs} args - Arguments to filter Premium_packages to delete.
+     * @example
+     * // Delete a few Premium_packages
+     * const { count } = await prisma.premium_packages.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends premium_packagesDeleteManyArgs>(args?: SelectSubset<T, premium_packagesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Premium_packages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {premium_packagesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Premium_packages
+     * const premium_packages = await prisma.premium_packages.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends premium_packagesUpdateManyArgs>(args: SelectSubset<T, premium_packagesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Premium_packages and returns the data updated in the database.
+     * @param {premium_packagesUpdateManyAndReturnArgs} args - Arguments to update many Premium_packages.
+     * @example
+     * // Update many Premium_packages
+     * const premium_packages = await prisma.premium_packages.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Premium_packages and only return the `id`
+     * const premium_packagesWithIdOnly = await prisma.premium_packages.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends premium_packagesUpdateManyAndReturnArgs>(args: SelectSubset<T, premium_packagesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$premium_packagesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Premium_packages.
+     * @param {premium_packagesUpsertArgs} args - Arguments to update or create a Premium_packages.
+     * @example
+     * // Update or create a Premium_packages
+     * const premium_packages = await prisma.premium_packages.upsert({
+     *   create: {
+     *     // ... data to create a Premium_packages
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Premium_packages we want to update
+     *   }
+     * })
+     */
+    upsert<T extends premium_packagesUpsertArgs>(args: SelectSubset<T, premium_packagesUpsertArgs<ExtArgs>>): Prisma__premium_packagesClient<$Result.GetResult<Prisma.$premium_packagesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Premium_packages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {premium_packagesCountArgs} args - Arguments to filter Premium_packages to count.
+     * @example
+     * // Count the number of Premium_packages
+     * const count = await prisma.premium_packages.count({
+     *   where: {
+     *     // ... the filter for the Premium_packages we want to count
+     *   }
+     * })
+    **/
+    count<T extends premium_packagesCountArgs>(
+      args?: Subset<T, premium_packagesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Premium_packagesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Premium_packages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Premium_packagesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Premium_packagesAggregateArgs>(args: Subset<T, Premium_packagesAggregateArgs>): Prisma.PrismaPromise<GetPremium_packagesAggregateType<T>>
+
+    /**
+     * Group by Premium_packages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {premium_packagesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends premium_packagesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: premium_packagesGroupByArgs['orderBy'] }
+        : { orderBy?: premium_packagesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, premium_packagesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPremium_packagesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the premium_packages model
+   */
+  readonly fields: premium_packagesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for premium_packages.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__premium_packagesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user_packages<T extends premium_packages$user_packagesArgs<ExtArgs> = {}>(args?: Subset<T, premium_packages$user_packagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_packagesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the premium_packages model
+   */
+  interface premium_packagesFieldRefs {
+    readonly id: FieldRef<"premium_packages", 'String'>
+    readonly name: FieldRef<"premium_packages", 'String'>
+    readonly duration_days: FieldRef<"premium_packages", 'Int'>
+    readonly price: FieldRef<"premium_packages", 'Int'>
+    readonly original_price: FieldRef<"premium_packages", 'Int'>
+    readonly discount: FieldRef<"premium_packages", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * premium_packages findUnique
+   */
+  export type premium_packagesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the premium_packages
+     */
+    select?: premium_packagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the premium_packages
+     */
+    omit?: premium_packagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: premium_packagesInclude<ExtArgs> | null
+    /**
+     * Filter, which premium_packages to fetch.
+     */
+    where: premium_packagesWhereUniqueInput
+  }
+
+  /**
+   * premium_packages findUniqueOrThrow
+   */
+  export type premium_packagesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the premium_packages
+     */
+    select?: premium_packagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the premium_packages
+     */
+    omit?: premium_packagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: premium_packagesInclude<ExtArgs> | null
+    /**
+     * Filter, which premium_packages to fetch.
+     */
+    where: premium_packagesWhereUniqueInput
+  }
+
+  /**
+   * premium_packages findFirst
+   */
+  export type premium_packagesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the premium_packages
+     */
+    select?: premium_packagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the premium_packages
+     */
+    omit?: premium_packagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: premium_packagesInclude<ExtArgs> | null
+    /**
+     * Filter, which premium_packages to fetch.
+     */
+    where?: premium_packagesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of premium_packages to fetch.
+     */
+    orderBy?: premium_packagesOrderByWithRelationInput | premium_packagesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for premium_packages.
+     */
+    cursor?: premium_packagesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` premium_packages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` premium_packages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of premium_packages.
+     */
+    distinct?: Premium_packagesScalarFieldEnum | Premium_packagesScalarFieldEnum[]
+  }
+
+  /**
+   * premium_packages findFirstOrThrow
+   */
+  export type premium_packagesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the premium_packages
+     */
+    select?: premium_packagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the premium_packages
+     */
+    omit?: premium_packagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: premium_packagesInclude<ExtArgs> | null
+    /**
+     * Filter, which premium_packages to fetch.
+     */
+    where?: premium_packagesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of premium_packages to fetch.
+     */
+    orderBy?: premium_packagesOrderByWithRelationInput | premium_packagesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for premium_packages.
+     */
+    cursor?: premium_packagesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` premium_packages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` premium_packages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of premium_packages.
+     */
+    distinct?: Premium_packagesScalarFieldEnum | Premium_packagesScalarFieldEnum[]
+  }
+
+  /**
+   * premium_packages findMany
+   */
+  export type premium_packagesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the premium_packages
+     */
+    select?: premium_packagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the premium_packages
+     */
+    omit?: premium_packagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: premium_packagesInclude<ExtArgs> | null
+    /**
+     * Filter, which premium_packages to fetch.
+     */
+    where?: premium_packagesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of premium_packages to fetch.
+     */
+    orderBy?: premium_packagesOrderByWithRelationInput | premium_packagesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing premium_packages.
+     */
+    cursor?: premium_packagesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` premium_packages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` premium_packages.
+     */
+    skip?: number
+    distinct?: Premium_packagesScalarFieldEnum | Premium_packagesScalarFieldEnum[]
+  }
+
+  /**
+   * premium_packages create
+   */
+  export type premium_packagesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the premium_packages
+     */
+    select?: premium_packagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the premium_packages
+     */
+    omit?: premium_packagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: premium_packagesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a premium_packages.
+     */
+    data: XOR<premium_packagesCreateInput, premium_packagesUncheckedCreateInput>
+  }
+
+  /**
+   * premium_packages createMany
+   */
+  export type premium_packagesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many premium_packages.
+     */
+    data: premium_packagesCreateManyInput | premium_packagesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * premium_packages createManyAndReturn
+   */
+  export type premium_packagesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the premium_packages
+     */
+    select?: premium_packagesSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the premium_packages
+     */
+    omit?: premium_packagesOmit<ExtArgs> | null
+    /**
+     * The data used to create many premium_packages.
+     */
+    data: premium_packagesCreateManyInput | premium_packagesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * premium_packages update
+   */
+  export type premium_packagesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the premium_packages
+     */
+    select?: premium_packagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the premium_packages
+     */
+    omit?: premium_packagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: premium_packagesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a premium_packages.
+     */
+    data: XOR<premium_packagesUpdateInput, premium_packagesUncheckedUpdateInput>
+    /**
+     * Choose, which premium_packages to update.
+     */
+    where: premium_packagesWhereUniqueInput
+  }
+
+  /**
+   * premium_packages updateMany
+   */
+  export type premium_packagesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update premium_packages.
+     */
+    data: XOR<premium_packagesUpdateManyMutationInput, premium_packagesUncheckedUpdateManyInput>
+    /**
+     * Filter which premium_packages to update
+     */
+    where?: premium_packagesWhereInput
+    /**
+     * Limit how many premium_packages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * premium_packages updateManyAndReturn
+   */
+  export type premium_packagesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the premium_packages
+     */
+    select?: premium_packagesSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the premium_packages
+     */
+    omit?: premium_packagesOmit<ExtArgs> | null
+    /**
+     * The data used to update premium_packages.
+     */
+    data: XOR<premium_packagesUpdateManyMutationInput, premium_packagesUncheckedUpdateManyInput>
+    /**
+     * Filter which premium_packages to update
+     */
+    where?: premium_packagesWhereInput
+    /**
+     * Limit how many premium_packages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * premium_packages upsert
+   */
+  export type premium_packagesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the premium_packages
+     */
+    select?: premium_packagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the premium_packages
+     */
+    omit?: premium_packagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: premium_packagesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the premium_packages to update in case it exists.
+     */
+    where: premium_packagesWhereUniqueInput
+    /**
+     * In case the premium_packages found by the `where` argument doesn't exist, create a new premium_packages with this data.
+     */
+    create: XOR<premium_packagesCreateInput, premium_packagesUncheckedCreateInput>
+    /**
+     * In case the premium_packages was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<premium_packagesUpdateInput, premium_packagesUncheckedUpdateInput>
+  }
+
+  /**
+   * premium_packages delete
+   */
+  export type premium_packagesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the premium_packages
+     */
+    select?: premium_packagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the premium_packages
+     */
+    omit?: premium_packagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: premium_packagesInclude<ExtArgs> | null
+    /**
+     * Filter which premium_packages to delete.
+     */
+    where: premium_packagesWhereUniqueInput
+  }
+
+  /**
+   * premium_packages deleteMany
+   */
+  export type premium_packagesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which premium_packages to delete
+     */
+    where?: premium_packagesWhereInput
+    /**
+     * Limit how many premium_packages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * premium_packages.user_packages
+   */
+  export type premium_packages$user_packagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the user_packages
+     */
+    select?: user_packagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the user_packages
+     */
+    omit?: user_packagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: user_packagesInclude<ExtArgs> | null
+    where?: user_packagesWhereInput
+    orderBy?: user_packagesOrderByWithRelationInput | user_packagesOrderByWithRelationInput[]
+    cursor?: user_packagesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: User_packagesScalarFieldEnum | User_packagesScalarFieldEnum[]
+  }
+
+  /**
+   * premium_packages without action
+   */
+  export type premium_packagesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the premium_packages
+     */
+    select?: premium_packagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the premium_packages
+     */
+    omit?: premium_packagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: premium_packagesInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -37334,17 +36107,6 @@ export namespace Prisma {
   export type MessagesScalarFieldEnum = (typeof MessagesScalarFieldEnum)[keyof typeof MessagesScalarFieldEnum]
 
 
-  export const PackagesScalarFieldEnum: {
-    id: 'id',
-    name: 'name',
-    duration_days: 'duration_days',
-    price: 'price',
-    is_premium: 'is_premium'
-  };
-
-  export type PackagesScalarFieldEnum = (typeof PackagesScalarFieldEnum)[keyof typeof PackagesScalarFieldEnum]
-
-
   export const PostsScalarFieldEnum: {
     id: 'id',
     user_id: 'user_id',
@@ -37394,18 +36156,6 @@ export namespace Prisma {
   export type Shared_postScalarFieldEnum = (typeof Shared_postScalarFieldEnum)[keyof typeof Shared_postScalarFieldEnum]
 
 
-  export const Study_access_topicScalarFieldEnum: {
-    id: 'id',
-    user_id: 'user_id',
-    topic_id: 'topic_id',
-    access_type: 'access_type',
-    access_date: 'access_date',
-    expire_date: 'expire_date'
-  };
-
-  export type Study_access_topicScalarFieldEnum = (typeof Study_access_topicScalarFieldEnum)[keyof typeof Study_access_topicScalarFieldEnum]
-
-
   export const TopicsScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -37443,7 +36193,8 @@ export namespace Prisma {
     id: 'id',
     user_id: 'user_id',
     course_id: 'course_id',
-    purchase_date: 'purchase_date'
+    purchase_date: 'purchase_date',
+    isActive: 'isActive'
   };
 
   export type User_coursesScalarFieldEnum = (typeof User_coursesScalarFieldEnum)[keyof typeof User_coursesScalarFieldEnum]
@@ -37466,9 +36217,7 @@ export namespace Prisma {
     id: 'id',
     user_id: 'user_id',
     package_id: 'package_id',
-    start_date: 'start_date',
-    end_date: 'end_date',
-    is_active: 'is_active'
+    start_date: 'start_date'
   };
 
   export type User_packagesScalarFieldEnum = (typeof User_packagesScalarFieldEnum)[keyof typeof User_packagesScalarFieldEnum]
@@ -37515,7 +36264,8 @@ export namespace Prisma {
     image_url: 'image_url',
     is_block: 'is_block',
     is_verified: 'is_verified',
-    firebase_uid: 'firebase_uid'
+    firebase_uid: 'firebase_uid',
+    isPremium: 'isPremium'
   };
 
   export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
@@ -37554,6 +36304,18 @@ export namespace Prisma {
   };
 
   export type QuizzesScalarFieldEnum = (typeof QuizzesScalarFieldEnum)[keyof typeof QuizzesScalarFieldEnum]
+
+
+  export const Premium_packagesScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    duration_days: 'duration_days',
+    price: 'price',
+    original_price: 'original_price',
+    discount: 'discount'
+  };
+
+  export type Premium_packagesScalarFieldEnum = (typeof Premium_packagesScalarFieldEnum)[keyof typeof Premium_packagesScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -38433,63 +37195,6 @@ export namespace Prisma {
     content?: StringNullableWithAggregatesFilter<"messages"> | string | null
   }
 
-  export type packagesWhereInput = {
-    AND?: packagesWhereInput | packagesWhereInput[]
-    OR?: packagesWhereInput[]
-    NOT?: packagesWhereInput | packagesWhereInput[]
-    id?: UuidFilter<"packages"> | string
-    name?: StringFilter<"packages"> | string
-    duration_days?: IntFilter<"packages"> | number
-    price?: IntFilter<"packages"> | number
-    is_premium?: BoolNullableFilter<"packages"> | boolean | null
-    user_packages?: User_packagesListRelationFilter
-  }
-
-  export type packagesOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    duration_days?: SortOrder
-    price?: SortOrder
-    is_premium?: SortOrderInput | SortOrder
-    user_packages?: user_packagesOrderByRelationAggregateInput
-  }
-
-  export type packagesWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: packagesWhereInput | packagesWhereInput[]
-    OR?: packagesWhereInput[]
-    NOT?: packagesWhereInput | packagesWhereInput[]
-    name?: StringFilter<"packages"> | string
-    duration_days?: IntFilter<"packages"> | number
-    price?: IntFilter<"packages"> | number
-    is_premium?: BoolNullableFilter<"packages"> | boolean | null
-    user_packages?: User_packagesListRelationFilter
-  }, "id">
-
-  export type packagesOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    duration_days?: SortOrder
-    price?: SortOrder
-    is_premium?: SortOrderInput | SortOrder
-    _count?: packagesCountOrderByAggregateInput
-    _avg?: packagesAvgOrderByAggregateInput
-    _max?: packagesMaxOrderByAggregateInput
-    _min?: packagesMinOrderByAggregateInput
-    _sum?: packagesSumOrderByAggregateInput
-  }
-
-  export type packagesScalarWhereWithAggregatesInput = {
-    AND?: packagesScalarWhereWithAggregatesInput | packagesScalarWhereWithAggregatesInput[]
-    OR?: packagesScalarWhereWithAggregatesInput[]
-    NOT?: packagesScalarWhereWithAggregatesInput | packagesScalarWhereWithAggregatesInput[]
-    id?: UuidWithAggregatesFilter<"packages"> | string
-    name?: StringWithAggregatesFilter<"packages"> | string
-    duration_days?: IntWithAggregatesFilter<"packages"> | number
-    price?: IntWithAggregatesFilter<"packages"> | number
-    is_premium?: BoolNullableWithAggregatesFilter<"packages"> | boolean | null
-  }
-
   export type postsWhereInput = {
     AND?: postsWhereInput | postsWhereInput[]
     OR?: postsWhereInput[]
@@ -38769,70 +37474,6 @@ export namespace Prisma {
     shared_count?: IntNullableWithAggregatesFilter<"shared_post"> | number | null
   }
 
-  export type study_access_topicWhereInput = {
-    AND?: study_access_topicWhereInput | study_access_topicWhereInput[]
-    OR?: study_access_topicWhereInput[]
-    NOT?: study_access_topicWhereInput | study_access_topicWhereInput[]
-    id?: UuidFilter<"study_access_topic"> | string
-    user_id?: UuidFilter<"study_access_topic"> | string
-    topic_id?: UuidFilter<"study_access_topic"> | string
-    access_type?: StringNullableFilter<"study_access_topic"> | string | null
-    access_date?: DateTimeNullableFilter<"study_access_topic"> | Date | string | null
-    expire_date?: DateTimeFilter<"study_access_topic"> | Date | string
-    topics?: XOR<TopicsScalarRelationFilter, topicsWhereInput>
-    users?: XOR<UsersScalarRelationFilter, usersWhereInput>
-  }
-
-  export type study_access_topicOrderByWithRelationInput = {
-    id?: SortOrder
-    user_id?: SortOrder
-    topic_id?: SortOrder
-    access_type?: SortOrderInput | SortOrder
-    access_date?: SortOrderInput | SortOrder
-    expire_date?: SortOrder
-    topics?: topicsOrderByWithRelationInput
-    users?: usersOrderByWithRelationInput
-  }
-
-  export type study_access_topicWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    user_id_topic_id_access_date?: study_access_topicUser_idTopic_idAccess_dateCompoundUniqueInput
-    AND?: study_access_topicWhereInput | study_access_topicWhereInput[]
-    OR?: study_access_topicWhereInput[]
-    NOT?: study_access_topicWhereInput | study_access_topicWhereInput[]
-    user_id?: UuidFilter<"study_access_topic"> | string
-    topic_id?: UuidFilter<"study_access_topic"> | string
-    access_type?: StringNullableFilter<"study_access_topic"> | string | null
-    access_date?: DateTimeNullableFilter<"study_access_topic"> | Date | string | null
-    expire_date?: DateTimeFilter<"study_access_topic"> | Date | string
-    topics?: XOR<TopicsScalarRelationFilter, topicsWhereInput>
-    users?: XOR<UsersScalarRelationFilter, usersWhereInput>
-  }, "id" | "user_id_topic_id_access_date">
-
-  export type study_access_topicOrderByWithAggregationInput = {
-    id?: SortOrder
-    user_id?: SortOrder
-    topic_id?: SortOrder
-    access_type?: SortOrderInput | SortOrder
-    access_date?: SortOrderInput | SortOrder
-    expire_date?: SortOrder
-    _count?: study_access_topicCountOrderByAggregateInput
-    _max?: study_access_topicMaxOrderByAggregateInput
-    _min?: study_access_topicMinOrderByAggregateInput
-  }
-
-  export type study_access_topicScalarWhereWithAggregatesInput = {
-    AND?: study_access_topicScalarWhereWithAggregatesInput | study_access_topicScalarWhereWithAggregatesInput[]
-    OR?: study_access_topicScalarWhereWithAggregatesInput[]
-    NOT?: study_access_topicScalarWhereWithAggregatesInput | study_access_topicScalarWhereWithAggregatesInput[]
-    id?: UuidWithAggregatesFilter<"study_access_topic"> | string
-    user_id?: UuidWithAggregatesFilter<"study_access_topic"> | string
-    topic_id?: UuidWithAggregatesFilter<"study_access_topic"> | string
-    access_type?: StringNullableWithAggregatesFilter<"study_access_topic"> | string | null
-    access_date?: DateTimeNullableWithAggregatesFilter<"study_access_topic"> | Date | string | null
-    expire_date?: DateTimeWithAggregatesFilter<"study_access_topic"> | Date | string
-  }
-
   export type topicsWhereInput = {
     AND?: topicsWhereInput | topicsWhereInput[]
     OR?: topicsWhereInput[]
@@ -38841,7 +37482,6 @@ export namespace Prisma {
     name?: StringFilter<"topics"> | string
     description?: StringNullableFilter<"topics"> | string | null
     courses?: CoursesListRelationFilter
-    study_access_topic?: Study_access_topicListRelationFilter
   }
 
   export type topicsOrderByWithRelationInput = {
@@ -38849,7 +37489,6 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrderInput | SortOrder
     courses?: coursesOrderByRelationAggregateInput
-    study_access_topic?: study_access_topicOrderByRelationAggregateInput
   }
 
   export type topicsWhereUniqueInput = Prisma.AtLeast<{
@@ -38860,7 +37499,6 @@ export namespace Prisma {
     name?: StringFilter<"topics"> | string
     description?: StringNullableFilter<"topics"> | string | null
     courses?: CoursesListRelationFilter
-    study_access_topic?: Study_access_topicListRelationFilter
   }, "id">
 
   export type topicsOrderByWithAggregationInput = {
@@ -39014,6 +37652,7 @@ export namespace Prisma {
     user_id?: UuidFilter<"user_courses"> | string
     course_id?: UuidFilter<"user_courses"> | string
     purchase_date?: DateTimeNullableFilter<"user_courses"> | Date | string | null
+    isActive?: BoolFilter<"user_courses"> | boolean
     courses?: XOR<CoursesScalarRelationFilter, coursesWhereInput>
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }
@@ -39023,6 +37662,7 @@ export namespace Prisma {
     user_id?: SortOrder
     course_id?: SortOrder
     purchase_date?: SortOrderInput | SortOrder
+    isActive?: SortOrder
     courses?: coursesOrderByWithRelationInput
     users?: usersOrderByWithRelationInput
   }
@@ -39036,6 +37676,7 @@ export namespace Prisma {
     user_id?: UuidFilter<"user_courses"> | string
     course_id?: UuidFilter<"user_courses"> | string
     purchase_date?: DateTimeNullableFilter<"user_courses"> | Date | string | null
+    isActive?: BoolFilter<"user_courses"> | boolean
     courses?: XOR<CoursesScalarRelationFilter, coursesWhereInput>
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }, "id" | "user_id_course_id">
@@ -39045,6 +37686,7 @@ export namespace Prisma {
     user_id?: SortOrder
     course_id?: SortOrder
     purchase_date?: SortOrderInput | SortOrder
+    isActive?: SortOrder
     _count?: user_coursesCountOrderByAggregateInput
     _max?: user_coursesMaxOrderByAggregateInput
     _min?: user_coursesMinOrderByAggregateInput
@@ -39058,6 +37700,7 @@ export namespace Prisma {
     user_id?: UuidWithAggregatesFilter<"user_courses"> | string
     course_id?: UuidWithAggregatesFilter<"user_courses"> | string
     purchase_date?: DateTimeNullableWithAggregatesFilter<"user_courses"> | Date | string | null
+    isActive?: BoolWithAggregatesFilter<"user_courses"> | boolean
   }
 
   export type user_error_reportsWhereInput = {
@@ -39136,9 +37779,7 @@ export namespace Prisma {
     user_id?: UuidFilter<"user_packages"> | string
     package_id?: UuidFilter<"user_packages"> | string
     start_date?: DateTimeNullableFilter<"user_packages"> | Date | string | null
-    end_date?: DateTimeFilter<"user_packages"> | Date | string
-    is_active?: BoolNullableFilter<"user_packages"> | boolean | null
-    packages?: XOR<PackagesScalarRelationFilter, packagesWhereInput>
+    packages?: XOR<Premium_packagesScalarRelationFilter, premium_packagesWhereInput>
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }
 
@@ -39147,9 +37788,7 @@ export namespace Prisma {
     user_id?: SortOrder
     package_id?: SortOrder
     start_date?: SortOrderInput | SortOrder
-    end_date?: SortOrder
-    is_active?: SortOrderInput | SortOrder
-    packages?: packagesOrderByWithRelationInput
+    packages?: premium_packagesOrderByWithRelationInput
     users?: usersOrderByWithRelationInput
   }
 
@@ -39161,9 +37800,7 @@ export namespace Prisma {
     user_id?: UuidFilter<"user_packages"> | string
     package_id?: UuidFilter<"user_packages"> | string
     start_date?: DateTimeNullableFilter<"user_packages"> | Date | string | null
-    end_date?: DateTimeFilter<"user_packages"> | Date | string
-    is_active?: BoolNullableFilter<"user_packages"> | boolean | null
-    packages?: XOR<PackagesScalarRelationFilter, packagesWhereInput>
+    packages?: XOR<Premium_packagesScalarRelationFilter, premium_packagesWhereInput>
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }, "id">
 
@@ -39172,8 +37809,6 @@ export namespace Prisma {
     user_id?: SortOrder
     package_id?: SortOrder
     start_date?: SortOrderInput | SortOrder
-    end_date?: SortOrder
-    is_active?: SortOrderInput | SortOrder
     _count?: user_packagesCountOrderByAggregateInput
     _max?: user_packagesMaxOrderByAggregateInput
     _min?: user_packagesMinOrderByAggregateInput
@@ -39187,8 +37822,6 @@ export namespace Prisma {
     user_id?: UuidWithAggregatesFilter<"user_packages"> | string
     package_id?: UuidWithAggregatesFilter<"user_packages"> | string
     start_date?: DateTimeNullableWithAggregatesFilter<"user_packages"> | Date | string | null
-    end_date?: DateTimeWithAggregatesFilter<"user_packages"> | Date | string
-    is_active?: BoolNullableWithAggregatesFilter<"user_packages"> | boolean | null
   }
 
   export type user_profile_historyWhereInput = {
@@ -39340,6 +37973,7 @@ export namespace Prisma {
     is_block?: BoolNullableFilter<"users"> | boolean | null
     is_verified?: BoolNullableFilter<"users"> | boolean | null
     firebase_uid?: StringNullableFilter<"users"> | string | null
+    isPremium?: BoolFilter<"users"> | boolean
     abuse_report_feedbacks?: Abuse_report_feedbacksListRelationFilter
     attendance?: AttendanceListRelationFilter
     coin_transaction?: Coin_transactionListRelationFilter
@@ -39355,7 +37989,6 @@ export namespace Prisma {
     react_comments?: React_commentsListRelationFilter
     react_posts?: React_postsListRelationFilter
     shared_post?: Shared_postListRelationFilter
-    study_access_topic?: Study_access_topicListRelationFilter
     transaction_history?: Transaction_historyListRelationFilter
     user_abuse_reports?: User_abuse_reportsListRelationFilter
     user_courses?: User_coursesListRelationFilter
@@ -39384,6 +38017,7 @@ export namespace Prisma {
     is_block?: SortOrderInput | SortOrder
     is_verified?: SortOrderInput | SortOrder
     firebase_uid?: SortOrderInput | SortOrder
+    isPremium?: SortOrder
     abuse_report_feedbacks?: abuse_report_feedbacksOrderByRelationAggregateInput
     attendance?: attendanceOrderByRelationAggregateInput
     coin_transaction?: coin_transactionOrderByRelationAggregateInput
@@ -39399,7 +38033,6 @@ export namespace Prisma {
     react_comments?: react_commentsOrderByRelationAggregateInput
     react_posts?: react_postsOrderByRelationAggregateInput
     shared_post?: shared_postOrderByRelationAggregateInput
-    study_access_topic?: study_access_topicOrderByRelationAggregateInput
     transaction_history?: transaction_historyOrderByRelationAggregateInput
     user_abuse_reports?: user_abuse_reportsOrderByRelationAggregateInput
     user_courses?: user_coursesOrderByRelationAggregateInput
@@ -39431,6 +38064,7 @@ export namespace Prisma {
     is_block?: BoolNullableFilter<"users"> | boolean | null
     is_verified?: BoolNullableFilter<"users"> | boolean | null
     firebase_uid?: StringNullableFilter<"users"> | string | null
+    isPremium?: BoolFilter<"users"> | boolean
     abuse_report_feedbacks?: Abuse_report_feedbacksListRelationFilter
     attendance?: AttendanceListRelationFilter
     coin_transaction?: Coin_transactionListRelationFilter
@@ -39446,7 +38080,6 @@ export namespace Prisma {
     react_comments?: React_commentsListRelationFilter
     react_posts?: React_postsListRelationFilter
     shared_post?: Shared_postListRelationFilter
-    study_access_topic?: Study_access_topicListRelationFilter
     transaction_history?: Transaction_historyListRelationFilter
     user_abuse_reports?: User_abuse_reportsListRelationFilter
     user_courses?: User_coursesListRelationFilter
@@ -39475,6 +38108,7 @@ export namespace Prisma {
     is_block?: SortOrderInput | SortOrder
     is_verified?: SortOrderInput | SortOrder
     firebase_uid?: SortOrderInput | SortOrder
+    isPremium?: SortOrder
     _count?: usersCountOrderByAggregateInput
     _avg?: usersAvgOrderByAggregateInput
     _max?: usersMaxOrderByAggregateInput
@@ -39503,6 +38137,7 @@ export namespace Prisma {
     is_block?: BoolNullableWithAggregatesFilter<"users"> | boolean | null
     is_verified?: BoolNullableWithAggregatesFilter<"users"> | boolean | null
     firebase_uid?: StringNullableWithAggregatesFilter<"users"> | string | null
+    isPremium?: BoolWithAggregatesFilter<"users"> | boolean
   }
 
   export type wordsWhereInput = {
@@ -39684,6 +38319,68 @@ export namespace Prisma {
     user_id?: UuidWithAggregatesFilter<"quizzes"> | string
     title?: StringWithAggregatesFilter<"quizzes"> | string
     created_date?: DateTimeWithAggregatesFilter<"quizzes"> | Date | string
+  }
+
+  export type premium_packagesWhereInput = {
+    AND?: premium_packagesWhereInput | premium_packagesWhereInput[]
+    OR?: premium_packagesWhereInput[]
+    NOT?: premium_packagesWhereInput | premium_packagesWhereInput[]
+    id?: UuidFilter<"premium_packages"> | string
+    name?: StringFilter<"premium_packages"> | string
+    duration_days?: IntFilter<"premium_packages"> | number
+    price?: IntFilter<"premium_packages"> | number
+    original_price?: IntFilter<"premium_packages"> | number
+    discount?: StringFilter<"premium_packages"> | string
+    user_packages?: User_packagesListRelationFilter
+  }
+
+  export type premium_packagesOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    duration_days?: SortOrder
+    price?: SortOrder
+    original_price?: SortOrder
+    discount?: SortOrder
+    user_packages?: user_packagesOrderByRelationAggregateInput
+  }
+
+  export type premium_packagesWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: premium_packagesWhereInput | premium_packagesWhereInput[]
+    OR?: premium_packagesWhereInput[]
+    NOT?: premium_packagesWhereInput | premium_packagesWhereInput[]
+    name?: StringFilter<"premium_packages"> | string
+    duration_days?: IntFilter<"premium_packages"> | number
+    price?: IntFilter<"premium_packages"> | number
+    original_price?: IntFilter<"premium_packages"> | number
+    discount?: StringFilter<"premium_packages"> | string
+    user_packages?: User_packagesListRelationFilter
+  }, "id">
+
+  export type premium_packagesOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    duration_days?: SortOrder
+    price?: SortOrder
+    original_price?: SortOrder
+    discount?: SortOrder
+    _count?: premium_packagesCountOrderByAggregateInput
+    _avg?: premium_packagesAvgOrderByAggregateInput
+    _max?: premium_packagesMaxOrderByAggregateInput
+    _min?: premium_packagesMinOrderByAggregateInput
+    _sum?: premium_packagesSumOrderByAggregateInput
+  }
+
+  export type premium_packagesScalarWhereWithAggregatesInput = {
+    AND?: premium_packagesScalarWhereWithAggregatesInput | premium_packagesScalarWhereWithAggregatesInput[]
+    OR?: premium_packagesScalarWhereWithAggregatesInput[]
+    NOT?: premium_packagesScalarWhereWithAggregatesInput | premium_packagesScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"premium_packages"> | string
+    name?: StringWithAggregatesFilter<"premium_packages"> | string
+    duration_days?: IntWithAggregatesFilter<"premium_packages"> | number
+    price?: IntWithAggregatesFilter<"premium_packages"> | number
+    original_price?: IntWithAggregatesFilter<"premium_packages"> | number
+    discount?: StringWithAggregatesFilter<"premium_packages"> | string
   }
 
   export type abuse_report_feedbacksCreateInput = {
@@ -40408,66 +39105,6 @@ export namespace Prisma {
     content?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type packagesCreateInput = {
-    id?: string
-    name: string
-    duration_days: number
-    price: number
-    is_premium?: boolean | null
-    user_packages?: user_packagesCreateNestedManyWithoutPackagesInput
-  }
-
-  export type packagesUncheckedCreateInput = {
-    id?: string
-    name: string
-    duration_days: number
-    price: number
-    is_premium?: boolean | null
-    user_packages?: user_packagesUncheckedCreateNestedManyWithoutPackagesInput
-  }
-
-  export type packagesUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    duration_days?: IntFieldUpdateOperationsInput | number
-    price?: IntFieldUpdateOperationsInput | number
-    is_premium?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    user_packages?: user_packagesUpdateManyWithoutPackagesNestedInput
-  }
-
-  export type packagesUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    duration_days?: IntFieldUpdateOperationsInput | number
-    price?: IntFieldUpdateOperationsInput | number
-    is_premium?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    user_packages?: user_packagesUncheckedUpdateManyWithoutPackagesNestedInput
-  }
-
-  export type packagesCreateManyInput = {
-    id?: string
-    name: string
-    duration_days: number
-    price: number
-    is_premium?: boolean | null
-  }
-
-  export type packagesUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    duration_days?: IntFieldUpdateOperationsInput | number
-    price?: IntFieldUpdateOperationsInput | number
-    is_premium?: NullableBoolFieldUpdateOperationsInput | boolean | null
-  }
-
-  export type packagesUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    duration_days?: IntFieldUpdateOperationsInput | number
-    price?: IntFieldUpdateOperationsInput | number
-    is_premium?: NullableBoolFieldUpdateOperationsInput | boolean | null
-  }
-
   export type postsCreateInput = {
     id?: string
     react_count?: number | null
@@ -40743,73 +39380,11 @@ export namespace Prisma {
     shared_count?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type study_access_topicCreateInput = {
-    id?: string
-    access_type?: string | null
-    access_date?: Date | string | null
-    expire_date: Date | string
-    topics: topicsCreateNestedOneWithoutStudy_access_topicInput
-    users: usersCreateNestedOneWithoutStudy_access_topicInput
-  }
-
-  export type study_access_topicUncheckedCreateInput = {
-    id?: string
-    user_id: string
-    topic_id: string
-    access_type?: string | null
-    access_date?: Date | string | null
-    expire_date: Date | string
-  }
-
-  export type study_access_topicUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    access_type?: NullableStringFieldUpdateOperationsInput | string | null
-    access_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    expire_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    topics?: topicsUpdateOneRequiredWithoutStudy_access_topicNestedInput
-    users?: usersUpdateOneRequiredWithoutStudy_access_topicNestedInput
-  }
-
-  export type study_access_topicUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    topic_id?: StringFieldUpdateOperationsInput | string
-    access_type?: NullableStringFieldUpdateOperationsInput | string | null
-    access_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    expire_date?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type study_access_topicCreateManyInput = {
-    id?: string
-    user_id: string
-    topic_id: string
-    access_type?: string | null
-    access_date?: Date | string | null
-    expire_date: Date | string
-  }
-
-  export type study_access_topicUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    access_type?: NullableStringFieldUpdateOperationsInput | string | null
-    access_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    expire_date?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type study_access_topicUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    topic_id?: StringFieldUpdateOperationsInput | string
-    access_type?: NullableStringFieldUpdateOperationsInput | string | null
-    access_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    expire_date?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type topicsCreateInput = {
     id?: string
     name: string
     description?: string | null
     courses?: coursesCreateNestedManyWithoutTopicsInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutTopicsInput
   }
 
   export type topicsUncheckedCreateInput = {
@@ -40817,7 +39392,6 @@ export namespace Prisma {
     name: string
     description?: string | null
     courses?: coursesUncheckedCreateNestedManyWithoutTopicsInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutTopicsInput
   }
 
   export type topicsUpdateInput = {
@@ -40825,7 +39399,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     courses?: coursesUpdateManyWithoutTopicsNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutTopicsNestedInput
   }
 
   export type topicsUncheckedUpdateInput = {
@@ -40833,7 +39406,6 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     courses?: coursesUncheckedUpdateManyWithoutTopicsNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutTopicsNestedInput
   }
 
   export type topicsCreateManyInput = {
@@ -40985,6 +39557,7 @@ export namespace Prisma {
   export type user_coursesCreateInput = {
     id?: string
     purchase_date?: Date | string | null
+    isActive?: boolean
     courses: coursesCreateNestedOneWithoutUser_coursesInput
     users: usersCreateNestedOneWithoutUser_coursesInput
   }
@@ -40994,11 +39567,13 @@ export namespace Prisma {
     user_id: string
     course_id: string
     purchase_date?: Date | string | null
+    isActive?: boolean
   }
 
   export type user_coursesUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     purchase_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     courses?: coursesUpdateOneRequiredWithoutUser_coursesNestedInput
     users?: usersUpdateOneRequiredWithoutUser_coursesNestedInput
   }
@@ -41008,6 +39583,7 @@ export namespace Prisma {
     user_id?: StringFieldUpdateOperationsInput | string
     course_id?: StringFieldUpdateOperationsInput | string
     purchase_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type user_coursesCreateManyInput = {
@@ -41015,11 +39591,13 @@ export namespace Prisma {
     user_id: string
     course_id: string
     purchase_date?: Date | string | null
+    isActive?: boolean
   }
 
   export type user_coursesUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     purchase_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type user_coursesUncheckedUpdateManyInput = {
@@ -41027,6 +39605,7 @@ export namespace Prisma {
     user_id?: StringFieldUpdateOperationsInput | string
     course_id?: StringFieldUpdateOperationsInput | string
     purchase_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type user_error_reportsCreateInput = {
@@ -41105,9 +39684,7 @@ export namespace Prisma {
   export type user_packagesCreateInput = {
     id?: string
     start_date?: Date | string | null
-    end_date: Date | string
-    is_active?: boolean | null
-    packages: packagesCreateNestedOneWithoutUser_packagesInput
+    packages: premium_packagesCreateNestedOneWithoutUser_packagesInput
     users: usersCreateNestedOneWithoutUser_packagesInput
   }
 
@@ -41116,16 +39693,12 @@ export namespace Prisma {
     user_id: string
     package_id: string
     start_date?: Date | string | null
-    end_date: Date | string
-    is_active?: boolean | null
   }
 
   export type user_packagesUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_active?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    packages?: packagesUpdateOneRequiredWithoutUser_packagesNestedInput
+    packages?: premium_packagesUpdateOneRequiredWithoutUser_packagesNestedInput
     users?: usersUpdateOneRequiredWithoutUser_packagesNestedInput
   }
 
@@ -41134,8 +39707,6 @@ export namespace Prisma {
     user_id?: StringFieldUpdateOperationsInput | string
     package_id?: StringFieldUpdateOperationsInput | string
     start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_active?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type user_packagesCreateManyInput = {
@@ -41143,15 +39714,11 @@ export namespace Prisma {
     user_id: string
     package_id: string
     start_date?: Date | string | null
-    end_date: Date | string
-    is_active?: boolean | null
   }
 
   export type user_packagesUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_active?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type user_packagesUncheckedUpdateManyInput = {
@@ -41159,8 +39726,6 @@ export namespace Prisma {
     user_id?: StringFieldUpdateOperationsInput | string
     package_id?: StringFieldUpdateOperationsInput | string
     start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_active?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type user_profile_historyCreateInput = {
@@ -41303,6 +39868,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -41318,7 +39884,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -41347,6 +39912,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -41362,7 +39928,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -41391,6 +39956,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -41406,7 +39972,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -41435,6 +40000,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -41450,7 +40016,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -41479,6 +40044,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
   }
 
   export type usersUpdateManyMutationInput = {
@@ -41499,6 +40065,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type usersUncheckedUpdateManyInput = {
@@ -41519,6 +40086,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type wordsCreateInput = {
@@ -41602,7 +40170,7 @@ export namespace Prisma {
   }
 
   export type quiz_questionsCreateInput = {
-    id: string
+    id?: string
     question_text: string
     options?: quiz_questionsCreateoptionsInput | string[]
     correct_answer: string
@@ -41610,7 +40178,7 @@ export namespace Prisma {
   }
 
   export type quiz_questionsUncheckedCreateInput = {
-    id: string
+    id?: string
     quiz_id: string
     question_text: string
     options?: quiz_questionsCreateoptionsInput | string[]
@@ -41634,7 +40202,7 @@ export namespace Prisma {
   }
 
   export type quiz_questionsCreateManyInput = {
-    id: string
+    id?: string
     quiz_id: string
     question_text: string
     options?: quiz_questionsCreateoptionsInput | string[]
@@ -41657,18 +40225,18 @@ export namespace Prisma {
   }
 
   export type quizzesCreateInput = {
-    id: string
+    id?: string
     title: string
-    created_date: Date | string
+    created_date?: Date | string
     quiz_questions?: quiz_questionsCreateNestedManyWithoutQuizzesInput
     users: usersCreateNestedOneWithoutQuizzesInput
   }
 
   export type quizzesUncheckedCreateInput = {
-    id: string
+    id?: string
     user_id: string
     title: string
-    created_date: Date | string
+    created_date?: Date | string
     quiz_questions?: quiz_questionsUncheckedCreateNestedManyWithoutQuizzesInput
   }
 
@@ -41689,10 +40257,10 @@ export namespace Prisma {
   }
 
   export type quizzesCreateManyInput = {
-    id: string
+    id?: string
     user_id: string
     title: string
-    created_date: Date | string
+    created_date?: Date | string
   }
 
   export type quizzesUpdateManyMutationInput = {
@@ -41706,6 +40274,73 @@ export namespace Prisma {
     user_id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     created_date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type premium_packagesCreateInput = {
+    id?: string
+    name: string
+    duration_days: number
+    price: number
+    original_price?: number
+    discount?: string
+    user_packages?: user_packagesCreateNestedManyWithoutPackagesInput
+  }
+
+  export type premium_packagesUncheckedCreateInput = {
+    id?: string
+    name: string
+    duration_days: number
+    price: number
+    original_price?: number
+    discount?: string
+    user_packages?: user_packagesUncheckedCreateNestedManyWithoutPackagesInput
+  }
+
+  export type premium_packagesUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    duration_days?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    original_price?: IntFieldUpdateOperationsInput | number
+    discount?: StringFieldUpdateOperationsInput | string
+    user_packages?: user_packagesUpdateManyWithoutPackagesNestedInput
+  }
+
+  export type premium_packagesUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    duration_days?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    original_price?: IntFieldUpdateOperationsInput | number
+    discount?: StringFieldUpdateOperationsInput | string
+    user_packages?: user_packagesUncheckedUpdateManyWithoutPackagesNestedInput
+  }
+
+  export type premium_packagesCreateManyInput = {
+    id?: string
+    name: string
+    duration_days: number
+    price: number
+    original_price?: number
+    discount?: string
+  }
+
+  export type premium_packagesUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    duration_days?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    original_price?: IntFieldUpdateOperationsInput | number
+    discount?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type premium_packagesUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    duration_days?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    original_price?: IntFieldUpdateOperationsInput | number
+    discount?: StringFieldUpdateOperationsInput | string
   }
 
   export type UuidFilter<$PrismaModel = never> = {
@@ -42429,63 +41064,6 @@ export namespace Prisma {
     content?: SortOrder
   }
 
-  export type BoolNullableFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
-  }
-
-  export type User_packagesListRelationFilter = {
-    every?: user_packagesWhereInput
-    some?: user_packagesWhereInput
-    none?: user_packagesWhereInput
-  }
-
-  export type user_packagesOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type packagesCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    duration_days?: SortOrder
-    price?: SortOrder
-    is_premium?: SortOrder
-  }
-
-  export type packagesAvgOrderByAggregateInput = {
-    duration_days?: SortOrder
-    price?: SortOrder
-  }
-
-  export type packagesMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    duration_days?: SortOrder
-    price?: SortOrder
-    is_premium?: SortOrder
-  }
-
-  export type packagesMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    duration_days?: SortOrder
-    price?: SortOrder
-    is_premium?: SortOrder
-  }
-
-  export type packagesSumOrderByAggregateInput = {
-    duration_days?: SortOrder
-    price?: SortOrder
-  }
-
-  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBoolNullableFilter<$PrismaModel>
-    _max?: NestedBoolNullableFilter<$PrismaModel>
-  }
-
   export type CommentsListRelationFilter = {
     every?: commentsWhereInput
     some?: commentsWhereInput
@@ -42656,61 +41234,13 @@ export namespace Prisma {
     shared_count?: SortOrder
   }
 
-  export type TopicsScalarRelationFilter = {
-    is?: topicsWhereInput
-    isNot?: topicsWhereInput
-  }
-
-  export type study_access_topicUser_idTopic_idAccess_dateCompoundUniqueInput = {
-    user_id: string
-    topic_id: string
-    access_date: Date | string
-  }
-
-  export type study_access_topicCountOrderByAggregateInput = {
-    id?: SortOrder
-    user_id?: SortOrder
-    topic_id?: SortOrder
-    access_type?: SortOrder
-    access_date?: SortOrder
-    expire_date?: SortOrder
-  }
-
-  export type study_access_topicMaxOrderByAggregateInput = {
-    id?: SortOrder
-    user_id?: SortOrder
-    topic_id?: SortOrder
-    access_type?: SortOrder
-    access_date?: SortOrder
-    expire_date?: SortOrder
-  }
-
-  export type study_access_topicMinOrderByAggregateInput = {
-    id?: SortOrder
-    user_id?: SortOrder
-    topic_id?: SortOrder
-    access_type?: SortOrder
-    access_date?: SortOrder
-    expire_date?: SortOrder
-  }
-
   export type CoursesListRelationFilter = {
     every?: coursesWhereInput
     some?: coursesWhereInput
     none?: coursesWhereInput
   }
 
-  export type Study_access_topicListRelationFilter = {
-    every?: study_access_topicWhereInput
-    some?: study_access_topicWhereInput
-    none?: study_access_topicWhereInput
-  }
-
   export type coursesOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type study_access_topicOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -42846,6 +41376,7 @@ export namespace Prisma {
     user_id?: SortOrder
     course_id?: SortOrder
     purchase_date?: SortOrder
+    isActive?: SortOrder
   }
 
   export type user_coursesMaxOrderByAggregateInput = {
@@ -42853,6 +41384,7 @@ export namespace Prisma {
     user_id?: SortOrder
     course_id?: SortOrder
     purchase_date?: SortOrder
+    isActive?: SortOrder
   }
 
   export type user_coursesMinOrderByAggregateInput = {
@@ -42860,6 +41392,7 @@ export namespace Prisma {
     user_id?: SortOrder
     course_id?: SortOrder
     purchase_date?: SortOrder
+    isActive?: SortOrder
   }
 
   export type Error_report_feedbacksListRelationFilter = {
@@ -42902,9 +41435,9 @@ export namespace Prisma {
     status?: SortOrder
   }
 
-  export type PackagesScalarRelationFilter = {
-    is?: packagesWhereInput
-    isNot?: packagesWhereInput
+  export type Premium_packagesScalarRelationFilter = {
+    is?: premium_packagesWhereInput
+    isNot?: premium_packagesWhereInput
   }
 
   export type user_packagesCountOrderByAggregateInput = {
@@ -42912,8 +41445,6 @@ export namespace Prisma {
     user_id?: SortOrder
     package_id?: SortOrder
     start_date?: SortOrder
-    end_date?: SortOrder
-    is_active?: SortOrder
   }
 
   export type user_packagesMaxOrderByAggregateInput = {
@@ -42921,8 +41452,6 @@ export namespace Prisma {
     user_id?: SortOrder
     package_id?: SortOrder
     start_date?: SortOrder
-    end_date?: SortOrder
-    is_active?: SortOrder
   }
 
   export type user_packagesMinOrderByAggregateInput = {
@@ -42930,8 +41459,6 @@ export namespace Prisma {
     user_id?: SortOrder
     package_id?: SortOrder
     start_date?: SortOrder
-    end_date?: SortOrder
-    is_active?: SortOrder
   }
   export type JsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -43046,6 +41573,11 @@ export namespace Prisma {
     level?: SortOrder
   }
 
+  export type BoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
   export type AttendanceListRelationFilter = {
     every?: attendanceWhereInput
     some?: attendanceWhereInput
@@ -43094,6 +41626,12 @@ export namespace Prisma {
     none?: user_error_reportsWhereInput
   }
 
+  export type User_packagesListRelationFilter = {
+    every?: user_packagesWhereInput
+    some?: user_packagesWhereInput
+    none?: user_packagesWhereInput
+  }
+
   export type User_profile_historyListRelationFilter = {
     every?: user_profile_historyWhereInput
     some?: user_profile_historyWhereInput
@@ -43138,6 +41676,10 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type user_packagesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type user_profile_historyOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -43164,6 +41706,7 @@ export namespace Prisma {
     is_block?: SortOrder
     is_verified?: SortOrder
     firebase_uid?: SortOrder
+    isPremium?: SortOrder
   }
 
   export type usersAvgOrderByAggregateInput = {
@@ -43188,6 +41731,7 @@ export namespace Prisma {
     is_block?: SortOrder
     is_verified?: SortOrder
     firebase_uid?: SortOrder
+    isPremium?: SortOrder
   }
 
   export type usersMinOrderByAggregateInput = {
@@ -43208,10 +41752,19 @@ export namespace Prisma {
     is_block?: SortOrder
     is_verified?: SortOrder
     firebase_uid?: SortOrder
+    isPremium?: SortOrder
   }
 
   export type usersSumOrderByAggregateInput = {
     balance?: SortOrder
+  }
+
+  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
   export type CoursesNullableScalarRelationFilter = {
@@ -43316,6 +41869,45 @@ export namespace Prisma {
     user_id?: SortOrder
     title?: SortOrder
     created_date?: SortOrder
+  }
+
+  export type premium_packagesCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    duration_days?: SortOrder
+    price?: SortOrder
+    original_price?: SortOrder
+    discount?: SortOrder
+  }
+
+  export type premium_packagesAvgOrderByAggregateInput = {
+    duration_days?: SortOrder
+    price?: SortOrder
+    original_price?: SortOrder
+  }
+
+  export type premium_packagesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    duration_days?: SortOrder
+    price?: SortOrder
+    original_price?: SortOrder
+    discount?: SortOrder
+  }
+
+  export type premium_packagesMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    duration_days?: SortOrder
+    price?: SortOrder
+    original_price?: SortOrder
+    discount?: SortOrder
+  }
+
+  export type premium_packagesSumOrderByAggregateInput = {
+    duration_days?: SortOrder
+    price?: SortOrder
+    original_price?: SortOrder
   }
 
   export type user_abuse_reportsCreateNestedOneWithoutAbuse_report_feedbacksInput = {
@@ -43938,52 +42530,6 @@ export namespace Prisma {
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutMessagesInput, usersUpdateWithoutMessagesInput>, usersUncheckedUpdateWithoutMessagesInput>
   }
 
-  export type user_packagesCreateNestedManyWithoutPackagesInput = {
-    create?: XOR<user_packagesCreateWithoutPackagesInput, user_packagesUncheckedCreateWithoutPackagesInput> | user_packagesCreateWithoutPackagesInput[] | user_packagesUncheckedCreateWithoutPackagesInput[]
-    connectOrCreate?: user_packagesCreateOrConnectWithoutPackagesInput | user_packagesCreateOrConnectWithoutPackagesInput[]
-    createMany?: user_packagesCreateManyPackagesInputEnvelope
-    connect?: user_packagesWhereUniqueInput | user_packagesWhereUniqueInput[]
-  }
-
-  export type user_packagesUncheckedCreateNestedManyWithoutPackagesInput = {
-    create?: XOR<user_packagesCreateWithoutPackagesInput, user_packagesUncheckedCreateWithoutPackagesInput> | user_packagesCreateWithoutPackagesInput[] | user_packagesUncheckedCreateWithoutPackagesInput[]
-    connectOrCreate?: user_packagesCreateOrConnectWithoutPackagesInput | user_packagesCreateOrConnectWithoutPackagesInput[]
-    createMany?: user_packagesCreateManyPackagesInputEnvelope
-    connect?: user_packagesWhereUniqueInput | user_packagesWhereUniqueInput[]
-  }
-
-  export type NullableBoolFieldUpdateOperationsInput = {
-    set?: boolean | null
-  }
-
-  export type user_packagesUpdateManyWithoutPackagesNestedInput = {
-    create?: XOR<user_packagesCreateWithoutPackagesInput, user_packagesUncheckedCreateWithoutPackagesInput> | user_packagesCreateWithoutPackagesInput[] | user_packagesUncheckedCreateWithoutPackagesInput[]
-    connectOrCreate?: user_packagesCreateOrConnectWithoutPackagesInput | user_packagesCreateOrConnectWithoutPackagesInput[]
-    upsert?: user_packagesUpsertWithWhereUniqueWithoutPackagesInput | user_packagesUpsertWithWhereUniqueWithoutPackagesInput[]
-    createMany?: user_packagesCreateManyPackagesInputEnvelope
-    set?: user_packagesWhereUniqueInput | user_packagesWhereUniqueInput[]
-    disconnect?: user_packagesWhereUniqueInput | user_packagesWhereUniqueInput[]
-    delete?: user_packagesWhereUniqueInput | user_packagesWhereUniqueInput[]
-    connect?: user_packagesWhereUniqueInput | user_packagesWhereUniqueInput[]
-    update?: user_packagesUpdateWithWhereUniqueWithoutPackagesInput | user_packagesUpdateWithWhereUniqueWithoutPackagesInput[]
-    updateMany?: user_packagesUpdateManyWithWhereWithoutPackagesInput | user_packagesUpdateManyWithWhereWithoutPackagesInput[]
-    deleteMany?: user_packagesScalarWhereInput | user_packagesScalarWhereInput[]
-  }
-
-  export type user_packagesUncheckedUpdateManyWithoutPackagesNestedInput = {
-    create?: XOR<user_packagesCreateWithoutPackagesInput, user_packagesUncheckedCreateWithoutPackagesInput> | user_packagesCreateWithoutPackagesInput[] | user_packagesUncheckedCreateWithoutPackagesInput[]
-    connectOrCreate?: user_packagesCreateOrConnectWithoutPackagesInput | user_packagesCreateOrConnectWithoutPackagesInput[]
-    upsert?: user_packagesUpsertWithWhereUniqueWithoutPackagesInput | user_packagesUpsertWithWhereUniqueWithoutPackagesInput[]
-    createMany?: user_packagesCreateManyPackagesInputEnvelope
-    set?: user_packagesWhereUniqueInput | user_packagesWhereUniqueInput[]
-    disconnect?: user_packagesWhereUniqueInput | user_packagesWhereUniqueInput[]
-    delete?: user_packagesWhereUniqueInput | user_packagesWhereUniqueInput[]
-    connect?: user_packagesWhereUniqueInput | user_packagesWhereUniqueInput[]
-    update?: user_packagesUpdateWithWhereUniqueWithoutPackagesInput | user_packagesUpdateWithWhereUniqueWithoutPackagesInput[]
-    updateMany?: user_packagesUpdateManyWithWhereWithoutPackagesInput | user_packagesUpdateManyWithWhereWithoutPackagesInput[]
-    deleteMany?: user_packagesScalarWhereInput | user_packagesScalarWhereInput[]
-  }
-
   export type commentsCreateNestedManyWithoutPostsInput = {
     create?: XOR<commentsCreateWithoutPostsInput, commentsUncheckedCreateWithoutPostsInput> | commentsCreateWithoutPostsInput[] | commentsUncheckedCreateWithoutPostsInput[]
     connectOrCreate?: commentsCreateOrConnectWithoutPostsInput | commentsCreateOrConnectWithoutPostsInput[]
@@ -44352,34 +42898,6 @@ export namespace Prisma {
     deleteMany?: shared_postScalarWhereInput | shared_postScalarWhereInput[]
   }
 
-  export type topicsCreateNestedOneWithoutStudy_access_topicInput = {
-    create?: XOR<topicsCreateWithoutStudy_access_topicInput, topicsUncheckedCreateWithoutStudy_access_topicInput>
-    connectOrCreate?: topicsCreateOrConnectWithoutStudy_access_topicInput
-    connect?: topicsWhereUniqueInput
-  }
-
-  export type usersCreateNestedOneWithoutStudy_access_topicInput = {
-    create?: XOR<usersCreateWithoutStudy_access_topicInput, usersUncheckedCreateWithoutStudy_access_topicInput>
-    connectOrCreate?: usersCreateOrConnectWithoutStudy_access_topicInput
-    connect?: usersWhereUniqueInput
-  }
-
-  export type topicsUpdateOneRequiredWithoutStudy_access_topicNestedInput = {
-    create?: XOR<topicsCreateWithoutStudy_access_topicInput, topicsUncheckedCreateWithoutStudy_access_topicInput>
-    connectOrCreate?: topicsCreateOrConnectWithoutStudy_access_topicInput
-    upsert?: topicsUpsertWithoutStudy_access_topicInput
-    connect?: topicsWhereUniqueInput
-    update?: XOR<XOR<topicsUpdateToOneWithWhereWithoutStudy_access_topicInput, topicsUpdateWithoutStudy_access_topicInput>, topicsUncheckedUpdateWithoutStudy_access_topicInput>
-  }
-
-  export type usersUpdateOneRequiredWithoutStudy_access_topicNestedInput = {
-    create?: XOR<usersCreateWithoutStudy_access_topicInput, usersUncheckedCreateWithoutStudy_access_topicInput>
-    connectOrCreate?: usersCreateOrConnectWithoutStudy_access_topicInput
-    upsert?: usersUpsertWithoutStudy_access_topicInput
-    connect?: usersWhereUniqueInput
-    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutStudy_access_topicInput, usersUpdateWithoutStudy_access_topicInput>, usersUncheckedUpdateWithoutStudy_access_topicInput>
-  }
-
   export type coursesCreateNestedManyWithoutTopicsInput = {
     create?: XOR<coursesCreateWithoutTopicsInput, coursesUncheckedCreateWithoutTopicsInput> | coursesCreateWithoutTopicsInput[] | coursesUncheckedCreateWithoutTopicsInput[]
     connectOrCreate?: coursesCreateOrConnectWithoutTopicsInput | coursesCreateOrConnectWithoutTopicsInput[]
@@ -44387,25 +42905,11 @@ export namespace Prisma {
     connect?: coursesWhereUniqueInput | coursesWhereUniqueInput[]
   }
 
-  export type study_access_topicCreateNestedManyWithoutTopicsInput = {
-    create?: XOR<study_access_topicCreateWithoutTopicsInput, study_access_topicUncheckedCreateWithoutTopicsInput> | study_access_topicCreateWithoutTopicsInput[] | study_access_topicUncheckedCreateWithoutTopicsInput[]
-    connectOrCreate?: study_access_topicCreateOrConnectWithoutTopicsInput | study_access_topicCreateOrConnectWithoutTopicsInput[]
-    createMany?: study_access_topicCreateManyTopicsInputEnvelope
-    connect?: study_access_topicWhereUniqueInput | study_access_topicWhereUniqueInput[]
-  }
-
   export type coursesUncheckedCreateNestedManyWithoutTopicsInput = {
     create?: XOR<coursesCreateWithoutTopicsInput, coursesUncheckedCreateWithoutTopicsInput> | coursesCreateWithoutTopicsInput[] | coursesUncheckedCreateWithoutTopicsInput[]
     connectOrCreate?: coursesCreateOrConnectWithoutTopicsInput | coursesCreateOrConnectWithoutTopicsInput[]
     createMany?: coursesCreateManyTopicsInputEnvelope
     connect?: coursesWhereUniqueInput | coursesWhereUniqueInput[]
-  }
-
-  export type study_access_topicUncheckedCreateNestedManyWithoutTopicsInput = {
-    create?: XOR<study_access_topicCreateWithoutTopicsInput, study_access_topicUncheckedCreateWithoutTopicsInput> | study_access_topicCreateWithoutTopicsInput[] | study_access_topicUncheckedCreateWithoutTopicsInput[]
-    connectOrCreate?: study_access_topicCreateOrConnectWithoutTopicsInput | study_access_topicCreateOrConnectWithoutTopicsInput[]
-    createMany?: study_access_topicCreateManyTopicsInputEnvelope
-    connect?: study_access_topicWhereUniqueInput | study_access_topicWhereUniqueInput[]
   }
 
   export type coursesUpdateManyWithoutTopicsNestedInput = {
@@ -44422,20 +42926,6 @@ export namespace Prisma {
     deleteMany?: coursesScalarWhereInput | coursesScalarWhereInput[]
   }
 
-  export type study_access_topicUpdateManyWithoutTopicsNestedInput = {
-    create?: XOR<study_access_topicCreateWithoutTopicsInput, study_access_topicUncheckedCreateWithoutTopicsInput> | study_access_topicCreateWithoutTopicsInput[] | study_access_topicUncheckedCreateWithoutTopicsInput[]
-    connectOrCreate?: study_access_topicCreateOrConnectWithoutTopicsInput | study_access_topicCreateOrConnectWithoutTopicsInput[]
-    upsert?: study_access_topicUpsertWithWhereUniqueWithoutTopicsInput | study_access_topicUpsertWithWhereUniqueWithoutTopicsInput[]
-    createMany?: study_access_topicCreateManyTopicsInputEnvelope
-    set?: study_access_topicWhereUniqueInput | study_access_topicWhereUniqueInput[]
-    disconnect?: study_access_topicWhereUniqueInput | study_access_topicWhereUniqueInput[]
-    delete?: study_access_topicWhereUniqueInput | study_access_topicWhereUniqueInput[]
-    connect?: study_access_topicWhereUniqueInput | study_access_topicWhereUniqueInput[]
-    update?: study_access_topicUpdateWithWhereUniqueWithoutTopicsInput | study_access_topicUpdateWithWhereUniqueWithoutTopicsInput[]
-    updateMany?: study_access_topicUpdateManyWithWhereWithoutTopicsInput | study_access_topicUpdateManyWithWhereWithoutTopicsInput[]
-    deleteMany?: study_access_topicScalarWhereInput | study_access_topicScalarWhereInput[]
-  }
-
   export type coursesUncheckedUpdateManyWithoutTopicsNestedInput = {
     create?: XOR<coursesCreateWithoutTopicsInput, coursesUncheckedCreateWithoutTopicsInput> | coursesCreateWithoutTopicsInput[] | coursesUncheckedCreateWithoutTopicsInput[]
     connectOrCreate?: coursesCreateOrConnectWithoutTopicsInput | coursesCreateOrConnectWithoutTopicsInput[]
@@ -44448,20 +42938,6 @@ export namespace Prisma {
     update?: coursesUpdateWithWhereUniqueWithoutTopicsInput | coursesUpdateWithWhereUniqueWithoutTopicsInput[]
     updateMany?: coursesUpdateManyWithWhereWithoutTopicsInput | coursesUpdateManyWithWhereWithoutTopicsInput[]
     deleteMany?: coursesScalarWhereInput | coursesScalarWhereInput[]
-  }
-
-  export type study_access_topicUncheckedUpdateManyWithoutTopicsNestedInput = {
-    create?: XOR<study_access_topicCreateWithoutTopicsInput, study_access_topicUncheckedCreateWithoutTopicsInput> | study_access_topicCreateWithoutTopicsInput[] | study_access_topicUncheckedCreateWithoutTopicsInput[]
-    connectOrCreate?: study_access_topicCreateOrConnectWithoutTopicsInput | study_access_topicCreateOrConnectWithoutTopicsInput[]
-    upsert?: study_access_topicUpsertWithWhereUniqueWithoutTopicsInput | study_access_topicUpsertWithWhereUniqueWithoutTopicsInput[]
-    createMany?: study_access_topicCreateManyTopicsInputEnvelope
-    set?: study_access_topicWhereUniqueInput | study_access_topicWhereUniqueInput[]
-    disconnect?: study_access_topicWhereUniqueInput | study_access_topicWhereUniqueInput[]
-    delete?: study_access_topicWhereUniqueInput | study_access_topicWhereUniqueInput[]
-    connect?: study_access_topicWhereUniqueInput | study_access_topicWhereUniqueInput[]
-    update?: study_access_topicUpdateWithWhereUniqueWithoutTopicsInput | study_access_topicUpdateWithWhereUniqueWithoutTopicsInput[]
-    updateMany?: study_access_topicUpdateManyWithWhereWithoutTopicsInput | study_access_topicUpdateManyWithWhereWithoutTopicsInput[]
-    deleteMany?: study_access_topicScalarWhereInput | study_access_topicScalarWhereInput[]
   }
 
   export type usersCreateNestedOneWithoutTransaction_historyInput = {
@@ -44626,10 +43102,10 @@ export namespace Prisma {
     deleteMany?: error_report_feedbacksScalarWhereInput | error_report_feedbacksScalarWhereInput[]
   }
 
-  export type packagesCreateNestedOneWithoutUser_packagesInput = {
-    create?: XOR<packagesCreateWithoutUser_packagesInput, packagesUncheckedCreateWithoutUser_packagesInput>
-    connectOrCreate?: packagesCreateOrConnectWithoutUser_packagesInput
-    connect?: packagesWhereUniqueInput
+  export type premium_packagesCreateNestedOneWithoutUser_packagesInput = {
+    create?: XOR<premium_packagesCreateWithoutUser_packagesInput, premium_packagesUncheckedCreateWithoutUser_packagesInput>
+    connectOrCreate?: premium_packagesCreateOrConnectWithoutUser_packagesInput
+    connect?: premium_packagesWhereUniqueInput
   }
 
   export type usersCreateNestedOneWithoutUser_packagesInput = {
@@ -44638,12 +43114,12 @@ export namespace Prisma {
     connect?: usersWhereUniqueInput
   }
 
-  export type packagesUpdateOneRequiredWithoutUser_packagesNestedInput = {
-    create?: XOR<packagesCreateWithoutUser_packagesInput, packagesUncheckedCreateWithoutUser_packagesInput>
-    connectOrCreate?: packagesCreateOrConnectWithoutUser_packagesInput
-    upsert?: packagesUpsertWithoutUser_packagesInput
-    connect?: packagesWhereUniqueInput
-    update?: XOR<XOR<packagesUpdateToOneWithWhereWithoutUser_packagesInput, packagesUpdateWithoutUser_packagesInput>, packagesUncheckedUpdateWithoutUser_packagesInput>
+  export type premium_packagesUpdateOneRequiredWithoutUser_packagesNestedInput = {
+    create?: XOR<premium_packagesCreateWithoutUser_packagesInput, premium_packagesUncheckedCreateWithoutUser_packagesInput>
+    connectOrCreate?: premium_packagesCreateOrConnectWithoutUser_packagesInput
+    upsert?: premium_packagesUpsertWithoutUser_packagesInput
+    connect?: premium_packagesWhereUniqueInput
+    update?: XOR<XOR<premium_packagesUpdateToOneWithWhereWithoutUser_packagesInput, premium_packagesUpdateWithoutUser_packagesInput>, premium_packagesUncheckedUpdateWithoutUser_packagesInput>
   }
 
   export type usersUpdateOneRequiredWithoutUser_packagesNestedInput = {
@@ -44817,13 +43293,6 @@ export namespace Prisma {
     connect?: shared_postWhereUniqueInput | shared_postWhereUniqueInput[]
   }
 
-  export type study_access_topicCreateNestedManyWithoutUsersInput = {
-    create?: XOR<study_access_topicCreateWithoutUsersInput, study_access_topicUncheckedCreateWithoutUsersInput> | study_access_topicCreateWithoutUsersInput[] | study_access_topicUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: study_access_topicCreateOrConnectWithoutUsersInput | study_access_topicCreateOrConnectWithoutUsersInput[]
-    createMany?: study_access_topicCreateManyUsersInputEnvelope
-    connect?: study_access_topicWhereUniqueInput | study_access_topicWhereUniqueInput[]
-  }
-
   export type transaction_historyCreateNestedManyWithoutUsersInput = {
     create?: XOR<transaction_historyCreateWithoutUsersInput, transaction_historyUncheckedCreateWithoutUsersInput> | transaction_historyCreateWithoutUsersInput[] | transaction_historyUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: transaction_historyCreateOrConnectWithoutUsersInput | transaction_historyCreateOrConnectWithoutUsersInput[]
@@ -44985,13 +43454,6 @@ export namespace Prisma {
     connect?: shared_postWhereUniqueInput | shared_postWhereUniqueInput[]
   }
 
-  export type study_access_topicUncheckedCreateNestedManyWithoutUsersInput = {
-    create?: XOR<study_access_topicCreateWithoutUsersInput, study_access_topicUncheckedCreateWithoutUsersInput> | study_access_topicCreateWithoutUsersInput[] | study_access_topicUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: study_access_topicCreateOrConnectWithoutUsersInput | study_access_topicCreateOrConnectWithoutUsersInput[]
-    createMany?: study_access_topicCreateManyUsersInputEnvelope
-    connect?: study_access_topicWhereUniqueInput | study_access_topicWhereUniqueInput[]
-  }
-
   export type transaction_historyUncheckedCreateNestedManyWithoutUsersInput = {
     create?: XOR<transaction_historyCreateWithoutUsersInput, transaction_historyUncheckedCreateWithoutUsersInput> | transaction_historyCreateWithoutUsersInput[] | transaction_historyUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: transaction_historyCreateOrConnectWithoutUsersInput | transaction_historyCreateOrConnectWithoutUsersInput[]
@@ -45046,6 +43508,10 @@ export namespace Prisma {
     connectOrCreate?: user_progressCreateOrConnectWithoutUsersInput | user_progressCreateOrConnectWithoutUsersInput[]
     createMany?: user_progressCreateManyUsersInputEnvelope
     connect?: user_progressWhereUniqueInput | user_progressWhereUniqueInput[]
+  }
+
+  export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null
   }
 
   export type abuse_report_feedbacksUpdateManyWithoutUsersNestedInput = {
@@ -45256,20 +43722,6 @@ export namespace Prisma {
     update?: shared_postUpdateWithWhereUniqueWithoutUsersInput | shared_postUpdateWithWhereUniqueWithoutUsersInput[]
     updateMany?: shared_postUpdateManyWithWhereWithoutUsersInput | shared_postUpdateManyWithWhereWithoutUsersInput[]
     deleteMany?: shared_postScalarWhereInput | shared_postScalarWhereInput[]
-  }
-
-  export type study_access_topicUpdateManyWithoutUsersNestedInput = {
-    create?: XOR<study_access_topicCreateWithoutUsersInput, study_access_topicUncheckedCreateWithoutUsersInput> | study_access_topicCreateWithoutUsersInput[] | study_access_topicUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: study_access_topicCreateOrConnectWithoutUsersInput | study_access_topicCreateOrConnectWithoutUsersInput[]
-    upsert?: study_access_topicUpsertWithWhereUniqueWithoutUsersInput | study_access_topicUpsertWithWhereUniqueWithoutUsersInput[]
-    createMany?: study_access_topicCreateManyUsersInputEnvelope
-    set?: study_access_topicWhereUniqueInput | study_access_topicWhereUniqueInput[]
-    disconnect?: study_access_topicWhereUniqueInput | study_access_topicWhereUniqueInput[]
-    delete?: study_access_topicWhereUniqueInput | study_access_topicWhereUniqueInput[]
-    connect?: study_access_topicWhereUniqueInput | study_access_topicWhereUniqueInput[]
-    update?: study_access_topicUpdateWithWhereUniqueWithoutUsersInput | study_access_topicUpdateWithWhereUniqueWithoutUsersInput[]
-    updateMany?: study_access_topicUpdateManyWithWhereWithoutUsersInput | study_access_topicUpdateManyWithWhereWithoutUsersInput[]
-    deleteMany?: study_access_topicScalarWhereInput | study_access_topicScalarWhereInput[]
   }
 
   export type transaction_historyUpdateManyWithoutUsersNestedInput = {
@@ -45594,20 +44046,6 @@ export namespace Prisma {
     deleteMany?: shared_postScalarWhereInput | shared_postScalarWhereInput[]
   }
 
-  export type study_access_topicUncheckedUpdateManyWithoutUsersNestedInput = {
-    create?: XOR<study_access_topicCreateWithoutUsersInput, study_access_topicUncheckedCreateWithoutUsersInput> | study_access_topicCreateWithoutUsersInput[] | study_access_topicUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: study_access_topicCreateOrConnectWithoutUsersInput | study_access_topicCreateOrConnectWithoutUsersInput[]
-    upsert?: study_access_topicUpsertWithWhereUniqueWithoutUsersInput | study_access_topicUpsertWithWhereUniqueWithoutUsersInput[]
-    createMany?: study_access_topicCreateManyUsersInputEnvelope
-    set?: study_access_topicWhereUniqueInput | study_access_topicWhereUniqueInput[]
-    disconnect?: study_access_topicWhereUniqueInput | study_access_topicWhereUniqueInput[]
-    delete?: study_access_topicWhereUniqueInput | study_access_topicWhereUniqueInput[]
-    connect?: study_access_topicWhereUniqueInput | study_access_topicWhereUniqueInput[]
-    update?: study_access_topicUpdateWithWhereUniqueWithoutUsersInput | study_access_topicUpdateWithWhereUniqueWithoutUsersInput[]
-    updateMany?: study_access_topicUpdateManyWithWhereWithoutUsersInput | study_access_topicUpdateManyWithWhereWithoutUsersInput[]
-    deleteMany?: study_access_topicScalarWhereInput | study_access_topicScalarWhereInput[]
-  }
-
   export type transaction_historyUncheckedUpdateManyWithoutUsersNestedInput = {
     create?: XOR<transaction_historyCreateWithoutUsersInput, transaction_historyUncheckedCreateWithoutUsersInput> | transaction_historyCreateWithoutUsersInput[] | transaction_historyUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: transaction_historyCreateOrConnectWithoutUsersInput | transaction_historyCreateOrConnectWithoutUsersInput[]
@@ -45855,6 +44293,48 @@ export namespace Prisma {
     update?: quiz_questionsUpdateWithWhereUniqueWithoutQuizzesInput | quiz_questionsUpdateWithWhereUniqueWithoutQuizzesInput[]
     updateMany?: quiz_questionsUpdateManyWithWhereWithoutQuizzesInput | quiz_questionsUpdateManyWithWhereWithoutQuizzesInput[]
     deleteMany?: quiz_questionsScalarWhereInput | quiz_questionsScalarWhereInput[]
+  }
+
+  export type user_packagesCreateNestedManyWithoutPackagesInput = {
+    create?: XOR<user_packagesCreateWithoutPackagesInput, user_packagesUncheckedCreateWithoutPackagesInput> | user_packagesCreateWithoutPackagesInput[] | user_packagesUncheckedCreateWithoutPackagesInput[]
+    connectOrCreate?: user_packagesCreateOrConnectWithoutPackagesInput | user_packagesCreateOrConnectWithoutPackagesInput[]
+    createMany?: user_packagesCreateManyPackagesInputEnvelope
+    connect?: user_packagesWhereUniqueInput | user_packagesWhereUniqueInput[]
+  }
+
+  export type user_packagesUncheckedCreateNestedManyWithoutPackagesInput = {
+    create?: XOR<user_packagesCreateWithoutPackagesInput, user_packagesUncheckedCreateWithoutPackagesInput> | user_packagesCreateWithoutPackagesInput[] | user_packagesUncheckedCreateWithoutPackagesInput[]
+    connectOrCreate?: user_packagesCreateOrConnectWithoutPackagesInput | user_packagesCreateOrConnectWithoutPackagesInput[]
+    createMany?: user_packagesCreateManyPackagesInputEnvelope
+    connect?: user_packagesWhereUniqueInput | user_packagesWhereUniqueInput[]
+  }
+
+  export type user_packagesUpdateManyWithoutPackagesNestedInput = {
+    create?: XOR<user_packagesCreateWithoutPackagesInput, user_packagesUncheckedCreateWithoutPackagesInput> | user_packagesCreateWithoutPackagesInput[] | user_packagesUncheckedCreateWithoutPackagesInput[]
+    connectOrCreate?: user_packagesCreateOrConnectWithoutPackagesInput | user_packagesCreateOrConnectWithoutPackagesInput[]
+    upsert?: user_packagesUpsertWithWhereUniqueWithoutPackagesInput | user_packagesUpsertWithWhereUniqueWithoutPackagesInput[]
+    createMany?: user_packagesCreateManyPackagesInputEnvelope
+    set?: user_packagesWhereUniqueInput | user_packagesWhereUniqueInput[]
+    disconnect?: user_packagesWhereUniqueInput | user_packagesWhereUniqueInput[]
+    delete?: user_packagesWhereUniqueInput | user_packagesWhereUniqueInput[]
+    connect?: user_packagesWhereUniqueInput | user_packagesWhereUniqueInput[]
+    update?: user_packagesUpdateWithWhereUniqueWithoutPackagesInput | user_packagesUpdateWithWhereUniqueWithoutPackagesInput[]
+    updateMany?: user_packagesUpdateManyWithWhereWithoutPackagesInput | user_packagesUpdateManyWithWhereWithoutPackagesInput[]
+    deleteMany?: user_packagesScalarWhereInput | user_packagesScalarWhereInput[]
+  }
+
+  export type user_packagesUncheckedUpdateManyWithoutPackagesNestedInput = {
+    create?: XOR<user_packagesCreateWithoutPackagesInput, user_packagesUncheckedCreateWithoutPackagesInput> | user_packagesCreateWithoutPackagesInput[] | user_packagesUncheckedCreateWithoutPackagesInput[]
+    connectOrCreate?: user_packagesCreateOrConnectWithoutPackagesInput | user_packagesCreateOrConnectWithoutPackagesInput[]
+    upsert?: user_packagesUpsertWithWhereUniqueWithoutPackagesInput | user_packagesUpsertWithWhereUniqueWithoutPackagesInput[]
+    createMany?: user_packagesCreateManyPackagesInputEnvelope
+    set?: user_packagesWhereUniqueInput | user_packagesWhereUniqueInput[]
+    disconnect?: user_packagesWhereUniqueInput | user_packagesWhereUniqueInput[]
+    delete?: user_packagesWhereUniqueInput | user_packagesWhereUniqueInput[]
+    connect?: user_packagesWhereUniqueInput | user_packagesWhereUniqueInput[]
+    update?: user_packagesUpdateWithWhereUniqueWithoutPackagesInput | user_packagesUpdateWithWhereUniqueWithoutPackagesInput[]
+    updateMany?: user_packagesUpdateManyWithWhereWithoutPackagesInput | user_packagesUpdateManyWithWhereWithoutPackagesInput[]
+    deleteMany?: user_packagesScalarWhereInput | user_packagesScalarWhereInput[]
   }
 
   export type NestedUuidFilter<$PrismaModel = never> = {
@@ -46108,19 +44588,6 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type NestedBoolNullableFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
-  }
-
-  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBoolNullableFilter<$PrismaModel>
-    _max?: NestedBoolNullableFilter<$PrismaModel>
-  }
-
   export type NestedDecimalNullableFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
@@ -46171,6 +44638,19 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
   export type user_abuse_reportsCreateWithoutAbuse_report_feedbacksInput = {
     id?: string
     content: string
@@ -46208,6 +44688,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
     comments?: commentsCreateNestedManyWithoutUsersInput
@@ -46222,7 +44703,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -46251,6 +44731,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
     comments?: commentsUncheckedCreateNestedManyWithoutUsersInput
@@ -46265,7 +44746,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -46335,6 +44815,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
     comments?: commentsUpdateManyWithoutUsersNestedInput
@@ -46349,7 +44830,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -46378,6 +44858,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
     comments?: commentsUncheckedUpdateManyWithoutUsersNestedInput
@@ -46392,7 +44873,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -46421,6 +44901,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
     comments?: commentsCreateNestedManyWithoutUsersInput
@@ -46435,7 +44916,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -46464,6 +44944,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
     comments?: commentsUncheckedCreateNestedManyWithoutUsersInput
@@ -46478,7 +44959,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -46523,6 +45003,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
     comments?: commentsUpdateManyWithoutUsersNestedInput
@@ -46537,7 +45018,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -46566,6 +45046,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
     comments?: commentsUncheckedUpdateManyWithoutUsersNestedInput
@@ -46580,7 +45061,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -46609,6 +45089,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     comments?: commentsCreateNestedManyWithoutUsersInput
@@ -46623,7 +45104,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -46652,6 +45132,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     comments?: commentsUncheckedCreateNestedManyWithoutUsersInput
@@ -46666,7 +45147,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -46711,6 +45191,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     comments?: commentsUpdateManyWithoutUsersNestedInput
@@ -46725,7 +45206,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -46754,6 +45234,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     comments?: commentsUncheckedUpdateManyWithoutUsersNestedInput
@@ -46768,7 +45249,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -46830,6 +45310,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -46844,7 +45325,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -46873,6 +45353,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -46887,7 +45368,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -47024,6 +45504,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -47038,7 +45519,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -47067,6 +45547,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -47081,7 +45562,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -47235,6 +45715,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -47249,7 +45730,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -47278,6 +45758,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -47292,7 +45773,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -47411,6 +45891,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -47425,7 +45906,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -47454,6 +45934,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -47468,7 +45949,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -47483,14 +45963,12 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
-    study_access_topic?: study_access_topicCreateNestedManyWithoutTopicsInput
   }
 
   export type topicsUncheckedCreateWithoutCoursesInput = {
     id?: string
     name: string
     description?: string | null
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutTopicsInput
   }
 
   export type topicsCreateOrConnectWithoutCoursesInput = {
@@ -47501,6 +45979,7 @@ export namespace Prisma {
   export type user_coursesCreateWithoutCoursesInput = {
     id?: string
     purchase_date?: Date | string | null
+    isActive?: boolean
     users: usersCreateNestedOneWithoutUser_coursesInput
   }
 
@@ -47508,6 +45987,7 @@ export namespace Prisma {
     id?: string
     user_id: string
     purchase_date?: Date | string | null
+    isActive?: boolean
   }
 
   export type user_coursesCreateOrConnectWithoutCoursesInput = {
@@ -47567,14 +46047,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    study_access_topic?: study_access_topicUpdateManyWithoutTopicsNestedInput
   }
 
   export type topicsUncheckedUpdateWithoutCoursesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutTopicsNestedInput
   }
 
   export type user_coursesUpsertWithWhereUniqueWithoutCoursesInput = {
@@ -47601,6 +46079,7 @@ export namespace Prisma {
     user_id?: UuidFilter<"user_courses"> | string
     course_id?: UuidFilter<"user_courses"> | string
     purchase_date?: DateTimeNullableFilter<"user_courses"> | Date | string | null
+    isActive?: BoolFilter<"user_courses"> | boolean
   }
 
   export type wordsUpsertWithWhereUniqueWithoutCoursesInput = {
@@ -47651,6 +46130,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -47665,7 +46145,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -47694,6 +46173,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -47708,7 +46188,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -47778,6 +46257,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -47792,7 +46272,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -47821,6 +46300,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -47835,7 +46315,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -47924,6 +46403,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -47938,7 +46418,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -47967,6 +46446,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -47981,7 +46461,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -48061,6 +46540,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -48075,7 +46555,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -48104,6 +46583,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -48118,7 +46598,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -48176,6 +46655,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -48190,7 +46670,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -48219,6 +46698,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -48233,7 +46713,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -48313,6 +46792,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -48327,7 +46807,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -48356,6 +46835,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -48370,7 +46850,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -48483,6 +46962,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -48497,7 +46977,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -48526,6 +47005,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -48540,7 +47020,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -48696,6 +47175,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -48710,7 +47190,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -48739,6 +47218,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -48753,7 +47233,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -48838,6 +47317,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -48852,7 +47332,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -48881,6 +47360,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -48895,7 +47375,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -48975,6 +47454,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -48989,7 +47469,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -49018,6 +47497,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -49032,7 +47512,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -49041,60 +47520,6 @@ export namespace Prisma {
     user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyUncheckedUpdateManyWithoutUsers_user_profile_history_changed_byTousersNestedInput
     user_profile_history_user_profile_history_user_idTousers?: user_profile_historyUncheckedUpdateManyWithoutUsers_user_profile_history_user_idTousersNestedInput
     user_progress?: user_progressUncheckedUpdateManyWithoutUsersNestedInput
-  }
-
-  export type user_packagesCreateWithoutPackagesInput = {
-    id?: string
-    start_date?: Date | string | null
-    end_date: Date | string
-    is_active?: boolean | null
-    users: usersCreateNestedOneWithoutUser_packagesInput
-  }
-
-  export type user_packagesUncheckedCreateWithoutPackagesInput = {
-    id?: string
-    user_id: string
-    start_date?: Date | string | null
-    end_date: Date | string
-    is_active?: boolean | null
-  }
-
-  export type user_packagesCreateOrConnectWithoutPackagesInput = {
-    where: user_packagesWhereUniqueInput
-    create: XOR<user_packagesCreateWithoutPackagesInput, user_packagesUncheckedCreateWithoutPackagesInput>
-  }
-
-  export type user_packagesCreateManyPackagesInputEnvelope = {
-    data: user_packagesCreateManyPackagesInput | user_packagesCreateManyPackagesInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type user_packagesUpsertWithWhereUniqueWithoutPackagesInput = {
-    where: user_packagesWhereUniqueInput
-    update: XOR<user_packagesUpdateWithoutPackagesInput, user_packagesUncheckedUpdateWithoutPackagesInput>
-    create: XOR<user_packagesCreateWithoutPackagesInput, user_packagesUncheckedCreateWithoutPackagesInput>
-  }
-
-  export type user_packagesUpdateWithWhereUniqueWithoutPackagesInput = {
-    where: user_packagesWhereUniqueInput
-    data: XOR<user_packagesUpdateWithoutPackagesInput, user_packagesUncheckedUpdateWithoutPackagesInput>
-  }
-
-  export type user_packagesUpdateManyWithWhereWithoutPackagesInput = {
-    where: user_packagesScalarWhereInput
-    data: XOR<user_packagesUpdateManyMutationInput, user_packagesUncheckedUpdateManyWithoutPackagesInput>
-  }
-
-  export type user_packagesScalarWhereInput = {
-    AND?: user_packagesScalarWhereInput | user_packagesScalarWhereInput[]
-    OR?: user_packagesScalarWhereInput[]
-    NOT?: user_packagesScalarWhereInput | user_packagesScalarWhereInput[]
-    id?: UuidFilter<"user_packages"> | string
-    user_id?: UuidFilter<"user_packages"> | string
-    package_id?: UuidFilter<"user_packages"> | string
-    start_date?: DateTimeNullableFilter<"user_packages"> | Date | string | null
-    end_date?: DateTimeFilter<"user_packages"> | Date | string
-    is_active?: BoolNullableFilter<"user_packages"> | boolean | null
   }
 
   export type commentsCreateWithoutPostsInput = {
@@ -49179,6 +47604,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -49193,7 +47619,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -49222,6 +47647,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -49236,7 +47662,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -49386,6 +47811,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -49400,7 +47826,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -49429,6 +47854,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -49443,7 +47869,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -49558,6 +47983,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -49572,7 +47998,6 @@ export namespace Prisma {
     quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -49601,6 +48026,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -49615,7 +48041,6 @@ export namespace Prisma {
     quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -49695,6 +48120,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -49709,7 +48135,6 @@ export namespace Prisma {
     quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -49738,6 +48163,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -49752,7 +48178,6 @@ export namespace Prisma {
     quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -49814,6 +48239,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -49828,7 +48254,6 @@ export namespace Prisma {
     quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -49857,6 +48282,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -49871,7 +48297,6 @@ export namespace Prisma {
     quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -49955,6 +48380,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -49969,7 +48395,6 @@ export namespace Prisma {
     quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -49998,6 +48423,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -50012,7 +48438,6 @@ export namespace Prisma {
     quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -50175,6 +48600,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -50189,7 +48615,6 @@ export namespace Prisma {
     quizzes?: quizzesCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -50218,6 +48643,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -50232,7 +48658,6 @@ export namespace Prisma {
     quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -50385,6 +48810,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -50399,7 +48825,6 @@ export namespace Prisma {
     quizzes?: quizzesUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -50428,6 +48853,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -50442,239 +48868,6 @@ export namespace Prisma {
     quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
-    transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
-    user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
-    user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
-    user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyUncheckedUpdateManyWithoutUsers_user_profile_history_changed_byTousersNestedInput
-    user_profile_history_user_profile_history_user_idTousers?: user_profile_historyUncheckedUpdateManyWithoutUsers_user_profile_history_user_idTousersNestedInput
-    user_progress?: user_progressUncheckedUpdateManyWithoutUsersNestedInput
-  }
-
-  export type topicsCreateWithoutStudy_access_topicInput = {
-    id?: string
-    name: string
-    description?: string | null
-    courses?: coursesCreateNestedManyWithoutTopicsInput
-  }
-
-  export type topicsUncheckedCreateWithoutStudy_access_topicInput = {
-    id?: string
-    name: string
-    description?: string | null
-    courses?: coursesUncheckedCreateNestedManyWithoutTopicsInput
-  }
-
-  export type topicsCreateOrConnectWithoutStudy_access_topicInput = {
-    where: topicsWhereUniqueInput
-    create: XOR<topicsCreateWithoutStudy_access_topicInput, topicsUncheckedCreateWithoutStudy_access_topicInput>
-  }
-
-  export type usersCreateWithoutStudy_access_topicInput = {
-    id?: string
-    username: string
-    passwordhash: string
-    birthday?: Date | string | null
-    gender?: boolean | null
-    fullname?: string | null
-    address?: string | null
-    email?: string | null
-    phonenumber?: string | null
-    created_date?: Date | string | null
-    isactive?: boolean | null
-    isadmin?: boolean | null
-    balance?: number | null
-    image_url?: string | null
-    is_block?: boolean | null
-    is_verified?: boolean | null
-    firebase_uid?: string | null
-    abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
-    attendance?: attendanceCreateNestedManyWithoutUsersInput
-    coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
-    comments?: commentsCreateNestedManyWithoutUsersInput
-    comments_group?: comments_groupCreateNestedManyWithoutUsersInput
-    error_report_feedbacks?: error_report_feedbacksCreateNestedManyWithoutUsersInput
-    group_members?: group_membersCreateNestedManyWithoutUsersInput
-    group_posts?: group_postsCreateNestedManyWithoutUsersInput
-    groups?: groupsCreateNestedManyWithoutUsersInput
-    messages?: messagesCreateNestedManyWithoutUsersInput
-    posts?: postsCreateNestedManyWithoutUsersInput
-    quizzes?: quizzesCreateNestedManyWithoutUsersInput
-    react_comments?: react_commentsCreateNestedManyWithoutUsersInput
-    react_posts?: react_postsCreateNestedManyWithoutUsersInput
-    shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
-    user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_courses?: user_coursesCreateNestedManyWithoutUsersInput
-    user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
-    user_packages?: user_packagesCreateNestedManyWithoutUsersInput
-    user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyCreateNestedManyWithoutUsers_user_profile_history_changed_byTousersInput
-    user_profile_history_user_profile_history_user_idTousers?: user_profile_historyCreateNestedManyWithoutUsers_user_profile_history_user_idTousersInput
-    user_progress?: user_progressCreateNestedManyWithoutUsersInput
-  }
-
-  export type usersUncheckedCreateWithoutStudy_access_topicInput = {
-    id?: string
-    username: string
-    passwordhash: string
-    birthday?: Date | string | null
-    gender?: boolean | null
-    fullname?: string | null
-    address?: string | null
-    email?: string | null
-    phonenumber?: string | null
-    created_date?: Date | string | null
-    isactive?: boolean | null
-    isadmin?: boolean | null
-    balance?: number | null
-    image_url?: string | null
-    is_block?: boolean | null
-    is_verified?: boolean | null
-    firebase_uid?: string | null
-    abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
-    attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
-    coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
-    comments?: commentsUncheckedCreateNestedManyWithoutUsersInput
-    comments_group?: comments_groupUncheckedCreateNestedManyWithoutUsersInput
-    error_report_feedbacks?: error_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
-    group_members?: group_membersUncheckedCreateNestedManyWithoutUsersInput
-    group_posts?: group_postsUncheckedCreateNestedManyWithoutUsersInput
-    groups?: groupsUncheckedCreateNestedManyWithoutUsersInput
-    messages?: messagesUncheckedCreateNestedManyWithoutUsersInput
-    posts?: postsUncheckedCreateNestedManyWithoutUsersInput
-    quizzes?: quizzesUncheckedCreateNestedManyWithoutUsersInput
-    react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
-    react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
-    shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
-    user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
-    user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
-    user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyUncheckedCreateNestedManyWithoutUsers_user_profile_history_changed_byTousersInput
-    user_profile_history_user_profile_history_user_idTousers?: user_profile_historyUncheckedCreateNestedManyWithoutUsers_user_profile_history_user_idTousersInput
-    user_progress?: user_progressUncheckedCreateNestedManyWithoutUsersInput
-  }
-
-  export type usersCreateOrConnectWithoutStudy_access_topicInput = {
-    where: usersWhereUniqueInput
-    create: XOR<usersCreateWithoutStudy_access_topicInput, usersUncheckedCreateWithoutStudy_access_topicInput>
-  }
-
-  export type topicsUpsertWithoutStudy_access_topicInput = {
-    update: XOR<topicsUpdateWithoutStudy_access_topicInput, topicsUncheckedUpdateWithoutStudy_access_topicInput>
-    create: XOR<topicsCreateWithoutStudy_access_topicInput, topicsUncheckedCreateWithoutStudy_access_topicInput>
-    where?: topicsWhereInput
-  }
-
-  export type topicsUpdateToOneWithWhereWithoutStudy_access_topicInput = {
-    where?: topicsWhereInput
-    data: XOR<topicsUpdateWithoutStudy_access_topicInput, topicsUncheckedUpdateWithoutStudy_access_topicInput>
-  }
-
-  export type topicsUpdateWithoutStudy_access_topicInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    courses?: coursesUpdateManyWithoutTopicsNestedInput
-  }
-
-  export type topicsUncheckedUpdateWithoutStudy_access_topicInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    courses?: coursesUncheckedUpdateManyWithoutTopicsNestedInput
-  }
-
-  export type usersUpsertWithoutStudy_access_topicInput = {
-    update: XOR<usersUpdateWithoutStudy_access_topicInput, usersUncheckedUpdateWithoutStudy_access_topicInput>
-    create: XOR<usersCreateWithoutStudy_access_topicInput, usersUncheckedCreateWithoutStudy_access_topicInput>
-    where?: usersWhereInput
-  }
-
-  export type usersUpdateToOneWithWhereWithoutStudy_access_topicInput = {
-    where?: usersWhereInput
-    data: XOR<usersUpdateWithoutStudy_access_topicInput, usersUncheckedUpdateWithoutStudy_access_topicInput>
-  }
-
-  export type usersUpdateWithoutStudy_access_topicInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    passwordhash?: StringFieldUpdateOperationsInput | string
-    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    gender?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    fullname?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
-    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isactive?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    isadmin?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    balance?: NullableIntFieldUpdateOperationsInput | number | null
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
-    abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
-    attendance?: attendanceUpdateManyWithoutUsersNestedInput
-    coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
-    comments?: commentsUpdateManyWithoutUsersNestedInput
-    comments_group?: comments_groupUpdateManyWithoutUsersNestedInput
-    error_report_feedbacks?: error_report_feedbacksUpdateManyWithoutUsersNestedInput
-    group_members?: group_membersUpdateManyWithoutUsersNestedInput
-    group_posts?: group_postsUpdateManyWithoutUsersNestedInput
-    groups?: groupsUpdateManyWithoutUsersNestedInput
-    messages?: messagesUpdateManyWithoutUsersNestedInput
-    posts?: postsUpdateManyWithoutUsersNestedInput
-    quizzes?: quizzesUpdateManyWithoutUsersNestedInput
-    react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
-    react_posts?: react_postsUpdateManyWithoutUsersNestedInput
-    shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
-    user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
-    user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
-    user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
-    user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyUpdateManyWithoutUsers_user_profile_history_changed_byTousersNestedInput
-    user_profile_history_user_profile_history_user_idTousers?: user_profile_historyUpdateManyWithoutUsers_user_profile_history_user_idTousersNestedInput
-    user_progress?: user_progressUpdateManyWithoutUsersNestedInput
-  }
-
-  export type usersUncheckedUpdateWithoutStudy_access_topicInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    passwordhash?: StringFieldUpdateOperationsInput | string
-    birthday?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    gender?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    fullname?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    phonenumber?: NullableStringFieldUpdateOperationsInput | string | null
-    created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    isactive?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    isadmin?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    balance?: NullableIntFieldUpdateOperationsInput | number | null
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
-    abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
-    attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
-    coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
-    comments?: commentsUncheckedUpdateManyWithoutUsersNestedInput
-    comments_group?: comments_groupUncheckedUpdateManyWithoutUsersNestedInput
-    error_report_feedbacks?: error_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
-    group_members?: group_membersUncheckedUpdateManyWithoutUsersNestedInput
-    group_posts?: group_postsUncheckedUpdateManyWithoutUsersNestedInput
-    groups?: groupsUncheckedUpdateManyWithoutUsersNestedInput
-    messages?: messagesUncheckedUpdateManyWithoutUsersNestedInput
-    posts?: postsUncheckedUpdateManyWithoutUsersNestedInput
-    quizzes?: quizzesUncheckedUpdateManyWithoutUsersNestedInput
-    react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
-    react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
-    shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -50719,32 +48912,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type study_access_topicCreateWithoutTopicsInput = {
-    id?: string
-    access_type?: string | null
-    access_date?: Date | string | null
-    expire_date: Date | string
-    users: usersCreateNestedOneWithoutStudy_access_topicInput
-  }
-
-  export type study_access_topicUncheckedCreateWithoutTopicsInput = {
-    id?: string
-    user_id: string
-    access_type?: string | null
-    access_date?: Date | string | null
-    expire_date: Date | string
-  }
-
-  export type study_access_topicCreateOrConnectWithoutTopicsInput = {
-    where: study_access_topicWhereUniqueInput
-    create: XOR<study_access_topicCreateWithoutTopicsInput, study_access_topicUncheckedCreateWithoutTopicsInput>
-  }
-
-  export type study_access_topicCreateManyTopicsInputEnvelope = {
-    data: study_access_topicCreateManyTopicsInput | study_access_topicCreateManyTopicsInput[]
-    skipDuplicates?: boolean
-  }
-
   export type coursesUpsertWithWhereUniqueWithoutTopicsInput = {
     where: coursesWhereUniqueInput
     update: XOR<coursesUpdateWithoutTopicsInput, coursesUncheckedUpdateWithoutTopicsInput>
@@ -50775,34 +48942,6 @@ export namespace Prisma {
     created_date?: DateTimeFilter<"courses"> | Date | string
   }
 
-  export type study_access_topicUpsertWithWhereUniqueWithoutTopicsInput = {
-    where: study_access_topicWhereUniqueInput
-    update: XOR<study_access_topicUpdateWithoutTopicsInput, study_access_topicUncheckedUpdateWithoutTopicsInput>
-    create: XOR<study_access_topicCreateWithoutTopicsInput, study_access_topicUncheckedCreateWithoutTopicsInput>
-  }
-
-  export type study_access_topicUpdateWithWhereUniqueWithoutTopicsInput = {
-    where: study_access_topicWhereUniqueInput
-    data: XOR<study_access_topicUpdateWithoutTopicsInput, study_access_topicUncheckedUpdateWithoutTopicsInput>
-  }
-
-  export type study_access_topicUpdateManyWithWhereWithoutTopicsInput = {
-    where: study_access_topicScalarWhereInput
-    data: XOR<study_access_topicUpdateManyMutationInput, study_access_topicUncheckedUpdateManyWithoutTopicsInput>
-  }
-
-  export type study_access_topicScalarWhereInput = {
-    AND?: study_access_topicScalarWhereInput | study_access_topicScalarWhereInput[]
-    OR?: study_access_topicScalarWhereInput[]
-    NOT?: study_access_topicScalarWhereInput | study_access_topicScalarWhereInput[]
-    id?: UuidFilter<"study_access_topic"> | string
-    user_id?: UuidFilter<"study_access_topic"> | string
-    topic_id?: UuidFilter<"study_access_topic"> | string
-    access_type?: StringNullableFilter<"study_access_topic"> | string | null
-    access_date?: DateTimeNullableFilter<"study_access_topic"> | Date | string | null
-    expire_date?: DateTimeFilter<"study_access_topic"> | Date | string
-  }
-
   export type usersCreateWithoutTransaction_historyInput = {
     id?: string
     username: string
@@ -50821,6 +48960,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -50836,7 +48976,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
@@ -50864,6 +49003,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -50879,7 +49019,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
@@ -50923,6 +49062,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -50938,7 +49078,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
@@ -50966,6 +49105,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -50981,7 +49121,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
@@ -51033,6 +49172,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -51048,7 +49188,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
@@ -51076,6 +49215,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -51091,7 +49231,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
@@ -51162,6 +49301,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -51177,7 +49317,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
@@ -51205,6 +49344,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -51220,7 +49360,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
@@ -51277,6 +49416,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -51292,7 +49432,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
@@ -51320,6 +49459,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -51335,7 +49475,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
@@ -51414,6 +49553,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -51429,7 +49569,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
@@ -51457,6 +49596,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -51472,7 +49612,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
@@ -51524,6 +49663,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -51539,7 +49679,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -51567,6 +49706,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -51582,7 +49722,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -51653,6 +49792,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -51668,7 +49808,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -51696,6 +49835,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -51711,7 +49851,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -51721,25 +49860,27 @@ export namespace Prisma {
     user_progress?: user_progressUncheckedUpdateManyWithoutUsersNestedInput
   }
 
-  export type packagesCreateWithoutUser_packagesInput = {
+  export type premium_packagesCreateWithoutUser_packagesInput = {
     id?: string
     name: string
     duration_days: number
     price: number
-    is_premium?: boolean | null
+    original_price?: number
+    discount?: string
   }
 
-  export type packagesUncheckedCreateWithoutUser_packagesInput = {
+  export type premium_packagesUncheckedCreateWithoutUser_packagesInput = {
     id?: string
     name: string
     duration_days: number
     price: number
-    is_premium?: boolean | null
+    original_price?: number
+    discount?: string
   }
 
-  export type packagesCreateOrConnectWithoutUser_packagesInput = {
-    where: packagesWhereUniqueInput
-    create: XOR<packagesCreateWithoutUser_packagesInput, packagesUncheckedCreateWithoutUser_packagesInput>
+  export type premium_packagesCreateOrConnectWithoutUser_packagesInput = {
+    where: premium_packagesWhereUniqueInput
+    create: XOR<premium_packagesCreateWithoutUser_packagesInput, premium_packagesUncheckedCreateWithoutUser_packagesInput>
   }
 
   export type usersCreateWithoutUser_packagesInput = {
@@ -51760,6 +49901,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -51775,7 +49917,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -51803,6 +49944,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -51818,7 +49960,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -51833,31 +49974,33 @@ export namespace Prisma {
     create: XOR<usersCreateWithoutUser_packagesInput, usersUncheckedCreateWithoutUser_packagesInput>
   }
 
-  export type packagesUpsertWithoutUser_packagesInput = {
-    update: XOR<packagesUpdateWithoutUser_packagesInput, packagesUncheckedUpdateWithoutUser_packagesInput>
-    create: XOR<packagesCreateWithoutUser_packagesInput, packagesUncheckedCreateWithoutUser_packagesInput>
-    where?: packagesWhereInput
+  export type premium_packagesUpsertWithoutUser_packagesInput = {
+    update: XOR<premium_packagesUpdateWithoutUser_packagesInput, premium_packagesUncheckedUpdateWithoutUser_packagesInput>
+    create: XOR<premium_packagesCreateWithoutUser_packagesInput, premium_packagesUncheckedCreateWithoutUser_packagesInput>
+    where?: premium_packagesWhereInput
   }
 
-  export type packagesUpdateToOneWithWhereWithoutUser_packagesInput = {
-    where?: packagesWhereInput
-    data: XOR<packagesUpdateWithoutUser_packagesInput, packagesUncheckedUpdateWithoutUser_packagesInput>
+  export type premium_packagesUpdateToOneWithWhereWithoutUser_packagesInput = {
+    where?: premium_packagesWhereInput
+    data: XOR<premium_packagesUpdateWithoutUser_packagesInput, premium_packagesUncheckedUpdateWithoutUser_packagesInput>
   }
 
-  export type packagesUpdateWithoutUser_packagesInput = {
+  export type premium_packagesUpdateWithoutUser_packagesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     duration_days?: IntFieldUpdateOperationsInput | number
     price?: IntFieldUpdateOperationsInput | number
-    is_premium?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    original_price?: IntFieldUpdateOperationsInput | number
+    discount?: StringFieldUpdateOperationsInput | string
   }
 
-  export type packagesUncheckedUpdateWithoutUser_packagesInput = {
+  export type premium_packagesUncheckedUpdateWithoutUser_packagesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     duration_days?: IntFieldUpdateOperationsInput | number
     price?: IntFieldUpdateOperationsInput | number
-    is_premium?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    original_price?: IntFieldUpdateOperationsInput | number
+    discount?: StringFieldUpdateOperationsInput | string
   }
 
   export type usersUpsertWithoutUser_packagesInput = {
@@ -51889,6 +50032,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -51904,7 +50048,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -51932,6 +50075,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -51947,7 +50091,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -51975,6 +50118,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -51990,7 +50134,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -52018,6 +50161,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -52033,7 +50177,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -52066,6 +50209,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -52081,7 +50225,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -52109,6 +50252,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -52124,7 +50268,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -52168,6 +50311,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -52183,7 +50327,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -52211,6 +50354,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -52226,7 +50370,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -52265,6 +50408,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -52280,7 +50424,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -52308,6 +50451,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -52323,7 +50467,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -52351,6 +50494,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -52366,7 +50510,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -52394,6 +50537,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -52409,7 +50553,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -52480,6 +50623,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -52495,7 +50639,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -52523,6 +50666,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -52538,7 +50682,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -52892,16 +51035,16 @@ export namespace Prisma {
   }
 
   export type quizzesCreateWithoutUsersInput = {
-    id: string
+    id?: string
     title: string
-    created_date: Date | string
+    created_date?: Date | string
     quiz_questions?: quiz_questionsCreateNestedManyWithoutQuizzesInput
   }
 
   export type quizzesUncheckedCreateWithoutUsersInput = {
-    id: string
+    id?: string
     title: string
-    created_date: Date | string
+    created_date?: Date | string
     quiz_questions?: quiz_questionsUncheckedCreateNestedManyWithoutQuizzesInput
   }
 
@@ -52995,32 +51138,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type study_access_topicCreateWithoutUsersInput = {
-    id?: string
-    access_type?: string | null
-    access_date?: Date | string | null
-    expire_date: Date | string
-    topics: topicsCreateNestedOneWithoutStudy_access_topicInput
-  }
-
-  export type study_access_topicUncheckedCreateWithoutUsersInput = {
-    id?: string
-    topic_id: string
-    access_type?: string | null
-    access_date?: Date | string | null
-    expire_date: Date | string
-  }
-
-  export type study_access_topicCreateOrConnectWithoutUsersInput = {
-    where: study_access_topicWhereUniqueInput
-    create: XOR<study_access_topicCreateWithoutUsersInput, study_access_topicUncheckedCreateWithoutUsersInput>
-  }
-
-  export type study_access_topicCreateManyUsersInputEnvelope = {
-    data: study_access_topicCreateManyUsersInput | study_access_topicCreateManyUsersInput[]
-    skipDuplicates?: boolean
-  }
-
   export type transaction_historyCreateWithoutUsersInput = {
     id?: string
     amount?: Decimal | DecimalJsLike | number | string | null
@@ -53078,6 +51195,7 @@ export namespace Prisma {
   export type user_coursesCreateWithoutUsersInput = {
     id?: string
     purchase_date?: Date | string | null
+    isActive?: boolean
     courses: coursesCreateNestedOneWithoutUser_coursesInput
   }
 
@@ -53085,6 +51203,7 @@ export namespace Prisma {
     id?: string
     course_id: string
     purchase_date?: Date | string | null
+    isActive?: boolean
   }
 
   export type user_coursesCreateOrConnectWithoutUsersInput = {
@@ -53130,17 +51249,13 @@ export namespace Prisma {
   export type user_packagesCreateWithoutUsersInput = {
     id?: string
     start_date?: Date | string | null
-    end_date: Date | string
-    is_active?: boolean | null
-    packages: packagesCreateNestedOneWithoutUser_packagesInput
+    packages: premium_packagesCreateNestedOneWithoutUser_packagesInput
   }
 
   export type user_packagesUncheckedCreateWithoutUsersInput = {
     id?: string
     package_id: string
     start_date?: Date | string | null
-    end_date: Date | string
-    is_active?: boolean | null
   }
 
   export type user_packagesCreateOrConnectWithoutUsersInput = {
@@ -53529,22 +51644,6 @@ export namespace Prisma {
     data: XOR<shared_postUpdateManyMutationInput, shared_postUncheckedUpdateManyWithoutUsersInput>
   }
 
-  export type study_access_topicUpsertWithWhereUniqueWithoutUsersInput = {
-    where: study_access_topicWhereUniqueInput
-    update: XOR<study_access_topicUpdateWithoutUsersInput, study_access_topicUncheckedUpdateWithoutUsersInput>
-    create: XOR<study_access_topicCreateWithoutUsersInput, study_access_topicUncheckedCreateWithoutUsersInput>
-  }
-
-  export type study_access_topicUpdateWithWhereUniqueWithoutUsersInput = {
-    where: study_access_topicWhereUniqueInput
-    data: XOR<study_access_topicUpdateWithoutUsersInput, study_access_topicUncheckedUpdateWithoutUsersInput>
-  }
-
-  export type study_access_topicUpdateManyWithWhereWithoutUsersInput = {
-    where: study_access_topicScalarWhereInput
-    data: XOR<study_access_topicUpdateManyMutationInput, study_access_topicUncheckedUpdateManyWithoutUsersInput>
-  }
-
   export type transaction_historyUpsertWithWhereUniqueWithoutUsersInput = {
     where: transaction_historyWhereUniqueInput
     update: XOR<transaction_historyUpdateWithoutUsersInput, transaction_historyUncheckedUpdateWithoutUsersInput>
@@ -53660,6 +51759,16 @@ export namespace Prisma {
   export type user_packagesUpdateManyWithWhereWithoutUsersInput = {
     where: user_packagesScalarWhereInput
     data: XOR<user_packagesUpdateManyMutationInput, user_packagesUncheckedUpdateManyWithoutUsersInput>
+  }
+
+  export type user_packagesScalarWhereInput = {
+    AND?: user_packagesScalarWhereInput | user_packagesScalarWhereInput[]
+    OR?: user_packagesScalarWhereInput[]
+    NOT?: user_packagesScalarWhereInput | user_packagesScalarWhereInput[]
+    id?: UuidFilter<"user_packages"> | string
+    user_id?: UuidFilter<"user_packages"> | string
+    package_id?: UuidFilter<"user_packages"> | string
+    start_date?: DateTimeNullableFilter<"user_packages"> | Date | string | null
   }
 
   export type user_profile_historyUpsertWithWhereUniqueWithoutUsers_user_profile_history_changed_byTousersInput = {
@@ -53841,17 +51950,17 @@ export namespace Prisma {
   }
 
   export type quizzesCreateWithoutQuiz_questionsInput = {
-    id: string
+    id?: string
     title: string
-    created_date: Date | string
+    created_date?: Date | string
     users: usersCreateNestedOneWithoutQuizzesInput
   }
 
   export type quizzesUncheckedCreateWithoutQuiz_questionsInput = {
-    id: string
+    id?: string
     user_id: string
     title: string
-    created_date: Date | string
+    created_date?: Date | string
   }
 
   export type quizzesCreateOrConnectWithoutQuiz_questionsInput = {
@@ -53885,14 +51994,14 @@ export namespace Prisma {
   }
 
   export type quiz_questionsCreateWithoutQuizzesInput = {
-    id: string
+    id?: string
     question_text: string
     options?: quiz_questionsCreateoptionsInput | string[]
     correct_answer: string
   }
 
   export type quiz_questionsUncheckedCreateWithoutQuizzesInput = {
-    id: string
+    id?: string
     question_text: string
     options?: quiz_questionsCreateoptionsInput | string[]
     correct_answer: string
@@ -53926,6 +52035,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksCreateNestedManyWithoutUsersInput
     attendance?: attendanceCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionCreateNestedManyWithoutUsersInput
@@ -53940,7 +52050,6 @@ export namespace Prisma {
     react_comments?: react_commentsCreateNestedManyWithoutUsersInput
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
@@ -53969,6 +52078,7 @@ export namespace Prisma {
     is_block?: boolean | null
     is_verified?: boolean | null
     firebase_uid?: string | null
+    isPremium?: boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedCreateNestedManyWithoutUsersInput
     attendance?: attendanceUncheckedCreateNestedManyWithoutUsersInput
     coin_transaction?: coin_transactionUncheckedCreateNestedManyWithoutUsersInput
@@ -53983,7 +52093,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedCreateNestedManyWithoutUsersInput
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
-    study_access_topic?: study_access_topicUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
@@ -54055,6 +52164,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUpdateManyWithoutUsersNestedInput
@@ -54069,7 +52179,6 @@ export namespace Prisma {
     react_comments?: react_commentsUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
@@ -54098,6 +52207,7 @@ export namespace Prisma {
     is_block?: NullableBoolFieldUpdateOperationsInput | boolean | null
     is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
     firebase_uid?: NullableStringFieldUpdateOperationsInput | string | null
+    isPremium?: BoolFieldUpdateOperationsInput | boolean
     abuse_report_feedbacks?: abuse_report_feedbacksUncheckedUpdateManyWithoutUsersNestedInput
     attendance?: attendanceUncheckedUpdateManyWithoutUsersNestedInput
     coin_transaction?: coin_transactionUncheckedUpdateManyWithoutUsersNestedInput
@@ -54112,7 +52222,6 @@ export namespace Prisma {
     react_comments?: react_commentsUncheckedUpdateManyWithoutUsersNestedInput
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
-    study_access_topic?: study_access_topicUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
@@ -54121,6 +52230,44 @@ export namespace Prisma {
     user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyUncheckedUpdateManyWithoutUsers_user_profile_history_changed_byTousersNestedInput
     user_profile_history_user_profile_history_user_idTousers?: user_profile_historyUncheckedUpdateManyWithoutUsers_user_profile_history_user_idTousersNestedInput
     user_progress?: user_progressUncheckedUpdateManyWithoutUsersNestedInput
+  }
+
+  export type user_packagesCreateWithoutPackagesInput = {
+    id?: string
+    start_date?: Date | string | null
+    users: usersCreateNestedOneWithoutUser_packagesInput
+  }
+
+  export type user_packagesUncheckedCreateWithoutPackagesInput = {
+    id?: string
+    user_id: string
+    start_date?: Date | string | null
+  }
+
+  export type user_packagesCreateOrConnectWithoutPackagesInput = {
+    where: user_packagesWhereUniqueInput
+    create: XOR<user_packagesCreateWithoutPackagesInput, user_packagesUncheckedCreateWithoutPackagesInput>
+  }
+
+  export type user_packagesCreateManyPackagesInputEnvelope = {
+    data: user_packagesCreateManyPackagesInput | user_packagesCreateManyPackagesInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type user_packagesUpsertWithWhereUniqueWithoutPackagesInput = {
+    where: user_packagesWhereUniqueInput
+    update: XOR<user_packagesUpdateWithoutPackagesInput, user_packagesUncheckedUpdateWithoutPackagesInput>
+    create: XOR<user_packagesCreateWithoutPackagesInput, user_packagesUncheckedCreateWithoutPackagesInput>
+  }
+
+  export type user_packagesUpdateWithWhereUniqueWithoutPackagesInput = {
+    where: user_packagesWhereUniqueInput
+    data: XOR<user_packagesUpdateWithoutPackagesInput, user_packagesUncheckedUpdateWithoutPackagesInput>
+  }
+
+  export type user_packagesUpdateManyWithWhereWithoutPackagesInput = {
+    where: user_packagesScalarWhereInput
+    data: XOR<user_packagesUpdateManyMutationInput, user_packagesUncheckedUpdateManyWithoutPackagesInput>
   }
 
   export type react_commentsCreateManyCommentsInput = {
@@ -54151,6 +52298,7 @@ export namespace Prisma {
     id?: string
     user_id: string
     purchase_date?: Date | string | null
+    isActive?: boolean
   }
 
   export type wordsCreateManyCoursesInput = {
@@ -54166,6 +52314,7 @@ export namespace Prisma {
   export type user_coursesUpdateWithoutCoursesInput = {
     id?: StringFieldUpdateOperationsInput | string
     purchase_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     users?: usersUpdateOneRequiredWithoutUser_coursesNestedInput
   }
 
@@ -54173,12 +52322,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
     purchase_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type user_coursesUncheckedUpdateManyWithoutCoursesInput = {
     id?: StringFieldUpdateOperationsInput | string
     user_id?: StringFieldUpdateOperationsInput | string
     purchase_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type wordsUpdateWithoutCoursesInput = {
@@ -54347,38 +52498,6 @@ export namespace Prisma {
     sender_id?: StringFieldUpdateOperationsInput | string
     created_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     content?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type user_packagesCreateManyPackagesInput = {
-    id?: string
-    user_id: string
-    start_date?: Date | string | null
-    end_date: Date | string
-    is_active?: boolean | null
-  }
-
-  export type user_packagesUpdateWithoutPackagesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_active?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    users?: usersUpdateOneRequiredWithoutUser_packagesNestedInput
-  }
-
-  export type user_packagesUncheckedUpdateWithoutPackagesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_active?: NullableBoolFieldUpdateOperationsInput | boolean | null
-  }
-
-  export type user_packagesUncheckedUpdateManyWithoutPackagesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_active?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type commentsCreateManyPostsInput = {
@@ -54643,14 +52762,6 @@ export namespace Prisma {
     created_date?: Date | string
   }
 
-  export type study_access_topicCreateManyTopicsInput = {
-    id?: string
-    user_id: string
-    access_type?: string | null
-    access_date?: Date | string | null
-    expire_date: Date | string
-  }
-
   export type coursesUpdateWithoutTopicsInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -54683,30 +52794,6 @@ export namespace Prisma {
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
     price?: IntFieldUpdateOperationsInput | number
     created_date?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type study_access_topicUpdateWithoutTopicsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    access_type?: NullableStringFieldUpdateOperationsInput | string | null
-    access_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    expire_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    users?: usersUpdateOneRequiredWithoutStudy_access_topicNestedInput
-  }
-
-  export type study_access_topicUncheckedUpdateWithoutTopicsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    access_type?: NullableStringFieldUpdateOperationsInput | string | null
-    access_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    expire_date?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type study_access_topicUncheckedUpdateManyWithoutTopicsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    access_type?: NullableStringFieldUpdateOperationsInput | string | null
-    access_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    expire_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type abuse_report_feedbacksCreateManyUser_abuse_reportsInput = {
@@ -54857,9 +52944,9 @@ export namespace Prisma {
   }
 
   export type quizzesCreateManyUsersInput = {
-    id: string
+    id?: string
     title: string
-    created_date: Date | string
+    created_date?: Date | string
   }
 
   export type react_commentsCreateManyUsersInput = {
@@ -54885,14 +52972,6 @@ export namespace Prisma {
     shared_count?: number | null
   }
 
-  export type study_access_topicCreateManyUsersInput = {
-    id?: string
-    topic_id: string
-    access_type?: string | null
-    access_date?: Date | string | null
-    expire_date: Date | string
-  }
-
   export type transaction_historyCreateManyUsersInput = {
     id?: string
     amount?: Decimal | DecimalJsLike | number | string | null
@@ -54913,6 +52992,7 @@ export namespace Prisma {
     id?: string
     course_id: string
     purchase_date?: Date | string | null
+    isActive?: boolean
   }
 
   export type user_error_reportsCreateManyUsersInput = {
@@ -54928,8 +53008,6 @@ export namespace Prisma {
     id?: string
     package_id: string
     start_date?: Date | string | null
-    end_date: Date | string
-    is_active?: boolean | null
   }
 
   export type user_profile_historyCreateManyUsers_user_profile_history_changed_byTousersInput = {
@@ -55340,30 +53418,6 @@ export namespace Prisma {
     shared_count?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type study_access_topicUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    access_type?: NullableStringFieldUpdateOperationsInput | string | null
-    access_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    expire_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    topics?: topicsUpdateOneRequiredWithoutStudy_access_topicNestedInput
-  }
-
-  export type study_access_topicUncheckedUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    topic_id?: StringFieldUpdateOperationsInput | string
-    access_type?: NullableStringFieldUpdateOperationsInput | string | null
-    access_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    expire_date?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type study_access_topicUncheckedUpdateManyWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    topic_id?: StringFieldUpdateOperationsInput | string
-    access_type?: NullableStringFieldUpdateOperationsInput | string | null
-    access_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    expire_date?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type transaction_historyUpdateWithoutUsersInput = {
     id?: StringFieldUpdateOperationsInput | string
     amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
@@ -55417,6 +53471,7 @@ export namespace Prisma {
   export type user_coursesUpdateWithoutUsersInput = {
     id?: StringFieldUpdateOperationsInput | string
     purchase_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     courses?: coursesUpdateOneRequiredWithoutUser_coursesNestedInput
   }
 
@@ -55424,12 +53479,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     course_id?: StringFieldUpdateOperationsInput | string
     purchase_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type user_coursesUncheckedUpdateManyWithoutUsersInput = {
     id?: StringFieldUpdateOperationsInput | string
     course_id?: StringFieldUpdateOperationsInput | string
     purchase_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type user_error_reportsUpdateWithoutUsersInput = {
@@ -55464,25 +53521,19 @@ export namespace Prisma {
   export type user_packagesUpdateWithoutUsersInput = {
     id?: StringFieldUpdateOperationsInput | string
     start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_active?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    packages?: packagesUpdateOneRequiredWithoutUser_packagesNestedInput
+    packages?: premium_packagesUpdateOneRequiredWithoutUser_packagesNestedInput
   }
 
   export type user_packagesUncheckedUpdateWithoutUsersInput = {
     id?: StringFieldUpdateOperationsInput | string
     package_id?: StringFieldUpdateOperationsInput | string
     start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_active?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type user_packagesUncheckedUpdateManyWithoutUsersInput = {
     id?: StringFieldUpdateOperationsInput | string
     package_id?: StringFieldUpdateOperationsInput | string
     start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    end_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    is_active?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type user_profile_historyUpdateWithoutUsers_user_profile_history_changed_byTousersInput = {
@@ -55590,7 +53641,7 @@ export namespace Prisma {
   }
 
   export type quiz_questionsCreateManyQuizzesInput = {
-    id: string
+    id?: string
     question_text: string
     options?: quiz_questionsCreateoptionsInput | string[]
     correct_answer: string
@@ -55615,6 +53666,30 @@ export namespace Prisma {
     question_text?: StringFieldUpdateOperationsInput | string
     options?: quiz_questionsUpdateoptionsInput | string[]
     correct_answer?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type user_packagesCreateManyPackagesInput = {
+    id?: string
+    user_id: string
+    start_date?: Date | string | null
+  }
+
+  export type user_packagesUpdateWithoutPackagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    users?: usersUpdateOneRequiredWithoutUser_packagesNestedInput
+  }
+
+  export type user_packagesUncheckedUpdateWithoutPackagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type user_packagesUncheckedUpdateManyWithoutPackagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    start_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
 
