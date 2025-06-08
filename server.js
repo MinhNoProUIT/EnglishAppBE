@@ -1,23 +1,33 @@
 require("dotenv").config();
 const app = require("./src/app");
-const http = require("http");
+const https = require("https");
 const { Server } = require("socket.io");
-require("dotenv").config(); // phải gọi sớm trong server.js
+const socketHandler = require("./src/sockets/index");
 
 const PORT = process.env.PORT || 5000;
-const server = http.createServer(app);
+
+// Load SSL certs (bạn phải có file key.pem và cert.pem ở thư mục ssl/)
+const privateKey = fs.readFileSync(path.join(__dirname, "ssl", "key.pem"), "utf8");
+const certificate = fs.readFileSync(path.join(__dirname, "ssl", "cert.pem"), "utf8");
+
+const credentials = { key: privateKey, cert: certificate };
+
+// Tạo HTTPS server
+const server = https.createServer(credentials, app);
 
 const io = new Server(server, {
   cors: {
-    origin: "*",
-    // origin: process.env.CLIENT_URL,
+    origin: "*",          
     methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"],
     credentials: true,
   },
 });
 
-app.listen(PORT, () => {
+app.set("io", io);
+
+socketHandler(io);
+
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
   console.log(`Swagger docs: http://localhost:${PORT}/api-docs`);
 });
