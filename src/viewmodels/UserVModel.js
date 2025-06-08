@@ -47,9 +47,7 @@ class UserUpdateVModel {
     address,
     image_url,
   }) {
-    this.id = id;
     this.username = username;
-    this.email = email;
     this.phonenumber = phonenumber;
     this.birthday = birthday;
     this.gender = gender;

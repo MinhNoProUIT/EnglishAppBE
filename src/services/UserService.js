@@ -165,7 +165,7 @@ const UserService = {
       if (!user) {
         throw new Error("User not found");
       }
-      return user;
+      return new UserUpdateVModel(user);
     } catch (err) {
       console.error("Error in getById:", err);
       if (err instanceof PrismaClientValidationError) {

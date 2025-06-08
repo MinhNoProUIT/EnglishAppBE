@@ -66,8 +66,7 @@ const UserController = {
 
   async getById(req, res) {
     try {
-      const { id } = getCurrentUserId(req);
-      const user = await UserService.getById(id);
+      const user = await UserService.getById(getCurrentUserId(req));
 
       if (!user) {
         return res.status(404).json({ error: "User not found" });
