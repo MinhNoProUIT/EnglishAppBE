@@ -41,6 +41,7 @@ class UserUpdateVModel {
   constructor({
     username,
     phonenumber,
+    email,
     birthday,
     gender,
     fullname,
@@ -50,6 +51,7 @@ class UserUpdateVModel {
   }) {
     this.username = username;
     this.phonenumber = phonenumber;
+    this.email = email;
     this.birthday = birthday;
     this.gender = gender;
     this.fullname = fullname;
