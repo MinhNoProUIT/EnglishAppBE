@@ -3,10 +3,12 @@ const router = express.Router();
 const GroupMemberController = require("../controllers/GroupMemberController");
 const authMiddleware = require("../middlewares/auth.middleware");
 
-router.post("/add", GroupMemberController.addMember);
-router.put("/kick/:group_id/:user_id", GroupMemberController.kickMember);
-router.get("/group/:group_id", GroupMemberController.getAllMemberInGroup);
-router.get("/user/:user_id", GroupMemberController.getAllGroupByUser);
+router.post("/add", authMiddleware, GroupMemberController.addMembers);
+router.post("/kick",authMiddleware, GroupMemberController.kickMember);
+router.post("/leave",authMiddleware, GroupMemberController.leaveGroup);
+router.delete("/dishband/:group_id",authMiddleware, GroupMemberController.dishBand);
+router.get("/group/:group_id", authMiddleware, GroupMemberController.getAllMemberInGroup);
+router.get("/user/:user_id", authMiddleware, GroupMemberController.getAllGroupByUser);
 
 module.exports = router;
 
@@ -21,7 +23,7 @@ module.exports = router;
  * @swagger
  * /api/group-members/add:
  *   post:
- *     summary: Thêm thành viên vào nhóm
+ *     summary: Thêm nhiều thành viên vào nhóm
  *     tags: [GroupMember]
  *     requestBody:
  *       required: true
@@ -30,51 +32,129 @@ module.exports = router;
  *           schema:
  *             type: object
  *             required:
- *               - user_id
+ *               - user_ids
  *               - group_id
  *             properties:
- *               user_id:
- *                 type: string
- *                 format: uuid
+ *               user_ids:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   format: uuid
+ *                 description: Danh sách ID của người dùng cần thêm vào nhóm
  *               group_id:
  *                 type: string
  *                 format: uuid
+ *                 description: ID của nhóm
  *               is_admin:
  *                 type: boolean
  *                 default: false
+ *                 description: Gán quyền admin cho các thành viên (mặc định là false)
  *     responses:
  *       201:
- *         description: Thành viên được thêm vào nhóm thành công
+ *         description: Các thành viên được thêm vào nhóm thành công
  *       400:
  *         description: Thêm thành viên thất bại
  */
 
 /**
  * @swagger
- * /api/group-members/kick/{group_id}/{user_id}:
- *   delete:
+ * /api/group-members/kick:
+ *   post:
  *     summary: Xóa thành viên khỏi nhóm
  *     tags: [GroupMember]
- *     parameters:
- *       - in: path
- *         name: group_id
- *         required: true
- *         description: ID của nhóm
- *         schema:
- *           type: string
- *           format: uuid
- *       - in: path
- *         name: user_id
- *         required: true
- *         description: ID của thành viên bị xóa
- *         schema:
- *           type: string
- *           format: uuid
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - group_id
+ *               - user_ids
+ *             properties:
+ *               group_id:
+ *                 type: string
+ *                 format: uuid
+ *                 description: ID của nhóm
+ *               user_ids:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   format: uuid
+ *                 description: Danh sách ID thành viên bị xóa
  *     responses:
  *       200:
  *         description: Xóa thành viên thành công
  *       400:
  *         description: Xóa thành viên thất bại
+ */
+
+/**
+ * @swagger
+ * /api/group-members/leave:
+ *   post:
+ *     summary: Rời nhóm
+ *     tags: [GroupMember]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - group_id
+ *               - user_id
+ *             properties:
+ *               group_id:
+ *                 type: string
+ *                 format: uuid
+ *                 description: ID của nhóm
+ *               user_id:
+ *                 type: string
+ *                 items:
+ *                   type: string
+ *                   format: uuid
+ *                 description: ID thành viên rời nhóm
+ *     responses:
+ *       200:
+ *         description: Rời nhóm thành công
+ *       400:
+ *         description: Rời nhóm thất bại
+ */
+
+/**
+ * @swagger
+ * /api/group-members/dishband/{group_id}:
+ *   delete:
+ *     summary: Xóa nhóm
+ *     tags: [GroupMember]
+ *     parameters:
+ *       - in: path
+ *         name: group_id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID of the group to disband
+ *     responses:
+ *       200:
+ *         description: Group disbanded successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Group disbanded successfully
+ *       400:
+ *         description: Error occurred
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
  */
 
 /**

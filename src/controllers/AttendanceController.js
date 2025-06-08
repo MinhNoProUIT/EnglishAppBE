@@ -1,18 +1,25 @@
 const AttendanceService = require("../services/AttendanceService");
 const { Parser } = require("json2csv");
 const { formatResponse } = require("../utils/responseHelper");
+const { getCurrentUserId } = require("../utils/CurrentUser");
 
 const AttendanceController = {
   async getAllUserAttendance(req, res) {
     try {
-      const id = req.id;
-      if (id === null) return;
+      // const id = req.id;
+      // if (id === null) return;
 
-      const attendance = await AttendanceService.getAllUserAttendance(id);
+      const attendance = await AttendanceService.getAllUserAttendance(
+        getCurrentUserId(req)
+      );
       res.json(formatResponse(true, attendance));
     } catch (err) {
       console.error("Error in getAllUserAttendance:", err);
-      res.status(500).json({ error: "Internal Server Error" });
+      res.status(500).json({
+        Success: false,
+        Data: null,
+        Message: "Internal Server Error",
+      });
     }
   },
 
@@ -22,14 +29,20 @@ const AttendanceController = {
       res.json(formatResponse(true, attendance));
     } catch (err) {
       console.error("Error in getAllAttendance:", err);
-      res.status(500).json({ error: "Internal Server Error" });
+      res.status(500).json({
+        Success: false,
+        Data: null,
+        Message: "Internal Server Error",
+      });
     }
   },
 
   async createAttendance(req, res) {
     try {
-      const data = req.body;
-      const created = await AttendanceService.createAttendance(data);
+      //const data = req.body;
+      const created = await AttendanceService.createAttendance(
+        getCurrentUserId(req)
+      );
       res.status(201).json(formatResponse(true, created));
     } catch (err) {
       console.error("Error in createAttendance:", err);
@@ -61,6 +74,21 @@ const AttendanceController = {
       const attendance = await AttendanceService.getMonthlyAttendanceSummary();
       res.json(formatResponse(true, attendance));
     } catch (err) {
+      res.status(500).json({
+        Success: false,
+        Data: null,
+        Message: "Internal Server Error",
+      });
+    }
+  },
+
+  async getWeeklyAttendanceStatus(req, res) {
+    try {
+      const user_id = getCurrentUserId(req);
+      const result = await AttendanceService.getWeeklyAttendanceStatus(user_id);
+      res.json(formatResponse(true, result));
+    } catch (err) {
+      console.error("Error in getWeeklyAttendanceStatus:", err);
       res.status(500).json({
         Success: false,
         Data: null,

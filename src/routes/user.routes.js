@@ -6,6 +6,11 @@ const checkPermission = require("../middlewares/checkPermission");
 
 router.get("/GetAll", authMiddleware, UserController.getUsers);
 router.get("/getById", authMiddleware, UserController.getById);
+router.get(
+  "/get-recommend",
+  authMiddleware,
+  UserController.getAllUserRecommend
+);
 router.get("/getAll-post", UserController.getAllUsersInPost);
 router.get("/search", UserController.filterUsersInPost);
 router.post("/Create", UserController.createUser);
@@ -18,6 +23,7 @@ router.get("/attendance-streak", UserController.getLongestAndShortestStreak);
 router.get("/top-learning", UserController.getTopFiveLearning);
 router.get("/top-topic", UserController.getTopLearnedTopics);
 router.get("/learning", UserController.getLearningList);
+router.put("/updateToPremium", authMiddleware, UserController.upgradeToPremium);
 
 module.exports = router;
 
@@ -61,6 +67,34 @@ module.exports = router;
  *                 error:
  *                   type: string
  *                   example: Internal Server Error
+ */
+
+/**
+ * @swagger
+ * /api/users/get-recommend:
+ *   get:
+ *     summary: Lấy danh sách người dùng được hệ thống gợi ý (recommendation)
+ *     tags: [Users]
+ *     responses:
+ *       200:
+ *         description: Danh sách người dùng được gợi ý
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/User'
+ *       401:
+ *         description: Không có quyền truy cập (Unauthorized)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *       500:
+ *         description: Lỗi hệ thống
  */
 
 /**

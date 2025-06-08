@@ -19,7 +19,9 @@ const userAbuseReportRoutes = require("./routes/userabuserreport.routes");
 const attendanceRoutes = require("./routes/attendance.routes");
 const paymentRoutes = require("./routes/payment.routes");
 const userProgressRoutes = require("./routes/userProgress.routes");
-
+const quizRoutes = require("./routes/quiz.routes");
+const quizQuestionRoutes = require("./routes/quizQuestion.routes");
+const premiumPackageRoutes = require("./routes/premiumpackage.routes");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 
@@ -83,11 +85,13 @@ app.use("/api/groups", groupRoutes);
 app.use("/api/group-members", groupMemberRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/auth", authRoutes);
-
 app.use("/api/coin-transactions", coinTransactionRoutes);
 app.use("/api/user-abuse-reports", userAbuseReportRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/user-progress", userProgressRoutes);
+app.use("/api/quizzes", quizRoutes);
+app.use("/api/quiz-questions", quizQuestionRoutes);
+app.use("/api/premium-package", premiumPackageRoutes);
 
 module.exports = app;

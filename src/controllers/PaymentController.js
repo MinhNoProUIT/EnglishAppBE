@@ -2,9 +2,11 @@
 const paymentService = require("../services/PaymentService");
 const crypto = require("crypto");
 const { formatResponse } = require("../utils/responseHelper");
+const { getCurrentUserId } = require("../utils/CurrentUser");
 
 exports.createOrder = async (req, res) => {
-  const { userId, amount, description } = req.body;
+  const userId = getCurrentUserId(req);
+  const { amount, description } = req.body;
   try {
     const order = await paymentService.createOrder({
       userId,

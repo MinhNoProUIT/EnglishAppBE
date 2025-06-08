@@ -4,11 +4,12 @@ const upload = require("../middlewares/upload.middleware");
 const PostController = require("../controllers/PostController");
 const authMiddleware = require("../middlewares/auth.middleware");
 
-router.get("/getAll", PostController.getAllPosts);
-router.get("/getTotal", PostController.getTotalPosts);
-router.post("/create", upload.single("image"), PostController.createPost);
-router.get("/getData", PostController.getPostChartData);
-router.get("/month-stats", PostController.getMonthlyPostStats);
+router.get("/getAll", authMiddleware, PostController.getAllPosts);
+router.get("/getTotal",authMiddleware, PostController.getTotalPosts);
+router.get("/getByUser/:user_id",authMiddleware, PostController.getAllPostsByUser);
+router.post("/create", authMiddleware, upload.single("image"), PostController.createPost);
+router.get("/getData", authMiddleware, PostController.getPostChartData);
+router.get("/month-stats", authMiddleware, PostController.getMonthlyPostStats);
 
 module.exports = router;
 
@@ -78,6 +79,57 @@ module.exports = router;
  *                       type: integer
  *                     limit:
  *                       type: integer
+ */
+
+/**
+ * @swagger
+ * /api/posts/getByUser/{user_id}:
+ *   get:
+ *     summary: Lấy danh sách bài đăng của người dùng (có phân trang)
+ *     tags: [Posts]
+ *     parameters:
+ *       - in: path
+ *         name: user_id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: ID người dùng
+ *     responses:
+ *       200:
+ *         description: Danh sách bài đăng và thông tin phân trang
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                       user_id:
+ *                         type: string
+ *                         format: uuid
+ *                       content:
+ *                         type: string
+ *                       author_name:
+ *                         type: string
+ *                       image_url:
+ *                         type: string
+ *                       author_image_url:
+ *                         type: string
+ *                       created_date:
+ *                         type: string
+ *                         format: date-time
+ *                       react_count:
+ *                         type: integer
+ *                       comment_count:
+ *                         type: integer
+ *                       shared_user_id_count:
+ *                         type: integer
  */
 
 /**

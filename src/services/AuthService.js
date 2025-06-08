@@ -6,6 +6,7 @@ const {
   signRefreshToken,
   verifyRefreshToken,
 } = require("../utils/jwt");
+const PremiumPackageService = require("../services/PremiumPackageService");
 
 const AuthService = {
   async createUser({ username, email, password, confirmPassword }) {
@@ -13,7 +14,7 @@ const AuthService = {
     if (userByUsername) {
       throw new Error("Username đã tồn tại");
     }
-   
+
     const userByEmail = await UserService.findUserByEmail(email);
     if (userByEmail) {
       throw new Error("Email đã tồn tại");
@@ -70,6 +71,8 @@ const AuthService = {
       userId: user.id,
       isAdmin: user.is_admin || false,
     };
+
+    await PremiumPackageService.checkAndUpdatePremiumStatus(user.id);
 
     return {
       accessToken: signAccessToken(payload),

@@ -4,6 +4,7 @@ const {
   mapCreatePostToVModel,
   mapGetTotalPostsToVModel,
   mapToPostDataChartVModel,
+  mapGetAllPostsByUserToVModel,
 } = require("../mappings/PostMapping");
 const { uploadToCloudinary } = require("../services/UploadService");
 const { formatResponse } = require("../utils/responseHelper");
@@ -72,6 +73,21 @@ const PostController = {
       res.json(formatResponse(true, stats));
     } catch (err) {
       console.error("Error in getMonthlyPostStats:", err);
+      res.status(500).json({
+        Success: false,
+        Data: null,
+        Message: "Internal Server Error",
+      });
+    }
+  },
+
+  async getAllPostsByUser(req, res) {
+    try {
+      const { user_id } = req.params; 
+      const allPosts = await PostService.getAllPostByUser(user_id);
+      res.json(allPosts.map(mapGetAllPostsByUserToVModel));
+    } catch (err) {
+      console.error("Error in getAllPostsByUser:", err);
       res.status(500).json({
         Success: false,
         Data: null,

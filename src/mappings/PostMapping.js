@@ -4,10 +4,15 @@ const {
   PostUpdateVModel,
   PostGetTotalVModel,
   PostDataChartVModel,
+  PostGetAllByUserVModel,
 } = require("../viewmodels/PostVModel");
 
 function mapGetAllPostsToVModel(post) {
   return new PostGetAllVModel(post);
+}
+
+function mapGetAllPostsByUserToVModel(post) {
+  return new PostGetAllByUserVModel(post);
 }
 
 function mapGetTotalPostsToVModel(result) {
@@ -33,4 +38,5 @@ module.exports = {
   mapCreatePostToVModel,
   mapUpdatePostToVModel,
   mapToPostDataChartVModel,
+  mapGetAllPostsByUserToVModel,
 };

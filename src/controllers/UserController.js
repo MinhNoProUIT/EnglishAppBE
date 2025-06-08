@@ -36,6 +36,16 @@ const UserController = {
     }
   },
 
+  async getAllUserRecommend(req, res) {
+    try {
+      const result = await UserService.getAllUserRecommend();
+      res.json(result.map(mapUserToVModel));
+    } catch (err) {
+      console.error("Error in get all user recommend:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
+
   async getLearningList(req, res) {
     try {
       const criteria = {
@@ -234,6 +244,16 @@ const UserController = {
         error: "Internal Server Error",
         details: error,
       });
+    }
+  },
+
+  async upgradeToPremium(req, res) {
+    try {
+      const user_id = await getCurrentUserId(req);
+      const message = await UserService.upgradeToPremium(user_id);
+      return res.status(200).json({ message });
+    } catch (err) {
+      return res.status(400).json({ error: error.message });
     }
   },
 };
