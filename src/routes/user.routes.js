@@ -509,7 +509,7 @@ module.exports = router;
  *                 type: string
  *                 format: date
  *               gender:
- *                 type: boolean
+ *                 type: string
  *               fullname:
  *                 type: string
  *               address:
