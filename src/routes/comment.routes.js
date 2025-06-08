@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const CommentController = require("../controllers/CommentController");
+const authMiddleware = require("../middlewares/auth.middleware");
 
 router.get("/getAllByPost/:type/:id", CommentController.getAllCommentsByPost);
 router.post("/create", CommentController.createComment);
@@ -63,16 +64,16 @@ module.exports = router;
  *                     type: string
  *                     format: uuid
  *                   username_parent:
- *                     type: string  
+ *                     type: string
  *                   root_comment:
  *                     type: string
  *                     format: uuid
  *                   username_root:
- *                     type: string  
+ *                     type: string
  *                   author_name:
- *                     type: string    
+ *                     type: string
  *                   author_image:
- *                     type: string 
+ *                     type: string
  *                   created_date:
  *                     type: string
  *                     format: date-time
@@ -166,4 +167,3 @@ module.exports = router;
  *       200:
  *         description: Đã xóa bình luận thành công
  */
-

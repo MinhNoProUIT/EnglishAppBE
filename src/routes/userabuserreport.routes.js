@@ -15,10 +15,57 @@ const UserAbuseReportController = require("../controllers/UserAbuseReportControl
  *   get:
  *     summary: Lấy danh sách tất cả báo cáo lỗi
  *     tags: [UserAbuseReports]
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *           minimum: 1
+ *         description: Số trang (mặc định 1)
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           default: 5
+ *           minimum: 1
+ *         description: Số bản ghi trên mỗi trang (mặc định 5)
  *     responses:
  *       200:
  *         description: Danh sách các báo cáo lỗi
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 Success:
+ *                   type: boolean
+ *                   example: true
+ *                 Data:
+ *                   type: object
+ *                   properties:
+ *                     reports:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *                         # bạn có thể mô tả các trường của report ở đây
+ *                     pagination:
+ *                       type: object
+ *                       properties:
+ *                         total:
+ *                           type: integer
+ *                           example: 100
+ *                         page:
+ *                           type: integer
+ *                           example: 1
+ *                         limit:
+ *                           type: integer
+ *                           example: 5
+ *                 Message:
+ *                   type: string
+ *                   example: "Get Data Successful!"
  */
+
 router.get("/getAll", UserAbuseReportController.getAllUserAbuseReport);
 
 /**

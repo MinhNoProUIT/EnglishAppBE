@@ -13,7 +13,7 @@ const AuthService = {
     if (userByUsername) {
       throw new Error("Username đã tồn tại");
     }
-
+   
     const userByEmail = await UserService.findUserByEmail(email);
     if (userByEmail) {
       throw new Error("Email đã tồn tại");

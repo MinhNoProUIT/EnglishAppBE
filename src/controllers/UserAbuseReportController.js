@@ -3,6 +3,7 @@ const {
 } = require("../mappings/UserAbuseReportMapping");
 const UserAbuseReportService = require("../services/UserAbuseReportService");
 const { Parser } = require("json2csv");
+const { formatResponse } = require("../utils/responseHelper");
 
 const UserAbuseReportController = {
   async getAllUserAbuseReport(req, res) {
@@ -13,17 +14,27 @@ const UserAbuseReportController = {
       const { reports, total } =
         await UserAbuseReportService.getAllUserAbuseReport(limit, page);
 
-      res.json({
-        data: reports,
-        pagination: {
-          total,
-          page,
-          limit,
-        },
-      });
+      res.json(
+        formatResponse(
+          true,
+          {
+            reports,
+            pagination: {
+              total,
+              page,
+              limit,
+            },
+          },
+          "Get Data Successful!"
+        )
+      );
     } catch (err) {
       console.error("Error in getAllUserAbuseReport:", err);
-      res.status(500).json({ error: "Internal Server Error" });
+      res.status(500).json({
+        Success: false,
+        Data: null,
+        Message: "Internal Server Error",
+      });
     }
   },
 
@@ -31,9 +42,13 @@ const UserAbuseReportController = {
     try {
       const reports =
         await UserAbuseReportService.getMonthlyUserAbuseReportSummary();
-      res.json(reports);
+      res.json(formatResponse(true, reports));
     } catch (err) {
-      res.status(500).json({ error: "Internal Server Error" });
+      res.status(500).json({
+        Success: false,
+        Data: null,
+        Message: "Internal Server Error",
+      });
     }
   },
 
@@ -41,10 +56,14 @@ const UserAbuseReportController = {
     try {
       const data = req.body;
       const created = await UserAbuseReportService.createUserAbuseReport(data);
-      res.status(201).json(created);
+      res.status(201).json(formatResponse(true, created));
     } catch (err) {
       console.error("Error in createUserAbuseReport:", err);
-      res.status(400).json({ error: err.message });
+      res.status(500).json({
+        Success: false,
+        Data: null,
+        Message: "Internal Server Error",
+      });
     }
   },
 
@@ -52,10 +71,16 @@ const UserAbuseReportController = {
     try {
       const { id } = req.params;
       await UserAbuseReportService.deleteUserAbuseReport(id);
-      res.json({ message: `Deleted User Abuse Report with id ${id}` });
+      res.json(
+        formatResponse(true, id, `Deleted User Abuse Report with id ${id}`)
+      );
     } catch (err) {
       console.error("Error in deleteUserAbuseReport:", err);
-      res.status(400).json({ error: err.message });
+      res.status(400).json({
+        Success: false,
+        Data: null,
+        Message: err.message,
+      });
     }
   },
 

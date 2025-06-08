@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const GroupMemberController = require("../controllers/GroupMemberController");
+const authMiddleware = require("../middlewares/auth.middleware");
 
 router.post("/add", GroupMemberController.addMember);
 router.put("/kick/:group_id/:user_id", GroupMemberController.kickMember);
