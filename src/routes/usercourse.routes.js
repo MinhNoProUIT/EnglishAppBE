@@ -32,4 +32,25 @@ router.get(
   UserCourseController.getUserCourses
 );
 
+/**
+ * @swagger
+ * /api/user-course/create:
+ *   post:
+ *     summary: Tạo mới báo cáo lỗi
+ *     tags: [UserCourse]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               course_id:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Tạo thành công
+ */
+router.post("/create", authMiddleware, UserCourseController.createUserCourse);
+
 module.exports = router;
