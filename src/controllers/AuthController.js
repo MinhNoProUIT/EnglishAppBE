@@ -23,14 +23,22 @@ const AuthController = {
   async changePassword(req, res) {
     try {
       const { oldPassword, newPassword } = req.body;
+
+      // Kiểm tra xem mật khẩu mới có giống mật khẩu cũ không
+      if (oldPassword === newPassword) {
+        throw new Error("Mật khẩu mới không thể giống mật khẩu cũ");
+      }
+
+      // Gọi service để thay đổi mật khẩu
       await AuthService.changePassword({
-        uid: req.user.uid,
+        user_id: getCurrentUserId(req),
         oldPassword,
         newPassword,
       });
+
       res.json({ message: "Đổi mật khẩu thành công" });
     } catch (err) {
-      res.status(400).json({ error: err.message });
+      res.status(400).json({ error: err.message || "Đã có lỗi xảy ra" });
     }
   },
   async logout(req, res) {
