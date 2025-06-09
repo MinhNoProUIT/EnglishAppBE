@@ -25,7 +25,7 @@ module.exports = router;
  * @swagger
  * /api/user-progress/getAllByCourse/{course_id}:
  *   get:
- *     summary: Lấy tiến độ học của người dùng theo khóa học
+ *     summary: Lấy tất cả từ vựng kèm tiến độ học của người dùng theo khóa học
  *     tags: [UserProgress]
  *     parameters:
  *       - in: path
@@ -37,7 +37,7 @@ module.exports = router;
  *           format: uuid
  *     responses:
  *       200:
- *         description: Danh sách tiến độ học của người dùng theo khóa học
+ *         description: Danh sách từ vựng kèm tiến độ học của người dùng theo khóa học
  */
 
 /**

@@ -6,6 +6,7 @@ const {
 } = require("../mappings/CourseMapping");
 const CourseService = require("../services/CourseService");
 const { getCurrentUserId } = require("../utils/CurrentUser");
+const { checkIsPremiumUser } = require("../utils/checkIsPremiumUser");
 
 const CourseController = {
   async getAllCourses(req, res) {
@@ -60,7 +61,8 @@ const CourseController = {
 
   async getAllOngoingCoursesByUser(req, res) {
     try {
-      const allCourses = await CourseService.getAllOngoingCoursesByUser(getCurrentUserId(req), true);
+      const user_id = getCurrentUserId(req);
+      const allCourses = await CourseService.getAllOngoingCoursesByUser(user_id, true);
       res.json(allCourses);
     } catch (err) {
       console.error("Error in get all ongoing courses by user:", err);
