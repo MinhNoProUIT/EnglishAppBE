@@ -49,8 +49,8 @@ const WordController = {
 
   async getAllWordsByCourse(req, res) {
     try {
-      const { course_id } = req.params;
-      const allWords = await WordService.getAllWordsByCourse(course_id);
+      const { id } = req.params;
+      const allWords = await WordService.getAllWordsByCourse(id);
       res.json(allWords.map(mapGetAllWordsByCourseToVModel));
     } catch (err) {
       console.error("Error in get all words by course:", err);
