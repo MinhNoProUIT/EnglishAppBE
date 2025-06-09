@@ -8,6 +8,9 @@ router.post("/login", AuthController.login);
 router.put("/change-password", authMiddleware, AuthController.changePassword);
 router.post("/logout", authMiddleware, AuthController.logout);
 router.get("/me", authMiddleware, AuthController.me);
+router.post("/forgot-password", AuthController.forgotPassword);
+
+router.post("/reset-password/:token", AuthController.resetPassword);
 
 module.exports = router;
 
@@ -234,4 +237,116 @@ module.exports = router;
  *                   type: boolean
  *       401:
  *         description: Chưa xác thực người dùng
+ */
+
+/**
+ * @swagger
+ * /auth/forgot-password:
+ *   post:
+ *     summary: "Quên mật khẩu"
+ *     description: "Gửi email yêu cầu thay đổi mật khẩu cho người dùng."
+ *     tags: [Auth]
+ *     requestBody:
+ *       description: "Yêu cầu quên mật khẩu với email"
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: "Địa chỉ email của người dùng"
+ *                 example: "user@example.com"
+ *     responses:
+ *       '200':
+ *         description: "Email đã được gửi thành công"
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Email đặt lại mật khẩu đã được gửi!"
+ *       '400':
+ *         description: "Lỗi khi gửi email (ví dụ: email không tồn tại)"
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Email không tồn tại"
+ *       '500':
+ *         description: "Lỗi máy chủ"
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Đã có lỗi xảy ra khi gửi email"
+ */
+
+/**
+ * @swagger
+ * /auth/reset-password/{token}:
+ *   post:
+ *     summary: "Đặt lại mật khẩu"
+ *     description: "Xác nhận và thay đổi mật khẩu mới của người dùng bằng token xác minh."
+ *     tags: [Auth]
+ *     parameters:
+ *       - name: "token"
+ *         in: "path"
+ *         required: true
+ *         description: "Token xác minh từ email"
+ *         schema:
+ *           type: string
+ *           example: "abcdefg1234567"
+ *     requestBody:
+ *       description: "Thông tin mật khẩu mới"
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               newPassword:
+ *                 type: string
+ *                 description: "Mật khẩu mới của người dùng"
+ *                 example: "newpassword123"
+ *     responses:
+ *       '200':
+ *         description: "Mật khẩu đã được thay đổi thành công"
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Mật khẩu đã được thay đổi thành công!"
+ *       '400':
+ *         description: "Lỗi mật khẩu không hợp lệ hoặc token hết hạn"
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Token không hợp lệ hoặc mật khẩu mới không đáp ứng yêu cầu"
+ *       '500':
+ *         description: "Lỗi máy chủ"
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Đã có lỗi xảy ra khi thay đổi mật khẩu"
  */
