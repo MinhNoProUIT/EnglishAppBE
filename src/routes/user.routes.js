@@ -23,7 +23,7 @@ router.put(
   UserController.updateUser
 );
 router.put("/lock/:id", UserController.blockUser);
-router.delete("/remove/:id", UserController.removeUser);
+router.put("/remove/:id", UserController.removeUser);
 router.get("/quarter-stats", UserController.getQuarterlyUserStats);
 router.get("/attendance-streak", UserController.getLongestAndShortestStreak);
 router.get("/top-learning", UserController.getTopFiveLearning);

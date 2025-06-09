@@ -445,24 +445,37 @@ const UserService = {
   },
 
   async removeUser(id) {
-    const check = await pool.query(`select * from users where id = $1`, [id]);
+    // Kiểm tra xem người dùng có tồn tại không
+    const check = await pool.query(`SELECT * FROM users WHERE id = $1`, [id]);
+
     if (check.rows.length === 0) {
       throw new Error("User not found");
     }
 
-    const currentStatus = check.rows[0].isActive;
+    // Lấy trạng thái hiện tại của người dùng
+    const currentStatus = check.rows[0].isactive;
+
+    // Đảo ngược trạng thái của người dùng (từ active sang inactive và ngược lại)
     const newStatus = !currentStatus;
 
+    // Cập nhật trạng thái người dùng
     const result = await pool.query(
       `UPDATE users
-       SET isactive = false
+       SET isactive = $1
        WHERE id = $2
        RETURNING *`,
       [newStatus, id]
     );
 
-    return new RemoveUserVModel(result);
+    // Nếu không tìm thấy người dùng sau khi cập nhật, ném lỗi
+    if (result.rows.length === 0) {
+      throw new Error("Failed to update user status");
+    }
+
+    // Trả về kết quả sau khi cập nhật trạng thái
+    return new RemoveUserVModel(result.rows[0]);
   },
+
   async findUserByUsername(username) {
     const check = await pool.query(`select * from users where username = $1`, [
       username,
@@ -481,6 +494,24 @@ const UserService = {
     }
     return result.rows[0]; // Trả về user object
   },
+  async getUserStatus(email) {
+    // Tìm người dùng trong cơ sở dữ liệu với điều kiện isactive = true hoặc is_block = false
+    const result = await prisma.users.findFirst({
+      where: {
+        email: email,
+        AND: [{ isactive: true }, { is_block: false }],
+      },
+    });
+
+    // Nếu không tìm thấy người dùng, trả về null
+    if (!result) {
+      return null; // Hoặc có thể trả về undefined nếu bạn muốn
+    }
+
+    // Trả về đối tượng người dùng
+    return result;
+  },
+
   async findUserByUserId(userId) {
     const result = await pool.query(`SELECT * FROM users WHERE id = $1`, [
       userId,
