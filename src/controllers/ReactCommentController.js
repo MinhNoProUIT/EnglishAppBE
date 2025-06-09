@@ -39,6 +39,16 @@ const ReactCommentController = {
       res.status(400).json({ error: err.message });
     }
   },
+
+  async checkLikeComment(req, res) {
+    try {
+      const { user_id, comment_id } = req.params;
+      const isLike = await ReactCommentService.checkLike(user_id, comment_id);
+      res.status(200).json({isLike});
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
+  },
 };
 
 module.exports = ReactCommentController;

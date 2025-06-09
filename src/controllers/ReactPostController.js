@@ -34,6 +34,16 @@ const ReactPostController = {
       res.status(400).json({ error: err.message });
     }
   },
+
+  async checkLikePost(req, res) {
+    try {
+      const { user_id, post_id } = req.params;
+      const isLike = await ReactPostService.checkLike(user_id, post_id);
+      res.status(200).json({isLike});
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
+  },
 };
 
 module.exports = ReactPostController;

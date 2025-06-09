@@ -6,6 +6,7 @@ const authMiddleware = require("../middlewares/auth.middleware");
 router.get("/getTotal/:id", authMiddleware, ReactPostController.getTotalReactPost);
 router.post("/create", authMiddleware, ReactPostController.createReactPost);
 router.delete("/delete/:id", authMiddleware, ReactPostController.deleteReactPost);
+router.get("/check-like/:user_id/:post_id", authMiddleware, ReactPostController.checkLikePost);
 
 module.exports = router;
 
@@ -25,6 +26,39 @@ module.exports = router;
  *     parameters:
  *       - in: path
  *         name: id
+ *         required: true
+ *         description: ID của bài đăng
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *     responses:
+ *       200:
+ *         description: Tổng số lượt react của bài viết
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 react_count:
+ *                   type: integer
+ */
+
+/**
+ * @swagger
+ * /api/react-posts/check-like/{user_id}/{post_id}:
+ *   get:
+ *     summary: Kiểm tra like bài đăng
+ *     tags: [ReactPosts]
+ *     parameters:
+ *       - in: path
+ *         name: user_id
+ *         required: true
+ *         description: ID của người dùng
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *       - in: path
+ *         name: post_id
  *         required: true
  *         description: ID của bài đăng
  *         schema:

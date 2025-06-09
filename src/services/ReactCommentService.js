@@ -85,7 +85,15 @@ const ReactCommentService = {
     } finally {
       client.release();
     }
-  }  
+  },
+
+  async checkLike(user_id, comment_id) {
+    const result = await pool.query(
+      `SELECT id FROM react_comments WHERE user_id = $1 AND comment_id = $2`,
+      [user_id, comment_id]
+    );
+    return result.rows.length > 0;
+  }
 };
 
 module.exports = ReactCommentService;

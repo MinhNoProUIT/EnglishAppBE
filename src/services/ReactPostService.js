@@ -79,6 +79,14 @@ const ReactPostService = {
       client.release();
     }
   },
+
+  async checkLike(user_id, post_id) {
+    const result = await pool.query(
+      `SELECT id FROM react_posts WHERE user_id = $1 AND post_id = $2`,
+      [user_id, post_id]
+    );
+    return result.rows.length > 0;
+  }
 };
 
 module.exports = ReactPostService;
