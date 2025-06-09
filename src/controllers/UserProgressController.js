@@ -9,7 +9,7 @@ const UserProgressController = {
   async getAllUserProgressByCourse(req, res) {
     try {
       const { course_id } = req.params;
-      const allUserProgress = await UserProgressService.getAllUserProgressByCourse(getCurrentUserId(req), course_id);
+      const allUserProgress = await UserProgressService.getAllWordsWithProgressByCourse(getCurrentUserId(req), course_id);
       res.json(allUserProgress);
     } catch (err) {
       console.error("Error in getAllUserProgressByCourse:", err);

@@ -8,7 +8,7 @@ router.post("/create", authMiddleware, QuizController.createQuiz);
 router.put("/update/:id", QuizController.updateQuiz);
 router.delete("/delete/:id", QuizController.deleteQuiz);
 router.post("/createQuizWithQuestions", authMiddleware, QuizController.createQuizWithQuestions);
-router.post("/updateQuizWithQuestions/:quiz_id", authMiddleware, QuizController.updateQuizWithQuestions);
+router.put("/updateQuizWithQuestions/:quiz_id", authMiddleware, QuizController.updateQuizWithQuestions);
 
 module.exports = router;
 

@@ -2,18 +2,24 @@ const { PrismaClient } = require("../generated/prisma");
 const prisma = new PrismaClient();
 
 const UserProgressService = {
-    async getAllUserProgressByCourse(userId, courseId) {
-        return await prisma.user_progress.findMany({
-            where: {
-                user_id: userId,
-                words: {
-                    course_id: courseId,
-                },
-            },
+    async getAllWordsWithProgressByCourse(userId, courseId) {
+        const words = await prisma.words.findMany({
+            where: { course_id: courseId },
             include: {
-                words: true,
-            },
+                user_progress: {
+                    where: { user_id: userId },
+                    select: { level: true }
+                }
+            }
         });
+
+        // Gắn level mặc định = 0 nếu chưa có progress
+        const result = words.map(word => ({
+            ...word,
+            level: word.user_progress[0]?.level ?? 0
+        }));
+
+        return result;
     },
 
     async createUserProgress(user_id, word_id) {
@@ -31,7 +37,6 @@ const UserProgressService = {
         });
 
         if (!progress) return null;
-
         let newLevel = isCorrect && !isRetry ? (progress.level + 1) : progress.level;
         if (newLevel > 6) newLevel = 6;
 
@@ -39,7 +44,7 @@ const UserProgressService = {
             where: { id: progress.id },
             data: {
                 level: newLevel,
-                updatedstudydate: new Date(),
+                updatedstudydate: "2025-06-06T17:25:47.109Z",
             },
         });
     },
