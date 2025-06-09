@@ -23,6 +23,8 @@ const quizRoutes = require("./routes/quiz.routes");
 const quizQuestionRoutes = require("./routes/quizQuestion.routes");
 const premiumPackageRoutes = require("./routes/premiumpackage.routes");
 const userCoinRoutes = require("./routes/usercoin.routes");
+const userCourseRoutes = require("./routes/usercourse.routes");
+
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 
@@ -95,5 +97,6 @@ app.use("/api/quizzes", quizRoutes);
 app.use("/api/quiz-questions", quizQuestionRoutes);
 app.use("/api/premium-package", premiumPackageRoutes);
 app.use("/api/user-coins", userCoinRoutes);
+app.use("/api/user-course", userCourseRoutes);
 
 module.exports = app;

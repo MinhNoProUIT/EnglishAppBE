@@ -2,7 +2,7 @@ const { PrismaClient } = require("../generated/prisma"); // hoặc '@prisma/clie
 const prisma = new PrismaClient();
 
 export async function checkIsPremiumUser(user_id) {
-  const user = await prisma.users.findUnique({
+  const user = await prisma.users.findFirst({
     where: {
       id: user_id,
     },
