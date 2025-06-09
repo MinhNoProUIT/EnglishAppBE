@@ -17,7 +17,7 @@ const UserCoin = {
 
   async updateTotalCoin(user_id, coinChange) {
     try {
-      const userCoin = await prisma.user_coins.findUnique({
+      const userCoin = await prisma.user_coins.findFirst({
         where: {
           user_id: user_id,
         },
@@ -47,7 +47,7 @@ const UserCoin = {
 
   async getCurrentCoin(user_id) {
     try {
-      const userCoin = await prisma.user_coins.findUnique({
+      const userCoin = await prisma.user_coins.findFirst({
         where: {
           user_id: user_id, // Tìm kiếm theo user_id
         },

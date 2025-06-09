@@ -94,6 +94,6 @@ app.use("/api/user-progress", userProgressRoutes);
 app.use("/api/quizzes", quizRoutes);
 app.use("/api/quiz-questions", quizQuestionRoutes);
 app.use("/api/premium-package", premiumPackageRoutes);
-app.use("/api/user-coin", userCoinRoutes);
+app.use("/api/user-coins", userCoinRoutes);
 
 module.exports = app;

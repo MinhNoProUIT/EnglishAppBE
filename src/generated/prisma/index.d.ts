@@ -3754,7 +3754,6 @@ export namespace Prisma {
     shared_post: number
     transaction_history: number
     user_abuse_reports: number
-    user_coins: number
     user_courses: number
     user_error_reports: number
     user_packages: number
@@ -3781,7 +3780,6 @@ export namespace Prisma {
     shared_post?: boolean | UsersCountOutputTypeCountShared_postArgs
     transaction_history?: boolean | UsersCountOutputTypeCountTransaction_historyArgs
     user_abuse_reports?: boolean | UsersCountOutputTypeCountUser_abuse_reportsArgs
-    user_coins?: boolean | UsersCountOutputTypeCountUser_coinsArgs
     user_courses?: boolean | UsersCountOutputTypeCountUser_coursesArgs
     user_error_reports?: boolean | UsersCountOutputTypeCountUser_error_reportsArgs
     user_packages?: boolean | UsersCountOutputTypeCountUser_packagesArgs
@@ -3918,13 +3916,6 @@ export namespace Prisma {
    */
   export type UsersCountOutputTypeCountUser_abuse_reportsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: user_abuse_reportsWhereInput
-  }
-
-  /**
-   * UsersCountOutputType without action
-   */
-  export type UsersCountOutputTypeCountUser_coinsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: user_coinsWhereInput
   }
 
   /**
@@ -30212,7 +30203,7 @@ export namespace Prisma {
       shared_post: Prisma.$shared_postPayload<ExtArgs>[]
       transaction_history: Prisma.$transaction_historyPayload<ExtArgs>[]
       user_abuse_reports: Prisma.$user_abuse_reportsPayload<ExtArgs>[]
-      user_coins: Prisma.$user_coinsPayload<ExtArgs>[]
+      user_coins: Prisma.$user_coinsPayload<ExtArgs> | null
       user_courses: Prisma.$user_coursesPayload<ExtArgs>[]
       user_error_reports: Prisma.$user_error_reportsPayload<ExtArgs>[]
       user_packages: Prisma.$user_packagesPayload<ExtArgs>[]
@@ -30650,7 +30641,7 @@ export namespace Prisma {
     shared_post<T extends users$shared_postArgs<ExtArgs> = {}>(args?: Subset<T, users$shared_postArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$shared_postPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     transaction_history<T extends users$transaction_historyArgs<ExtArgs> = {}>(args?: Subset<T, users$transaction_historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$transaction_historyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user_abuse_reports<T extends users$user_abuse_reportsArgs<ExtArgs> = {}>(args?: Subset<T, users$user_abuse_reportsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_abuse_reportsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    user_coins<T extends users$user_coinsArgs<ExtArgs> = {}>(args?: Subset<T, users$user_coinsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_coinsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    user_coins<T extends users$user_coinsArgs<ExtArgs> = {}>(args?: Subset<T, users$user_coinsArgs<ExtArgs>>): Prisma__user_coinsClient<$Result.GetResult<Prisma.$user_coinsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     user_courses<T extends users$user_coursesArgs<ExtArgs> = {}>(args?: Subset<T, users$user_coursesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_coursesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user_error_reports<T extends users$user_error_reportsArgs<ExtArgs> = {}>(args?: Subset<T, users$user_error_reportsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_error_reportsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user_packages<T extends users$user_packagesArgs<ExtArgs> = {}>(args?: Subset<T, users$user_packagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$user_packagesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -31516,11 +31507,6 @@ export namespace Prisma {
      */
     include?: user_coinsInclude<ExtArgs> | null
     where?: user_coinsWhereInput
-    orderBy?: user_coinsOrderByWithRelationInput | user_coinsOrderByWithRelationInput[]
-    cursor?: user_coinsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: User_coinsScalarFieldEnum | User_coinsScalarFieldEnum[]
   }
 
   /**
@@ -39194,7 +39180,7 @@ export namespace Prisma {
     shared_post?: Shared_postListRelationFilter
     transaction_history?: Transaction_historyListRelationFilter
     user_abuse_reports?: User_abuse_reportsListRelationFilter
-    user_coins?: User_coinsListRelationFilter
+    user_coins?: XOR<User_coinsNullableScalarRelationFilter, user_coinsWhereInput> | null
     user_courses?: User_coursesListRelationFilter
     user_error_reports?: User_error_reportsListRelationFilter
     user_packages?: User_packagesListRelationFilter
@@ -39239,7 +39225,7 @@ export namespace Prisma {
     shared_post?: shared_postOrderByRelationAggregateInput
     transaction_history?: transaction_historyOrderByRelationAggregateInput
     user_abuse_reports?: user_abuse_reportsOrderByRelationAggregateInput
-    user_coins?: user_coinsOrderByRelationAggregateInput
+    user_coins?: user_coinsOrderByWithRelationInput
     user_courses?: user_coursesOrderByRelationAggregateInput
     user_error_reports?: user_error_reportsOrderByRelationAggregateInput
     user_packages?: user_packagesOrderByRelationAggregateInput
@@ -39287,7 +39273,7 @@ export namespace Prisma {
     shared_post?: Shared_postListRelationFilter
     transaction_history?: Transaction_historyListRelationFilter
     user_abuse_reports?: User_abuse_reportsListRelationFilter
-    user_coins?: User_coinsListRelationFilter
+    user_coins?: XOR<User_coinsNullableScalarRelationFilter, user_coinsWhereInput> | null
     user_courses?: User_coursesListRelationFilter
     user_error_reports?: User_error_reportsListRelationFilter
     user_packages?: User_packagesListRelationFilter
@@ -39608,13 +39594,13 @@ export namespace Prisma {
 
   export type user_coinsWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    user_id?: string
     AND?: user_coinsWhereInput | user_coinsWhereInput[]
     OR?: user_coinsWhereInput[]
     NOT?: user_coinsWhereInput | user_coinsWhereInput[]
-    user_id?: UuidFilter<"user_coins"> | string
     total_coin?: IntNullableFilter<"user_coins"> | number | null
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
-  }, "id">
+  }, "id" | "user_id">
 
   export type user_coinsOrderByWithAggregationInput = {
     id?: SortOrder
@@ -41139,7 +41125,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -41184,7 +41170,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -41229,7 +41215,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -41274,7 +41260,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -42918,10 +42904,9 @@ export namespace Prisma {
     none?: user_abuse_reportsWhereInput
   }
 
-  export type User_coinsListRelationFilter = {
-    every?: user_coinsWhereInput
-    some?: user_coinsWhereInput
-    none?: user_coinsWhereInput
+  export type User_coinsNullableScalarRelationFilter = {
+    is?: user_coinsWhereInput | null
+    isNot?: user_coinsWhereInput | null
   }
 
   export type User_error_reportsListRelationFilter = {
@@ -42973,10 +42958,6 @@ export namespace Prisma {
   }
 
   export type user_abuse_reportsOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type user_coinsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -44641,11 +44622,10 @@ export namespace Prisma {
     connect?: user_abuse_reportsWhereUniqueInput | user_abuse_reportsWhereUniqueInput[]
   }
 
-  export type user_coinsCreateNestedManyWithoutUsersInput = {
-    create?: XOR<user_coinsCreateWithoutUsersInput, user_coinsUncheckedCreateWithoutUsersInput> | user_coinsCreateWithoutUsersInput[] | user_coinsUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: user_coinsCreateOrConnectWithoutUsersInput | user_coinsCreateOrConnectWithoutUsersInput[]
-    createMany?: user_coinsCreateManyUsersInputEnvelope
-    connect?: user_coinsWhereUniqueInput | user_coinsWhereUniqueInput[]
+  export type user_coinsCreateNestedOneWithoutUsersInput = {
+    create?: XOR<user_coinsCreateWithoutUsersInput, user_coinsUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: user_coinsCreateOrConnectWithoutUsersInput
+    connect?: user_coinsWhereUniqueInput
   }
 
   export type user_coursesCreateNestedManyWithoutUsersInput = {
@@ -44809,11 +44789,10 @@ export namespace Prisma {
     connect?: user_abuse_reportsWhereUniqueInput | user_abuse_reportsWhereUniqueInput[]
   }
 
-  export type user_coinsUncheckedCreateNestedManyWithoutUsersInput = {
-    create?: XOR<user_coinsCreateWithoutUsersInput, user_coinsUncheckedCreateWithoutUsersInput> | user_coinsCreateWithoutUsersInput[] | user_coinsUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: user_coinsCreateOrConnectWithoutUsersInput | user_coinsCreateOrConnectWithoutUsersInput[]
-    createMany?: user_coinsCreateManyUsersInputEnvelope
-    connect?: user_coinsWhereUniqueInput | user_coinsWhereUniqueInput[]
+  export type user_coinsUncheckedCreateNestedOneWithoutUsersInput = {
+    create?: XOR<user_coinsCreateWithoutUsersInput, user_coinsUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: user_coinsCreateOrConnectWithoutUsersInput
+    connect?: user_coinsWhereUniqueInput
   }
 
   export type user_coursesUncheckedCreateNestedManyWithoutUsersInput = {
@@ -45100,18 +45079,14 @@ export namespace Prisma {
     deleteMany?: user_abuse_reportsScalarWhereInput | user_abuse_reportsScalarWhereInput[]
   }
 
-  export type user_coinsUpdateManyWithoutUsersNestedInput = {
-    create?: XOR<user_coinsCreateWithoutUsersInput, user_coinsUncheckedCreateWithoutUsersInput> | user_coinsCreateWithoutUsersInput[] | user_coinsUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: user_coinsCreateOrConnectWithoutUsersInput | user_coinsCreateOrConnectWithoutUsersInput[]
-    upsert?: user_coinsUpsertWithWhereUniqueWithoutUsersInput | user_coinsUpsertWithWhereUniqueWithoutUsersInput[]
-    createMany?: user_coinsCreateManyUsersInputEnvelope
-    set?: user_coinsWhereUniqueInput | user_coinsWhereUniqueInput[]
-    disconnect?: user_coinsWhereUniqueInput | user_coinsWhereUniqueInput[]
-    delete?: user_coinsWhereUniqueInput | user_coinsWhereUniqueInput[]
-    connect?: user_coinsWhereUniqueInput | user_coinsWhereUniqueInput[]
-    update?: user_coinsUpdateWithWhereUniqueWithoutUsersInput | user_coinsUpdateWithWhereUniqueWithoutUsersInput[]
-    updateMany?: user_coinsUpdateManyWithWhereWithoutUsersInput | user_coinsUpdateManyWithWhereWithoutUsersInput[]
-    deleteMany?: user_coinsScalarWhereInput | user_coinsScalarWhereInput[]
+  export type user_coinsUpdateOneWithoutUsersNestedInput = {
+    create?: XOR<user_coinsCreateWithoutUsersInput, user_coinsUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: user_coinsCreateOrConnectWithoutUsersInput
+    upsert?: user_coinsUpsertWithoutUsersInput
+    disconnect?: user_coinsWhereInput | boolean
+    delete?: user_coinsWhereInput | boolean
+    connect?: user_coinsWhereUniqueInput
+    update?: XOR<XOR<user_coinsUpdateToOneWithWhereWithoutUsersInput, user_coinsUpdateWithoutUsersInput>, user_coinsUncheckedUpdateWithoutUsersInput>
   }
 
   export type user_coursesUpdateManyWithoutUsersNestedInput = {
@@ -45436,18 +45411,14 @@ export namespace Prisma {
     deleteMany?: user_abuse_reportsScalarWhereInput | user_abuse_reportsScalarWhereInput[]
   }
 
-  export type user_coinsUncheckedUpdateManyWithoutUsersNestedInput = {
-    create?: XOR<user_coinsCreateWithoutUsersInput, user_coinsUncheckedCreateWithoutUsersInput> | user_coinsCreateWithoutUsersInput[] | user_coinsUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: user_coinsCreateOrConnectWithoutUsersInput | user_coinsCreateOrConnectWithoutUsersInput[]
-    upsert?: user_coinsUpsertWithWhereUniqueWithoutUsersInput | user_coinsUpsertWithWhereUniqueWithoutUsersInput[]
-    createMany?: user_coinsCreateManyUsersInputEnvelope
-    set?: user_coinsWhereUniqueInput | user_coinsWhereUniqueInput[]
-    disconnect?: user_coinsWhereUniqueInput | user_coinsWhereUniqueInput[]
-    delete?: user_coinsWhereUniqueInput | user_coinsWhereUniqueInput[]
-    connect?: user_coinsWhereUniqueInput | user_coinsWhereUniqueInput[]
-    update?: user_coinsUpdateWithWhereUniqueWithoutUsersInput | user_coinsUpdateWithWhereUniqueWithoutUsersInput[]
-    updateMany?: user_coinsUpdateManyWithWhereWithoutUsersInput | user_coinsUpdateManyWithWhereWithoutUsersInput[]
-    deleteMany?: user_coinsScalarWhereInput | user_coinsScalarWhereInput[]
+  export type user_coinsUncheckedUpdateOneWithoutUsersNestedInput = {
+    create?: XOR<user_coinsCreateWithoutUsersInput, user_coinsUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: user_coinsCreateOrConnectWithoutUsersInput
+    upsert?: user_coinsUpsertWithoutUsersInput
+    disconnect?: user_coinsWhereInput | boolean
+    delete?: user_coinsWhereInput | boolean
+    connect?: user_coinsWhereUniqueInput
+    update?: XOR<XOR<user_coinsUpdateToOneWithWhereWithoutUsersInput, user_coinsUpdateWithoutUsersInput>, user_coinsUncheckedUpdateWithoutUsersInput>
   }
 
   export type user_coursesUncheckedUpdateManyWithoutUsersNestedInput = {
@@ -46095,7 +46066,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -46139,7 +46110,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -46224,7 +46195,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -46268,7 +46239,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -46312,7 +46283,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -46356,7 +46327,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -46416,7 +46387,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -46460,7 +46431,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -46504,7 +46475,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -46548,7 +46519,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -46608,7 +46579,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -46652,7 +46623,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -46729,7 +46700,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -46773,7 +46744,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -46925,7 +46896,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -46969,7 +46940,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -47138,7 +47109,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -47182,7 +47153,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -47316,7 +47287,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -47360,7 +47331,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -47557,7 +47528,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -47601,7 +47572,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -47686,7 +47657,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -47730,7 +47701,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -47834,7 +47805,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -47878,7 +47849,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -47973,7 +47944,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -48017,7 +47988,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -48090,7 +48061,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -48134,7 +48105,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -48229,7 +48200,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -48273,7 +48244,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -48401,7 +48372,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -48445,7 +48416,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -48616,7 +48587,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -48660,7 +48631,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -48760,7 +48731,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -48804,7 +48775,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -48899,7 +48870,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -48943,7 +48914,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -49051,7 +49022,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -49095,7 +49066,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -49260,7 +49231,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -49304,7 +49275,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -49434,7 +49405,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -49478,7 +49449,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -49573,7 +49544,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -49617,7 +49588,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -49694,7 +49665,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -49738,7 +49709,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -49837,7 +49808,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -49881,7 +49852,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -50059,7 +50030,7 @@ export namespace Prisma {
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -50103,7 +50074,7 @@ export namespace Prisma {
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -50271,7 +50242,7 @@ export namespace Prisma {
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -50315,7 +50286,7 @@ export namespace Prisma {
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -50423,7 +50394,7 @@ export namespace Prisma {
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -50467,7 +50438,7 @@ export namespace Prisma {
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -50527,7 +50498,7 @@ export namespace Prisma {
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -50571,7 +50542,7 @@ export namespace Prisma {
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -50639,7 +50610,7 @@ export namespace Prisma {
     react_posts?: react_postsCreateNestedManyWithoutUsersInput
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -50683,7 +50654,7 @@ export namespace Prisma {
     react_posts?: react_postsUncheckedCreateNestedManyWithoutUsersInput
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -50770,7 +50741,7 @@ export namespace Prisma {
     react_posts?: react_postsUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -50814,7 +50785,7 @@ export namespace Prisma {
     react_posts?: react_postsUncheckedUpdateManyWithoutUsersNestedInput
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -50888,7 +50859,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
     user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyCreateNestedManyWithoutUsers_user_profile_history_changed_byTousersInput
@@ -50932,7 +50903,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
     user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyUncheckedCreateNestedManyWithoutUsers_user_profile_history_changed_byTousersInput
@@ -51027,7 +50998,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
     user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyUpdateManyWithoutUsers_user_profile_history_changed_byTousersNestedInput
@@ -51071,7 +51042,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
     user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyUncheckedUpdateManyWithoutUsers_user_profile_history_changed_byTousersNestedInput
@@ -51139,7 +51110,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
     user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyCreateNestedManyWithoutUsers_user_profile_history_changed_byTousersInput
@@ -51183,7 +51154,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
     user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyUncheckedCreateNestedManyWithoutUsers_user_profile_history_changed_byTousersInput
@@ -51270,7 +51241,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
     user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyUpdateManyWithoutUsers_user_profile_history_changed_byTousersNestedInput
@@ -51314,7 +51285,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
     user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyUncheckedUpdateManyWithoutUsers_user_profile_history_changed_byTousersNestedInput
@@ -51381,7 +51352,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyCreateNestedManyWithoutUsers_user_profile_history_changed_byTousersInput
@@ -51425,7 +51396,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyUncheckedCreateNestedManyWithoutUsers_user_profile_history_changed_byTousersInput
@@ -51514,7 +51485,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyUpdateManyWithoutUsers_user_profile_history_changed_byTousersNestedInput
@@ -51558,7 +51529,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_profile_history_user_profile_history_changed_byTousers?: user_profile_historyUncheckedUpdateManyWithoutUsers_user_profile_history_changed_byTousersNestedInput
@@ -51602,7 +51573,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -51646,7 +51617,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -51695,7 +51666,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -51739,7 +51710,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -51799,7 +51770,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -51843,7 +51814,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -51898,7 +51869,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -51942,7 +51913,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -51986,7 +51957,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -52030,7 +52001,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -52117,7 +52088,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -52161,7 +52132,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -52685,11 +52656,6 @@ export namespace Prisma {
     create: XOR<user_coinsCreateWithoutUsersInput, user_coinsUncheckedCreateWithoutUsersInput>
   }
 
-  export type user_coinsCreateManyUsersInputEnvelope = {
-    data: user_coinsCreateManyUsersInput | user_coinsCreateManyUsersInput[]
-    skipDuplicates?: boolean
-  }
-
   export type user_coursesCreateWithoutUsersInput = {
     id?: string
     purchase_date?: Date | string | null
@@ -53198,29 +53164,25 @@ export namespace Prisma {
     created_date?: DateTimeFilter<"user_abuse_reports"> | Date | string
   }
 
-  export type user_coinsUpsertWithWhereUniqueWithoutUsersInput = {
-    where: user_coinsWhereUniqueInput
+  export type user_coinsUpsertWithoutUsersInput = {
     update: XOR<user_coinsUpdateWithoutUsersInput, user_coinsUncheckedUpdateWithoutUsersInput>
     create: XOR<user_coinsCreateWithoutUsersInput, user_coinsUncheckedCreateWithoutUsersInput>
+    where?: user_coinsWhereInput
   }
 
-  export type user_coinsUpdateWithWhereUniqueWithoutUsersInput = {
-    where: user_coinsWhereUniqueInput
+  export type user_coinsUpdateToOneWithWhereWithoutUsersInput = {
+    where?: user_coinsWhereInput
     data: XOR<user_coinsUpdateWithoutUsersInput, user_coinsUncheckedUpdateWithoutUsersInput>
   }
 
-  export type user_coinsUpdateManyWithWhereWithoutUsersInput = {
-    where: user_coinsScalarWhereInput
-    data: XOR<user_coinsUpdateManyMutationInput, user_coinsUncheckedUpdateManyWithoutUsersInput>
+  export type user_coinsUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    total_coin?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type user_coinsScalarWhereInput = {
-    AND?: user_coinsScalarWhereInput | user_coinsScalarWhereInput[]
-    OR?: user_coinsScalarWhereInput[]
-    NOT?: user_coinsScalarWhereInput | user_coinsScalarWhereInput[]
-    id?: UuidFilter<"user_coins"> | string
-    user_id?: UuidFilter<"user_coins"> | string
-    total_coin?: IntNullableFilter<"user_coins"> | number | null
+  export type user_coinsUncheckedUpdateWithoutUsersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    total_coin?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type user_coursesUpsertWithWhereUniqueWithoutUsersInput = {
@@ -53575,7 +53537,7 @@ export namespace Prisma {
     shared_post?: shared_postCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesCreateNestedManyWithoutUsersInput
@@ -53619,7 +53581,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedCreateNestedManyWithoutUsersInput
     transaction_history?: transaction_historyUncheckedCreateNestedManyWithoutUsersInput
     user_abuse_reports?: user_abuse_reportsUncheckedCreateNestedManyWithoutUsersInput
-    user_coins?: user_coinsUncheckedCreateNestedManyWithoutUsersInput
+    user_coins?: user_coinsUncheckedCreateNestedOneWithoutUsersInput
     user_courses?: user_coursesUncheckedCreateNestedManyWithoutUsersInput
     user_error_reports?: user_error_reportsUncheckedCreateNestedManyWithoutUsersInput
     user_packages?: user_packagesUncheckedCreateNestedManyWithoutUsersInput
@@ -53706,7 +53668,7 @@ export namespace Prisma {
     shared_post?: shared_postUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUpdateManyWithoutUsersNestedInput
@@ -53750,7 +53712,7 @@ export namespace Prisma {
     shared_post?: shared_postUncheckedUpdateManyWithoutUsersNestedInput
     transaction_history?: transaction_historyUncheckedUpdateManyWithoutUsersNestedInput
     user_abuse_reports?: user_abuse_reportsUncheckedUpdateManyWithoutUsersNestedInput
-    user_coins?: user_coinsUncheckedUpdateManyWithoutUsersNestedInput
+    user_coins?: user_coinsUncheckedUpdateOneWithoutUsersNestedInput
     user_courses?: user_coursesUncheckedUpdateManyWithoutUsersNestedInput
     user_error_reports?: user_error_reportsUncheckedUpdateManyWithoutUsersNestedInput
     user_packages?: user_packagesUncheckedUpdateManyWithoutUsersNestedInput
@@ -54707,11 +54669,6 @@ export namespace Prisma {
     created_date?: Date | string
   }
 
-  export type user_coinsCreateManyUsersInput = {
-    id?: string
-    total_coin?: number | null
-  }
-
   export type user_coursesCreateManyUsersInput = {
     id?: string
     course_id: string
@@ -55190,21 +55147,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     created_date?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type user_coinsUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    total_coin?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type user_coinsUncheckedUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    total_coin?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type user_coinsUncheckedUpdateManyWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    total_coin?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type user_coursesUpdateWithoutUsersInput = {

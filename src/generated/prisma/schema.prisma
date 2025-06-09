@@ -312,7 +312,7 @@ model users {
   shared_post                                                 shared_post[]
   transaction_history                                         transaction_history[]
   user_abuse_reports                                          user_abuse_reports[]
-  user_coins                                                  user_coins[]
+  user_coins                                                  user_coins?
   user_courses                                                user_courses[]
   user_error_reports                                          user_error_reports[]
   user_packages                                               user_packages[]
@@ -364,7 +364,7 @@ model premium_packages {
 
 model user_coins {
   id         String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  user_id    String @db.Uuid
+  user_id    String @unique @db.Uuid
   total_coin Int?   @default(20)
   users      users  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
