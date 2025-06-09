@@ -1,6 +1,5 @@
 const QuizService = require("../services/QuizService");
 const {
-  mapGetAllQuizzesByUserToVModel,
   mapCreateQuizToVModel,
   mapUpdateQuizToVModel,
 } = require("../mappings/QuizMapping");
@@ -63,11 +62,10 @@ const QuizController = {
   
   async updateQuizWithQuestions(req, res) {
     try {
-      const userId = getCurrentUserId(req);
       const { quiz_id } = req.params;
       const { title, questions } = req.body;
 
-      const quiz = await QuizService.updateQuizWithQuestions(userId, quiz_id, title, questions);
+      const quiz = await QuizService.updateQuizWithQuestions(quiz_id, title, questions);
       res.status(201).json(quiz);
     } catch (error) {
       res.status(400).json({ error: error.message });

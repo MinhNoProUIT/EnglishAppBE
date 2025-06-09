@@ -68,10 +68,10 @@ const QuizService = {
     });
   },
 
-  async updateQuizWithQuestions(userId, quizId, title, questions) {
+  async updateQuizWithQuestions(quizId, title, questions) {
     // Cập nhật quiz
     await prisma.quizzes.update({
-      where: { id: quizId, user_id: userId },
+      where: { id: quizId },
       data: { title },
     });
     
