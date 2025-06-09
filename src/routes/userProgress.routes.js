@@ -4,7 +4,7 @@ const UserProgressController = require("../controllers/UserProgressController");
 const authMiddleware = require("../middlewares/auth.middleware");
 
 router.get("/getAllByCourse/:course_id", authMiddleware, UserProgressController.getAllUserProgressByCourse);
-router.post("/create/:word_id",  UserProgressController.createUserProgress);
+router.post("/create/:word_id", authMiddleware, UserProgressController.createUserProgress);
 router.put("/update/:word_id", authMiddleware, UserProgressController.updateUserProgress);
 router.delete("/delete/:id", UserProgressController.deleteUserProgress);
 router.get("/getUnlearnedWordsByCourse/:course_id", authMiddleware, UserProgressController.getUnlearnedWordsByCourse);
