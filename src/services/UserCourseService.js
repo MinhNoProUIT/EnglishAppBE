@@ -27,7 +27,16 @@ const UserCourseService = {
     let courses;
 
     // Truy vấn tất cả các khóa học của user
-    courses = await prisma.courses.findMany();
+    courses = await prisma.courses.findMany({
+      include: {
+        topics: {
+          // Bao gồm thông tin từ bảng topic
+          select: {
+            name: true, // Chỉ chọn trường name từ bảng topic
+          },
+        },
+      },
+    });
 
     // Thêm giá trị isBuy vào mỗi khóa học
     courses = await Promise.all(
