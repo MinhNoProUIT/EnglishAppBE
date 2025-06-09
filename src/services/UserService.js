@@ -697,6 +697,19 @@ const UserService = {
       return true;
     }
   },
+
+  async updateUserIsPremium(userId) {
+    const updatedUser = await prisma.users.update({
+      where: {
+        id: userId, // Tìm người dùng theo id
+      },
+      data: {
+        isPremium: true, // Cập nhật isPremium thành true
+      },
+    });
+
+    return updatedUser;
+  },
 };
 
 module.exports = UserService;

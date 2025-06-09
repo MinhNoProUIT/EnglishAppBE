@@ -53,6 +53,25 @@ exports.getAllPayment = async (req, res) => {
   }
 };
 
+exports.createPayment = async (req, res) => {
+  const user_id = getCurrentUserId(req);
+  const { amount, orderCode, description } = req.body;
+
+  try {
+    const payment = await paymentService.createPayment(
+      user_id,
+      amount,
+      orderCode,
+      description
+    );
+    res.status(201).json(formatResponse(true, payment));
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error creating payment", error: error.message });
+  }
+};
+
 exports.handleWebhook = async (req, res) => {
   console.log(req.body);
   res.json();

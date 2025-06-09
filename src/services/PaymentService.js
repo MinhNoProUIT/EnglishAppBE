@@ -74,6 +74,37 @@ const PaymentService = {
   async getAllPayment() {
     return await prisma.transaction_history.findMany();
   },
+
+  async createPayment(user_id, amount, orderCode, description) {
+    const first8Chars = description.slice(0, 8);
+    if (!user_id.includes(first8Chars)) return;
+    const newPayment = await prisma.transaction_history.create({
+      data: {
+        user_id: user_id,
+        amount,
+        order_code: orderCode,
+        description,
+        status: "PAID", // Trạng thái mặc định là "PENDING"
+      },
+    });
+
+    const trimmedDescription = description.slice(8);
+
+    const premiumPackage = await prisma.premium_packages.findFirst({
+      where: { name: trimmedDescription },
+    });
+
+    if (premiumPackage && parseMoneyToInt(amount) >= premiumPackage.price) {
+      // Gọi tạo user package
+      await UserPackageService.createUserPackage(user_id, premiumPackage.id);
+
+      await UserService.upgradeToPremium(user_id);
+    }
+
+    //await UserService.updateUserIsPremium(user_id);
+
+    return newPayment;
+  },
 };
 
 module.exports = PaymentService;

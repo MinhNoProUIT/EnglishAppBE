@@ -12,45 +12,6 @@ const authMiddleware = require("../middlewares/auth.middleware");
 
 /**
  * @swagger
- * /api/payments/create:
- *   post:
- *     summary: Tạo đơn thanh toán mới
- *     tags: [Payment]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             required:
- *               - amount
- *               - description
- *             properties:
- *               amount:
- *                 type: integer
- *                 example: 100000
- *               description:
- *                 type: string
- *                 example: "Thanh toán"
- *     responses:
- *       200:
- *         description: Thông tin đơn thanh toán
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 orderCode:
- *                   type: integer
- *                 checkoutUrl:
- *                   type: string
- *                 qrCode:
- *                   type: string
- */
-router.post("/create", authMiddleware, controller.createOrder);
-
-/**
- * @swagger
  * /api/payments/status/{orderCode}:
  *   get:
  *     summary: Kiểm tra trạng thái đơn thanh toán
@@ -116,5 +77,57 @@ router.post("/webhook", controller.handleWebhook);
  *                 type: object
  */
 router.get("/getAll", controller.getAllPayment);
+
+/**
+ * @swagger
+ * /api/payments/create:
+ *   post:
+ *     summary: Tạo đơn thanh toán mới
+ *     tags: [Payment]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - amount
+ *               - orderCode
+ *               - description
+ *             properties:
+ *               amount:
+ *                 type: integer
+ *                 example: 100000
+ *               orderCode:
+ *                 type: string
+ *                 example: "ORD12345"
+ *               description:
+ *                 type: string
+ *                 example: "Thanh toán cho khóa học"
+ *     responses:
+ *       201:
+ *         description: Thông tin đơn thanh toán
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Payment created successfully"
+ *                 payment:
+ *                   type: object
+ *                   properties:
+ *                     orderCode:
+ *                       type: string
+ *                       example: "ORD12345"
+ *                     status:
+ *                       type: string
+ *                       example: "PAID"
+ *                     amount:
+ *                       type: integer
+ *                       example: 100000
+ */
+router.post("/create", authMiddleware, controller.createPayment);
 
 module.exports = router;
