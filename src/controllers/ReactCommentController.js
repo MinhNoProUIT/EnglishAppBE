@@ -30,9 +30,10 @@ const ReactCommentController = {
 
   async deleteReactComment(req, res) {
     try {
-      const { id } = req.params;
+      const { user_id, comment_id } = req.params;
       const deletedReactComment = await ReactCommentService.deleteReactComment(
-        id
+        user_id,
+        comment_id
       );
       res.status(200).json(deletedReactComment);
     } catch (err) {

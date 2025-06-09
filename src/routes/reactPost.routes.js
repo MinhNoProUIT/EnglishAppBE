@@ -5,7 +5,7 @@ const authMiddleware = require("../middlewares/auth.middleware");
 
 router.get("/getTotal/:id", authMiddleware, ReactPostController.getTotalReactPost);
 router.post("/create", authMiddleware, ReactPostController.createReactPost);
-router.delete("/delete/:id", authMiddleware, ReactPostController.deleteReactPost);
+router.delete("/delete/:user_id/:post_id", authMiddleware, ReactPostController.deleteReactPost);
 router.get("/check-like/:user_id/:post_id", authMiddleware, ReactPostController.checkLikePost);
 
 module.exports = router;
@@ -102,15 +102,22 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/react-posts/delete/{id}:
+ * /api/react-posts/delete/{user_id}/{post_id}:
  *   delete:
  *     summary: Xóa lượt react khỏi bài viết
  *     tags: [ReactPosts]
  *     parameters:
  *       - in: path
- *         name: id
+ *         name: user_id
  *         required: true
- *         description: ID của lượt react cần xóa
+ *         description: ID của người dùng
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *       - in: path
+ *         name: post_id
+ *         required: true
+ *         description: ID của bài đăng
  *         schema:
  *           type: string
  *           format: uuid

@@ -14,7 +14,7 @@ router.post(
   ReactCommentController.createReactComment
 );
 router.delete(
-  "/delete/:id",
+  "/delete/:user_id/:comment_id",
   authMiddleware,
   ReactCommentController.deleteReactComment
 );
@@ -119,15 +119,22 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/react-comments/delete/{id}:
+ * /api/react-comments/delete/{user_id}/{comment_id}:
  *   delete:
  *     summary: Xóa lượt react khỏi bình luận
  *     tags: [ReactComments]
  *     parameters:
  *       - in: path
- *         name: id
+ *         name: user_id
  *         required: true
- *         description: ID của lượt react cần xóa
+ *         description: ID của người dùng
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *       - in: path
+ *         name: comment_id
+ *         required: true
+ *         description: ID của bình luận
  *         schema:
  *           type: string
  *           format: uuid

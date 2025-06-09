@@ -27,8 +27,8 @@ const ReactPostController = {
 
   async deleteReactPost(req, res) {
     try {
-      const { id } = req.params;
-      const deletedReactPost = await ReactPostService.deleteReactPost(id);
+      const { user_id, post_id } = req.params;
+      const deletedReactPost = await ReactPostService.deleteReactPost(user_id, post_id);
       res.status(200).json(deletedReactPost);
     } catch (err) {
       res.status(400).json({ error: err.message });

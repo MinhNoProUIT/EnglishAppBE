@@ -48,20 +48,18 @@ const ReactPostService = {
     }
   },
 
-  async deleteReactPost(id) {
+  async deleteReactPost(user_id, post_id) {
     const client = await pool.connect();
     try {
       await client.query("BEGIN");
       const result = await client.query(
-        `DELETE FROM react_posts WHERE id = $1 RETURNING *`,
-        [id]
+        `DELETE FROM react_posts WHERE user_id = $1 and post_id = $2 RETURNING *`,
+        [user_id, post_id]
       );
 
       if (result.rows.length === 0) {
         throw new Error("React post not found or already deleted");
       }
-
-      const { post_id } = result.rows[0];
 
       await client.query(
         `UPDATE posts

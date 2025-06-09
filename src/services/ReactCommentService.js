@@ -53,32 +53,32 @@ const ReactCommentService = {
     }
   },
 
-  async deleteReactComment(id) {
+  async deleteReactComment(user_id, comment_id) {
     const client = await pool.connect();
   
     try {
       await client.query('BEGIN');
 
       const result = await client.query(
-        `DELETE FROM react_comments WHERE id = $1 RETURNING comment_id`,
-        [id]
+        `DELETE FROM react_comments 
+         WHERE comment_id = $1 AND user_id = $2
+         RETURNING comment_id`,
+        [comment_id, user_id]
       );
   
       if (result.rows.length === 0) {
         throw new Error("React comment not found or already deleted");
       }
-  
-      const commentId = result.rows[0].comment_id;
 
       await client.query(
         `UPDATE comments 
          SET react_count = GREATEST(COALESCE(react_count, 1) - 1, 0)
          WHERE id = $1`,
-        [commentId]
+        [comment_id]
       );
   
       await client.query('COMMIT');
-      return { comment_id: commentId };
+      return { comment_id };
     } catch (error) {
       await client.query('ROLLBACK');
       throw error;
