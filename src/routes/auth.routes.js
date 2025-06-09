@@ -5,7 +5,7 @@ const authMiddleware = require("../middlewares/auth.middleware");
 
 router.post("/register", AuthController.register);
 router.post("/login", AuthController.login);
-router.post("/change-password", authMiddleware, AuthController.changePassword);
+router.put("/change-password", authMiddleware, AuthController.changePassword);
 router.post("/logout", authMiddleware, AuthController.logout);
 router.get("/me", authMiddleware, AuthController.me);
 
@@ -138,38 +138,58 @@ module.exports = router;
  *                   type: string
  *                   example: Email hoặc mật khẩu không đúng
  */
-
 /**
  * @swagger
- * /change-password:
- *   post:
- *     summary: Đổi mật khẩu người dùng
+ * /auth/change-password:
+ *   put:
+ *     summary: "Đổi mật khẩu người dùng"
+ *     description: "Thực hiện đổi mật khẩu của người dùng, yêu cầu mật khẩu cũ và mật khẩu mới."
  *     tags: [Auth]
- *     security:
- *       - bearerAuth: []
  *     requestBody:
+ *       description: "Thông tin để thay đổi mật khẩu"
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
- *             required:
- *               - currentPassword
- *               - newPassword
  *             properties:
- *               currentPassword:
+ *               oldPassword:
  *                 type: string
- *                 example: oldPassword123
+ *                 description: "Mật khẩu cũ của người dùng"
  *               newPassword:
  *                 type: string
- *                 example: newSecurePassword456
+ *                 description: "Mật khẩu mới của người dùng"
  *     responses:
- *       200:
- *         description: Đổi mật khẩu thành công
- *       400:
- *         description: Mật khẩu hiện tại không đúng
- *       401:
- *         description: Chưa xác thực người dùng
+ *       '200':
+ *         description: "Mật khẩu đã được thay đổi thành công"
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Đổi mật khẩu thành công"
+ *       '400':
+ *         description: "Lỗi trong quá trình thay đổi mật khẩu"
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Mật khẩu cũ không đúng"
+ *       '500':
+ *         description: "Lỗi máy chủ nội bộ"
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Đã có lỗi xảy ra trong quá trình thay đổi mật khẩu"
  */
 
 /**

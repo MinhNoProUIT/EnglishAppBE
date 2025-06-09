@@ -91,11 +91,16 @@ const AuthService = {
     const isMatch = await bcrypt.compare(oldPassword, user.passwordhash);
     if (!isMatch) throw new Error("Mật khẩu cũ không đúng");
 
+    // Kiểm tra mật khẩu mới không giống mật khẩu cũ
+    if (oldPassword === newPassword) {
+      throw new Error("Mật khẩu mới không thể giống mật khẩu cũ");
+    }
+
     // Mã hóa mật khẩu mới
     const newHashed = await bcrypt.hash(newPassword, 10);
 
     // Cập nhật mật khẩu trên Firebase
-    await admin.auth().updateUser(user.uid, { password: newPassword });
+    await admin.auth().updateUser(user.firebase_uid, { password: newPassword });
 
     // Cập nhật mật khẩu mới vào cơ sở dữ liệu
     await UserService.updatePassword(user_id, newHashed);
