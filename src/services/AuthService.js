@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const admin = require("../config/firebase");
 const UserService = require("../services/UserService");
+const UserCoinService = require("./UserCoinService");
 const {
   signAccessToken,
   signRefreshToken,
@@ -63,6 +64,8 @@ const AuthService = {
     if (!newUser) {
       throw new Error("Không thể tạo người dùng mới");
     }
+    await UserCoinService.createUserCoin(newUser.id);
+
     return {
       message: "User tạo thành công. Vui lòng xác thực email",
       user: newUser,

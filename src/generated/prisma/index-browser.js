@@ -382,6 +382,12 @@ exports.Prisma.Premium_packagesScalarFieldEnum = {
   discount: 'discount'
 };
 
+exports.Prisma.User_coinsScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  total_coin: 'total_coin'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -437,7 +443,8 @@ exports.Prisma.ModelName = {
   words: 'words',
   quiz_questions: 'quiz_questions',
   quizzes: 'quizzes',
-  premium_packages: 'premium_packages'
+  premium_packages: 'premium_packages',
+  user_coins: 'user_coins'
 };
 
 /**
