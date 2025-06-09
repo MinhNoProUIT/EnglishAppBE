@@ -61,6 +61,11 @@ const AuthService = {
       throw new Error("Email không tồn tại");
     }
 
+    const userStatus = await UserService.getUserStatus(email);
+    if (!userStatus) {
+      throw new Error("Tài khoản đã bị xóa hoặc bị khóa");
+    }
+
     const isMatch = await bcrypt.compare(password, user.passwordhash);
 
     if (!isMatch) {
