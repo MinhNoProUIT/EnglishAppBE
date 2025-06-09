@@ -186,7 +186,7 @@ const AuthService = {
     };
 
     await transporter.sendMail(mailOptions);
-    return { message: "Email đặt lại mật khẩu đã được gửi!" };
+    return { message: "Email đặt lại mật khẩu đã được gửi!", token };
   },
 
   async resetPassword(token, newPassword) {
