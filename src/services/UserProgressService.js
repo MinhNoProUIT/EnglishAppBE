@@ -36,7 +36,7 @@ const UserProgressService = {
         if (newLevel > 6) newLevel = 6;
 
         return await prisma.user_progress.update({
-            where: { id },
+            where: { id: progress.id },
             data: {
                 level: newLevel,
                 updatedstudydate: new Date(),

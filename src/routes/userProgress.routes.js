@@ -4,7 +4,7 @@ const UserProgressController = require("../controllers/UserProgressController");
 const authMiddleware = require("../middlewares/auth.middleware");
 
 router.get("/getAllByCourse/:course_id", authMiddleware, UserProgressController.getAllUserProgressByCourse);
-router.post("/create", authMiddleware, UserProgressController.createUserProgress);
+router.post("/create/:word_id",  UserProgressController.createUserProgress);
 router.put("/update/:word_id", authMiddleware, UserProgressController.updateUserProgress);
 router.delete("/delete/:id", UserProgressController.deleteUserProgress);
 router.get("/getUnlearnedWordsByCourse/:course_id", authMiddleware, UserProgressController.getUnlearnedWordsByCourse);
@@ -42,22 +42,18 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/user-progress/create:
+ * /api/user-progress/create/{word_id}:
  *   post:
  *     summary: Tạo tiến độ học mới
  *     tags: [UserProgress]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               word_id:
- *                 type: string
- *                 format: uuid
- *             example:
- *               word_id: 385d5054-2896-4b13-a34b-bf1f274a7ab2
+ *     parameters:
+ *       - in: path
+ *         name: word_id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: ID từ vựng cần tạo tiến độ học
  *     responses:
  *       201:
  *         description: Đã tạo tiến độ học thành công

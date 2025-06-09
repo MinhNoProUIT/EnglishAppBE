@@ -1,6 +1,5 @@
 const UserProgressService = require("../services/UserProgressService");
 const {
-  mapGetAllUserProgressByCourseToVModel,
   mapCreateUserProgressToVModel,
   mapUpdateUserProgressToVModel,
 } = require("../mappings/UserProgressMapping");
@@ -11,7 +10,7 @@ const UserProgressController = {
     try {
       const { course_id } = req.params;
       const allUserProgress = await UserProgressService.getAllUserProgressByCourse(getCurrentUserId(req), course_id);
-      res.json(allUserProgress.map(mapGetAllUserProgressByCourseToVModel));
+      res.json(allUserProgress);
     } catch (err) {
       console.error("Error in getAllUserProgressByCourse:", err);
       res.status(500).json({ error: "Internal Server Error" });
@@ -20,7 +19,8 @@ const UserProgressController = {
 
   async createUserProgress(req, res) {
     try {
-      const newUserProgress = await UserProgressService.createUserProgress(getCurrentUserId(req), req.body);
+      const { word_id } = req.params;
+      const newUserProgress = await UserProgressService.createUserProgress(getCurrentUserId(req), word_id);
       res.status(201).json(mapCreateUserProgressToVModel(newUserProgress));
     } catch (err) {
       res.status(400).json({ error: err.message });
