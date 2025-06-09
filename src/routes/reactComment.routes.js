@@ -18,6 +18,7 @@ router.delete(
   authMiddleware,
   ReactCommentController.deleteReactComment
 );
+router.get("/check-like/:user_id/:comment_id", authMiddleware, ReactCommentController.checkLikeComment);
 
 module.exports = router;
 
@@ -57,6 +58,39 @@ module.exports = router;
  *                     format: uuid
  *                   react_count:
  *                     type: integer
+ */
+
+/**
+ * @swagger
+ * /api/react-comments/check-like/{user_id}/{comment_id}:
+ *   get:
+ *     summary: Kiểm tra like bình luận
+ *     tags: [ReactComments]
+ *     parameters:
+ *       - in: path
+ *         name: user_id
+ *         required: true
+ *         description: ID của người dùng
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *       - in: path
+ *         name: comment_id
+ *         required: true
+ *         description: ID của bình luận
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *     responses:
+ *       200:
+ *         description: Tổng số lượt react của bài viết
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 react_count:
+ *                   type: integer
  */
 
 /**
