@@ -58,6 +58,32 @@ const AuthController = {
       res.status(400).json({ error: err.message });
     }
   },
+  async forgotPassword(req, res) {
+    const { email } = req.body; // Lấy email từ req.body
+
+    if (!email) {
+      return res.status(400).json({ error: "Email is required" }); // Nếu không có email, trả về lỗi 400
+    }
+
+    try {
+      const response = await AuthService.sendResetPasswordEmail(email); // Gọi service để gửi email
+      res.json(response); // Trả về phản hồi khi email đã được gửi
+    } catch (error) {
+      res.status(400).json({ error: error.message }); // Nếu có lỗi, trả về lỗi với mã 400
+    }
+  },
+
+  async resetPassword(req, res) {
+    const { token } = req.params; // Lấy token từ URL params
+    const { newPassword } = req.body; // Lấy mật khẩu mới từ request body
+
+    try {
+      const response = await AuthService.resetPassword(token, newPassword);
+      res.json(response); // Trả về phản hồi khi mật khẩu được thay đổi thành công
+    } catch (error) {
+      res.status(400).json({ error: error.message }); // Trả về lỗi khi có vấn đề với việc đặt lại mật khẩu
+    }
+  },
 };
 
 module.exports = AuthController;

@@ -7,6 +7,21 @@ const {
   verifyRefreshToken,
 } = require("../utils/jwt");
 const PremiumPackageService = require("../services/PremiumPackageService");
+const nodemailer = require("nodemailer");
+const jwt = require("jsonwebtoken");
+const { pool } = require("../config/db"); // Sử dụng pool của PostgreSQL
+const { email, jwtKey } = require("../config/email.config");
+const { PrismaClient } = require("../generated/prisma"); // hoặc '@prisma/client' nếu dùng mặc định
+const prisma = new PrismaClient();
+
+const { verifyAccessToken } = require("../utils/jwt");
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: email.user, // Địa chỉ email của bạn
+    pass: email.pass, // Mật khẩu ứng dụng của Gmail (hoặc mật khẩu email)
+  },
+});
 
 const AuthService = {
   async createUser({ username, email, password, confirmPassword }) {
@@ -147,6 +162,55 @@ const AuthService = {
       email: user.email,
       role: user.isAdmin || false,
     };
+  },
+
+  async sendResetPasswordEmail(Email) {
+    // Kiểm tra xem người dùng có tồn tại không
+    const result = await UserService.findUserByEmail(Email);
+    if (!result) {
+      throw new Error("Email không tồn tại");
+    }
+
+    const user = result;
+
+    // Tạo token xác minh
+    const token = jwt.sign({ userId: user.id }, jwtKey, { expiresIn: "1h" });
+
+    const resetLink = `https://englishapp-uit.onrender.com/auth/reset-password/${token}`;
+
+    const mailOptions = {
+      from: email.user,
+      to: Email,
+      subject: "Đặt lại mật khẩu",
+      text: `Click vào liên kết này để đặt lại mật khẩu của bạn: ${resetLink}`,
+    };
+
+    await transporter.sendMail(mailOptions);
+    return { message: "Email đặt lại mật khẩu đã được gửi!" };
+  },
+
+  async resetPassword(token, newPassword) {
+    // Xác minh token và lấy userId từ token
+    const decoded = verifyAccessToken(token);
+
+    if (!decoded || !decoded.userId) {
+      throw new Error("Token không hợp lệ hoặc đã hết hạn");
+    }
+
+    // Mã hóa mật khẩu mới
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Cập nhật mật khẩu của người dùng trong cơ sở dữ liệu
+    const user = await prisma.users.update({
+      where: { id: decoded.userId }, // Tìm người dùng theo userId từ token
+      data: { passwordhash: hashedPassword }, // Cập nhật mật khẩu đã mã hóa
+    });
+
+    if (!user) {
+      throw new Error("Người dùng không tìm thấy");
+    }
+
+    return { message: "Mật khẩu đã được thay đổi thành công!" };
   },
 };
 
