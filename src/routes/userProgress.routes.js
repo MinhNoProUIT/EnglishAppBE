@@ -1,14 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const UserProgressController = require("../controllers/UserProgressController");
+const authMiddleware = require("../middlewares/auth.middleware");
 
-router.get("/getAllByCourse/:user_id/:course_id", UserProgressController.getAllUserProgressByCourse);
-router.post("/create", UserProgressController.createUserProgress);
-router.put("/update/:id", UserProgressController.updateUserProgress);
+router.get("/getAllByCourse/:course_id", authMiddleware, UserProgressController.getAllUserProgressByCourse);
+router.post("/create", authMiddleware, UserProgressController.createUserProgress);
+router.put("/update/:word_id", authMiddleware, UserProgressController.updateUserProgress);
 router.delete("/delete/:id", UserProgressController.deleteUserProgress);
-router.get("/getUnlearnedWordsByCourse/:user_id/:course_id", UserProgressController.getUnlearnedWordsByCourse);
-router.get("/getAllTodayRepeatWordsByCourse/:user_id/:course_id", UserProgressController.getAllTodayRepeatWordsByCourse);
-router.get("/getCompletedWordsByCourse/:user_id/:course_id", UserProgressController.getCompletedWordsByCourse);
+router.get("/getUnlearnedWordsByCourse/:course_id", authMiddleware, UserProgressController.getUnlearnedWordsByCourse);
+router.get("/getAllTodayRepeatWordsByCourse/:course_id", authMiddleware, UserProgressController.getAllTodayRepeatWordsByCourse);
+router.get("/getNumberTodayRepeatWordsByCourse/:course_id", authMiddleware, UserProgressController.getNumberTodayRepeatWordsByCourse);
+router.get("/getCompletedWordsByCourse/:course_id", authMiddleware, UserProgressController.getCompletedWordsByCourse);
 
 module.exports = router;
 
@@ -16,23 +18,16 @@ module.exports = router;
  * @swagger
  * tags:
  *   name: UserProgress
- *   description: Các API quản lý từ vựng
+ *   description: Các API quản lý tiến độ học
  */
 
 /**
  * @swagger
- * /api/user-progress/getAllByCourse/{user_id}/{course_id}:
+ * /api/user-progress/getAllByCourse/{course_id}:
  *   get:
  *     summary: Lấy tiến độ học của người dùng theo khóa học
  *     tags: [UserProgress]
  *     parameters:
- *       - in: path
- *         name: user_id
- *         required: true
- *         description: ID của người dùng
- *         schema:
- *           type: string
- *           format: uuid
  *       - in: path
  *         name: course_id
  *         required: true
@@ -58,14 +53,10 @@ module.exports = router;
  *           schema:
  *             type: object
  *             properties:
- *               user_id:
- *                 type: string
- *                 format: uuid
  *               word_id:
  *                 type: string
  *                 format: uuid
  *             example:
- *               user_id: 78c8f4ff-02f6-44dd-bfef-91a7e4b921ed
  *               word_id: 385d5054-2896-4b13-a34b-bf1f274a7ab2
  *     responses:
  *       201:
@@ -74,18 +65,18 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/user-progress/update/{id}:
+ * /api/user-progress/update/{word_id}:
  *   put:
  *     summary: Cập nhật tiến độ học của người dùng cho một từ vựng
  *     tags: [UserProgress]
  *     parameters:
  *       - in: path
- *         name: id
+ *         name: word_id
  *         required: true
  *         schema:
  *           type: string
  *           format: uuid
- *         description: ID tiến độ học cần cập nhật
+ *         description: ID từ vựng cần cập nhật tiến độ học
  *     requestBody:
  *       required: true
  *       content:
@@ -126,18 +117,11 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/user-progress/getUnlearnedWordsByCourse/{user_id}/{course_id}:
+ * /api/user-progress/getUnlearnedWordsByCourse/{course_id}:
  *   get:
  *     summary: Lấy từ vựng mà người dùng chưa học trong khóa học
  *     tags: [UserProgress]
  *     parameters:
- *       - in: path
- *         name: user_id
- *         required: true
- *         description: ID của người dùng
- *         schema:
- *           type: string
- *           format: uuid
  *       - in: path
  *         name: course_id
  *         required: true
@@ -158,18 +142,11 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/user-progress/getAllTodayRepeatWordsByCourse/{user_id}/{course_id}:
+ * /api/user-progress/getAllTodayRepeatWordsByCourse/{course_id}:
  *   get:
  *     summary: Lấy từ vựng mà người dùng cần ôn tập hôm nay theo khóa học
  *     tags: [UserProgress]
  *     parameters:
- *       - in: path
- *         name: user_id
- *         required: true
- *         description: ID của người dùng
- *         schema:
- *           type: string
- *           format: uuid
  *       - in: path
  *         name: course_id
  *         required: true
@@ -190,18 +167,30 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/user-progress/getCompletedWordsByCourse/{user_id}/{course_id}:
+ * /api/user-progress/getNumberTodayRepeatWordsByCourse/{course_id}:
+ *   get:
+ *     summary: Lấy số lượng từ vựng mà người dùng cần ôn tập hôm nay theo khóa học
+ *     tags: [UserProgress]
+ *     parameters:
+ *       - in: path
+ *         name: course_id
+ *         required: true
+ *         description: ID của khóa học
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *     responses:
+ *       200:
+ *         description: Số từ vựng mà người dùng cần ôn tập hôm nay theo khóa học
+ */
+
+/**
+ * @swagger
+ * /api/user-progress/getCompletedWordsByCourse/{course_id}:
  *   get:
  *     summary: Lấy từ vựng mà người dùng đã học xong theo khóa học
  *     tags: [UserProgress]
  *     parameters:
- *       - in: path
- *         name: user_id
- *         required: true
- *         description: ID của người dùng
- *         schema:
- *           type: string
- *           format: uuid
  *       - in: path
  *         name: course_id
  *         required: true

@@ -1,12 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const CourseController = require("../controllers/CourseController");
+const authMiddleware = require("../middlewares/auth.middleware");
 
 router.get("/getAll", CourseController.getAllCourses);
 router.get("/getTotal", CourseController.getTotalCourses);
 router.post("/create", CourseController.createCourse);
 router.put("/update/:id", CourseController.updateCourse);
 router.delete("/delete/:id", CourseController.deleteCourse);
+router.get("/getAllOngoingCoursesByUser", authMiddleware, CourseController.getAllOngoingCoursesByUser);
+router.get("/getAllCompletedCoursesByUser", authMiddleware, CourseController.getAllCompletedCoursesByUser);
 
 module.exports = router;
 
@@ -165,6 +168,28 @@ module.exports = router;
  *     responses:
  *       200:
  *         description: Xóa khóa học thành công
+ */
+
+/**
+ * @swagger
+ * /api/courses/getAllOngoingCoursesByUser:
+ *   get:
+ *     summary: Lấy danh sách tất cả khóa học đang học
+ *     tags: [Courses]
+ *     responses:
+ *       200:
+ *         description: Danh sách khóa học đang học
+ */
+
+/**
+ * @swagger
+ * /api/courses/getAllCompletedCoursesByUser:
+ *   get:
+ *     summary: Lấy danh sách tất cả khóa học đã học xong
+ *     tags: [Courses]
+ *     responses:
+ *       200:
+ *         description: Danh sách khóa học đã học xong
  */
 
 /**

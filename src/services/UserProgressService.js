@@ -16,7 +16,7 @@ const UserProgressService = {
         });
     },
 
-    async createUserProgress({ user_id, word_id }) {
+    async createUserProgress(user_id, word_id) {
         return await prisma.user_progress.create({
             data: {
                 user_id,
@@ -25,9 +25,9 @@ const UserProgressService = {
         });
     },
 
-    async updateUserProgress(id, { isCorrect, isRetry }) {
+    async updateUserProgress(user_id, word_id, { isCorrect, isRetry }) {
         const progress = await prisma.user_progress.findFirst({
-            where: { id },
+            where: { user_id, word_id },
         });
 
         if (!progress) return null;
@@ -102,6 +102,43 @@ const UserProgressService = {
         }
 
         return repeatWords;
+    },
+
+    async getNumberTodayRepeatWordsByCourse(userId, courseId) {
+        const now = new Date();
+
+        const repeatDelays = {
+            1: 1,
+            2: 3,
+            3: 7,
+            4: 14,
+            5: 30,
+        };
+
+        let repeatWordsNumber = 0;
+
+        for (const level in repeatDelays) {
+            const days = repeatDelays[level];
+            const dateLimit = new Date();
+            dateLimit.setDate(now.getDate() - days);
+
+            const result = await prisma.user_progress.count({
+                where: {
+                    user_id: userId,
+                    words: {
+                        course_id: courseId,
+                    },
+                    level: parseInt(level),
+                    updatedstudydate: {
+                        lte: dateLimit,
+                    },
+                },
+            });
+
+            repeatWordsNumber += result;
+        }
+
+        return repeatWordsNumber;
     },
 
     async getCompletedWordsByCourse(userId, courseId) {
