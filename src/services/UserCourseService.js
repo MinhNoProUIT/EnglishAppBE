@@ -72,5 +72,15 @@ const UserCourseService = {
       courses: courses,
     };
   },
+
+  async createUserCourse(user_id, course_id) {
+    return await prisma.user_courses.create({
+      data: {
+        // Chắc chắn phải dùng data để gói các trường vào
+        user_id: user_id,
+        course_id: course_id,
+      },
+    });
+  },
 };
 module.exports = UserCourseService;

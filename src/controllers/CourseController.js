@@ -1,6 +1,6 @@
-const { 
-  mapGetAllCoursesToVModel, 
-  mapGetTotalCourseToVModel, 
+const {
+  mapGetAllCoursesToVModel,
+  mapGetTotalCourseToVModel,
   mapCreateCourseToVModel,
   mapUpdateCourseToVModel,
 } = require("../mappings/CourseMapping");
@@ -43,7 +43,7 @@ const CourseController = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
-  
+
   async createCourse(req, res) {
     try {
       const newCourse = await CourseService.createCourse(req.body);
@@ -86,10 +86,12 @@ const CourseController = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
-  
+
   async getAllCompletedCoursesByUser(req, res) {
     try {
-      const allCourses = await CourseService.getAllCompletedCoursesByUser(getCurrentUserId(req));
+      const allCourses = await CourseService.getAllCompletedCoursesByUser(
+        getCurrentUserId(req)
+      );
       res.json(allCourses);
     } catch (err) {
       console.error("Error in get all completed courses by user:", err);

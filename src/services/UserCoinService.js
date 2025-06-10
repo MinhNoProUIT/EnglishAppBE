@@ -28,7 +28,7 @@ const UserCoin = {
       }
 
       const updatedTotalCoin = userCoin.total_coin + coinChange;
-
+      if (updatedTotalCoin < 0) return -1;
       const updatedUserCoin = await prisma.user_coins.update({
         where: {
           user_id: user_id,
