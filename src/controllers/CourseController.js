@@ -6,6 +6,8 @@ const {
 } = require("../mappings/CourseMapping");
 const CourseService = require("../services/CourseService");
 const { getCurrentUserId } = require("../utils/CurrentUser");
+const { PrismaClient } = require("../generated/prisma");
+const prisma = new PrismaClient();
 async function checkIsPremiumUser(user_id) {
   const user = await prisma.users.findFirst({
     where: {
@@ -78,8 +80,7 @@ const CourseController = {
     try {
       const user_id = getCurrentUserId(req);
       const isPremium = await checkIsPremiumUser(user_id);
-      console.log(isPremium)
-      const allCourses = await CourseService.getAllOngoingCoursesByUser(user_id, true);
+      const allCourses = await CourseService.getAllOngoingCoursesByUser(user_id, isPremium);
       res.json(allCourses);
     } catch (err) {
       console.error("Error in get all ongoing courses by user:", err);
