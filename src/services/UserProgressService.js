@@ -44,7 +44,7 @@ const UserProgressService = {
             where: { id: progress.id },
             data: {
                 level: newLevel,
-                updatedstudydate: "2025-06-06T17:25:47.109Z",
+                updatedstudydate: new Date(),
             },
         });
     },
