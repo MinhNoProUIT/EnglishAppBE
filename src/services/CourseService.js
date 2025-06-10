@@ -70,7 +70,6 @@ const CourseService = {
       const userCourses = await prisma.user_courses.findMany({
         where: {
           user_id: userId,
-          isActive: true,
         },
         select: {
           course_id: true,
