@@ -29,7 +29,7 @@ const CourseController = {
   async getAllCourses(req, res) {
     try {
       const allCourses = await CourseService.getAllCourses();
-      res.json(allCourses.map(mapGetAllCoursesToVModel));
+      return res.status(200).json(allCourses);
     } catch (err) {
       console.error("Error in get all courses:", err);
       res.status(500).json({ error: "Internal Server Error" });
@@ -80,7 +80,10 @@ const CourseController = {
     try {
       const user_id = getCurrentUserId(req);
       const isPremium = await checkIsPremiumUser(user_id);
-      const allCourses = await CourseService.getAllOngoingCoursesByUser(user_id, isPremium);
+      const allCourses = await CourseService.getAllOngoingCoursesByUser(
+        user_id,
+        isPremium
+      );
       res.json(allCourses);
     } catch (err) {
       console.error("Error in get all ongoing courses by user:", err);

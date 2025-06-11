@@ -290,7 +290,7 @@ model users {
   isactive                                                    Boolean?                 @default(true)
   isadmin                                                     Boolean?                 @default(false)
   balance                                                     Int?                     @default(0)
-  image_url                                                   String?
+  image_url                                                   String?                  @default("https://res.cloudinary.com/ddcjjegzf/image/upload/v1749548504/yrx9jryxt2xjlt3q90ko.jpg")
   is_block                                                    Boolean?                 @default(false)
   is_verified                                                 Boolean?                 @default(false)
   firebase_uid                                                String?

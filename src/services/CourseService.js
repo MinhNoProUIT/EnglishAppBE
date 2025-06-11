@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 const CourseService = {
   async getAllCourses() {
     return await prisma.courses.findMany({
-      orderBy: { title: 'asc' },
+      orderBy: { created_date: "desc" },
       include: {
         topics: {
           select: {
@@ -84,8 +84,8 @@ const CourseService = {
         ...(checkIsPremiumUser
           ? {}
           : {
-            id: { in: allowedCourseIds },
-          }),
+              id: { in: allowedCourseIds },
+            }),
         words: {
           some: {
             user_progress: {
@@ -99,8 +99,8 @@ const CourseService = {
       include: {
         topics: {
           select: {
-            name: true
-          }
+            name: true,
+          },
         },
         words: {
           select: {
@@ -148,9 +148,10 @@ const CourseService = {
       };
     });
 
-    return result.filter(course =>
-      course.ongoingWords !== 0
-      || course.remainWords !== 0 && course.completedWords !== 0
+    return result.filter(
+      (course) =>
+        course.ongoingWords !== 0 ||
+        (course.remainWords !== 0 && course.completedWords !== 0)
     );
   },
 
@@ -160,7 +161,7 @@ const CourseService = {
         topics: {
           select: {
             name: true,
-          }
+          },
         },
         words: {
           select: {
@@ -174,18 +175,21 @@ const CourseService = {
       },
     });
 
-    return courses.filter((course) => {
-      const words = course.words;
-      const totalWords = words.length;
+    return courses
+      .filter((course) => {
+        const words = course.words;
+        const totalWords = words.length;
 
-      if (totalWords === 0) return false;
+        if (totalWords === 0) return false;
 
-      const completedWords = words.filter(
-        (word) => word.user_progress.length === 1 && word.user_progress[0].level === 6
-      ).length;
+        const completedWords = words.filter(
+          (word) =>
+            word.user_progress.length === 1 && word.user_progress[0].level === 6
+        ).length;
 
-      return completedWords === totalWords;
-    }).map((course) => ({
+        return completedWords === totalWords;
+      })
+      .map((course) => ({
         id: course.id,
         title: course.title,
         totalWords: course.words.length,
@@ -196,9 +200,8 @@ const CourseService = {
         topic: course.topics.name,
         level: course.level,
         image: course.image_url,
-    }));
+      }));
   },
-
 };
 
 module.exports = CourseService;
